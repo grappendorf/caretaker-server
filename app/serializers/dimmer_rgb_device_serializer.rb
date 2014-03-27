@@ -1,0 +1,3 @@
+class DimmerRgbDeviceSerializer < DeviceSerializer
+
+end

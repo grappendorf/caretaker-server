@@ -1,0 +1,3 @@
+<% if model.errors.any? %>
+  <% flash.now[:error] = "The #{model.class.name.humanize} contains #{pluralize model.errors.count, 'error'}" %>
+<% end %>

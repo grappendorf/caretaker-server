@@ -1,0 +1,9 @@
+<div class="row-fluid">
+  <div class="span12 text-center">
+    <h1>Not authorized</h1>
+    <% if @exception %>
+      <h2><%= @exception %></h2>
+    <% end %>
+    <%= image_tag 'grumpy.png' %>
+  </div>
+</div>

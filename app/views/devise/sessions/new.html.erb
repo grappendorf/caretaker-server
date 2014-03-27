@@ -1,0 +1,39 @@
+<% provide :title, t('title.sign_in') %>
+
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+
+    <h1>Welcome to Control Your Home!</h1>
+
+    <h2>Sign in</h2>
+
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name),) do |f| %>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, :autofocus => true, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class="checkbox">
+	        <label>
+            <%= f.check_box :remember_me, value: 'aaa' %>
+						<%= t('attributes.user.remember_me') %>
+	        </label>
+        </div>
+      <% end %>
+
+      <br/>
+
+      <%= f.submit "Sign in", class: 'btn btn-primary' %>&nbsp;<%= render "devise/shared/links" %>
+    <% end %>
+
+    <br/>
+
+  </div>
+</div>

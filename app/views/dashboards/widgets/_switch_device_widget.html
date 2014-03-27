@@ -1,0 +1,10 @@
+<div ng-controller="SwitchDeviceWidgetController"
+     data-device-id="{{ widget.device.id }}" class="switch-device-widget">
+
+  <table>
+    <tr ng-repeat="row in rows">
+      <td ng-repeat="num in row" ng-class="classes[num]" ng-click="toggle(num)">{{num + 1}}</td>
+    </tr>
+  </table>
+
+</div>

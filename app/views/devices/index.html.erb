@@ -1,0 +1,58 @@
+<% provide :title, t('title.index_model', model: Device.model_name.human(count: 2)) %>
+
+<form action="<%= request.fullpath %>" class="form-search">
+  <div class="toolbar">
+
+    <% if can? :create, Device %>
+      <div>
+        <div class="btn-group">
+          <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-asterisk"></i>
+            <%= t 'action.new' %> <b class="caret"></b></button>
+          <ul class="dropdown-menu">
+            <% Device.models.sort { |x, y| x.model_name.human <=> y.model_name.human }.each do |device_model| %>
+              <% # TODO: This check is only there to prevent the device_pages_scpec from failing  %>
+              <% # The spec temporarily creates a device subclass which is not registered as a valid  %>
+              <% # route, resulting in an excpetion in the new_device_path function  %>
+              <% if recognize_path? { new_device_path(type: device_model.model_name.plural) } %>
+                <li>
+                  <%= link_to new_device_path(type: device_model.model_name.plural) do %>
+                    <%= image_tag device_model.small_icon if device_model.try :small_icon %>
+                    <%= device_model.model_name.human %>
+                  <% end %>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+
+    <div>
+      <%= render 'shared/toolbar_search' %>
+    </div>
+  </div>
+</form>
+
+<%= paginated @devices %>
+
+<table id="devices" class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th class="width-0"></th>
+      <th class="width-30"><%= sortable :name, t('attributes.device.name') %></th>
+      <th class="width-10"><%= sortable :_type, t('attributes.device.type') %></th>
+      <th class="width-20"><%= sortable :address, t('attributes.device.address') %></th>
+      <th class="width-0"><i class="fa fa-bolt"></i></th>
+      <th class="width-40"><%= t('attributes.device.description') %></th>
+      <th class="width-0"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @devices.each do |device| %>
+      <%= render 'device', device: device %>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginated @devices %>

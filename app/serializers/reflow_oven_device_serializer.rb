@@ -1,0 +1,3 @@
+class ReflowOvenDeviceSerializer < DeviceSerializer
+
+end

@@ -1,0 +1,9 @@
+<div class="row-fluid">
+  <div class="span12 text-center">
+    <h1>A server error occurred</h1>
+    <% if @exception %>
+      <h2><%= @exception %></h2>
+    <% end %>
+    <%= image_tag 'grumpy.png' %>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+class RobotDeviceSerializer < DeviceSerializer
+
+end

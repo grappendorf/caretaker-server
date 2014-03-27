@@ -1,0 +1,12 @@
+<% provide :title, t('title.settings') %>
+
+<%= semantic_form_for :settings do |f| %>
+
+  <%= f.inputs name: 'Settings' do %>
+
+    <%= f.input :serial_port %>
+    <%= f.input :baud_rate %>
+
+  <% end %>
+
+<% end %>

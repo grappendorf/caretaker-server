@@ -1,0 +1,3 @@
+class DimmerDeviceSerializer < DeviceSerializer
+
+end

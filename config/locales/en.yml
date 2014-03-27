@@ -1,0 +1,190 @@
+en:
+
+  manage: "Manage"
+  profile: "Profile"
+  settings: "Settings"
+  system: "System"
+
+  action:
+    back: "Back"
+    change_password: "Change password"
+    dashboards: "Dashboards"
+    delete: "Delete"
+    edit: "Edit"
+    help: "Help"
+    home: "Home"
+    new: "New"
+    save: "Save"
+    cancel: "Cancel"
+    'on': "On"
+    'off': "Off"
+    sign_in: "Sign in"
+    sign_out: "Sign out"
+    delete_dashboard: "Delete dashboard"
+    new_dashboard: "New dashboard"
+    add_widget: "Add widget"
+    reload_dashboard: "Reload"
+    edit_your_profile: "Edit your user profile"
+    change_your_password: "Change your password"
+    save_profile: "Save profile"
+    create_widget: "Create widget"
+    enter_dashboard_name: "Enter dashboard name"
+    create_dashboard: "Create dashboard"
+    close: "Close"
+    ok: "Ok"
+    'no': "No"
+    'yes': "Yes"
+    widget_properties: "Widget properties"
+    help_about: "About"
+    create_dashboard: "Create dashboard"
+
+  message:
+    error_not_authorized: "You are not authorized to use this function"
+    error_in_input_data:
+      one: "There is 1 error in your input data"
+      other: "There are #{count} errors in your input data"
+    error_not_logged_in: "Please log in to continue"
+    successfully_created: "Successfully created %{name}"
+    successfully_updated: "Successfully updated %{name}"
+    successfully_deleted: "Successfully deleted %{name}"
+    confirm_delete: "Do you really want to delete <br /><b>%{model} %{name}</b>?"
+    successfully_saved_profile: "Successfully saved your profile changes"
+    successfully_changed_password: "Successfully changed your password"
+    password_remains_unchanged: "Your password remains unchanged"
+    select_device_for_widget: "Select the device to display in the widget"
+    error_loading_dashboard: "Error while loading or updating the Dashbord \"{{dashboard.name}}\""
+    error_uknown_widget_type: "Unknown widget type"
+    choose_optional_widget_title: "Choose an optional widget title"
+    select_a_building: "Please select a building"
+    select_a_floor: "Please select a floor"
+    delete_dashboard_confirmation: >
+      Do you really want to delete dashboard <strong>{{name}}</strong>?<br>
+      All of it's widgets are deleted also and cannot be recovered later!
+
+  title:
+    app: "CoYoHo"
+    index_model: "%{model}"
+    show_model: "%{model} %{name}"
+    edit_model: "Edit %{model} %{name}"
+    new_model: "Create %{model}"
+    settings: "Settings"
+    sign_in: "Sign in"
+    create_dashboard: "Create a new dashboard"
+    dashboard_properties: "Dashboard properties"
+    add_widgets_to_your_dashboard: "Add widgets to your dashboard!"
+    delete_confirmation: "Please confirm deletion"
+    create_a_dashboard: "Create a dashboard!"
+
+  description:
+    your_dashboard_is_empty: Your dashboard is currently empty.
+    add_widgets_to_your_dashboard: You can add widgets to your dashboard by clicking on the \"Add widget\" button.
+    you_currently_have_no_dashboard: "You currently have no dashboard"
+    create_your_first_dashboard: "Create your first dashboard by clicking on the \"Create dashboard\" button"
+
+  placeholder:
+    search: "Search..."
+
+  mongoid:
+    models: &mongoid_models
+      user:
+        one: "User"
+        other: "Users"
+      device:
+        one: "Device"
+        other: "Devices"
+      camera_device:
+        one: "Camera"
+        other: "Cameras"
+      dimmer_device:
+        one: "Dimmer"
+        other: "Dimmer"
+      dimmer_rgb_device:
+        one: "RGB Dimmer"
+        other: "RGB Dimmer"
+      easyvr_device:
+        one: "EasyVR"
+        other: "EasyVRs"
+      ip_camera_device:
+        one: "IP Camera"
+        other: "IP Cameras"
+      reflow_oven_device:
+        one: "Reflow Oven"
+        other: "Reflow Ovens"
+      remote_control_device:
+        one: "Remote Control"
+        other: "Remote Controls"
+      robot_device:
+        one: "Robot"
+        other: "Robots"
+      switch_device:
+        one: "Switch"
+        other: "Switches"
+      device_script:
+        one: "Device Script"
+        other: "Device Scripts"
+      room:
+        one: "Room"
+        other: "Rooms"
+      floor:
+        one: "Floor"
+        other: "Floors"
+      building:
+        one: "Building"
+        other: "Buildings"
+      room:
+        one: "Room"
+        other: "Rooms"
+      dashboard:
+        one: "Dashboard"
+        other: "Dashboards"
+    attributes: &mongoid_attributes
+      user:
+        name: "Name"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password confirmation"
+        remember_me: 'Remember me'
+      device:
+        name: "Name"
+        type: "Type"
+        address: "Address"
+        description: "Description"
+      camera_device:
+        host: "Host"
+        port: "Port"
+        user: "User"
+        password: "Password"
+        refresh_interval: "Refresh interval"
+      ip_camera_device:
+        host: "Host"
+        port: "Port"
+        user: "User"
+        password: "Password"
+        refresh_interval: "Refresh interval"
+      switch_device:
+        num_switches: "Number of switches"
+        switches_per_row: "Switches per row"
+      device_script:
+        name: "Name"
+        name_hint: "Unique Script name"
+        description: "Description"
+        enabled: "Enabled"
+        script: "Script"
+        script_hint: "Write your Device Script here"
+      building:
+        name: "Name"
+        description: "Description"
+      room:
+        number: "Number"
+        description: "Description"
+      dashboard:
+        name: "Name"
+        default: "Default"
+      widget:
+        title: "Title"
+
+  models:
+    <<: *mongoid_models
+
+  attributes:
+    <<: *mongoid_attributes

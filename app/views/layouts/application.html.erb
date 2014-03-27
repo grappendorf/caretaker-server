@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="x-coyoho-websocket" content="<%= Settings.websocket.url %>"/>
+  <base href="<%= root_url %>">
+  <title><%= full_title yield(:title) %></title>
+  <%= csrf_meta_tags %>
+  <%= favicon_link_tag %>
+  <%= render 'layouts/iehtml5shim' %>
+  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= content_for :header %>
+  <%= stylesheet_link_tag 'disable-transition' if Rails.env.test? %>
+  <script type="text/javascript">
+	  I18n.defaultLocale = "<%= I18n.default_locale %>";
+	  I18n.locale = "<%= I18n.locale %>";
+  </script>
+
+</head>
+
+<body>
+
+  <%= render 'layouts/header' %>
+
+  <div class="content-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <% flash.each do |type, message| %>
+		        <% next if type == :timedout %>
+            <div class="alert alert-<%= type %>">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <%= message %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <%= render 'layouts/breadcrumb' %>
+      <%= yield %>
+    </div>
+  </div>
+
+  <%= render 'layouts/footer' %>
+  <%= render 'layouts/notifications' %>
+
+</body>
+
+</html>

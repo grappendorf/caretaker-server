@@ -1,0 +1,190 @@
+de:
+
+  manage: "Verwaltung"
+  profile: "Profil"
+  settings: "Einstellungen"
+  system: "System"
+
+  action:
+    back: "Zurück"
+    change_password: "Passwort ändern"
+    dashboards: "Dashboards"
+    delete: "Löschen"
+    edit: "Bearbeiten"
+    help: "Hilfe"
+    home: "Start"
+    new: "Neu"
+    save: "Speichern"
+    cancel: "Abbrechen"
+    'on': "Ein"
+    'off': "Aus"
+    sign_in: "Anmelden"
+    sign_out: "Abmelden"
+    delete_dashboard: "Dashboard löschen"
+    new_dashboard: "Neues Dashboard"
+    add_widget: "Widget hinzufügen"
+    reload_dashboard: "Aktualisieren"
+    edit_your_profile: "Ändern Sie Ihr Benutzerprofil"
+    change_your_password: "Ändern Sie Ihr Passwort"
+    save_profile: "Profil speichern"
+    create_widget: "Widget anlegen"
+    enter_dashboard_name: "Dashboard Namen angeben"
+    create_dashboard: "Dashboard anlegen"
+    close: "Schließen"
+    ok: "Ok"
+    'no': "Nein"
+    'yes': "Ja"
+    widget_properties: "Widget Eigenschaften"
+    help_about: "Über"
+    create_dashboard: "Dashboard anlegen"
+
+  message:
+    error_not_authorized: "Sie sind nicht berechtigt diese Funktion aufzurufen"
+    error_in_input_data:
+      one: "Es gibt einen Fehler in Ihren Eingabedaten"
+      other: "Es gibt #{count} Fehler in Ihren Eingabedaten"
+    error_not_logged_in: "Bitte melden Sie sich an um fortzufahren"
+    successfully_created: "%{model} %{name} wurde erfolgreich angelegt"
+    successfully_updated: "%{model} %{name} wurde erfolgreich gespeichert"
+    successfully_deleted: "%{model} %{name} wurde erfolgreich gelöscht"
+    confirm_delete: "Soll<br /><b>%{model} %{name}</b><br />wirklich gelöscht werden?"
+    successfully_saved_profile: "Ihr Benutzerprofil wurde erfolgreich gespeichert"
+    successfully_changed_password: "Ihr Passwort wurde erfolgreich geändert"
+    password_remains_unchanged: "Ihr Passwort wurde nicht geändert"
+    select_device_for_widget: "Wählen Sie das Gerät aus, das dargestellt werden soll"
+    error_loading_dashboard: "Beim Laden des Dashboards \"{{dashboard.name}}\" ist ein Fehler aufgetreten"
+    error_uknown_widget_type: "Unbekannter Widget Typ"
+    choose_optional_widget_title: "Geben Sie einen optionalen Widget-Titel ein"
+    select_a_building: "Bitte wählen Sie ein Gebäude aus"
+    select_a_floor: "Bitte wählen Sie eine Etage aus"
+    delete_dashboard_confirmation: >
+      Soll das Dashboard <strong>{{name}}</strong> wirklich gelöscht werden?<br>
+      Alle Widgets werden ebenfalls gelöscht und können später nicht wieder hergestellt werden!
+
+  title:
+    app: "CoYoHo"
+    index_model: "%{model}"
+    show_model: "%{model} %{name}"
+    edit_model: "Bearbeitung %{model} %{name}"
+    new_model: "Neuanlage %{model}"
+    settings: "Einstellungen"
+    sign_in: "Anmeldung"
+    create_dashboard: "Neues Dashboard anlegen"
+    dashboard_properties: "Dashboard Eigenschaften"
+    add_widgets_to_your_dashboard: "Fügen Sie Ihrem Dashboard Widgets hinzu!"
+    delete_confirmation: "Bitte bestätigen Sie die Löschung"
+    create_a_dashboard: "Legen Sie ein Dashboard an!"
+
+  description:
+    your_dashboard_is_empty: Ihr Dashboard ist momentan leer.
+    add_widgets_to_your_dashboard: Sie können dem Dashboard Widgets hinzufügen, indem Sie auf den Button \"Widget hinzufügen\" klicken.
+    you_currently_have_no_dashboard: "Sie haben noch kein Dashboard"
+    create_your_first_dashboard: "Erzeugen Sie Ihr erstes Dashboard, indem Sie auf die Schaltfläche \"Dashboard anlegen\" klicken."
+
+  placeholder:
+    search: "Suche..."
+
+  mongoid:
+    models: &mongoid_models
+      user:
+        one: "Benutzer"
+        other: "Benutzer"
+      device:
+        one: "Gerät"
+        other: "Geräte"
+      camera_device:
+        one: "Kamera"
+        other: "Kameras"
+      dimmer_device:
+        one: "Dimmer"
+        other: "Dimmer"
+      dimmer_rgb_device:
+        one: "RGB Dimmer"
+        other: "RGB Dimmer"
+      easyvr_device:
+        one: "EasyVR"
+        other: "EasyVRs"
+      ip_camera_device:
+        one: "IP Camera"
+        other: "IP Cameras"
+      reflow_oven_device:
+        one: "Reflow Oven"
+        other: "Reflow Ovens"
+      remote_control_device:
+        one: "Fernsteuerung"
+        other: "Fernsteuerungen"
+      robot_device:
+        one: "Roboter"
+        other: "Roboter"
+      switch_device:
+        one: "Schalter"
+        other: "Schalter"
+      device_script:
+        one: "Geräte-Skript"
+        other: "Geräte-Skripte"
+      room:
+        one: "Raum"
+        other: "Räume"
+      floor:
+        one: "Etage"
+        other: "Etagen"
+      building:
+        one: "Gebäude"
+        other: "Gebäude"
+      room:
+        one: "Raum"
+        other: "Räume"
+      dashboard:
+        one: "Dashboard"
+        other: "Dashboards"
+    attributes: &mongoid_attributes
+      user:
+        name: "Name"
+        email: "Email"
+        password: "Passwort"
+        password_confirmation: "Passwort bestätigen"
+        remember_me: 'Angemeldet bleiben'
+      device:
+        name: "Name"
+        type: "Typ"
+        address: "Adresse"
+        description: "Beschreibung"
+      camera_device:
+        host: "Host"
+        port: "Port"
+        user: "Benutzer"
+        password: "Passwort"
+        refresh_interval: "Aktualisierung"
+      ip_camera_device:
+        host: "Host"
+        port: "Port"
+        user: "Benutzer"
+        password: "Passwort"
+        refresh_interval: "Aktualisierung"
+      switch_device:
+        num_switches: "Anzahl der Schalter"
+        switches_per_row: "Anzahl Schalter pro Zeile"
+      device_script:
+        name: "Name"
+        name_hint: "Eindeutiger Skript-Name"
+        description: "Beschreibung"
+        enabled: "Aktiv"
+        script: "Skript"
+        script_hint: "Hier können Sie Ihr Geräte-Skript schreiben"
+      building:
+        name: "Name"
+        description: "Beschreibung"
+      room:
+        number: "Nummer"
+        description: "Beschreibung"
+      dashboard:
+        name: "Name"
+        default: "Standard"
+      widget:
+        title: "Title"
+
+  models:
+    <<: *mongoid_models
+
+  attributes:
+    <<: *mongoid_attributes

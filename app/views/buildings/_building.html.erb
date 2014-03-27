@@ -1,0 +1,14 @@
+<%= content_tag_for :tr, building do %>
+  <td>
+    <div class="tool-actions">
+      <%= link_to t('action.edit'), edit_building_path(building), class: 'fa fa-edit icon-only' %>
+      <%= link_to t('models.floor.other'), building_floors_path(building), class: 'fa fa-bars icon-only' %>
+    </div>
+  </td>
+  <td><%= editable building, :name %></td>
+  <td class="hidden-xs"><%= editable building, :description %></td>
+  <td>
+    <%= link_to t('action.delete'), building_path(building), method: :delete, class: 'fa fa-trash-o icon-only',
+                data: {confirm: t('message.confirm_delete', model: Building.model_name.human, name: building.name)} %>
+  </td>
+<% end %>

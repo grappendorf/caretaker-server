@@ -1,0 +1,16 @@
+<%= render 'shared/error_messages', model: @room %>
+
+<%= semantic_form_for [@floor.building, @floor, @room] do |f| %>
+  <%= f.semantic_errors %>
+  <%= hidden_field_tag :floor, @floor.id %>
+  <%= f.inputs name: "#{Room.model_name.human} <b>#{@room.number}</b>",
+               disabled: @readonly do %>
+    <%= f.input :number, input_html: {autofocus: true} %>
+    <%= f.input :description %>
+  <% end %>
+  <%= f.actions do %>
+    <%= f.action :submit, label: t('action.save') unless @readonly %>
+    <%= f.action :cancel, as: :link, url: building_floor_rooms_path(@floor.building, @floor),
+                 label: t("action.#{@readonly ? 'back' : 'cancel'}") %>
+  <% end %>
+<% end %>

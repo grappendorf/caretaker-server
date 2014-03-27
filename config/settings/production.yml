@@ -1,0 +1,6 @@
+xbee:
+  tty: '/dev/ttyUSB0'
+  rate: 57600
+websocket:
+  standalone: false
+  url: 'server:3000/websocket'

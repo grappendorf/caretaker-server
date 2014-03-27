@@ -1,0 +1,3 @@
+class WeatherWidgetSerializer < WidgetSerializer
+
+end

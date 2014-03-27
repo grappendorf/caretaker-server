@@ -1,0 +1,19 @@
+<% provide :title, 'Dashboard' %>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+    <div class="jumbotron">
+      <h1><i class="fa fa-th-large"></i> <%= t('title.create_a_dashboard') %></h1>
+
+      <p><%= t('description.you_currently_have_no_dashboard') %></p>
+
+      <p><%= t('description.create_your_first_dashboard') %></p>
+
+      <p>
+        <a class="btn btn-success btn-lg" role="button" ng-click="addWidget()">
+          <i class="fa fa-plus"></i> <%= t('action.create_dashboard') %>
+        </a>
+      </p>
+    </div>
+  </div>
+</div>

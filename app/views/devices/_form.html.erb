@@ -1,0 +1,17 @@
+<%= render 'shared/error_messages', model: @device %>
+
+<%= semantic_form_for @device, validate: true,
+                      url: @device.new_record? ? devices_path : device_path(@device) do |f| %>
+  <%= hidden_field_tag :type, @device.class.name %>
+  <%= f.inputs *(Device.fields.symbolize_keys.keys - [:_id, :_type]),
+               name: "#{Device.model_name.human} <b>#{@device.name}</b>",
+               disabled: @readonly %>
+  <%= f.inputs *(@device.fields.symbolize_keys.keys - Device.fields.symbolize_keys.keys),
+               name: "#{@device.class.model_name.human} #{image_tag @device.class.large_icon}",
+               disabled: @readonly %>
+  <%= f.actions do %>
+    <%= f.action :submit, label: t('action.save') unless @readonly %>
+    <%= f.action :cancel, as: :link, url: devices_path,
+                 label: t("action.#{@readonly ? 'back' : 'cancel'}") %>
+  <% end %>
+<% end %>

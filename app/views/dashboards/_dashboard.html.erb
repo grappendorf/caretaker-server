@@ -1,0 +1,18 @@
+<%= content_tag_for :tr, dashboard do %>
+  <td><%= link_to t('action.edit'), edit_dashboard_path(dashboard), class: 'fa fa-edit icon-only' %></td>
+  <td>
+    <a href="#" id="name" class="editable" data-pk="<%= dashboard.id %>" data-type="text" data-resource="dashboard" data-name="name" data-url="/dashboards/<%= dashboard.id %>" data-original-title="Name">
+      <span><%= dashboard.name %></span>
+    </a>
+  </td>
+	<td>
+		<span><%= dashboard.user.name %></span>
+	</td>
+	<td>
+	  <i class="<%= dashboard.default? ? 'fa fa-check' : '' %>"></i>
+	</td>
+  <td>
+    <%= link_to t('action.delete'), dashboard_path(dashboard), method: :delete, class: 'fa fa-trash-o icon-only',
+                data: { confirm: "Do you really want to delete the dashboard <br><b>#{dashboard.name} (#{dashboard.user.name})?</b>" } %>
+  </td>
+<% end %>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CppTools.Loader" reportImplicitCastToBool="false" reportNameReferencedOnce="false" version="3" compilerSelect="AUTO" />
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="IdProvider" IDEtalkID="E940EA58692D248F6B2A68D608F6FACF" />
+  <component name="IntelliCalc">
+    <mode value="0" />
+    <system value="10" />
+    <angles value="deg" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" assert-keyword="true" jdk-15="true" project-jdk-name="RVM: ruby-2.1.1 [coyoho-server] (1)" project-jdk-type="RUBY_SDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
+

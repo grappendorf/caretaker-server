@@ -1,0 +1,44 @@
+<%= render 'shared/error_messages', model: @user %>
+
+<% if @myself == :profile %>
+  <h1><%= t('action.edit_your_profile') %></h1>
+<% end %>
+<% if @myself == :password %>
+  <h1><%= t('action.change_your_password') %></h1>
+<% end %>
+
+<%= semantic_form_for @user do |f| %>
+
+  <%= hidden_field_tag :myself, @myself %>
+  <%= hidden_field_tag :return_to, @return_to %>
+
+  <%= f.semantic_errors %>
+
+  <% unless @myself == :password %>
+    <%= f.inputs name: 'Profile' do %>
+      <%= f.input :name %>
+      <%= f.input :email %>
+    <% end %>
+  <% end %>
+  <% unless @myself == :profile %>
+    <%= f.inputs name: 'Account' do %>
+      <%= f.input :password %>
+      <%= f.input :password_confirmation %>
+    <% end %>
+  <% end %>
+  <% unless @myself %>
+    <% if current_user.has_role? :admin %>
+      <%= f.inputs do %>
+        <%= f.input :roles, as: :check_boxes %>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= f.actions do %>
+    <%= f.action :submit,
+                 label: {profile: t('action.save_profile'),
+                         password: t('action.change_password')}.fetch(@myself, t('action.save')) %>
+    <%= f.action :cancel, as: :link, url: @return_to, label: t('action.cancel') %>
+  <% end %>
+
+<% end %>

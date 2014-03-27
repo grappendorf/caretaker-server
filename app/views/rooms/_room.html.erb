@@ -1,0 +1,9 @@
+<%= content_tag_for :tr, room do %>
+  <td><%= link_to t('action.edit'), edit_building_floor_room_path(@building, @floor, room), class: 'fa fa-edit icon-only' %></td>
+  <td><%= editable room, :number, url: building_floor_room_path(@building, @floor, room) %></td>
+  <td><%= editable room, :description, url: building_floor_room_path(@building, @floor, room)  %></td>
+  <td>
+    <%= link_to t('action.delete'), [@building, @floor, room], method: :delete, class: 'fa fa-trash-o icon-only',
+                data: { confirm: t('message.confirm_delete', model: Room.model_name.human, name: room.number) } %>
+  </td>
+<% end %>
