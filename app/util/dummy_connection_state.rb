@@ -7,7 +7,7 @@ module DummyConnectionState
 		ConnectionState::State::UNKNOWN
 	end
 
-	def when_connection_changed _
+	def when_connection_changed &_
 	end
 
 	def connect

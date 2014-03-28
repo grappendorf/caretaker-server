@@ -62,6 +62,9 @@ class DeviceManager
 			@devices_by_address[device.address] = device
 		end
 		device.init_connection_state
+		device.when_connection_changed do |device|
+			WebsocketRails[:devices].trigger('connection', {id: device.id.to_s, connected: device.connected?})
+		end
 		device.when_changed do |device|
 			WebsocketRails[:devices].trigger('state',
 			                                 {type: device.class.name.underscore, id: device.id.to_s, state: device.current_state})

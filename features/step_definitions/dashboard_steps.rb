@@ -6,7 +6,7 @@ def create_switch_device
 	unless @device
 		@device = FactoryGirl.create :switch_device
 		lookup(:device_manager).add_device @device
-		# lookup(:scheduler).travel 1.minute
+		lookup(:scheduler).travel 1.minute
 	end
 end
 
@@ -129,6 +129,7 @@ Then(/^i see the dashboard management view$/) do
 end
 
 When(/^the switch is unconnected$/) do
+	lookup(:device_manager).device_by_id(@device.id).disconnect
 end
 
 Then(/^it is displayed as unconnected in the dashboard$/) do
@@ -136,7 +137,10 @@ Then(/^it is displayed as unconnected in the dashboard$/) do
 end
 
 When(/^the switch is connected$/) do
+	lookup(:device_manager).device_by_id(@device.id).connect
+	lookup(:scheduler).travel 1.minute
 end
 
 Then(/^it is displayed as connected in the dashboard$/) do
+	page.should have_selector '.panel-heading .fa-check-square-o'
 end
