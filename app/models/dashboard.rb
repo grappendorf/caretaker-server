@@ -12,7 +12,7 @@ class Dashboard
 	validates :name, presence: true
 
 	def self.attr_accessible
-    [:name]
+    [:name, :default]
   end
 
   scope :search, -> (q) { User.and(:$or => [{name: /#{q}/i}]) }

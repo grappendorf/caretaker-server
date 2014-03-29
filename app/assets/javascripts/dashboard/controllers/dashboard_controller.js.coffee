@@ -139,5 +139,5 @@ angular.module 'dashboard'
 	($scope, Dashboard) ->
 
 		$scope.newDashboard = ->
-			new Dashboard({name: 'Default'}).$save (dashboard) ->
+			new Dashboard({name: 'Default', default: true}).$save (dashboard) ->
 				window.location = "/dashboards/#{dashboard.id}"
