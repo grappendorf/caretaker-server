@@ -14,7 +14,7 @@
   </td>
   <td><%= editable device, :address, url: device_path(device) %></td>
   <td>
-    <i class="<%= managed_device.try :connected? ? 'fa fa-check-square-o' : 'fa fa-square-o' %>"></i>
+    <i class="<%= managed_device.try(:connected?) ? 'fa fa-check-square-o' : 'fa fa-square-o' %>"></i>
   </td>
   <td><%= editable device, :description, url: device_path(device) %></td>
   <td>
