@@ -32,6 +32,7 @@ class DevicesController < CRUDController
 		@device = type.camelcase.constantize.new
 		@device.update_attributes device_params(@device)
 		if @device.save
+			device_manager.add_device @device
 			flash[:success] = t('message.successfully_created', model: Device.model_name.human, name: @device.name)
 			redirect_to devices_path
 		else
@@ -56,6 +57,7 @@ class DevicesController < CRUDController
 		respond_to do |format|
 			@device = Device.find(params[:id])
 			if @device.update_attributes device_params(@device)
+				device_manager.update_device @device
 				format.html { redirect_to devices_path, flash: {
 						success: t('message.successfully_updated', model: Device.model_name.human, name: @device.name)} }
 				format.json { head :no_content }
@@ -68,6 +70,7 @@ class DevicesController < CRUDController
 
 	def destroy
 		@device = Device.find(params[:id])
+		device_manager.remove_device @device.id
 		@device.destroy
 		flash[:success] = t('message.successfully_deleted', model: Device.model_name.human, name: @device.name)
 		redirect_to devices_path
