@@ -133,3 +133,11 @@ angular.module 'dashboard'
 		# Called by gridster when widget resizing ends
 		$scope.widgetResizeEnd = (widget) ->
 			$scope.$apply -> widget.scope().resizing = false
+
+angular.module 'dashboard'
+.controller 'NoDashboardController',
+	($scope, Dashboard) ->
+
+		$scope.newDashboard = ->
+			new Dashboard({name: 'Default'}).$save (dashboard) ->
+				window.location = "/dashboards/#{dashboard.id}"
