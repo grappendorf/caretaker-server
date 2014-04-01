@@ -1,3 +1,6 @@
-<div data-device-id="{{ widget.device.id }}" class="reflow-oven-device-widget">
-  Reflow Oven
+<div ng-controller="ReflowOvenDeviceWidgetController" ng-init="init()"
+		 data-device-id="{{ widget.device.id }}" class="reflow-oven-device-widget">
+
+	<highchart config="chart"></highchart>
+
 </div>

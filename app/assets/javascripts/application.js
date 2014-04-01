@@ -19,6 +19,8 @@
 //= require angular-ui-bootstrap
 //= require angular-ui-bootstrap-tpls
 //= require angular-dialogs
+//= require highcharts
+//= require highcharts-ng
 //= require websocket_rails/main
 //= require nprogress
 //= require nprogress-turbolinks

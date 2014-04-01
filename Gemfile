@@ -61,6 +61,7 @@ gem 'uglifier', '2.4.0'
 gem 'layout_by_action', '0.0.2'
 gem 'nprogress-rails', '0.1.2.3'
 gem 'sprockets', '2.11.0'
+gem 'highcharts-rails', '3.0.10'
 
 # Serial/XBee
 gem 'serialport', '1.3.0'
