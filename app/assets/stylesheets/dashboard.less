@@ -20,36 +20,39 @@
     .panel {
       position: relative;
       height: 100%;
+      overflow: hidden;
 
       &.panel-highlight {
         border-width: 2px;
         border-color: @brand-warning;
       }
-    }
 
-    .panel-heading {
-      i {
-        cursor: pointer;
+      .panel-heading {
+        i {
+          cursor: pointer;
 
-        &.fa-square {
-          cursor: move;
-          margin-right: 8px;
+          &.fa-square {
+            cursor: move;
+            margin-right: 8px;
+          }
+        }
+
+        .widget-actions {
+          i {
+            -webkit-transition: 1s linear opacity;
+            transition: 0.3s linear opacity;
+            opacity: 0.2;
+          }
+
+          &:hover i {
+            -webkit-transition: 1s linear opacity;
+            transition: 0.3s linear opacity;
+            opacity: 1;
+          }
         }
       }
-    }
 
-    .widget-actions {
-
-      i {
-        -webkit-transition: 1s linear opacity;
-        transition: 0.3s linear opacity;
-        opacity: 0.2;
-      }
-
-      &:hover i {
-        -webkit-transition: 1s linear opacity;
-        transition: 0.3s linear opacity;
-        opacity: 1;
+      .panel-body {
       }
     }
   }

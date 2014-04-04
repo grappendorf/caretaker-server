@@ -1,5 +1,24 @@
-<div ng-controller="ReflowOvenDeviceWidgetController" ng-init="init()"
+<div ng-controller="ReflowOvenDeviceWidgetController"
 		 data-device-id="{{ widget.device.id }}" class="reflow-oven-device-widget">
+
+	<div class="controls">
+		<div class="btn-group">
+			<button ng-click="start()" class="btn btn-danger">Start</button>
+			<button ng-click="cool()" class="btn btn-info">Cool</button>
+			<button ng-click="off()" class="btn btn-success">Off</button>
+		</div>
+		<span class="badge temperature"><strong>{{temperature}} °C</strong></span>
+		<div class="pull-right">
+			<span class="badge" ng-class="{'alert-danger': heater}">
+				<i class="fa fa-power-off"></i>
+			</span>
+			<span class="badge" ng-class="{'alert-danger': fan}">
+				<i class="fa fa-fire-extinguisher"></i>
+			</span>
+			<span class="label label-warning">{{mode}}</span>
+			<span class="label label-info">{{state}}</span>
+		</div>
+	</div>
 
 	<highchart config="chart"></highchart>
 

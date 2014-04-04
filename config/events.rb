@@ -2,6 +2,7 @@ WebsocketRails::EventMap.describe do
 
 	namespace :device do
 		subscribe :state, 'device_events#state'
+		subscribe :reconnect, 'device_events#reconnect'
 	end
 
 	# You can use this file to map incoming events to controller actions.

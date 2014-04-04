@@ -1,4 +1,5 @@
 xbee:
+  driver: :serial
   tty: '/dev/ttyUSB0'
   rate: 57600
 websocket:

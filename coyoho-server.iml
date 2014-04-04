@@ -53,7 +53,7 @@
     <orderEntry type="library" scope="PROVIDED" name="capistrano-rails (v1.1.1, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="capistrano-rvm (v0.1.1, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="capybara (v2.2.1, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="childprocess (v0.5.1, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="childprocess (v0.5.2, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="chromedriver2-helper (v0.0.8, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cliver (v0.3.2, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="codemirror-rails (v3.21, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
@@ -66,7 +66,7 @@
     <orderEntry type="library" scope="PROVIDED" name="commonjs (v0.2.7, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="connection_pool (v1.2.0, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coolline (v0.4.3, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="cucumber (v1.3.13, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="cucumber (v1.3.14, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cucumber-rails (v1.4.0, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="daemons (v1.1.9, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="database_cleaner (v1.2.0, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
@@ -94,6 +94,7 @@
     <orderEntry type="library" scope="PROVIDED" name="formtastic-bootstrap (v3.0.0, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="gherkin (v2.12.2, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="grit (v2.5.0, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="highcharts-rails (v3.0.10, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hike (v1.2.3, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hirb (v0.7.1, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hiredis (v0.4.5, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
@@ -149,7 +150,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rails-i18n (v4.0.1, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails_config (v0.3.3, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="railties (v4.0.2, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="rake (v10.2.0, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rake (v10.2.2, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="redis (v3.0.7, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="redis-actionpack (v4.0.0, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="redis-activesupport (v4.0.0, RVM: ruby-2.1.1 [coyoho-server] (1)) [gem]" level="application" />

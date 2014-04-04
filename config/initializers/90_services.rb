@@ -25,9 +25,14 @@ module ServiceManager
 
 	def self.register_fake_services
 		register(:random) { DeterministicRandom.new }
-		xbeesim = XbeeSim.new
-		register(:xbeesim) { xbeesim }
-		register(:xbee) { XBeeRuby::XBee.new serial: xbeesim }
+		case Settings.xbee.driver
+			when :serial
+				register(:xbee) { XBeeRuby::XBee.new port: Settings.xbee.tty, rate: Settings.xbee.rate }
+			else
+				xbeesim = XbeeSim.new
+				register(:xbeesim) { xbeesim }
+				register(:xbee) { XBeeRuby::XBee.new serial: xbeesim }
+		end
 		register(:scheduler) { Rufus::Scheduler.start_new } if Rails.env.development?
 		register(:scheduler) { ManualScheduler.new } if Rails.env.test?
 	end

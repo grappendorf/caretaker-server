@@ -24,7 +24,7 @@ set :ssh_options, {
 }
 
 set :rvm_type, :user
-set :rvm_ruby_version, '2.1.0@coyoho-server'
+set :rvm_ruby_version, '2.1.1@coyoho-server'
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options

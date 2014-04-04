@@ -89,7 +89,10 @@
             <div class="panel-heading">
               <i class="fa fa-square" ng-mousedown="enableDrag()"></i> {{widget.title}}
 							<span class="widget-actions pull-right">
-								<i class="fa" ng-class="{'fa-square-o': !widget.device.connected, 'fa-check-square-o': widget.device.connected}"></i>
+								<span class="fa-stack">
+									<i class="fa fa-square-o fa-stack-1x" ng-click="reconnect()"></i>
+									<i class="fa fa-flash fa-stack-1x" ng-show="widget.device.connected"></i>
+								</span>
 		            <i ng-click="editWidgetProperties(widget)" class="fa fa-pencil-square"></i>
 								<i ng-click="removeWidget(widget)" class="fa fa-times-circle"></i>
 							</span>
