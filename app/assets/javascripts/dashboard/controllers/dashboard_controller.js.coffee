@@ -51,8 +51,8 @@ angular.module 'dashboard'
 	$scope.reload = ->
 		loadDashboard $scope.dashboard
 
-	$scope.reconnectWidget = ->
-		websocketDispatcher.trigger 'device.reconnect', {id: deviceId}
+	$scope.reconnectWidget = (widget) ->
+		websocketDispatcher.trigger 'device.reconnect', {id: widget.device.id}
 
 	$scope.addWidget = ->
 		$modal.open(

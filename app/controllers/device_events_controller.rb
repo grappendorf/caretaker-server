@@ -9,7 +9,8 @@ class DeviceEventsController < WebsocketRails::BaseController
 
 	def reconnect
 		device = device_manager.device_by_id(BSON::ObjectId.from_string(message[:id]))
-		device.connect unless device.connected?
+		device.disconnect
+		device.connect
 	end
 
 end
