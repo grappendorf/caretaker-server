@@ -17,7 +17,9 @@ class XbeeMaster
 					response = xbee.read_response
 					case response
 						when XBeeRuby::RxResponse
-							@message_listeners.each {|l| l.call response.address64, response.data }
+							@message_listeners.each do |l|
+								l.call response.address64, response.address16, response.data
+							end
 						when XBeeRuby::ModemStatusResponse
 							Rails.logger.info "Modem status: #{response.modem_status}"
 					end
@@ -33,8 +35,10 @@ class XbeeMaster
 		xbee.close if @xbee
 	end
 
-	def send_message address, *data
-		request = XBeeRuby::TxRequest.new XBeeRuby::Address64.new(*address), data
+	def send_message address64, address16, *data
+		options = {}
+		options[:address16] = address16 if address16
+		request = XBeeRuby::TxRequest.new address64, data, options
 		@xbee_mutex.synchronize do
 			xbee.write_request request if xbee.connected?
 		end

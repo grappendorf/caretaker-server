@@ -30,13 +30,14 @@ class DeviceManager
 		start
 	end
 
-	def xbee_message_received address, data
-		device = @devices_by_address[address.to_s]
+	def xbee_message_received address64, address16, data
+		device = @devices_by_address[address64.to_s]
 		if not device
 			return
 		end
 		message_code = data[0]
 		if message_code == (CoYoHoMessages::COYOHO_MESSAGE_RESPONSE | CoYoHoMessages::COYOHO_ADD_LISTENER)
+			device.address16 = address16
 			device.xbee_connect_response
 			return
 		end
