@@ -1,5 +1,5 @@
 xbee:
-  driver: :serial
+  driver: :simulation
   tty: '/dev/ttyUSB0'
   rate: 57600
 websocket:
