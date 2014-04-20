@@ -19,9 +19,6 @@ gem 'websocket-rails', '0.6.2'
 
 # Database
 gem 'mongoid', '4.0.0.alpha2'
-gem 'redis-objects', '0.9.0'
-gem 'em-hiredis', '0.2.1'
-gem 'redis-rails', '4.0.0'
 gem 'faker', '1.2.0'
 
 # Authentication/Authorization
