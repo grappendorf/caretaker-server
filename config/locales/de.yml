@@ -84,107 +84,107 @@ de:
   placeholder:
     search: "Suche..."
 
-  mongoid:
-    models: &mongoid_models
-      user:
-        one: "Benutzer"
-        other: "Benutzer"
-      device:
-        one: "Gerät"
-        other: "Geräte"
-      camera_device:
-        one: "Kamera"
-        other: "Kameras"
-      dimmer_device:
-        one: "Dimmer"
-        other: "Dimmer"
-      dimmer_rgb_device:
-        one: "RGB Dimmer"
-        other: "RGB Dimmer"
-      easyvr_device:
-        one: "EasyVR"
-        other: "EasyVRs"
-      ip_camera_device:
-        one: "IP Camera"
-        other: "IP Cameras"
-      reflow_oven_device:
-        one: "Reflow Oven"
-        other: "Reflow Ovens"
-      remote_control_device:
-        one: "Fernsteuerung"
-        other: "Fernsteuerungen"
-      robot_device:
-        one: "Roboter"
-        other: "Roboter"
-      switch_device:
-        one: "Schalter"
-        other: "Schalter"
-      device_script:
-        one: "Geräte-Skript"
-        other: "Geräte-Skripte"
-      room:
-        one: "Raum"
-        other: "Räume"
-      floor:
-        one: "Etage"
-        other: "Etagen"
-      building:
-        one: "Gebäude"
-        other: "Gebäude"
-      room:
-        one: "Raum"
-        other: "Räume"
-      dashboard:
-        one: "Dashboard"
-        other: "Dashboards"
-    attributes: &mongoid_attributes
-      user:
-        name: "Name"
-        email: "Email"
-        password: "Passwort"
-        password_confirmation: "Passwort bestätigen"
-        remember_me: 'Angemeldet bleiben'
-      device:
-        name: "Name"
-        type: "Typ"
-        address: "Adresse"
-        description: "Beschreibung"
-      camera_device:
-        host: "Host"
-        port: "Port"
-        user: "Benutzer"
-        password: "Passwort"
-        refresh_interval: "Aktualisierung"
-      ip_camera_device:
-        host: "Host"
-        port: "Port"
-        user: "Benutzer"
-        password: "Passwort"
-        refresh_interval: "Aktualisierung"
-      switch_device:
-        num_switches: "Anzahl der Schalter"
-        switches_per_row: "Anzahl Schalter pro Zeile"
-      device_script:
-        name: "Name"
-        name_hint: "Eindeutiger Skript-Name"
-        description: "Beschreibung"
-        enabled: "Aktiv"
-        script: "Skript"
-        script_hint: "Hier können Sie Ihr Geräte-Skript schreiben"
-      building:
-        name: "Name"
-        description: "Beschreibung"
-      room:
-        number: "Nummer"
-        description: "Beschreibung"
-      dashboard:
-        name: "Name"
-        default: "Standard"
-      widget:
-        title: "Title"
+  models: &models
+    user:
+      one: "Benutzer"
+      other: "Benutzer"
+    device:
+      one: "Gerät"
+      other: "Geräte"
+    camera_device:
+      one: "Kamera"
+      other: "Kameras"
+    dimmer_device:
+      one: "Dimmer"
+      other: "Dimmer"
+    dimmer_rgb_device:
+      one: "RGB Dimmer"
+      other: "RGB Dimmer"
+    easyvr_device:
+      one: "EasyVR"
+      other: "EasyVRs"
+    ip_camera_device:
+      one: "IP Camera"
+      other: "IP Cameras"
+    reflow_oven_device:
+      one: "Reflow Oven"
+      other: "Reflow Ovens"
+    remote_control_device:
+      one: "Fernsteuerung"
+      other: "Fernsteuerungen"
+    robot_device:
+      one: "Roboter"
+      other: "Roboter"
+    switch_device:
+      one: "Schalter"
+      other: "Schalter"
+    device_script:
+      one: "Geräte-Skript"
+      other: "Geräte-Skripte"
+    room:
+      one: "Raum"
+      other: "Räume"
+    floor:
+      one: "Etage"
+      other: "Etagen"
+    building:
+      one: "Gebäude"
+      other: "Gebäude"
+    room:
+      one: "Raum"
+      other: "Räume"
+    dashboard:
+      one: "Dashboard"
+      other: "Dashboards"
 
-  models:
-    <<: *mongoid_models
+  attributes: &attributes
+    user:
+      name: "Name"
+      email: "Email"
+      password: "Passwort"
+      password_confirmation: "Passwort bestätigen"
+      remember_me: 'Angemeldet bleiben'
+    device:
+      name: "Name"
+      type: "Typ"
+      address: "Adresse"
+      description: "Beschreibung"
+    camera_device:
+      host: "Host"
+      port: "Port"
+      user: "Benutzer"
+      password: "Passwort"
+      refresh_interval: "Aktualisierung"
+    ip_camera_device:
+      host: "Host"
+      port: "Port"
+      user: "Benutzer"
+      password: "Passwort"
+      refresh_interval: "Aktualisierung"
+    switch_device:
+      num_switches: "Anzahl der Schalter"
+      switches_per_row: "Anzahl Schalter pro Zeile"
+    device_script:
+      name: "Name"
+      name_hint: "Eindeutiger Skript-Name"
+      description: "Beschreibung"
+      enabled: "Aktiv"
+      script: "Skript"
+      script_hint: "Hier können Sie Ihr Geräte-Skript schreiben"
+    building:
+      name: "Name"
+      description: "Beschreibung"
+    room:
+      number: "Nummer"
+      description: "Beschreibung"
+    dashboard:
+      name: "Name"
+      default: "Standard"
+    widget:
+      title: "Title"
 
-  attributes:
-    <<: *mongoid_attributes
+  activerecord:
+    models:
+      <<: *models
+    attributes:
+      <<: *attributes

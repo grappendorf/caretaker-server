@@ -1,12 +1,21 @@
-class CameraDevice < Device
+# == Schema Information
+#
+# Table name: camera_devices
+#
+#  id               :integer          not null, primary key
+#  host             :string(255)
+#  port             :integer
+#  user             :string(255)
+#  password         :string(255)
+#  refresh_interval :string(255)
+#
 
+class CameraDevice < ActiveRecord::Base
+
+	inherit DeviceBase
 	include XbeeDevice
 
-	field :host, type: String
-	field :port, type: Integer
-	field :user, type: String
-	field :password, type: String
-	field :refresh_interval, type: String
+	is_a :device
 
 	validates :host, presence: true
 	validates :port, numericality: { greater_than: 0 }

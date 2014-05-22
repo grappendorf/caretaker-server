@@ -1,4 +1,15 @@
-class WeatherWidget < Widget
+# == Schema Information
+#
+# Table name: weather_widgets
+#
+#  id :integer          not null, primary key
+#
+
+class WeatherWidget < ActiveRecord::Base
+
+	inherit WidgetBase
+
+	is_a :widget
 
 	before_validation :set_default_title
 

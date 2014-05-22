@@ -142,5 +142,5 @@ When(/^the switch is connected$/) do
 end
 
 Then(/^it is displayed as connected in the dashboard$/) do
-	page.should have_selector '.panel-heading .fa-check-square-o'
+	page.should have_selector '.panel-heading .fa-flash'
 end

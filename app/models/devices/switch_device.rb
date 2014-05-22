@@ -1,9 +1,18 @@
-class SwitchDevice < Device
+# == Schema Information
+#
+# Table name: switch_devices
+#
+#  id               :integer          not null, primary key
+#  num_switches     :integer
+#  switches_per_row :integer
+#
 
+class SwitchDevice < ActiveRecord::Base
+
+	inherit DeviceBase
 	include XbeeDevice
 
-	field :num_switches, type: Integer
-	field :switches_per_row, type: Integer
+	is_a :device
 
 	validates :num_switches, presence: true, numericality: {greater_than: 0}
 	validates :switches_per_row, presence: true, numericality: {greater_than: 0}

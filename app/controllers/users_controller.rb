@@ -9,7 +9,7 @@ class UsersController < CRUDController
 
 	def index
 		@users = User.search(params[:q]).accessible_by(current_ability).
-				order_by(sort_column => sort_order_as_int).page(params[:page])
+				order("#{sort_column} #{sort_order}").page(params[:page])
 		add_breadcrumb User.model_name.human(count: 2), :users_path
 	end
 

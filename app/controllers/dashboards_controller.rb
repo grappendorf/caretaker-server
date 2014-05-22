@@ -11,7 +11,7 @@ class DashboardsController < CRUDController
 	add_breadcrumb Dashboard.model_name.human(count: 2), :dashboards_path, except: [:show, :default]
 
 	def index
-		@dashboards = @dashboards.search(params[:q]).order_by(sort_column => sort_order_as_int).page(params[:page])
+		@dashboards = @dashboards.search(params[:q]).order("#{sort_column} #{sort_order}").page(params[:page])
 		respond_to do |format|
 			format.html
 			format.json { render json: @dashboards, except: [:widgets] }
@@ -19,7 +19,7 @@ class DashboardsController < CRUDController
 	end
 
 	def names
-		@dashboards = @dashboards.search_names(params[:q]).order_by(name: 1)
+		@dashboards = @dashboards.search_names(params[:q]).order('name asc')
 		respond_to { |format| format.json { render json: @dashboards, only: [:id, :name, :default] } }
 	end
 
@@ -46,7 +46,7 @@ class DashboardsController < CRUDController
 
 	def create
 		respond_to do |format|
-			@dashboard.user = current_user.id
+			@dashboard.user = current_user
 			if @dashboard.save
 				format.html do
 					flash[:success] = t('message.successfully_created', model: Dashboard.model_name.human, name: @dashboard.name)
@@ -100,7 +100,7 @@ class DashboardsController < CRUDController
 
 	private
 	def default_sort_column
-		:_name
+		:name
 	end
 
 end

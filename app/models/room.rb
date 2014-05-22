@@ -1,20 +1,22 @@
-class Room
+# == Schema Information
+#
+# Table name: rooms
+#
+#  id          :integer          not null, primary key
+#  number      :string(255)
+#  description :string(255)
+#  floor_id    :integer
+#
 
-	include Mongoid::Document
-
-	field :number, type: String
-	field :description, type: String
+class Room < ActiveRecord::Base
 
 	belongs_to :floor
-
-	has_many :devices, dependent: :destroy
+	has_many :devices
 
 	validates :number, presence: true
 
-	index({number: 1}, {unique: true})
+	scope :search, -> (q) { where('number like ?', "%#{q}%") }
 
-	scope :search, -> (q) { where number: /#{q}/ }
-
-	scope :on_floor, -> (floor) { where floor: floor }
+	scope :on_floor, -> (floor) { where floor_id: floor }
 
 end

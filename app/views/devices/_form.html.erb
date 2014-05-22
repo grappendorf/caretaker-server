@@ -1,12 +1,12 @@
 <%= render 'shared/error_messages', model: @device %>
 
 <%= semantic_form_for @device, validate: true,
-                      url: @device.new_record? ? devices_path : device_path(@device) do |f| %>
+                      url: @device.new_record? ? devices_path : device_path(@device.as_device) do |f| %>
   <%= hidden_field_tag :type, @device.class.name %>
-  <%= f.inputs *(Device.fields.symbolize_keys.keys - [:_id, :_type]),
+  <%= f.inputs *(Device.attr_accessible),
                name: "#{Device.model_name.human} <b>#{@device.name}</b>",
                disabled: @readonly %>
-  <%= f.inputs *(@device.fields.symbolize_keys.keys - Device.fields.symbolize_keys.keys),
+  <%= f.inputs *(@device.class.attr_accessible - Device.attr_accessible),
                name: "#{@device.class.model_name.human} #{image_tag @device.class.large_icon}",
                disabled: @readonly %>
   <%= f.actions do %>

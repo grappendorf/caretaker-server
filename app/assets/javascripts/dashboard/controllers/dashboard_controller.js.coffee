@@ -29,10 +29,10 @@ angular.module 'dashboard'
 		loadDashboardInfos -> loadDashboard {id: dashboard_id}
 		channel = websocketDispatcher.subscribe 'devices'
 		channel.bind 'state', (data) ->
-			$("[data-device-id=#{data.id}]").scope().update(data)
+			$("[data-device-id=device-#{data.id}]").scope().update(data)
 		channel.bind 'connection', (data) ->
 			$scope.$apply ->
-				$("[data-device-id=#{data.id}]").scope().device.connected = data.connected
+				$("[data-device-id=device-#{data.id}]").scope().device.connected = data.connected
 
 	$scope.selectDashboard = (dashboard) ->
 		loadDashboard dashboard

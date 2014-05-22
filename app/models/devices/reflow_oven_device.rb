@@ -1,6 +1,16 @@
-class ReflowOvenDevice < Device
+# == Schema Information
+#
+# Table name: reflow_oven_devices
+#
+#  id :integer          not null, primary key
+#
 
+class ReflowOvenDevice < ActiveRecord::Base
+
+	inherit DeviceBase
 	include XbeeDevice
+
+	is_a :device
 
 	def self.attr_accessible
 		Device.attr_accessible

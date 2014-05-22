@@ -5,7 +5,7 @@ class BuildingsController < CRUDController
 	load_and_authorize_resource
 
 	def index
-		@buildings = @buildings.search(params[:q]).order_by(sort_column => sort_order_as_int).page(params[:page])
+		@buildings = @buildings.search(params[:q]).order("#{sort_column} #{sort_order}").page(params[:page])
 		add_breadcrumbs
 	end
 

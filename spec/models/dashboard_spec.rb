@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: dashboards
+#
+#  id      :integer          not null, primary key
+#  name    :string(255)
+#  default :boolean
+#  user_id :integer
+#
+
 require 'spec_helper'
 
 describe Dashboard do

@@ -1,9 +1,14 @@
-class Floor
+# == Schema Information
+#
+# Table name: floors
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  description :string(255)
+#  building_id :integer
+#
 
-	include Mongoid::Document
-
-	field :name, type: String
-	field :description, type: String
+class Floor < ActiveRecord::Base
 
 	belongs_to :building
 
@@ -11,8 +16,8 @@ class Floor
 
 	validates :name, presence: true
 
-	scope :search, -> (q) { where name: /#{q}/ }
+	scope :search, -> (q) { where('name like ?', "%#{q}%") }
 
-	scope :in_building, -> (building) { where building: building }
+	scope :in_building, -> (building) { where building_id: building }
 
 end

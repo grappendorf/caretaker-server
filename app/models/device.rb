@@ -1,76 +1,26 @@
-class Device
+# == Schema Information
+#
+# Table name: devices
+#
+#  id             :integer          not null, primary key
+#  as_device_id   :integer
+#  as_device_type :string(255)
+#  name           :string(255)
+#  address        :string(255)
+#  description    :string(255)
+#
 
-	include Mongoid::Document
+class Device < ActiveRecord::Base
 
-	field :name, type: String
-	field :address, type: String
-	field :description, type: String
+	is_a_superclass
+
+	inherit DeviceBase
 
 	validates :name, presence: true, uniqueness: true
 	validates :address, presence: true
 
-	index({name: 1}, {unique: true})
+	scope :search, -> (q) { where('name like ? or address like ? or description like ?', "%#{q}%", "%#{q}%", "%#{q}%") }
 
-	def self.attr_accessible
-		[:name, :address, :description]
-	end
-
-	scope :search, -> (q) { any_of({name: /#{q}/i}, {address: /#{q}/i}, {description: /#{q}/i}) }
-	scope :search_names, -> (q) { where({name: /#{q}/i}) }
-
-	def self.handle_connection_state_with connection_state_handler
-		include ConnectionState
-		include connection_state_handler
-	end
-
-	def self.small_icon()
-		'16/processor.png'
-	end
-
-	def self.large_icon()
-		'32/processor.png'
-	end
-
-	def self.models
-		Device.subclasses
-	end
-
-	def self.models_paths
-		self.models.map { |m| m.model_name.plural }
-	end
-
-	def change_listeners
-		@change_listeners ||= []
-	end
-
-	def when_changed &block
-		change_listeners << block
-	end
-
-	def notify_change_listeners
-		change_listeners.each { |l| l.call self }
-	end
-
-	def update
-	end
-
-	def start
-		connect
-	end
-
-	def stop
-		disconnect
-	end
-
-	def reset
-		disconnect
-		connect
-	end
-
-	def current_state
-	end
-
-	def put_state params
-	end
+	scope :search_names, -> (q) { where('name like ?', "%#{q}%") }
 
 end

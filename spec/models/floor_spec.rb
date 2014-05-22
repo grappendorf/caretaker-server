@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: floors
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  description :string(255)
+#  building_id :integer
+#
+
 require 'spec_helper'
 
 describe Floor do

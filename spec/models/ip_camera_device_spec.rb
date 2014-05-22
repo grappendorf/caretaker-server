@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: ip_camera_devices
+#
+#  id               :integer          not null, primary key
+#  host             :string(255)
+#  port             :integer
+#  user             :string(255)
+#  password         :string(255)
+#  refresh_interval :string(255)
+#
+
 require 'spec_helper'
 require 'models/device_shared_examples'
 

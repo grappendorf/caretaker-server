@@ -82,7 +82,7 @@
 
       <gridster ng-if="state != 'error'">
 
-        <gridster-widget id="{{ widget.id }}" ng-repeat="widget in dashboard.widgets">
+        <gridster-widget id="widget-{{ widget.id }}" ng-repeat="widget in dashboard.widgets">
 
           <div class="panel panel-primary"
                ng-class="{'panel-highlight': resizing || dragging}">

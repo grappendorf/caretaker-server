@@ -10,7 +10,7 @@
   </td>
   <td><%= editable device, :name, url: device_path(device) %></td>
   <td>
-    <%= image_tag device.class.small_icon %>&nbsp;<%= device.class.model_name.human %>
+    <%= image_tag device.specific.class.small_icon %>&nbsp;<%= device.specific.class.model_name.human %>
   </td>
   <td><%= editable device, :address, url: device_path(device) %></td>
   <td>

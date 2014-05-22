@@ -6,10 +6,11 @@ class DevicesController < CRUDController
 
 	load_and_authorize_resource
 
-	add_breadcrumb Device.model_name.human(count: 2), :devices_path
+	before_action :set_specific_device, only: [:show, :edit, :update]
 
 	def index
-		@devices = Device.search(params[:q]).order_by(sort_column => sort_order_as_int).page(params[:page])
+		add_breadcrumb Device.model_name.human(count: 2), :devices_path
+		@devices = @devices.search(params[:q]).order("#{sort_column} #{sort_order}").page(params[:page])
 		respond_to do |format|
 			format.html
 			format.json { render json: @devices, only: [:id, :name] } if params[:x]
@@ -18,12 +19,13 @@ class DevicesController < CRUDController
 	end
 
 	def names
-		@devices = Device.search_names(params[:q]).order_by(name: 1)
+		@devices = Device.accessible_by(current_ability).search_names(params[:q]).order('name asc')
 		respond_to { |format| format.json { render json: @devices, only: [:id, :name] } }
 	end
 
 	def new
 		@device = params[:type].singularize.camelcase.constantize.new
+		add_breadcrumb @device.class.model_name.human(count: 2), :devices_path
 		add_breadcrumb t('action.new')
 	end
 
@@ -42,6 +44,7 @@ class DevicesController < CRUDController
 	end
 
 	def show
+		add_breadcrumb Device.model_name.human(count: 2), :devices_path
 		respond_to do |format|
 			format.html { @readonly = true }
 			format.json { render json: @device }
@@ -49,17 +52,16 @@ class DevicesController < CRUDController
 	end
 
 	def edit
-		@device = Device.find(params[:id])
+		add_breadcrumb @device.class.model_name.human(count: 2), :devices_path
 		add_breadcrumb @device.name, device_path(@device)
 	end
 
 	def update
 		respond_to do |format|
-			@device = Device.find(params[:id])
 			if @device.update_attributes device_params(@device)
 				device_manager.update_device @device
 				format.html { redirect_to devices_path, flash: {
-						success: t('message.successfully_updated', model: Device.model_name.human, name: @device.name)} }
+						success: t('message.successfully_updated', model: @device.class.model_name.human, name: @device.name)} }
 				format.json { head :no_content }
 			else
 				format.html { render :edit }
@@ -69,21 +71,27 @@ class DevicesController < CRUDController
 	end
 
 	def destroy
-		@device = Device.find(params[:id])
+		model_name = @device.specific.class.model_name.human
+		device_name = @device.name
 		device_manager.remove_device @device.id
 		@device.destroy
-		flash[:success] = t('message.successfully_deleted', model: Device.model_name.human, name: @device.name)
+		flash[:success] = t('message.successfully_deleted', model: model_name, name: device_name)
 		redirect_to devices_path
 	end
 
 	private
 	def device_params device
-		params.require(device.model_name.singular).permit(device.class.attr_accessible)
+		params.require(device.class.model_name.singular).permit(device.class.attr_accessible)
 	end
 
 	private
 	def default_sort_column
 		:name
+	end
+
+	private
+	def set_specific_device
+		@device = @device.specific
 	end
 
 end

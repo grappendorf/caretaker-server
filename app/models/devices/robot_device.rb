@@ -1,8 +1,18 @@
-class RobotDevice < Device
+# == Schema Information
+#
+# Table name: robot_devices
+#
+#  id :integer          not null, primary key
+#
 
+class RobotDevice < ActiveRecord::Base
+
+	inherit DeviceBase
 	include XbeeDevice
 
-  def self.attr_accessible
+	is_a :device
+
+	def self.attr_accessible
     Device.attr_accessible
   end
 

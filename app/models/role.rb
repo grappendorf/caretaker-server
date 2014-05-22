@@ -1,18 +1,17 @@
-class Role
+# == Schema Information
+#
+# Table name: roles
+#
+#  id            :integer          not null, primary key
+#  name          :string(255)
+#  resource_id   :integer
+#  resource_type :string(255)
+#
 
-  include Mongoid::Document
+class Role < ActiveRecord::Base
 
   has_and_belongs_to_many :users
   belongs_to :resource, :polymorphic => true
-
-  field :name, :type => String
-
-  index({
-    :name => 1,
-    :resource_type => 1,
-    :resource_id => 1
-  },
-  { :unique => true})
 
   scopify
 

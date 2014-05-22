@@ -10,11 +10,11 @@ class FloorsController < CRUDController
 		begin
 			@building = Building.accessible_by(current_ability).find(params[:building_id])
 			@floors = Floor.accessible_by(current_ability).in_building(@building).search(params[:q]).
-					order_by(sort_column => sort_order_as_int).page(params[:page])
-		rescue Mongoid::Errors::InvalidFind, Mongoid::Errors::DocumentNotFound
+					order("#{sort_column} #{sort_order}").page(params[:page])
+		rescue ActiveRecord::RecordNotFound
 			@floors = nil
 		end
-		@buildings = Building.accessible_by(current_ability).only(:id, :name).all
+		@buildings = Building.accessible_by(current_ability).select(:id, :name)
 		add_breadcrumbs
 	end
 
@@ -65,7 +65,7 @@ class FloorsController < CRUDController
 	def destroy
 		@floor.destroy
 		flash[:success] = t('message.successfully_deleted', model: Floor.model_name.human, name: @floor.name)
-		redirect_to building_floors_path(@building, @floor)
+		redirect_to building_floors_path @building
 	end
 
 	private
@@ -75,7 +75,7 @@ class FloorsController < CRUDController
 
 	private
 	def default_sort_column
-		:_name
+		:name
 	end
 
 	private

@@ -9,7 +9,7 @@ class DeviceScriptsController < CRUDController
   inject :device_script_manager
 
 	def index
-		@device_scripts = DeviceScript.search(params[:q]).order_by(sort_column => sort_order_as_int).page(params[:page])
+		@device_scripts = DeviceScript.search(params[:q]).order("#{sort_column} #{sort_order}").page(params[:page])
 	end
 
 	def new
@@ -87,7 +87,7 @@ class DeviceScriptsController < CRUDController
 
   private
   def default_sort_column
-    :_name
+    :name
   end
 
 end

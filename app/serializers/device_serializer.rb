@@ -4,6 +4,10 @@ class DeviceSerializer < ActiveModel::Serializer
 
 	attributes :id, :type, :name, :address, :description, :state, :connected
 
+	def id
+		object.as_device.id
+	end
+
 	def type
 		object.class.name
 	end

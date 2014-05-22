@@ -1,11 +1,15 @@
-class DeviceScript
+# == Schema Information
+#
+# Table name: device_scripts
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  description :string(255)
+#  script      :text
+#  enabled     :boolean
+#
 
-	include Mongoid::Document
-
-	field :name, type: String
-	field :description, type: String
-	field :script, type: String
-	field :enabled, type: Bool
+class DeviceScript < ActiveRecord::Base
 
 	validates :name, presence: true, uniqueness: true
 
@@ -13,6 +17,6 @@ class DeviceScript
     [:name, :description, :script, :enabled]
   end
 
-  scope :search, -> (q) { any_of({name: /#{q}/i}, {description: /#{q}/i}) }
+	scope :search, -> (q) { where('name like ? or description like ?', "%#{q}%", "%#{q}%") }
 
 end

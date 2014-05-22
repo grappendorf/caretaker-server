@@ -1,10 +1,20 @@
-class IpCameraDevice < Device
+# == Schema Information
+#
+# Table name: ip_camera_devices
+#
+#  id               :integer          not null, primary key
+#  host             :string(255)
+#  port             :integer
+#  user             :string(255)
+#  password         :string(255)
+#  refresh_interval :string(255)
+#
 
-	field :host, type: String
-	field :port, type: Integer
-	field :user, type: String
-	field :password, type: String
-	field :refresh_interval, type: String
+class IpCameraDevice < ActiveRecord::Base
+
+	inherit DeviceBase
+
+	is_a :device
 
 	validates :host, presence: true
 	validates :port, numericality: { greater_than: 0 }

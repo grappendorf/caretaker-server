@@ -1,10 +1,24 @@
-class User
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  name                   :string(255)
+#  email                  :string(255)      default("")
+#  encrypted_password     :string(255)      default("")
+#  reset_password_token   :string(255)
+#  reset_password_sent_at :time
+#  remember_created_at    :time
+#  sign_in_count          :integer          default(0)
+#  current_sign_in_at     :time
+#  last_sign_in_at        :time
+#  current_sign_in_ip     :string(255)
+#  last_sign_in_ip        :string(255)
+#
 
-	include Mongoid::Document
+class User < ActiveRecord::Base
 
 	rolify
-
-	field :name, type: String
 
 	has_many :dashboards, dependent: :destroy do
 		def default
@@ -14,7 +28,7 @@ class User
 
 	validates :name, presence: true, uniqueness: true
 
-	scope :search, -> (q) { User.and(:$or => [{name: /#{q}/i}, {email: /#{q}/i}]) }
+	scope :search, -> (q) { where('name like ? or email like ?', "%#{q}%", "%#{q}%") }
 
 	def to_s
 		%Q{"#{name}" <#{email}>}
@@ -26,37 +40,5 @@ class User
   # :token_authenticatable, :confirmable, :registerable,
   # :lockable, and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :timeoutable
-
-  ## Database authenticatable
-  field :email,              :type => String, :default => ""
-  field :encrypted_password, :type => String, :default => ""
-
-  ## Recoverable
-  field :reset_password_token,   :type => String
-  field :reset_password_sent_at, :type => Time
-
-  ## Rememberable
-  field :remember_created_at, :type => Time
-
-  ## Trackable
-  field :sign_in_count,      :type => Integer, :default => 0
-  field :current_sign_in_at, :type => Time
-  field :last_sign_in_at,    :type => Time
-  field :current_sign_in_ip, :type => String
-  field :last_sign_in_ip,    :type => String
-
-  ## Confirmable
-  # field :confirmation_token,   :type => String
-  # field :confirmed_at,         :type => Time
-  # field :confirmation_sent_at, :type => Time
-  # field :unconfirmed_email,    :type => String # Only if using reconfirmable
-
-  ## Lockable
-  # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
-  # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
-  # field :locked_at,       :type => Time
-
-  ## Token authenticatable
-  # field :authentication_token, :type => String
 
 end

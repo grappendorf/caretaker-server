@@ -1,20 +1,22 @@
 module ServiceManager
 
 	def self.start
-		Rails.logger.info 'Service manager starting'
+		Rails.logger.info 'Service manager starting' if real_mode?
 
 		# Preload all device classes
-		Dir['app/models/devices/*_device.rb'].each {|f| require_relative "../../#{f}"}
+		Dir['app/models/devices/*_device.rb'].each { |f| require_relative "../../#{f}" }
 
 		# Preload all widget classes
-		Dir['app/models/widgets/*_widget.rb'].each {|f| require_relative "../../#{f}"}
+		Dir['app/models/widgets/*_widget.rb'].each { |f| require_relative "../../#{f}" }
 
 		register_real_services if real_mode?
 		register_fake_services unless real_mode?
 		register_services
 
-		lookup(:device_manager).start
-		lookup(:device_script_manager).start
+		unless File.basename($0) == 'rake'
+			lookup(:device_manager).start
+			lookup(:device_script_manager).start
+		end
 	end
 
 	def self.register_real_services
@@ -45,7 +47,7 @@ module ServiceManager
 	end
 
 	def self.stop
-		Rails.logger.info 'Service manager stopping'
+		Rails.logger.info 'Service manager stopping' if real_mode?
 		lookup(:device_script_manager).stop if registered?(:device_script_manager)
 		lookup(:device_manager).stop if registered?(:device_manager)
 	end
@@ -55,4 +57,3 @@ end
 at_exit do
 	ServiceManager.stop
 end
-

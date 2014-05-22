@@ -71,15 +71,15 @@ Spork.prefork do
 		#end
 
 		config.before(:suite) do
-			DatabaseCleaner[:mongoid].strategy = :truncation
+			DatabaseCleaner.strategy = :transaction
 		end
 
 		config.before(:each) do
-			DatabaseCleaner[:mongoid].start
+			DatabaseCleaner.start
 		end
 
 		config.after(:each) do
-			DatabaseCleaner[:mongoid].clean
+			DatabaseCleaner.clean
 		end
 	end
 
@@ -119,4 +119,4 @@ end
 # These instructions should self-destruct in 10 seconds.  If they don't, feel
 # free to delete them.
 
-require 'spec_utilities'
+require_relative './spec_utilities'

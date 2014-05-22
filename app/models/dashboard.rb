@@ -1,9 +1,14 @@
-class Dashboard
+# == Schema Information
+#
+# Table name: dashboards
+#
+#  id      :integer          not null, primary key
+#  name    :string(255)
+#  default :boolean
+#  user_id :integer
+#
 
-	include Mongoid::Document
-
-	field :name, type: String
-	field :default, type: Bool
+class Dashboard < ActiveRecord::Base
 
 	belongs_to :user
 
@@ -15,8 +20,8 @@ class Dashboard
     [:name, :default]
   end
 
-  scope :search, -> (q) { User.and(:$or => [{name: /#{q}/i}]) }
+  scope :search, -> (q) { where('name like ?', "%#{q}%") }
 
-	scope :search_names, -> (q) { where({name: /#{q}/i}) }
+	scope :search_names, -> (q) { where('name like ?', "%#{q}%") }
 
 end

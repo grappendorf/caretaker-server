@@ -16,7 +16,7 @@ class DeviceManager
 			Rails.logger.error "Unable to open xbee device #{x}"
 		end
 		Device.all.each do |device|
-			add_device device
+			add_device device.specific
 		end
 	end
 
@@ -58,41 +58,35 @@ class DeviceManager
 	end
 
 	def add_device device
-		@devices_by_id[device.id] = device
+		device_id = device.as_device.id
+		@devices_by_id[device_id] = device
 		if device.address
 			@devices_by_address[device.address] = device
 		end
 		device.init_connection_state
 		device.when_connection_changed do |device|
-			WebsocketRails[:devices].trigger('connection', {id: device.id.to_s, connected: device.connected?})
+			WebsocketRails[:devices].trigger('connection', {id: device_id, connected: device.connected?})
 		end
 		device.when_changed do |device|
 			WebsocketRails[:devices].trigger('state',
-			                                 {type: device.class.name.underscore, id: device.id.to_s, state: device.current_state})
+			                                 {type: device.class.name.underscore, id: device_id, state: device.current_state})
 		end
 		device.start
 	end
 
 	def create_device device
-		if device.save
-			add_device device
-		end
+		add_device device
 	end
 
 	def update_device device
-		if device.save
-			@devices_by_id[device.id].stop
-			@devices_by_id[device.id] = device
-			@devices_by_address[device.address] = device
-			device.start
-		end
+		remove_device device.as_device.id
+		add_device device
 	end
 
 	def remove_device device_id
 		device = @devices_by_id[device_id]
 		@devices_by_address.delete(device.address)
 		@devices_by_id.delete(device_id)
-		device.destroy
 	end
 
 	def remove_all_devices

@@ -1,8 +1,18 @@
-class DimmerRgbDevice < Device
+# == Schema Information
+#
+# Table name: dimmer_rgb_devices
+#
+#  id :integer          not null, primary key
+#
 
+class DimmerRgbDevice < ActiveRecord::Base
+
+	inherit DeviceBase
 	include XbeeDevice
 
-  def self.attr_accessible
+	is_a :device
+
+	def self.attr_accessible
     Device.attr_accessible
   end
 

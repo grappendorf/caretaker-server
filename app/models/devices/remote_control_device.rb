@@ -1,9 +1,18 @@
-class RemoteControlDevice < Device
+# == Schema Information
+#
+# Table name: remote_control_devices
+#
+#  id              :integer          not null, primary key
+#  num_buttons     :integer
+#  buttons_per_row :integer
+#
 
+class RemoteControlDevice < ActiveRecord::Base
+
+	inherit DeviceBase
 	include XbeeDevice
 
-	field :num_buttons, type: Integer
-	field :buttons_per_row, type: Integer
+	is_a :device
 
 	validates :num_buttons, presence: true, numericality: { greater_than: 0 }
 	validates :buttons_per_row, presence: true, numericality: { greater_than: 0 }

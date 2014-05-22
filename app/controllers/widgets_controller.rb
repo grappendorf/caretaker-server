@@ -20,12 +20,12 @@ class WidgetsController < ApplicationController
 	def show
 		respond_to do |format|
 			format.html
-			format.json { render json: @widget }
+			format.json { render json: @widget.specific }
 		end
 	end
 
 	def update
-		@widget.update_attributes widget_params
+		@widget.specific.update_attributes widget_params
 		respond_to do |format|
 			format.json { head :no_content }
 		end

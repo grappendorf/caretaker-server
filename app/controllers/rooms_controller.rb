@@ -15,20 +15,20 @@ class RoomsController < CRUDController
 			@building = @floor.building unless @building
 			if @floor.building == @building
 				@rooms = Room.accessible_by(current_ability).on_floor(@floor).search(params[:q]).
-						order_by(sort_column => sort_order_as_int).page(params[:page])
+						order("#{sort_column} #{sort_order}").page(params[:page])
 			else
 				@rooms = nil
 				@floor = nil
 			end
-		rescue Mongoid::Errors::InvalidFind, Mongoid::Errors::DocumentNotFound
+		rescue ActiveRecord::RecordNotFound
 			@rooms = nil
 			begin
 				@building = Building.accessible_by(current_ability).find params[:building_id]
-			rescue Mongoid::Errors::InvalidFind, Mongoid::Errors::DocumentNotFound
+			rescue ActiveRecord::RecordNotFound
 			end
 		end
-		@buildings = Building.only(:id, :name).all
-		@floors = Floor.in_building(@building).only(:id, :name).all
+		@buildings = Building.accessible_by(current_ability).select(:id, :name)
+		@floors = Floor.in_building(@building).accessible_by(current_ability).select(:id, :name)
 		add_breadcrumbs
 	end
 

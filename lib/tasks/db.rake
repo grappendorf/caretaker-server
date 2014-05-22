@@ -5,9 +5,9 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
 		namespace :db do
 
 			desc 'Purge all database data and create! new sample'
-			task sample: [:environment, 'db:mongoid:purge', 'db:seed'] do
+			task :sample => :environment do
 
-				# User
+				puts 'Create some users...'
 
 				5.times do |_|
 					first_name = Faker::Name.first_name
@@ -19,7 +19,7 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
 					             password: password, password_confirmation: password
 				end
 
-				# Devices
+				puts 'Create some devices...'
 
 				switch_device = SwitchDevice.create! name: 'Switch', address: '0000000000000001', description: '1 Switch',
 				                                     num_switches: 1, switches_per_row: 1
@@ -39,14 +39,14 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
 
 				reflow_oven_device = ReflowOvenDevice.create! name: 'Reflow Oven', address: '0000000000000007', description: 'Reflow Oven'
 
-				# Device Scripts
+				puts 'Create some device scripts...'
 
 				5.times do |n|
 					DeviceScript.create! name: "Script-#{n}", description: "This is script number #{n}",
 					                     script: "puts \"Hello from Script-#{n}!\"", enabled: n%2 == 0
 				end
 
-				# Dashboard
+				puts 'Create some dashboards...'
 
 				dashboard = Dashboard.create! name: 'Default', default: true, user: User.find_by(email: 'user@example.com')
 				dashboard.widgets << DeviceWidget.new(device: switch8_device, x: 1, y: 1, width: 2, height: 2)
@@ -69,7 +69,7 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
 
 			end
 
-			task private: [:environment, 'db:mongoid:purge', 'db:seed'] do
+			task :private => :environment do
 
 				private_data = '../coyoho-private/create-db-sample-data.rb'
 				require_relative "../../#{private_data}"

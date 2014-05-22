@@ -1,3 +1,10 @@
+# == Schema Information
+#
+# Table name: dimmer_rgb_devices
+#
+#  id :integer          not null, primary key
+#
+
 require 'spec_helper'
 require 'models/device_shared_examples'
 

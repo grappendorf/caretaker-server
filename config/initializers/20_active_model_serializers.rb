@@ -5,9 +5,3 @@ ActiveSupport.on_load(:active_model_serializers) do
 	# Disable for ArraySerializer
 	ActiveModel::ArraySerializer.root = false
 end
-
-class BSON::ObjectId
-	def as_json *args
-		to_s
-	end
-end

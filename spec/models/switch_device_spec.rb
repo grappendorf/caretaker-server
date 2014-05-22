@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: switch_devices
+#
+#  id               :integer          not null, primary key
+#  num_switches     :integer
+#  switches_per_row :integer
+#
+
 require 'spec_helper'
 require 'models/device_shared_examples'
 
