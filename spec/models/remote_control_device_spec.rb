@@ -12,9 +12,7 @@ require 'models/device_shared_examples'
 
 describe RemoteControlDevice do
 
-	let(:remote_control_device) { FactoryGirl.create :remote_control_device }
-
-	subject { remote_control_device }
+	subject(:remote_control_device) { FactoryGirl.create :remote_control_device }
 
 	it_behaves_like 'a device'
 

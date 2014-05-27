@@ -17,9 +17,7 @@ require 'spec_helper'
 
 describe Widget do
 
-	let(:widget) { FactoryGirl.build :widget }
-
-	subject { widget }
+	subject(:widget) { FactoryGirl.build :widget }
 
 	it { should respond_to :dashboard }
 	it { should respond_to :title }

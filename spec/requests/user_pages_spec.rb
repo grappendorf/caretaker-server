@@ -2,11 +2,11 @@ require 'spec_helper'
 
 describe 'User pages' do
 
+	subject { page }
+
 	let!(:admin) { FactoryGirl.create :admin }
 	let!(:user) { FactoryGirl.create :user }
 	let!(:other_user) { FactoryGirl.create :other_user }
-
-	subject { page }
 
 	before { sign_in admin }
 

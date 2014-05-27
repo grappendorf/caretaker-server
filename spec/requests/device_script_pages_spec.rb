@@ -2,10 +2,10 @@ require 'spec_helper'
 
 describe 'Device script pages' do
 
-	let(:user) { FactoryGirl.create :admin }
-	let(:device_script) { FactoryGirl.create :device_script }
-
 	subject { page }
+
+	let(:device_script) { FactoryGirl.create :device_script }
+	let(:user) { FactoryGirl.create :admin }
 
 	before { sign_in user }
 

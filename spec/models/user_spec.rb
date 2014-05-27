@@ -20,10 +20,9 @@ require 'spec_helper'
 
 describe User do
 
-	let(:user) { FactoryGirl.create :user }
-	let(:other_user) { FactoryGirl.create :other_user }
+	subject(:user) { FactoryGirl.create :user }
 
-	subject { user }
+	let(:other_user) { FactoryGirl.create :other_user }
 
 	it { should respond_to :name }
 	it { should respond_to :email }

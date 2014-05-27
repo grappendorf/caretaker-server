@@ -15,9 +15,7 @@ require 'models/device_shared_examples'
 
 describe IpCameraDevice do
 
-	let(:ip_camera_device) { FactoryGirl.create :ip_camera_device }
-
-	subject { ip_camera_device }
+	subject(:ip_camera_device) { FactoryGirl.create :ip_camera_device }
 
 	it_behaves_like 'a device'
 
