@@ -22,7 +22,7 @@ module ServiceManager
 	def self.register_real_services
 		register(:random) { Random.new Random.new_seed }
 		register(:xbee) { XBeeRuby::XBee.new port: Settings.xbee.tty, rate: Settings.xbee.rate }
-		register(:scheduler) { Rufus::Scheduler.start_new }
+		register(:scheduler) { SingletonService.new { Rufus::Scheduler.start_new } }
 	end
 
 	def self.register_fake_services
@@ -31,11 +31,10 @@ module ServiceManager
 			when :serial
 				register(:xbee) { XBeeRuby::XBee.new port: Settings.xbee.tty, rate: Settings.xbee.rate }
 			else
-				xbeesim = XbeeSim.new
-				register(:xbeesim) { xbeesim }
-				register(:xbee) { XBeeRuby::XBee.new serial: xbeesim }
+				register(:xbeesim) { XbeeSim.new }
+				register(:xbee) { XBeeRuby::XBee.new serial: lookup(:xbeesim) }
 		end
-		register(:scheduler) { Rufus::Scheduler.start_new } if Rails.env.development?
+		register(:scheduler) { SingletonService.new { Rufus::Scheduler.start_new } } if Rails.env.development?
 		register(:scheduler) { ManualScheduler.new } if Rails.env.test?
 	end
 
@@ -48,8 +47,9 @@ module ServiceManager
 
 	def self.stop
 		Rails.logger.info 'Service manager stopping' if real_mode?
-		lookup(:device_script_manager).stop if registered?(:device_script_manager)
-		lookup(:device_manager).stop if registered?(:device_manager)
+		lookup(:scheduler).try :stop
+		lookup(:device_script_manager).try :stop
+		lookup(:device_manager).try :stop
 	end
 
 end

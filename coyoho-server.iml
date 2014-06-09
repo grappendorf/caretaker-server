@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="RUBY_MODULE" version="4">
+  <component name="CompassSettings">
+    <option name="compassSupportEnabled" value="true" />
+  </component>
   <component name="FacetManager">
     <facet type="RailsFacetType" name="Ruby on Rails">
       <configuration>
@@ -19,7 +22,6 @@
     </content>
     <orderEntry type="jdk" jdkName="RVM: ruby-2.1.1 [coyoho-server]" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" scope="PROVIDED" name="sass-stdlib" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionmailer (v4.1.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionpack (v4.1.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="actionview (v4.1.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
@@ -70,7 +72,7 @@
     <orderEntry type="library" scope="PROVIDED" name="daemons (v1.1.9, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="database_cleaner (v1.2.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debug_inspector (v0.0.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="debugger (v1.6.6, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="debugger (v1.6.8, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debugger-linecache (v1.2.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debugger-ruby_core_source (v1.3.5, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="devise (v3.2.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
@@ -81,7 +83,7 @@
     <orderEntry type="library" scope="PROVIDED" name="em-synchrony (v1.0.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="eventmachine (v1.0.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="execjs (v2.0.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="execjs (v2.1.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="factory_girl (v4.4.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="factory_girl_rails (v4.4.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="faker (v1.2.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
@@ -94,7 +96,7 @@
     <orderEntry type="library" scope="PROVIDED" name="grit (v2.5.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="highcharts-rails (v3.0.10, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hike (v1.2.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="hirb (v0.7.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="hirb (v0.7.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hiredis (v0.5.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="httparty (v0.13.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.6.9, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
@@ -183,14 +185,14 @@
     <orderEntry type="library" scope="PROVIDED" name="therubyracer (v0.12.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thin (v1.6.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v0.19.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="thread_safe (v0.3.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="thread_safe (v0.3.4, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thread_storm (v0.7.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tilt (v1.4.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="timecop (v0.7.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tins (v1.3.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="treetop (v1.4.15, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="turbolinks (v2.2.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.1.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.2.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uglifier (v2.4.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="underscore-rails (v1.5.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="validates_email_format_of (v1.5.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
@@ -209,3 +211,4 @@
     <I18N_FOLDERS number="1" string0="$MODULE_DIR$/config/locales" />
   </component>
 </module>
+

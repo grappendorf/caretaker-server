@@ -1,10 +1,11 @@
-class DeviceScriptManager
+class DeviceScriptManager < SingletonService
 
 	def initialize
 		@scripts_by_id = {}
 	end
 
 	def start
+		super
 		Rails.logger.info 'Device Script Manager starting'
 		DeviceScript.all.each do |script|
 			if script.enabled?
@@ -15,6 +16,7 @@ class DeviceScriptManager
 
 	def stop
 		Rails.logger.info 'Device Script Manager stopping'
+		super
 	end
 
 	def update_script script

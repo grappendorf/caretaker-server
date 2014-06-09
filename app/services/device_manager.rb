@@ -1,4 +1,4 @@
-class DeviceManager
+class DeviceManager < SingletonService
 
 	inject :xbee_master
 
@@ -8,6 +8,7 @@ class DeviceManager
 	end
 
 	def start
+		super
 		Rails.logger.info 'Device Manager starting'
 		xbee_master.when_message_received { |*args| xbee_message_received *args }
 		begin
@@ -23,6 +24,7 @@ class DeviceManager
 	def stop
 		Rails.logger.info 'Device Manager stopping'
 		xbee_master.stop
+		super
 	end
 
 	def restart
@@ -75,7 +77,7 @@ class DeviceManager
 	end
 
 	def create_device device
-		add_device device
+	add_device device
 	end
 
 	def update_device device
