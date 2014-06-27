@@ -94,6 +94,9 @@ group :development do
 	gem 'coffee-rails-source-maps', '1.4.0'
 	gem 'jazz_hands', '0.5.2'
 	gem 'annotate', '2.6.3'
+	gem 'guard-rspec', '4.2.10'
+	gem 'guard-spork', '1.5.1'
+	gem 'libnotify', '0.8.3'
 end
 
 group :production do

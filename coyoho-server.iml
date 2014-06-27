@@ -54,7 +54,8 @@
     <orderEntry type="library" scope="PROVIDED" name="capistrano-bundler (v1.1.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="capistrano-rails (v1.1.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="capistrano-rvm (v0.1.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="capybara (v2.2.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="capybara (v2.3.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="celluloid (v0.15.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="childprocess (v0.5.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="chromedriver2-helper (v0.0.8, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cliver (v0.3.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
@@ -64,6 +65,7 @@
     <orderEntry type="library" scope="PROVIDED" name="coffee-rails-source-maps (v1.4.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.2.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coffee-script-source (v1.7.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="colorize (v0.7.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="columnize (v0.8.9, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="commonjs (v0.2.7, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coolline (v0.4.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
@@ -79,21 +81,25 @@
     <orderEntry type="library" scope="PROVIDED" name="devise-i18n (v0.10.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.2.5, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diffy (v3.0.4, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="docile (v1.1.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="docile (v1.1.5, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="em-synchrony (v1.0.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubis (v2.7.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="eventmachine (v1.0.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="execjs (v2.1.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="execjs (v2.2.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="factory_girl (v4.4.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="factory_girl_rails (v4.4.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="faker (v1.2.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="faye-websocket (v0.7.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.9.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="font-awesome-rails (v4.0.3.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="formatador (v0.2.5, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="formtastic (v2.3.0.rc3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="formtastic-bootstrap (v3.0.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="gherkin (v2.12.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="grit (v2.5.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="guard (v2.6.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="guard-rspec (v4.2.10, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="guard-spork (v1.5.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="highcharts-rails (v3.0.10, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hike (v1.2.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hirb (v0.7.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
@@ -109,18 +115,21 @@
     <orderEntry type="library" scope="PROVIDED" name="kaminari (v0.15.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="launchy (v2.4.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="layout_by_action (v0.0.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="less (v2.5.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="less (v2.5.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="less-rails (v2.5.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="less-rails-bootstrap (v3.1.1.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="libnotify (v0.8.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="libv8 (v3.16.14.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="license_finder (v0.9.5.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="listen (v2.7.8, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="lumberjack (v1.0.7, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.5.4, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="meta_request (v0.2.8, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="method_source (v0.8.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="micon (v0.1.28, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mime-types (v1.25.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mini_portile (v0.6.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="minitest (v5.3.4, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="minitest (v5.3.5, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.7.9, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_test (v0.1.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_xml (v0.5.5, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
@@ -132,7 +141,7 @@
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pg (v0.17.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="poltergeist (v1.5.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="polyglot (v0.3.4, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="polyglot (v0.3.5, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="posix-spawn (v0.3.8, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pry (v0.9.12.6, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pry-debugger (v0.2.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
@@ -151,23 +160,26 @@
     <orderEntry type="library" scope="PROVIDED" name="rails_semantic_logger (v1.5.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="railties (v4.1.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v10.3.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="redis (v3.0.7, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rb-fsevent (v0.9.4, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.9.5, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="redis (v3.1.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ref (v1.0.5, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="renum (v1.4.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ripl (v0.7.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ripl-multi_line (v0.3.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rolify (v3.4.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rspec (v2.14.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-core (v2.14.8, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-expectations (v2.14.5, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-mocks (v2.14.6, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rspec-rails (v2.14.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubyzip (v1.0.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rufus-scheduler (v2.0.24, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sass (v3.3.7, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sass (v3.3.8, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass-rails (v4.0.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="selenium-webdriver (v2.40.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="semantic_logger (v2.8.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sequel (v4.10.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sequel (v4.11.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="serialport (v1.3.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="simplecov (v0.8.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="simplecov-html (v0.8.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
@@ -178,10 +190,9 @@
     <orderEntry type="library" scope="PROVIDED" name="sprockets-rails (v2.0.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sprockets_better_errors (v0.0.4, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sqlite3 (v1.3.9, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sshkit (v1.4.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sshkit (v1.5.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="statemachine (v2.2.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sync_attr (v1.0.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="term-ansicolor (v1.3.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="therubyracer (v0.12.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thin (v1.6.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v0.19.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
@@ -189,10 +200,10 @@
     <orderEntry type="library" scope="PROVIDED" name="thread_storm (v0.7.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tilt (v1.4.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="timecop (v0.7.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="tins (v1.3.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="timers (v1.1.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="treetop (v1.4.15, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="turbolinks (v2.2.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.2.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.2.1, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uglifier (v2.4.0, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="underscore-rails (v1.5.2, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="validates_email_format_of (v1.5.3, RVM: ruby-2.1.1 [coyoho-server]) [gem]" level="application" />
@@ -209,6 +220,7 @@
   <component name="RModuleSettingsStorage">
     <LOAD_PATH number="0" />
     <I18N_FOLDERS number="1" string0="$MODULE_DIR$/config/locales" />
+    <OPTIONS NAME="SPORK_SERVER_LAST_USED_TEST_FR_OPTION" VALUE=":rspec " />
   </component>
 </module>
 
