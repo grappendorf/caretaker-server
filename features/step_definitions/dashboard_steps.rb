@@ -1,17 +1,17 @@
 def create_another_dashboard
-	@other_dashboard = FactoryGirl.create :dashboard, user: @user
+	@other_dashboard = Fabricate :dashboard, user: @user
 end
 
 def create_switch_device
 	unless @device
-		@device = FactoryGirl.create :switch_device
+		@device = Fabricate :switch_device
 		lookup(:device_manager).add_device @device
 		lookup(:scheduler).travel 1.minute
 	end
 end
 
 Given /^a user with a default dashboard$/ do
-	@user = FactoryGirl.create :user
+	@user = Fabricate :user
 	@dashboard = @user.dashboards.default
 end
 
@@ -25,7 +25,7 @@ end
 
 Given /^a switch with a widget in the dashboard$/ do
 	create_switch_device
-	@dashboard.widgets << FactoryGirl.create(:device_widget, device: @device)
+	@dashboard.widgets << Fabricate(:device_widget, device: @device)
 end
 
 When /^i visit the dashboards$/ do

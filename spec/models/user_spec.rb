@@ -20,9 +20,9 @@ require 'spec_helper'
 
 describe User do
 
-	subject(:user) { FactoryGirl.create :user }
+	subject(:user) { Fabricate :user }
 
-	let(:other_user) { FactoryGirl.create :other_user }
+	let(:other_user) { Fabricate :other_user }
 
 	it { should respond_to :name }
 	it { should respond_to :email }
@@ -95,8 +95,8 @@ describe User do
 
 	describe 'dashboards' do
 		before do
-			user.dashboards << FactoryGirl.create(:dashboard, default: true)
-			user.dashboards << FactoryGirl.create(:dashboard)
+			user.dashboards << Fabricate(:dashboard, default: true)
+			user.dashboards << Fabricate(:dashboard)
 		end
 
 		it 'has a default dashboard' do

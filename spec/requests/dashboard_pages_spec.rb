@@ -4,7 +4,7 @@ describe 'Dashboard Pages' do
 
 	subject { page }
 
-	let(:user) { FactoryGirl.create :admin }
+	let(:user) { Fabricate :admin }
 
 	before { sign_in user }
 
@@ -18,7 +18,7 @@ describe 'Dashboard Pages' do
 		describe 'page' do
 
 			before do
-				3.times { FactoryGirl.create :dashboard }
+				3.times { Fabricate :dashboard }
 				visit dashboards_path
 			end
 

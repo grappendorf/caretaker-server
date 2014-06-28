@@ -4,8 +4,8 @@ describe 'user account pages' do
 
 	subject { page }
 
-	let!(:user) { FactoryGirl.create :user }
-	let!(:other_user) { FactoryGirl.create :other_user }
+	let!(:user) { Fabricate :user }
+	let!(:other_user) { Fabricate :other_user }
 
 	before { sign_in user }
 

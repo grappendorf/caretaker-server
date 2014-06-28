@@ -8,16 +8,16 @@ describe 'Device pages' do
 	inject :scheduler
 
 	before do
-		device_manager.add_device @switch_device = FactoryGirl.create(:switch_device)
-		device_manager.add_device FactoryGirl.create :dimmer_device
-		device_manager.add_device FactoryGirl.create :remote_control_device
+		device_manager.add_device @switch_device = Fabricate(:switch_device)
+		device_manager.add_device Fabricate :dimmer_device
+		device_manager.add_device Fabricate :remote_control_device
 	end
 
 	after do
 		device_manager.remove_all_devices
 	end
 
-	let(:user) { FactoryGirl.create :admin }
+	let(:user) { Fabricate :admin }
 
 	subject { page }
 

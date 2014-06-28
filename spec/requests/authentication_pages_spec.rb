@@ -37,7 +37,7 @@ describe 'Authentication Pages' do
 
 		describe 'with valid information' do
 
-			let(:user) { FactoryGirl.create(:admin) }
+			let(:user) { Fabricate :admin }
 
 			before do
 				fill_in 'Email', with: user.email
@@ -66,7 +66,7 @@ describe 'Authentication Pages' do
 
 	describe 'signout' do
 
-		let(:user) { FactoryGirl.create(:user) }
+		let(:user) { Fabricate :user }
 
 		before do
 			sign_in user
@@ -84,7 +84,7 @@ describe 'Authentication Pages' do
 
 		describe 'for non-signed-in users' do
 
-			let(:user) { FactoryGirl.create(:user) }
+			let(:user) { Fabricate :user }
 
 			describe 'when attempting to visit a protected page' do
 
@@ -113,7 +113,7 @@ describe 'Authentication Pages' do
 			describe 'protected actions redirect to the signin page' do
 
 				describe 'Dashboard controller' do
-					let(:dashboard) { FactoryGirl.create(:dashboard) }
+					let(:dashboard) { Fabricate :dashboard }
 					specify('new') { get new_dashboard_path; response.should redirect_to new_user_session_path }
 					specify('create') { post dashboards_path; response.should redirect_to new_user_session_path }
 					specify('show') { get dashboard_path(dashboard); response.should redirect_to new_user_session_path }
@@ -134,7 +134,7 @@ describe 'Authentication Pages' do
 				end
 
 				describe 'Devices controller' do
-					let(:device) { FactoryGirl.create(:switch_device) }
+					let(:device) { Fabricate :switch_device }
 					specify('index') { get devices_path; response.should redirect_to new_user_session_path }
 					specify('new') { get new_device_path(type: :switch_devices); response.should redirect_to new_user_session_path }
 					specify('create') { post devices_path; response.should redirect_to new_user_session_path }
@@ -145,7 +145,7 @@ describe 'Authentication Pages' do
 				end
 
 				describe 'Device Scripts controller' do
-					let(:device_script) { FactoryGirl.create(:device_script) }
+					let(:device_script) { Fabricate :device_script }
 					specify('index') { get device_scripts_path; response.should redirect_to new_user_session_path }
 					specify('new') { get new_device_script_path; response.should redirect_to new_user_session_path }
 					specify('create') { post device_scripts_path; response.should redirect_to new_user_session_path }
@@ -156,7 +156,7 @@ describe 'Authentication Pages' do
 				end
 
 				describe 'Buildings controller' do
-					let(:building) { FactoryGirl.create(:building) }
+					let(:building) { Fabricate :building }
 					specify('index') { get buildings_path; response.should redirect_to new_user_session_path }
 					specify('new') { get new_building_path; response.should redirect_to new_user_session_path }
 					specify('create') { post buildings_path; response.should redirect_to new_user_session_path }
@@ -167,7 +167,7 @@ describe 'Authentication Pages' do
 				end
 
 				describe 'Floors controller' do
-					let(:floor) { FactoryGirl.create(:floor) }
+					let(:floor) { Fabricate :floor }
 					specify('index') { get floors_path; response.should redirect_to new_user_session_path }
 					specify('new') { get new_building_floor_path(floor.building); response.should redirect_to new_user_session_path }
 					specify('create') { post building_floors_path(floor.building); response.should redirect_to new_user_session_path }
@@ -178,7 +178,7 @@ describe 'Authentication Pages' do
 				end
 
 				describe 'Rooms controller' do
-					let(:room) { FactoryGirl.create(:room) }
+					let(:room) { Fabricate :room }
 					specify('index') { get rooms_path; response.should redirect_to new_user_session_path }
 					specify('new') { get new_building_floor_room_path(room.floor.building, room.floor); response.should redirect_to new_user_session_path }
 					specify('create') { post building_floor_rooms_path(room.floor.building, room.floor); response.should redirect_to new_user_session_path }
@@ -194,8 +194,8 @@ describe 'Authentication Pages' do
 
 		describe 'for the wrong user' do
 
-			let(:user) { FactoryGirl.create(:user) }
-			let (:wrong_user) { FactoryGirl.create :other_user }
+			let(:user) { Fabricate :user }
+			let (:wrong_user) { Fabricate :other_user }
 
 			before { sign_in user }
 

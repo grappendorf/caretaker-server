@@ -4,7 +4,7 @@ describe 'Building pages' do
 
 	subject { page }
 
-	let(:user) { FactoryGirl.create :admin }
+	let(:user) { Fabricate :admin }
 
 	before { sign_in user }
 
@@ -19,8 +19,8 @@ describe 'Building pages' do
 
 			before do
 				3.times do
-					building = FactoryGirl.create :building
-					FactoryGirl.create :floor, building: building
+					building = Fabricate :building
+					Fabricate :floor, building: building
 				end
 				visit buildings_path
 			end
@@ -102,7 +102,7 @@ describe 'Building pages' do
 
 	describe 'Edit' do
 
-		let!(:building) { FactoryGirl.create :building }
+		let!(:building) { Fabricate :building }
 
 		before { visit edit_building_path building }
 
@@ -162,7 +162,7 @@ describe 'Building pages' do
 
 	describe 'Show' do
 
-		let(:building) { FactoryGirl.create :building }
+		let(:building) { Fabricate :building }
 
 		before { visit building_path building }
 
@@ -184,7 +184,7 @@ describe 'Building pages' do
 
 	describe 'Delete' do
 
-		let!(:building) { FactoryGirl.create :building }
+		let!(:building) { Fabricate :building }
 
 		it 'should delete the building' do
 			expect do

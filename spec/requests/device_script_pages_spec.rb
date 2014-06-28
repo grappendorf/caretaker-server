@@ -4,8 +4,8 @@ describe 'Device script pages' do
 
 	subject { page }
 
-	let(:device_script) { FactoryGirl.create :device_script }
-	let(:user) { FactoryGirl.create :admin }
+	let(:device_script) { Fabricate :device_script }
+	let(:user) { Fabricate :admin }
 
 	before { sign_in user }
 
@@ -19,7 +19,7 @@ describe 'Device script pages' do
 		describe 'page' do
 
 			before do
-				3.times { FactoryGirl.create :device_script }
+				3.times { Fabricate :device_script }
 				visit device_scripts_path
 			end
 
@@ -40,7 +40,7 @@ describe 'Device script pages' do
 		describe 'enabling a device script' do
 
 			before do
-				@device_script = FactoryGirl.create :device_script, enabled: false
+				@device_script = Fabricate :device_script, enabled: false
 				visit device_scripts_path
 			end
 
@@ -56,7 +56,7 @@ describe 'Device script pages' do
 		describe 'disabling a device script' do
 
 			before do
-				@device_script = FactoryGirl.create :device_script, enabled: true
+				@device_script = Fabricate :device_script, enabled: true
 				visit device_scripts_path
 			end
 
@@ -167,7 +167,7 @@ describe 'Device script pages' do
 	describe 'Delete' do
 
 		before do
-			@device_script = FactoryGirl.create :device_script
+			@device_script = Fabricate :device_script
 		end
 
 		it 'should delete the device script' do

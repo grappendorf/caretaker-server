@@ -4,7 +4,7 @@ describe 'Room pages' do
 
 	subject { page }
 
-	let(:user) { FactoryGirl.create :admin }
+	let(:user) { Fabricate :admin }
 
 	before { sign_in user }
 
@@ -17,14 +17,14 @@ describe 'Room pages' do
 
 		describe 'page' do
 
-			let(:building) { FactoryGirl.create :building }
-			let(:other_building) { FactoryGirl.create :building }
-			let(:floor) { FactoryGirl.create :floor, building: building }
-			let(:other_floor) { FactoryGirl.create :floor, building: other_building }
+			let(:building) { Fabricate :building }
+			let(:other_building) { Fabricate :building }
+			let(:floor) { Fabricate :floor, building: building }
+			let(:other_floor) { Fabricate :floor, building: other_building }
 
 			before do
-				3.times { FactoryGirl.create :room, floor: floor }
-				FactoryGirl.create :room, floor: other_floor
+				Fabricate.times 3, :room, floor: floor
+				Fabricate :room, floor: other_floor
 			end
 
 			context 'when called with a valid floor id' do
@@ -87,7 +87,7 @@ describe 'Room pages' do
 
 		context 'when called with a valid floor id' do
 
-			let(:floor) { FactoryGirl.create :floor }
+			let(:floor) { Fabricate :floor }
 
 			before { visit new_building_floor_room_path(floor.building, floor) }
 
@@ -140,7 +140,7 @@ describe 'Room pages' do
 
 	describe 'Edit' do
 
-		let!(:room) { FactoryGirl.create :room }
+		let!(:room) { Fabricate :room }
 
 		before { visit edit_building_floor_room_path(room.floor.building, room.floor, room) }
 
@@ -200,7 +200,7 @@ describe 'Room pages' do
 
 	describe 'Show' do
 
-		let(:room) { FactoryGirl.create :room }
+		let(:room) { Fabricate :room }
 
 		before { visit building_floor_room_path room.floor.building, room.floor, room }
 
@@ -222,7 +222,7 @@ describe 'Room pages' do
 
 	describe 'Delete' do
 
-		let!(:room) { FactoryGirl.create :room }
+		let!(:room) { Fabricate :room }
 
 		it 'should delete the room' do
 			expect do

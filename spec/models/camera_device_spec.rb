@@ -15,7 +15,7 @@ require 'models/device_shared_examples'
 
 describe CameraDevice do
 
-	subject(:camera_device) { FactoryGirl.create :camera_device }
+	subject(:camera_device) { Fabricate :camera_device }
 
 	it_behaves_like 'a device'
 

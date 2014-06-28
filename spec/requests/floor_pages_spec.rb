@@ -4,7 +4,7 @@ describe 'Floor pages' do
 
 	subject { page }
 
-	let(:user) { FactoryGirl.create :admin }
+	let(:user) { Fabricate :admin }
 
 	before { sign_in user }
 
@@ -21,8 +21,8 @@ describe 'Floor pages' do
 
 			before do
 				3.times do
-					floor = FactoryGirl.create :floor
-					FactoryGirl.create :room, floor: floor
+					floor = Fabricate :floor
+					Fabricate :room, floor: floor
 				end
 			end
 
@@ -69,7 +69,7 @@ describe 'Floor pages' do
 
 		context 'when called with a valid building id' do
 
-			let(:building) { FactoryGirl.create :building }
+			let(:building) { Fabricate :building }
 
 			before { visit new_building_floor_path(building) }
 
@@ -118,7 +118,7 @@ describe 'Floor pages' do
 
 	describe 'Edit' do
 
-		let!(:floor) { FactoryGirl.create :floor }
+		let!(:floor) { Fabricate :floor }
 
 		before { visit edit_building_floor_path(floor.building, floor) }
 
@@ -178,7 +178,7 @@ describe 'Floor pages' do
 
 	describe 'Show' do
 
-		let(:floor) { FactoryGirl.create :floor }
+		let(:floor) { Fabricate :floor }
 
 		before { visit building_floor_path(floor.building, floor) }
 
@@ -200,7 +200,7 @@ describe 'Floor pages' do
 
 	describe 'Delete' do
 
-		let!(:floor) { FactoryGirl.create :floor }
+		let!(:floor) { Fabricate :floor }
 
 		it 'should delete the floor' do
 			expect do

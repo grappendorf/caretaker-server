@@ -11,9 +11,9 @@ require 'spec_helper'
 
 describe Building do
 
-	subject(:building) { FactoryGirl.build :building }
+	subject(:building) { Fabricate.build :building }
 
-	let(:other_building) { FactoryGirl.build :building }
+	let(:other_building) { Fabricate.build :building }
 
 	it { should respond_to :name }
 	it { should respond_to :description }

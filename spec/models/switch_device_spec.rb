@@ -12,7 +12,7 @@ require 'models/device_shared_examples'
 
 describe SwitchDevice do
 
-	subject(:switch_device) { FactoryGirl.create :switch_device }
+	subject(:switch_device) { Fabricate :switch_device }
 
 	it_behaves_like 'a device'
 

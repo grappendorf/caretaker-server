@@ -12,7 +12,7 @@ require 'spec_helper'
 
 describe Dashboard do
 
-	subject(:dashboard) { FactoryGirl.build :dashboard }
+	subject(:dashboard) { Fabricate.build :dashboard }
 
 	it { should respond_to :name }
 	it { should respond_to :default }

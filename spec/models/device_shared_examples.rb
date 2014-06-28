@@ -19,7 +19,7 @@ shared_examples_for 'a device' do
 		end
 
 		it 'has a name that is already used' do
-			other = FactoryGirl.create :device
+			other = Fabricate :device
 			subject.name = other.name
 			should_not be_valid
 		end

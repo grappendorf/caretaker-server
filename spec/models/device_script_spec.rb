@@ -13,9 +13,9 @@ require 'spec_helper'
 
 describe DeviceScript do
 
-	subject(:device_script) { FactoryGirl.create :device_script }
+	subject(:device_script) { Fabricate :device_script }
 
-	let(:other_device_script) { FactoryGirl.create :device_script }
+	let(:other_device_script) { Fabricate :device_script }
 
 	it { should respond_to :name }
 	it { should respond_to :description }

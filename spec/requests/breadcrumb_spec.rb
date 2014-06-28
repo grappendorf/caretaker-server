@@ -4,8 +4,8 @@ describe 'Breadcrumb' do
 
 	subject { page }
 
-	let(:admin) { FactoryGirl.create :admin }
-	let(:user) { FactoryGirl.create :user }
+	let(:admin) { Fabricate :admin }
+	let(:user) { Fabricate :user }
 
 	describe 'on a top level page' do
 		before { visit new_user_session_path }

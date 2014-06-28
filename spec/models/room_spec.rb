@@ -12,9 +12,9 @@ require 'spec_helper'
 
 describe Room do
 
-	subject(:room) { FactoryGirl.build :room }
+	subject(:room) { Fabricate.build :room }
 
-	let(:other_room) { FactoryGirl.build :room }
+	let(:other_room) { Fabricate.build :room }
 
 	it { should respond_to :number }
 	it { should respond_to :description }

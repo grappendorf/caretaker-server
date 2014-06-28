@@ -12,7 +12,7 @@ require 'models/device_shared_examples'
 
 describe EasyvrDevice do
 
-	subject(:easyvr_device) { FactoryGirl.create :easyvr_device }
+	subject(:easyvr_device) { Fabricate :easyvr_device }
 
 	it_behaves_like 'a device'
 
