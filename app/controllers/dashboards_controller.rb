@@ -14,19 +14,21 @@ class DashboardsController < CRUDController
 		@dashboards = @dashboards.search(params[:q]).order("#{sort_column} #{sort_order}").page(params[:page])
 		respond_to do |format|
 			format.html
-			format.json { render json: @dashboards, except: [:widgets] }
+			format.json
 		end
 	end
 
 	def names
 		@dashboards = @dashboards.search_names(params[:q]).order('name asc')
-		respond_to { |format| format.json { render json: @dashboards, only: [:id, :name, :default] } }
+		respond_to do |format|
+			format.json
+		end
 	end
 
 	def show
 		respond_to do |format|
 			format.html
-			format.json { render json: @dashboard }
+			format.json
 		end
 	end
 
@@ -52,7 +54,7 @@ class DashboardsController < CRUDController
 					flash[:success] = t('message.successfully_created', model: Dashboard.model_name.human, name: @dashboard.name)
 					redirect_to dashboards_path
 				end
-				format.json { render json: {id: @dashboard.id}, location: @dashboard }
+				format.json
 			else
 				format.html do
 					flash.now[:error] = t('message.error_in_input_data', count: @dashboard.errors.count)

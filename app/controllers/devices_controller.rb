@@ -13,8 +13,8 @@ class DevicesController < CRUDController
 		@devices = @devices.search(params[:q]).order("#{sort_column} #{sort_order}").page(params[:page])
 		respond_to do |format|
 			format.html
-			format.json { render json: @devices, only: [:id, :name] } if params[:x]
-			format.json { render json: @devices } unless params[:x]
+			format.json
+			format.json
 		end
 	end
 
@@ -47,7 +47,7 @@ class DevicesController < CRUDController
 		add_breadcrumb Device.model_name.human(count: 2), :devices_path
 		respond_to do |format|
 			format.html { @readonly = true }
-			format.json { render json: @device }
+			format.json
 		end
 	end
 

@@ -1,3 +1,0 @@
-class RobotDeviceSerializer < DeviceSerializer
-
-end

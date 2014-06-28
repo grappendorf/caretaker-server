@@ -3,6 +3,8 @@ class WidgetsController < ApplicationController
 	load_and_authorize_resource :dashboard
 	load_and_authorize_resource :widget, through: :dashboard, except: :create
 
+	before_action :set_specific_widget, only: [:show, :update]
+
 	def create
 		respond_to do |format|
 			@widget = params[:type].singularize.camelcase.constantize.new
@@ -10,7 +12,7 @@ class WidgetsController < ApplicationController
 			@widget.update_attributes widget_params
 			@dashboard.widgets << @widget
 			if @widget.save
-				format.json { render json: {id: @widget.id}, location: dashboard_widget_url(@dashboard, @widget) }
+				format.json
 			else
 				format.json { render json: {errors: @widget.errors}, status: :bad_request }
 			end
@@ -20,12 +22,12 @@ class WidgetsController < ApplicationController
 	def show
 		respond_to do |format|
 			format.html
-			format.json { render json: @widget.specific }
+			format.json
 		end
 	end
 
 	def update
-		@widget.specific.update_attributes widget_params
+		@widget.update_attributes widget_params
 		respond_to do |format|
 			format.json { head :no_content }
 		end
@@ -52,6 +54,11 @@ class WidgetsController < ApplicationController
 		(@widget.class.attr_accessible - Widget.attr_accessible).each do |attr|
 			params[:widget][attr] ||= params[attr]
 		end
+	end
+
+	private
+	def set_specific_widget
+		@widget = @widget.specific
 	end
 
 end

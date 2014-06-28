@@ -20,4 +20,8 @@ class Widget < ActiveRecord::Base
 	belongs_to :dashboard
 
 	inherit WidgetBase
+
+	def type
+		specific.class.name
+	end
 end

@@ -1,0 +1,1 @@
+json.array! @devices.map(&:specific), partial: 'devices/device', as: :device

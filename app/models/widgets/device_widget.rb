@@ -19,6 +19,10 @@ class DeviceWidget < ActiveRecord::Base
 
 	before_save :assign_device_if_only_device_id_is_set
 
+	def type
+		"#{device.class.name}Widget"
+	end
+
 	def title
 		as_widget.title || device.name
 	end
