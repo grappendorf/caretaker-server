@@ -6,16 +6,21 @@ angular.module 'dashboard'
 
 		$scope.value = $scope.device.state
 
+		$scope.manualSliderMove = false
+
 		$element.find('.dimmer-value').slider
 			min: 0
 			max: 255
 			value: $scope.value
+			start: -> $scope.manualSliderMove = true
+			stop: -> $scope.manualSliderMove = false
 			slide: (event, ui) ->
-				if event.originalEvent
+				if $scope.manualSliderMove
 					$timeout ->
 						$scope.sendDeviceState $scope.device.id, { value: ui.value }
 
 		$scope.update = (data) ->
-			$scope.$apply ->
-				$scope.value = data.state
-				$element.find('.dimmer-value').slider('value', $scope.value)
+			unless $scope.manualSliderMove
+				$scope.$apply ->
+					$scope.value = data.state
+					$element.find('.dimmer-value').slider('value', $scope.value)
