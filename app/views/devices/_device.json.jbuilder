@@ -1,11 +1,12 @@
 json.id device.as_device.id
 json.name device.name
+json.icon device.class.small_icon
 unless params[:x]
 	json.type device.class.name
 	json.address device.address
 	json.description device.description
 
-	managed_device = lookup(:device_manager).device_by_id(device.id)
+	managed_device = lookup(:device_manager).device_by_id(device.as_device.id)
 
 	json.state managed_device.current_state
 	json.connected managed_device.connected?
