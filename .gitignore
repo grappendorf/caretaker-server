@@ -5,7 +5,7 @@
 /db/*.sqlite3
 
 # Ignore all logfiles and tempfiles.
-/log/*.log
+*.log
 /tmp
 /public/assets
 
@@ -26,3 +26,11 @@ config/settings/*.local.yml
 config/environments/*.local.yml
 
 doc/*.db
+
+# Ignore node modules and bower packages
+/node_modules
+/public/lib
+
+# Ignore generated web files
+/public/components
+/public/i18n

@@ -1,0 +1,33 @@
+{
+  "name": "coyoho-server",
+  "version": "0.1.0",
+  "description": "CoYoHo Control Your Home Server",
+  "license": "MIT",
+  "author": "Dirk Grappendorf <dirk@grappendorf.net>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/grappendorf/coyoho-server.git"
+  },
+  "devDependencies": {
+    "bower": "latest",
+    "grunt": "latest",
+    "grunt-bump": "latest",
+    "grunt-cli": "latest",
+    "grunt-coffeelint": "latest",
+    "grunt-contrib-connect": "latest",
+    "grunt-contrib-coffee": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-conventional-changelog": "latest",
+    "grunt-html-build": "latest",
+    "karma": "latest",
+    "karma-chrome-launcher": "latest",
+    "karma-cli": "latest",
+    "karma-coffee-preprocessor": "latest",
+    "karma-e2e-dsl": "latest",
+    "karma-html2js-preprocessor": "latest",
+    "karma-jasmine": "latest",
+    "ng-html2js": "latest"
+  }
+}
