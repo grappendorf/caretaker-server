@@ -77,15 +77,15 @@ module.exports = function(grunt) {
     watch: {
       stylesheets: {
         files: ['app/components/**/*.less'],
-        tasks: ['less', 'htmlbuild']
+        tasks: ['newer:less']
       },
       scripts: {
         files: ['app/components/**/*.coffee'],
-        tasks: ['coffee', 'htmlbuild']
+        tasks: ['newer:coffee']
       },
       html: {
         files: ['app/components/**/*.html'],
-        tasks: ['htmlbuild']
+        tasks: ['newer:htmlbuild']
       },
       tests: {
         files: 'test/*.html',
@@ -125,6 +125,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-conventional-changelog');
   grunt.loadNpmTasks('grunt-html-build');
+  grunt.loadNpmTasks('grunt-newer');
 
   grunt.registerTask('build', 'Compile all assets and create the distribution files',
     ['less', 'coffeelint', 'coffee', 'htmlbuild']);

@@ -21,6 +21,7 @@
     "grunt-contrib-watch": "latest",
     "grunt-conventional-changelog": "latest",
     "grunt-html-build": "latest",
+    "grunt-newer": "latest",
     "karma": "latest",
     "karma-chrome-launcher": "latest",
     "karma-cli": "latest",
