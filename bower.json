@@ -37,7 +37,8 @@
     "grapp-fa-icon": "~0.0.1",
     "grapp-launcher-tile": "~0.0.2",
     "grapp-paper-fab": "~0.0.2",
-    "grapp-paper-input": "~0.0.2"
+    "grapp-paper-input": "~0.0.2",
+    "grapp-app-globals": "~0.0.1"
   },
   "resolutions": {
     "polymer": "^0.5.1",
