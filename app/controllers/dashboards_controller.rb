@@ -21,7 +21,7 @@ class DashboardsController < ApplicationController
     if current_user && current_user.dashboards.default
       @dashboard = current_user.dashboards.default
     else
-      render status: not_found, nothing: true
+      render status: :not_found, nothing: true
     end
   end
 
