@@ -8,7 +8,7 @@ class WidgetsController < ApplicationController
 	def create
 		respond_to do |format|
 			@widget = params[:type].singularize.camelcase.constantize.new
-			copy_subclass_params_to_nested_hash
+			# copy_subclass_params_to_nested_hash
 			@widget.update_attributes widget_params
 			@dashboard.widgets << @widget
 			if @widget.save
@@ -42,15 +42,18 @@ class WidgetsController < ApplicationController
 
 	private
 	def widget_params
+		json_params = ActionController::Parameters.new JSON.parse request.body.read
+		p json_params
 		if @widget && params[:type].present?
-			params.require(:widget).permit(@widget.class.attr_accessible)
+			json_params.permit(@widget.class.attr_accessible)
 		else
-			params.require(:widget).permit Widget.attr_accessible
+			json_params.permit Widget.attr_accessible
 		end
 	end
 
 	private
 	def copy_subclass_params_to_nested_hash
+		p params
 		(@widget.class.attr_accessible - Widget.attr_accessible).each do |attr|
 			params[:widget][attr] ||= params[attr]
 		end

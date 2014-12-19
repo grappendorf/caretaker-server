@@ -25,12 +25,12 @@ describe SingletonService do
 
 		context 'when no service instance has been created yet' do
 			it 'should create a new one with a DRb server' do
-				service.should be_a_kind_of SingletonService
-				service.server.should be_alive
+				expect(service).to be_a_kind_of SingletonService
+				expect(service.server).to be_alive
 			end
 
 			it 'should create a file containing the service uri' do
-				File.read(SomeSingletonService.uri_file).should match /druby:\/\/[^:]+:\d+/
+				expect(File.read(SomeSingletonService.uri_file)).to match /druby:\/\/[^:]+:\d+/
 			end
 		end
 
@@ -38,7 +38,7 @@ describe SingletonService do
 			let(:previously_started_service) { SomeSingletonService.new }
 
 			it 'should create a DRb client for the existing one' do
-				service.should be_a_kind_of DRbObject
+				expect(service).to be_a_kind_of DRbObject
 			end
 		end
 
@@ -46,7 +46,7 @@ describe SingletonService do
 			let(:actual_service) { 'actual_service_instance' }
 			subject(:service) { SingletonService.new { actual_service } }
 			it 'creates the service instance yielding this block' do
-				service.should eql actual_service
+				expect(service).to eql actual_service
 			end
 		end
 
@@ -62,7 +62,7 @@ describe SingletonService do
 
 			it 'should stop the DRb server' do
 				service.stop
-				service.server.should_not be_alive
+				expect(service.server).not_to be_alive
 			end
 		end
 

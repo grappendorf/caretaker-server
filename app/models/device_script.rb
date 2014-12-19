@@ -13,10 +13,6 @@ class DeviceScript < ActiveRecord::Base
 
 	validates :name, presence: true, uniqueness: true
 
-  def self.attr_accessible
-    [:name, :description, :script, :enabled]
-  end
-
 	scope :search, -> (q) { where('name like ? or description like ?', "%#{q}%", "%#{q}%") }
 
 end

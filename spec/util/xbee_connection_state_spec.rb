@@ -24,36 +24,36 @@ describe XBeeConnectionState do
 	end
 
 	it 'starts in state :DISCONNECTED' do
-		@connection_state.state.should be ConnectionState::State::DISCONNECTED
+		expect(@connection_state.state).to eq ConnectionState::State::DISCONNECTED
 	end
 
 	it 'starts in internal state :DISCONNECTED' do
-		@connection_state.xbee_connection_state.should be :DISCONNECTED
+		expect(@connection_state.xbee_connection_state).to eq :DISCONNECTED
 	end
 
 	it 'stays in internal state :DISCONNECTED when receiving a connection response in :DISCONNECTED' do
 		@connection_state.xbee_connect_response
-		@connection_state.xbee_connection_state.should be :DISCONNECTED
+		expect(@connection_state.xbee_connection_state).to eq :DISCONNECTED
 	end
 
 	it 'stays in internal state :DISCONNECTED when receiving :timeout in :DISCONNECTED' do
 		@connection_state.xbee_timeout
-		@connection_state.xbee_connection_state.should be :DISCONNECTED
+		expect(@connection_state.xbee_connection_state).to eq :DISCONNECTED
 	end
 
 	it 'stays in internal state :DISCONNECTED when disconnecting in :DISCONNECTED' do
 		@connection_state.disconnect
-		@connection_state.xbee_connection_state.should be :DISCONNECTED
+		expect(@connection_state.xbee_connection_state).to eq :DISCONNECTED
 	end
 
 	it 'enters internal state :WAIT_FOR_CONNECTION when connecting' do
 		@connection_state.connect
-		@connection_state.xbee_connection_state.should be :WAIT_FOR_CONNECTION
+		expect(@connection_state.xbee_connection_state).to eq :WAIT_FOR_CONNECTION
 	end
 
 	it 'tries to register with the device after a random delay when connecting' do
 		random.next_number XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY_RANDOM
-		@connection_state.should_receive(:send_message).with CoYoHoMessages::COYOHO_ADD_LISTENER
+		expect(@connection_state).to receive(:send_message).with(CoYoHoMessages::COYOHO_ADD_LISTENER)
 		@connection_state.connect
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY_RANDOM
@@ -61,34 +61,34 @@ describe XBeeConnectionState do
 
 	it 'retries to connect when a timeout occured when connecting' do
 		random.next_number XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY_RANDOM
-		@connection_state.should_receive(:send_message).with(CoYoHoMessages::COYOHO_ADD_LISTENER).twice
+		expect(@connection_state).to receive(:send_message).with(CoYoHoMessages::COYOHO_ADD_LISTENER).twice
 		@connection_state.connect
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY_RANDOM
 		scheduler.step XBeeConnectionState::REGISTER_TIMEOUT
 		scheduler.step XBeeConnectionState::REGISTER_ATTEMPT_DELAY
-		@connection_state.xbee_connection_state.should be :WAIT_FOR_CONNECTION
+		expect(@connection_state.xbee_connection_state).to eq :WAIT_FOR_CONNECTION
 	end
 
 	it 'enters internal state :DISCONNECTED when disconnecting during a connect attempt' do
 		@connection_state.connect
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY
 		@connection_state.disconnect
-		@connection_state.xbee_connection_state.should be :DISCONNECTED
+		expect(@connection_state.xbee_connection_state).to eq :DISCONNECTED
 	end
 
 	it 'enters internal state :CONNECTED when receiving a connection response in :WAIT_FOR_CONNECTION' do
 		@connection_state.connect
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY
 		@connection_state.xbee_connect_response
-		@connection_state.xbee_connection_state.should be :CONNECTED
+		expect(@connection_state.xbee_connection_state).to eq :CONNECTED
 	end
 
 	it 'enters state :CONNECTED when connected with a device' do
 		@connection_state.connect
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY
 		@connection_state.xbee_connect_response
-		@connection_state.state.should be ConnectionState::State::CONNECTED
+		expect(@connection_state.state).to eq ConnectionState::State::CONNECTED
 	end
 
 	it 'notifies the listeners when it enters internal state :CONNECTED' do
@@ -105,11 +105,11 @@ describe XBeeConnectionState do
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY
 		@connection_state.xbee_connect_response
 		scheduler.step XBeeConnectionState::REGISTER_TIMEOUT
-		@connection_state.xbee_connection_state.should be :CONNECTED
+		expect(@connection_state.xbee_connection_state).to eq :CONNECTED
 	end
 
 	it 'renews the registration after a successful registration' do
-		@connection_state.should_receive(:send_message).with(CoYoHoMessages::COYOHO_ADD_LISTENER).twice
+		expect(@connection_state).to receive(:send_message).with(CoYoHoMessages::COYOHO_ADD_LISTENER).twice
 		@connection_state.connect
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY
 		@connection_state.xbee_connect_response
@@ -117,7 +117,7 @@ describe XBeeConnectionState do
 	end
 
 	it 'doubles the connection delay after each unsuccessful connect attempt' do
-		@connection_state.should_receive(:send_message).with(CoYoHoMessages::COYOHO_ADD_LISTENER).exactly(4).times
+		expect(@connection_state).to receive(:send_message).with(CoYoHoMessages::COYOHO_ADD_LISTENER).exactly(4).times
 		@connection_state.connect
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY
 		scheduler.step XBeeConnectionState::REGISTER_TIMEOUT
@@ -134,12 +134,12 @@ describe XBeeConnectionState do
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY
 		@connection_state.xbee_connect_response
 		@connection_state.disconnect
-		@connection_state.state.should be ConnectionState::State::DISCONNECTED
+		expect(@connection_state.state).to eq ConnectionState::State::DISCONNECTED
 	end
 
 	it 'unregisters from the device when disconnecting' do
-		@connection_state.stub(:send_message)
-		@connection_state.should_receive(:send_message).with(CoYoHoMessages::COYOHO_REMOVE_LISTENER)
+		allow(@connection_state).to receive(:send_message)
+		expect(@connection_state).to receive(:send_message).with(CoYoHoMessages::COYOHO_REMOVE_LISTENER)
 		@connection_state.connect
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY
 		@connection_state.xbee_connect_response

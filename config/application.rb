@@ -81,5 +81,7 @@ module CoyohoServer
 			ServiceManager.start
 		end
 
+		config.action_dispatch.default_headers = { 'X-Frame-Options' => '' }
+
 	end
 end

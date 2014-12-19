@@ -1,0 +1,43 @@
+#widget {
+  width: 400px;
+  height: 400px;
+}
+
+.panel {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+
+  &.panel-highlight {
+    border-width: 2px;
+    border-color: #f89406;
+  }
+
+  .panel-heading {
+    grapp-fa-icon {
+      cursor: pointer;
+
+      &.fa-square {
+        cursor: move;
+        margin-right: 8px;
+      }
+    }
+
+    .widget-actions {
+      grapp-fa-icon {
+        -webkit-transition: 1s linear opacity;
+        transition: 0.3s linear opacity;
+        opacity: 0.2;
+      }
+
+      &:hover grapp-fa-icon {
+        -webkit-transition: 1s linear opacity;
+        transition: 0.3s linear opacity;
+        opacity: 1;
+      }
+    }
+  }
+
+  .panel-body {
+  }
+}

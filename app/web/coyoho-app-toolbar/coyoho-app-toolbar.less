@@ -1,0 +1,49 @@
+#title {
+  font-size: 150%;
+  margin: 0;
+  font-variant: small-caps;
+}
+
+#breadcrumbs-wrapper {
+  margin-top: 1.2em;
+  margin-left: 0;
+  width: 100%;
+}
+
+#drawer {
+  float: left;
+}
+
+#profile {
+  position: relative;
+  display: table;
+  img {
+    position: absolute;
+    z-index: 1;
+    top: -0.5em;
+    right: 0px;
+    height: 48px;
+  }
+}
+
+core-toolbar {
+  &[category="devices"] {
+    border-bottom-color: rgba(147, 81, 166, 0.5);
+  }
+
+  &[category="manage"] {
+    border-bottom-color: rgba(224, 137, 23, 0.5);
+  }
+
+  &[category="system"] {
+    border-bottom-color: rgba(249, 68, 70, 0.5);
+  }
+
+  &[category="help"] {
+    border-bottom-color: rgba(76, 164, 84, 0.5);
+  }
+
+  &[category="misc"] {
+    border-bottom-color: rgba(68, 114, 185, 0.5);
+  }
+}

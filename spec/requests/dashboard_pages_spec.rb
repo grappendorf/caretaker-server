@@ -35,9 +35,6 @@ describe 'Dashboard Pages' do
 					should have_link 'Delete', href: dashboard_path(dashboard)
 				end
 			end
-
 		end
-
 	end
-
 end

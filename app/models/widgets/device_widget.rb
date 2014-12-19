@@ -24,7 +24,7 @@ class DeviceWidget < ActiveRecord::Base
 	end
 
 	def title
-		as_widget.title || device.name
+		as_widget.title.present? ? as_widget.title : device.name
 	end
 
 	def self.attr_accessible

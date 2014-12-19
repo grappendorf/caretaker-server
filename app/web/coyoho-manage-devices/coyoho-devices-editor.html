@@ -1,0 +1,102 @@
+<link rel="import" href="../../lib/grapp-rest-resource/grapp-rest-resource.html">
+<link rel="import" href="../../lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
+<link rel="import" href="../coyoho-i18n/coyoho-i18n.html">
+<link rel="import" href="../coyoho-data-editor/coyoho-data-editor.html">
+
+<polymer-element name="coyoho-devices-editor">
+
+  <template>
+
+    <grapp-rest-resource url="/devices/:id"
+                         newUrl="/:type"
+                         createUrl="/:type"
+                         params="{{ {type: type} }}"
+                         resource="{{devices}}"></grapp-rest-resource>
+
+    <grapp-app-globals>
+      <grapp-app-global-value name="appTitle" value="models.device.other"></grapp-app-global-value>
+      <grapp-app-global-value name="appModule" value="devices"></grapp-app-global-value>
+      <grapp-app-global-value name="appFunction" value="devices"></grapp-app-global-value>
+    </grapp-app-globals>
+
+    <grapp-breadcrumbs>
+      <grapp-breadcrumb href="/#/devices">{{'models.device.other'|i18n}}</grapp-breadcrumb>
+      <grapp-breadcrumb>{{$.editor.item.name}}</grapp-breadcrumb>
+    </grapp-breadcrumbs>
+
+    <coyoho-data-editor id="editor" model="device" resource="{{devices}}" on-data-editor-back="{{back}}">
+
+      <coyoho-data-fieldset label="{{'models.device.one'|i18n}}" icon="gears">
+        <coyoho-data-field name="name"></coyoho-data-field>
+        <coyoho-data-field name="address"></coyoho-data-field>
+        <coyoho-data-field name="description"></coyoho-data-field>
+      </coyoho-data-fieldset>
+
+      <template if="{{$.editor.item.type === 'CameraDevice'}}">
+        <coyoho-data-fieldset label="{{'models.camera_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+          <coyoho-data-field name="host" model="camera_device"></coyoho-data-field>
+          <coyoho-data-field name="port" model="camera_device"></coyoho-data-field>
+          <coyoho-data-field name="user" model="camera_device"></coyoho-data-field>
+          <coyoho-data-field name="password" model="camera_device"></coyoho-data-field>
+          <coyoho-data-field name="refresh_interval" model="camera_device"></coyoho-data-field>
+        </coyoho-data-fieldset>
+      </template>
+
+      <template if="{{$.editor.item.type === 'DimmerDevice'}}">
+        <coyoho-data-fieldset label="{{'models.dimmer_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+        </coyoho-data-fieldset>
+      </template>
+
+      <template if="{{$.editor.item.type === 'DimmerRgbDevice'}}">
+        <coyoho-data-fieldset label="{{'models.dimmer_rgb_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+        </coyoho-data-fieldset>
+      </template>
+
+      <template if="{{$.editor.item.type === 'EasyvrDevice'}}">
+        <coyoho-data-fieldset label="{{'models.easyvr_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+          <coyoho-data-field name="num_buttons" model="easyvr_device"></coyoho-data-field>
+          <coyoho-data-field name="buttons_per_row" model="easyvr_device"></coyoho-data-field>
+        </coyoho-data-fieldset>
+      </template>
+
+      <template if="{{$.editor.item.type === 'IpCameraDevice'}}">
+        <coyoho-data-fieldset label="{{'models.ip_camera_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+          <coyoho-data-field name="host" model="ip_camera_device"></coyoho-data-field>
+          <coyoho-data-field name="port" model="ip_camera_device"></coyoho-data-field>
+          <coyoho-data-field name="user" model="ip_camera_device"></coyoho-data-field>
+          <coyoho-data-field name="password" model="ip_camera_device"></coyoho-data-field>
+          <coyoho-data-field name="refresh_interval" model="ip_camera_device"></coyoho-data-field>
+        </coyoho-data-fieldset>
+      </template>
+
+      <template if="{{$.editor.item.type === 'ReflowOvenDevice'}}">
+        <coyoho-data-fieldset label="{{'models.reflow_oven_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+        </coyoho-data-fieldset>
+      </template>
+
+      <template if="{{$.editor.item.type === 'RemoteControlDevice'}}">
+        <coyoho-data-fieldset label="{{'models.remote_control_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+          <coyoho-data-field name="num_buttons" model="remote_control_device"></coyoho-data-field>
+          <coyoho-data-field name="buttons_per_row" model="remote_control_device"></coyoho-data-field>
+        </coyoho-data-fieldset>
+      </template>
+
+      <template if="{{$.editor.item.type === 'RobotDevice'}}">
+        <coyoho-data-fieldset label="{{'models.robot_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+        </coyoho-data-fieldset>
+      </template>
+
+      <template if="{{$.editor.item.type === 'SwitchDevice'}}">
+        <coyoho-data-fieldset label="{{'models.switch_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+          <coyoho-data-field name="num_switches" model="switch_device"></coyoho-data-field>
+          <coyoho-data-field name="switches_per_row" model="switch_device"></coyoho-data-field>
+        </coyoho-data-fieldset>
+      </template>
+
+    </coyoho-data-editor>
+
+  </template>
+
+  <script src="coyoho-devices-editor.js"></script>
+
+</polymer-element>

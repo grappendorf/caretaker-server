@@ -56,6 +56,7 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
 				dashboard.widgets << DeviceWidget.new(device: camera1_device, x: 6, y: 1, width: 2, height: 2)
 				dashboard.widgets << DeviceWidget.new(device: camera2_device, x: 6, y: 3, width: 2, height: 2)
 				dashboard.widgets << DeviceWidget.new(device: reflow_oven_device, x: 3, y: 1, width: 3, height: 3)
+				dashboard.widgets << WeatherWidget.new(x: 0, y: 5, width: 2, height: 2)
 
 				(1..5).each do |i|
 					building = Building.create! name: "Building #{i}", description: "This is building #{i}"

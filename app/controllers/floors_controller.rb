@@ -1,4 +1,4 @@
-class FloorsController < CRUDController
+class FloorsController < ApplicationController
 
 	include SortableController
 
@@ -14,86 +14,49 @@ class FloorsController < CRUDController
 		rescue ActiveRecord::RecordNotFound
 			@floors = nil
 		end
-		@buildings = Building.accessible_by(current_ability).select(:id, :name)
-		add_breadcrumbs
+	end
+
+	def names
+		@floors = Floor.in_building(params[:building_id]).accessible_by(current_ability).select(:id, :name)
 	end
 
 	def show
-		@readonly = true
-		add_breadcrumbs
 	end
 
-	def new
-		add_breadcrumbs
+	def name
 	end
 
 	def create
 		@building.floors << @floor
 		if @floor.save
-			flash[:success] = t('message.successfully_created', model: Floor.model_name.human, name: @floor.name)
-			redirect_to building_floors_path(@building)
+			render status: :ok, nothing: true
 		else
-			add_breadcrumbs
-			flash.now[:error] = t('message.error_in_input_data', count: @floor.errors.count)
-			render :new
+			render status: :bad_request, json: {errors: @floor.errors}
 		end
 	end
 
-	def edit
-		add_breadcrumbs
-	end
-
 	def update
-		respond_to do |format|
-			if @floor.update_attributes floor_params
-				format.html do
-					flash[:success] = t('message.successfully_updated', model: Floor.model_name.human, name: @floor.name)
-					redirect_to building_floors_path(@building)
-				end
-				format.json { head :no_content }
-			else
-				format.html do
-					flash.now[:error] = t('message.error_in_input_data', count: @floor.errors.count)
-					add_breadcrumbs
-					render :edit
-				end
-				format.json { render json: {errors: @floor.errors}, status: :bad_request }
-			end
+		if @floor.update_attributes floor_params
+			render status: :ok, nothing: true
+		else
+			render status: :bad_request, json: {errors: @floor.errors}
 		end
 	end
 
 	def destroy
 		@floor.destroy
-		flash[:success] = t('message.successfully_deleted', model: Floor.model_name.human, name: @floor.name)
-		redirect_to building_floors_path @building
+		render status: :ok, nothing: true
 	end
 
 	private
 	def floor_params
-		params.require(:floor).permit :name, :description
+		json_params = ActionController::Parameters.new JSON.parse request.body.read
+		json_params.permit :id, :name, :description
 	end
 
 	private
 	def default_sort_column
 		:name
-	end
-
-	private
-	def add_breadcrumbs
-		if @building
-			add_breadcrumb Building.model_name.human(count: 2), :buildings_path
-			add_breadcrumb @building.name, edit_building_path(@building)
-			add_breadcrumb Floor.model_name.human(count: 2), building_floors_path(@building)
-			if @floor
-				if @floor.persisted?
-					add_breadcrumb @floor.name_was, edit_building_floor_path(@building, @floor)
-				else
-					add_breadcrumb t('action.new')
-				end
-			end
-		else
-			add_breadcrumb Floor.model_name.human(count: 2), floors_path
-		end
 	end
 
 end

@@ -1,0 +1,1 @@
+Polymer 'coyoho-widget-remotecontroldevice'

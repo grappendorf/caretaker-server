@@ -1,0 +1,41 @@
+grapp-launcher-tile {
+  &::shadow #tile {
+    width: 12em;
+    height: 12em;
+  }
+
+  &.devices::shadow #tile {
+    background-color: rgba(147, 81, 166, 0.7);
+    &[mouseover] {
+      background-color: rgba(147, 81, 166, 0.9);
+    }
+  }
+
+  &.manage::shadow #tile {
+    background-color: rgba(224, 137, 23, 0.7);
+    &[mouseover] {
+      background-color: rgba(224, 137, 23, 0.9);
+    }
+  }
+
+  &.system::shadow #tile {
+    background-color: rgba(249, 68, 70, 0.7);
+    &[mouseover] {
+      background-color: rgba(249, 68, 70, 0.9);
+    }
+  }
+
+  &.help::shadow #tile {
+    background-color: rgba(76, 164, 84, 0.7);
+    &[mouseover] {
+      background-color: rgba(76, 164, 84, 0.9);
+    }
+  }
+
+  &.misc::shadow #tile {
+    background-color: rgba(68, 114, 185, 0.7);
+    &[mouseover] {
+      background-color: rgba(68, 114, 185, 0.9);
+    }
+  }
+}

@@ -1,0 +1,62 @@
+<link rel="import" href="../../lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
+<link rel="import" href="../../lib/github-ribbon/src/github-ribbon.html">
+<link rel="import" href="../../lib/github-readme/github-readme.html">
+<link rel="import" href="../github-card/github-card.html">
+
+<polymer-element name="coyoho-about" noscript>
+
+  <template>
+
+    <grapp-app-globals id="globals">
+      <grapp-app-global-value name="appTitle" value="action.help_about"></grapp-app-global-value>
+      <grapp-app-global-value name="appModule" value="help"></grapp-app-global-value>
+      <grapp-app-global-value name="appFunction" value="about"></grapp-app-global-value>
+    </grapp-app-globals>
+
+    <grapp-breadcrumbs>
+      <grapp-breadcrumb>{{'action.help_about'|i18n}}</grapp-breadcrumb>
+    </grapp-breadcrumbs>
+
+    <link href="coyoho-about.css" rel="stylesheet">
+
+    <github-ribbon user="grappendorf" repo="coyoho-server" color="orange"></github-ribbon>
+
+    <h1>CoYoHo</h1>
+
+    <h2>
+      Control Your Home - Home Automation System
+    </h2>
+
+    <blockquote>
+      <p>
+        <small>
+          Version 0.1
+        </small>
+      </p>
+      <p>
+        <small>
+          by Dirk Grappendorf <a href="http://www.grappendorf.net" target="_blank">www.grappendorf.net</a>
+        </small>
+      </p>
+      <p>
+        <small>
+          Copyright (C) 2012-2014
+        </small>
+      </p>
+    </blockquote>
+
+    <h2>Overview</h2>
+
+    <div>
+      <github-readme user="grappendorf" repo="coyoho-server" auto></github-readme>
+    </div>
+
+    <h2>Github</h2>
+
+    <div>
+      <github-card user="grappendorf"></github-card>
+    </div>
+
+  </template>
+
+</polymer-element>

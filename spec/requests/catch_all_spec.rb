@@ -9,7 +9,5 @@ describe 'Catch all' do
 		before { visit '/invalid' }
 
 		it { should have_content 'Sorry, the requested page doesn\'t exist' }
-
 	end
-
 end

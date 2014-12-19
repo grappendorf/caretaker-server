@@ -78,6 +78,8 @@ class XbeeSim
 						rx_response_switch_write data
 					when CoYoHoMessages::COYOHO_PWM_READ
 						rx_response_pwm_read data
+					when CoYoHoMessages::COYOHO_PWM_WRITE
+						rx_response_pwm_write data
 					when CoYoHoMessages::COYOHO_RGB_READ
 						rx_response_rgb_read data
 					when CoYoHoMessages::COYOHO_RGB_WRITE

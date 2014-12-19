@@ -1,0 +1,34 @@
+<link rel="import" href="../../lib/paper-dialog/paper-action-dialog.html">
+<link rel="import" href="../../lib/grapp-paper-fab/grapp-paper-fab.html">
+<link rel="import" href="../../lib/grapp-fa-icon/grapp-fa-icon.html">
+
+<polymer-element name="coyoho-confirmation-dialog" attributes="heading message">
+
+  <template>
+
+    <paper-action-dialog id="dialog" heading="{{heading}}">
+
+      <div vertical layout>
+        <div>{{message}}</div>
+        <content></content>
+      </div>
+
+      <grapp-paper-button affirmative raised success
+                          on-click="{{yes}}" on-enter="{{yes}}">
+        <grapp-fa-icon icon="check"></grapp-fa-icon>
+        <span>{{'action.ok' | i18n}}</span>
+      </grapp-paper-button>
+
+      <grapp-paper-button affirmative raised error
+                          on-click="{{no}}" on-enter="{{no}}">
+        <grapp-fa-icon icon="cancel"></grapp-fa-icon>
+        <span>{{'action.cancel' | i18n}}</span>
+      </grapp-paper-button>
+
+    </paper-action-dialog>
+
+  </template>
+
+  <script src="coyoho-confirmation-dialog.js"></script>
+
+</polymer-element>

@@ -48,8 +48,8 @@ module ServiceManager
 	def self.stop
 		Rails.logger.info 'Service manager stopping' if real_mode?
 		lookup(:scheduler).try :stop
-		lookup(:device_script_manager).try :stop
-		lookup(:device_manager).try :stop
+		lookup(:device_script_manager).try :stop rescue nil
+		lookup(:device_manager).try :stop rescue nil
 	end
 
 end

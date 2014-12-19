@@ -1,12 +1,15 @@
 CoyohoServer::Application.routes.draw do
 
-	root to: 'dashboards#default'
+	root to: 'app#index'
 
-	devise_for :users, path: 'session'
+	get '/app' => 'app#index'
+	get '/locale' => 'app#locale'
 
-	resources :users
+	devise_for :users, path: 'session', controllers: {sessions: 'sessions'}
 
-	resources :dashboards do
+	resources :users, defaults: {format: :json}
+
+	resources :dashboards, defaults: {format: :json} do
 		collection do
 			get 'names'
 			get :default
@@ -18,32 +21,51 @@ CoyohoServer::Application.routes.draw do
 		resources :widgets, only: [:show, :edit, :destroy]
 	end
 
-	get '/:type/new' => 'devices#new', constraints: {type: /#{Device.models_paths.join '|'}/}, as: :new_device
-	resources :devices, except: :new do
+	get '/:type/new' => 'devices#new', constraints: {type: /#{Device.models_paths.join '|'}/},
+	    defaults: {format: :json}, as: :new_device
+
+	post '/:type' => 'devices#create', constraints: {type: /#{Device.models_paths.join '|'}/},
+			defaults: {format: :json}, as: :create_device
+
+	resources :devices, except: [:new, :create], defaults: {format: :json} do
 		collection do
 			get 'names'
 		end
 	end
 
-	resources :device_scripts do
+	resources :device_scripts, defaults: {format: :json} do
 		member do
 			put :enable
 			put :disable
 		end
 	end
 
-	resources :buildings do
+	resources :buildings, defaults: {format: :json} do
+
+		collection do
+			get 'names', as: :names
+		end
+
+		member do
+			get 'name'
+		end
+
 		resources :floors do
+
+			collection do
+				get 'names'
+			end
+
+			member do
+				get 'name'
+			end
+
 			resources :rooms
 		end
 	end
-	get '/floors' => 'floors#index', as: :floors
-	get '/rooms' => 'rooms#index', as: :rooms
 
-	get '/settings' => 'settings#edit'
-
-	get '/help/about' => 'help#about'
+	get '/floors' => 'floors#index', as: :floors, defaults: {format: :json}
+	get '/rooms' => 'rooms#index', as: :rooms, defaults: {format: :json}
 
 	get '/invalid' => 'catchall#index', as: :invalid
-
 end

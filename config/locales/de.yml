@@ -4,6 +4,8 @@ de:
   profile: "Profil"
   settings: "Einstellungen"
   system: "System"
+  documentation: "Dokumentation"
+  account: "Account"
 
   action:
     back: "Zurück"
@@ -24,7 +26,7 @@ de:
     new_dashboard: "Neues Dashboard"
     add_widget: "Widget hinzufügen"
     reload_dashboard: "Aktualisieren"
-    edit_your_profile: "Ändern Sie Ihr Benutzerprofil"
+    edit_your_profile: "Ändern Sie Ihr Profil"
     change_your_password: "Ändern Sie Ihr Passwort"
     save_profile: "Profil speichern"
     create_widget: "Widget anlegen"
@@ -47,12 +49,12 @@ de:
     successfully_created: "%{model} %{name} wurde erfolgreich angelegt"
     successfully_updated: "%{model} %{name} wurde erfolgreich gespeichert"
     successfully_deleted: "%{model} %{name} wurde erfolgreich gelöscht"
-    confirm_delete: "Soll<br /><b>%{model} %{name}</b><br />wirklich gelöscht werden?"
+    confirm_delete: "Soll %{model} %{name} wirklich gelöscht werden?"
     successfully_saved_profile: "Ihr Benutzerprofil wurde erfolgreich gespeichert"
     successfully_changed_password: "Ihr Passwort wurde erfolgreich geändert"
     password_remains_unchanged: "Ihr Passwort wurde nicht geändert"
     select_device_for_widget: "Wählen Sie das Gerät aus, das dargestellt werden soll"
-    error_loading_dashboard: "Beim Laden des Dashboards \"{{dashboard.name}}\" ist ein Fehler aufgetreten"
+    error_loading_dashboard: "Beim Laden des Dashboards '{{dashboard.name}}' ist ein Fehler aufgetreten"
     error_uknown_widget_type: "Unbekannter Widget Typ"
     choose_optional_widget_title: "Geben Sie einen optionalen Widget-Titel ein"
     select_a_building: "Bitte wählen Sie ein Gebäude aus"
@@ -60,6 +62,7 @@ de:
     delete_dashboard_confirmation: >
       Soll das Dashboard <strong>{{name}}</strong> wirklich gelöscht werden?<br>
       Alle Widgets werden ebenfalls gelöscht und können später nicht wieder hergestellt werden!
+    please_log_on: "Bitte melden Sie sich an"
 
   title:
     app: "CoYoHo"
@@ -77,9 +80,10 @@ de:
 
   description:
     your_dashboard_is_empty: Ihr Dashboard ist momentan leer.
-    add_widgets_to_your_dashboard: Sie können dem Dashboard Widgets hinzufügen, indem Sie auf den Button \"Widget hinzufügen\" klicken.
-    you_currently_have_no_dashboard: "Sie haben noch kein Dashboard"
-    create_your_first_dashboard: "Erzeugen Sie Ihr erstes Dashboard, indem Sie auf die Schaltfläche \"Dashboard anlegen\" klicken."
+    add_widgets_to_your_dashboard: Sie können dem Dashboard Widgets hinzufügen, indem Sie auf den Button 'Widget hinzufügen' klicken.
+    you_currently_have_no_dashboard: "Sie haben noch kein Dashboard."
+    create_your_first_dashboard: "Erzeugen Sie Ihr erstes Dashboard, indem Sie auf die Schaltfläche 'Dashboard anlegen' klicken."
+    there_are_no_fields_for_this_fieldset: "Hier müssen keine Angaben gemacht werden."
 
   placeholder:
     search: "Suche..."
@@ -136,6 +140,9 @@ de:
     dashboard:
       one: "Dashboard"
       other: "Dashboards"
+    widget:
+      one: "Widget"
+      other: "Widgets"
 
   attributes: &attributes
     user:
@@ -143,7 +150,10 @@ de:
       email: "Email"
       password: "Passwort"
       password_confirmation: "Passwort bestätigen"
+      new_password: "New Password"
       remember_me: 'Angemeldet bleiben'
+      last_sign_in_at: "Letzte Anmeldung"
+      roles: "Rollen"
     device:
       name: "Name"
       type: "Typ"
@@ -164,6 +174,12 @@ de:
     switch_device:
       num_switches: "Anzahl der Schalter"
       switches_per_row: "Anzahl Schalter pro Zeile"
+    easyvr_device:
+      num_buttons: "Anzahl der Tasten"
+      buttons_per_row: "Tasten pro Zeile"
+    remote_control_device:
+      num_buttons: "Anzahl der Tasten"
+      buttons_per_row: "Tasten pro Zeile"
     device_script:
       name: "Name"
       name_hint: "Eindeutiger Skript-Name"
@@ -174,12 +190,17 @@ de:
     building:
       name: "Name"
       description: "Beschreibung"
+    floor:
+      name: "Name"
+      description: "Beschreibung"
     room:
       number: "Nummer"
       description: "Beschreibung"
     dashboard:
       name: "Name"
       default: "Standard"
+      user:
+        name: "Benutzer"
     widget:
       title: "Title"
 

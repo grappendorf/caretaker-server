@@ -3,4 +3,4 @@ xbee:
   rate: 57600
 websocket:
   standalone: false
-  url: 'server:3000/websocket'
+  url: '192.168.1.2:3000/websocket'

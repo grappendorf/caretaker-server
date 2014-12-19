@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails coyoho-server: development" uuid="b0895bf4-9d73-4eac-86bc-592ff67ff491" />
+    <data-source name="Rails coyoho-server: test" uuid="37937f53-bfe6-4cae-b854-d2c1283d96fe" />
+    <data-source name="Rails coyoho-server: production" uuid="60ba8572-67ca-4220-a915-9ba328ca98b9">
+      <user-name>coyoho</user-name>
+      <user-password>dfc9dfc5dfd3dfc5dfc2dfc5</user-password>
+    </data-source>
+    <data-source name="production" uuid="00460f4d-57a1-4630-8802-d4387c2e58b5" />
+    <data-source name="dependencies" uuid="2e6f6ca3-be35-4ec9-a9b1-36d7a6bdef9b" />
+  </component>
+</project>

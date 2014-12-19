@@ -1,0 +1,47 @@
+:host {
+  background-color: #2b3131;
+}
+
+core-menu {
+  margin: 0;
+
+  > core-item {
+    padding: 8px;
+    border-bottom: 1px #545f5f solid;
+  }
+}
+
+core-submenu {
+  padding: 8px;
+  border-bottom: 1px #545f5f solid;
+}
+
+core-item grapp-fa-icon {
+  width: 1.5em;
+}
+
+core-menu {
+  > core-submenu, > core-item {
+    border-left: 4px rgba(255, 255, 255, 0.2) solid;
+
+    &[category="devices"] {
+      border-left-color: rgba(147, 81, 166, 0.5);
+    }
+
+    &[category="manage"] {
+      border-left-color: rgba(224, 137, 23, 0.5);
+    }
+
+    &[category="system"] {
+      border-left-color: rgba(249, 68, 70, 0.5);
+    }
+
+    &[category="help"] {
+      border-left-color: rgba(76, 164, 84, 0.5);
+    }
+
+    &[category="misc"] {
+      border-left-color: rgba(68, 114, 185, 0.5);
+    }
+  }
+}

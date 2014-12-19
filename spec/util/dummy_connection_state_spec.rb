@@ -9,7 +9,7 @@ describe DummyConnectionState do
 
 	it 'should always return the :UNKNOWN connection state' do
 		connection_state = DummyConnectionStateDevice.new
-		connection_state.state.should be ConnectionState::State::UNKNOWN
+		expect(connection_state.state).to eq ConnectionState::State::UNKNOWN
 	end
 
 end

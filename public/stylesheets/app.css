@@ -126,8 +126,8 @@ html /deep/ h5 {
 
 html h1,
 html /deep/ h1 {
-  font-size: 200%;
-  margin: 0px 0px;
+  font-size: 50px;
+  margin: 0 0 10px 0px;
 }
 
 html h2,
@@ -169,210 +169,6 @@ html /deep/ #ripple,
 html::shadow #ripple,
 html /deep/::shadow #ripple {
   color: #a7d6d7;
-}
-
-html paper-button,
-html /deep/ paper-button {
-  margin: 2px;
-	text-transform: none;
-}
-
-html paper-button[link],
-html /deep/ paper-button[link] {
-  text-decoration: underline;
-}
-
-html paper-button[disabled],
-html /deep/ paper-button[disabled] {
-  color: #272929 !important;
-  background: #4e5151 !important;
-}
-
-html paper-button[raised],
-html /deep/ paper-button[raised] {
-  color: #aaa;
-}
-
-html paper-button #ripple,
-html /deep/ paper-button #ripple,
-html paper-button::shadow #ripple,
-html /deep/ paper-button::shadow #ripple {
-  color: #ddd;
-}
-
-html paper-button[primary],
-html /deep/ paper-button[primary] {
-  color: #3b8183;
-}
-
-html paper-button[primary] #ripple,
-html /deep/ paper-button[primary] #ripple,
-html paper-button[primary]::shadow #ripple,
-html /deep/ paper-button[primary]::shadow #ripple {
-  color: #a7d6d7;
-}
-
-html paper-button[primary][raised],
-html /deep/ paper-button[primary][raised] {
-  background-color: #3b8183;
-  color: #fff;
-}
-
-html paper-button[primary][raised] #ripple,
-html /deep/ paper-button[primary][raised] #ripple,
-html paper-button[primary][raised]::shadow #ripple,
-html /deep/ paper-button[primary][raised]::shadow #ripple {
-  color: #326e6f;
-}
-
-html paper-button[secondary],
-html /deep/ paper-button[secondary] {
-  color: #4db6ac;
-}
-
-html paper-button[secondary] #ripple,
-html /deep/ paper-button[secondary] #ripple,
-html paper-button[secondary]::shadow #ripple,
-html /deep/ paper-button[secondary]::shadow #ripple {
-  color: #b8e2de;
-}
-
-html paper-button[secondary][raised],
-html /deep/ paper-button[secondary][raised] {
-  background-color: #4db6ac;
-  color: #fff;
-}
-
-html paper-button[secondary][raised] #ripple,
-html /deep/ paper-button[secondary][raised] #ripple,
-html paper-button[secondary][raised]::shadow #ripple,
-html /deep/ paper-button[secondary][raised]::shadow #ripple {
-  color: #409c93;
-}
-
-html paper-button[success],
-html /deep/ paper-button[success] {
-  color: #8bc34a;
-}
-
-html paper-button[success] #ripple,
-html /deep/ paper-button[success] #ripple,
-html paper-button[success]::shadow #ripple,
-html /deep/ paper-button[success]::shadow #ripple {
-  color: #d1e7b7;
-}
-
-html paper-button[success][raised],
-html /deep/ paper-button[success][raised] {
-  background-color: #8bc34a;
-  color: #3a5718;
-}
-
-html paper-button[success][raised] #ripple,
-html /deep/ paper-button[success][raised] #ripple,
-html paper-button[success][raised]::shadow #ripple,
-html /deep/ paper-button[success][raised]::shadow #ripple {
-  color: #77ac39;
-}
-
-html paper-button[info],
-html /deep/ paper-button[info] {
-  color: #9575cd;
-}
-
-html paper-button[info] #ripple,
-html /deep/ paper-button[info] #ripple,
-html paper-button[info]::shadow #ripple,
-html /deep/ paper-button[info]::shadow #ripple {
-  color: #d5c8eb;
-}
-
-html paper-button[info][raised],
-html /deep/ paper-button[info][raised] {
-  background-color: #9575cd;
-  color: #fff;
-}
-
-html paper-button[info][raised] #ripple,
-html /deep/ paper-button[info][raised] #ripple,
-html paper-button[info][raised]::shadow #ripple,
-html /deep/ paper-button[info][raised]::shadow #ripple {
-  color: #7a52c0;
-}
-
-html paper-button[warning],
-html /deep/ paper-button[warning] {
-  color: #fadd60;
-}
-
-html paper-button[warning] #ripple,
-html /deep/ paper-button[warning] #ripple,
-html paper-button[warning]::shadow #ripple,
-html /deep/ paper-button[warning]::shadow #ripple {
-  color: #fdf1bf;
-}
-
-html paper-button[warning][raised],
-html /deep/ paper-button[warning][raised] {
-  background-color: #fadd60;
-  color: #776413;
-}
-
-html paper-button[warning][raised] #ripple,
-html /deep/ paper-button[warning][raised] #ripple,
-html paper-button[warning][raised]::shadow #ripple,
-html /deep/ paper-button[warning][raised]::shadow #ripple {
-  color: #f8d22e;
-}
-
-html paper-button[error],
-html /deep/ paper-button[error] {
-  color: #ff7043;
-}
-
-html paper-button[error] #ripple,
-html /deep/ paper-button[error] #ripple,
-html paper-button[error]::shadow #ripple,
-html /deep/ paper-button[error]::shadow #ripple {
-  color: #ffc6b4;
-}
-
-html paper-button[error][raised],
-html /deep/ paper-button[error][raised] {
-  background-color: #ff7043;
-  color: #fff;
-}
-
-html paper-button[error][raised] #ripple,
-html /deep/ paper-button[error][raised] #ripple,
-html paper-button[error][raised]::shadow #ripple,
-html /deep/ paper-button[error][raised]::shadow #ripple {
-  color: #ff4b13;
-}
-
-html paper-button[link],
-html /deep/ paper-button[link] {
-  color: #888;
-}
-
-html paper-button[link] #ripple,
-html /deep/ paper-button[link] #ripple,
-html paper-button[link]::shadow #ripple,
-html /deep/ paper-button[link]::shadow #ripple {
-  color: #cfcfcf;
-}
-
-html paper-button[link][raised],
-html /deep/ paper-button[link][raised] {
-  background-color: #fff;
-  color: #888;
-}
-
-html paper-button[link][raised] #ripple,
-html /deep/ paper-button[link][raised] #ripple,
-html paper-button[link][raised]::shadow #ripple,
-html /deep/ paper-button[link][raised]::shadow #ripple {
-  color: #d9d9d9;
 }
 
 html paper-checkbox,
@@ -439,6 +235,7 @@ html /deep/ core-menu paper-item.core-selected {
 
 html /deep/ core-toolbar {
   height: 5em;
+  border-bottom: 4px #424b4b solid;
 }
 
 html paper-tabs.transparent-teal,
@@ -515,7 +312,7 @@ html paper-input[focused] .error-text,
 html /deep/ paper-input[focused] .error-text,
 html paper-input[focused] .error-icon,
 html /deep/ paper-input[focused] .error-icon {
-  color: #ff7043;
+  color: #ee5f5b;
 }
 
 html paper-input .focused-underline,
@@ -525,12 +322,12 @@ html /deep/ paper-input .focused-underline {
 
 html paper-input.invalid .focused-underline,
 html /deep/ paper-input.invalid .focused-underline {
-  background-color: #ff7043;
+  background-color: #ee5f5b;
 }
 
 html paper-input.invalid[focused] .floated-label,
 html /deep/ paper-input.invalid[focused] .floated-label {
-  color: #ff7043;
+  color: #ee5f5b;
 }
 
 html paper-input[disabled],
@@ -746,12 +543,359 @@ html /deep/ paper-icon-button[disabled]::shadow core-icon {
 }
 
 html /deep/ h1,
+html /deep/ h2,
 html /deep/ h3,
+html /deep/ h4,
 html /deep/ h5 {
-  text-transform: uppercase;
+  font-variant: small-caps;
 }
+
+html /deep/ grapp-breadcrumb /deep/ span {
+  font-size: 100%;
+  color: #ddd;
+}
+
+html /deep/ grapp-breadcrumb /deep/ grapp-fa-icon {
+  margin-left: 0.3em;
+  margin-right: 0.3em;
+  color: #ddd;
+}
+
+html /deep/ grapp-breadcrumb:last-of-type /deep/ a {
+  color: #ddd;
+}
+
+/* ************************************************************************** */
+/* core-list */
+/* ************************************************************************** */
+
+html /deep/ core-list paper-item.core-selected {
+  background-color: #4e5151;
+}
+
+/* ************************************************************************** */
+/* grapp-paper-button */
+/* ************************************************************************** */
+
+html grapp-paper-button,
+html /deep/ grapp-paper-button {
+  text-transform: none;
+}
+
+html grapp-paper-button[focused],
+html /deep/ grapp-paper-button[focused] {
+  margin: 2px;
+  border: 1px #eee solid;
+}
+
+html grapp-paper-button[link],
+html /deep/ grapp-paper-button[link] {
+  text-decoration: underline;
+}
+
+html grapp-paper-button[disabled],
+html /deep/ grapp-paper-button[disabled] {
+  color: #272929 !important;
+  background: #4e5151 !important;
+}
+
+html grapp-paper-button[raised],
+html /deep/ grapp-paper-button[raised] {
+  color: #aaa;
+}
+
+html grapp-paper-button #ripple,
+html /deep/ grapp-paper-button #ripple,
+html grapp-paper-button::shadow #ripple,
+html /deep/ grapp-paper-button::shadow #ripple {
+  color: #ddd;
+}
+
+html grapp-paper-button[primary],
+html /deep/ grapp-paper-button[primary] {
+  color: #3b8183;
+}
+
+html grapp-paper-button[primary] #ripple,
+html /deep/ grapp-paper-button[primary] #ripple,
+html grapp-paper-button[primary]::shadow #ripple,
+html /deep/ grapp-paper-button[primary]::shadow #ripple {
+  color: #a7d6d7;
+}
+
+html grapp-paper-button[primary][raised],
+html /deep/ grapp-paper-button[primary][raised] {
+  background-color: #3b8183;
+  color: #fff;
+}
+
+html grapp-paper-button[primary][raised] #ripple,
+html /deep/ grapp-paper-button[primary][raised] #ripple,
+html grapp-paper-button[primary][raised]::shadow #ripple,
+html /deep/ grapp-paper-button[primary][raised]::shadow #ripple {
+  color: #326e6f;
+}
+
+html grapp-paper-button[secondary],
+html /deep/ grapp-paper-button[secondary] {
+  color: #4db6ac;
+}
+
+html grapp-paper-button[secondary] #ripple,
+html /deep/ grapp-paper-button[secondary] #ripple,
+html grapp-paper-button[secondary]::shadow #ripple,
+html /deep/ grapp-paper-button[secondary]::shadow #ripple {
+  color: #b8e2de;
+}
+
+html grapp-paper-button[secondary][raised],
+html /deep/ grapp-paper-button[secondary][raised] {
+  background-color: #4db6ac;
+  color: #fff;
+}
+
+html grapp-paper-button[secondary][raised] #ripple,
+html /deep/ grapp-paper-button[secondary][raised] #ripple,
+html grapp-paper-button[secondary][raised]::shadow #ripple,
+html /deep/ grapp-paper-button[secondary][raised]::shadow #ripple {
+  color: #409c93;
+}
+
+html grapp-paper-button[success],
+html /deep/ grapp-paper-button[success] {
+  color: #62c462;
+}
+
+html grapp-paper-button[success]:hover,
+html /deep/ grapp-paper-button[success]:hover {
+  background-color: #42b142;
+}
+
+html grapp-paper-button[success] #ripple,
+html /deep/ grapp-paper-button[success] #ripple,
+html grapp-paper-button[success]::shadow #ripple,
+html /deep/ grapp-paper-button[success]::shadow #ripple {
+  color: #42b142;
+}
+
+html grapp-paper-button[success][raised],
+html /deep/ grapp-paper-button[success][raised] {
+  background-color: #62c462;
+  color: #fff;
+}
+
+html grapp-paper-button[success][raised]:hover,
+html /deep/ grapp-paper-button[success][raised]:hover {
+  background-color: #42b142;
+}
+
+html grapp-paper-button[success][raised] #ripple,
+html /deep/ grapp-paper-button[success][raised] #ripple,
+html grapp-paper-button[success][raised]::shadow #ripple,
+html /deep/ grapp-paper-button[success][raised]::shadow #ripple {
+  color: #77ac39;
+}
+
+html grapp-paper-button[info],
+html /deep/ grapp-paper-button[info] {
+  color: #5bc0de;
+}
+
+html grapp-paper-button[info]:hover,
+html /deep/ grapp-paper-button[info]:hover {
+  color: #31b0d5;
+}
+
+html grapp-paper-button[info] #ripple,
+html /deep/ grapp-paper-button[info] #ripple,
+html grapp-paper-button[info]::shadow #ripple,
+html /deep/ grapp-paper-button[info]::shadow #ripple {
+  color: #d5c8eb;
+}
+
+html grapp-paper-button[info][raised],
+html /deep/ grapp-paper-button[info][raised] {
+  background-color: #5bc0de;
+  color: #fff;
+}
+
+html grapp-paper-button[info][raised]:hover,
+html /deep/ grapp-paper-button[info][raised]:hover {
+  background-color: #31b0d5;
+}
+
+html grapp-paper-button[info][raised] #ripple,
+html /deep/ grapp-paper-button[info][raised] #ripple,
+html grapp-paper-button[info][raised]::shadow #ripple,
+html /deep/ grapp-paper-button[info][raised]::shadow #ripple {
+  color: #31b0d5;
+}
+
+html grapp-paper-button[warning],
+html /deep/ grapp-paper-button[warning] {
+  color: #f89406;
+}
+
+html grapp-paper-button[warning] #ripple,
+html /deep/ grapp-paper-button[warning] #ripple,
+html grapp-paper-button[warning]::shadow #ripple,
+html /deep/ grapp-paper-button[warning]::shadow #ripple {
+  color: #fdf1bf;
+}
+
+html grapp-paper-button[warning][raised],
+html /deep/ grapp-paper-button[warning][raised] {
+  background-color: #f89406;
+  color: #776413;
+}
+
+html grapp-paper-button[warning][raised] #ripple,
+html /deep/ grapp-paper-button[warning][raised] #ripple,
+html grapp-paper-button[warning][raised]::shadow #ripple,
+html /deep/ grapp-paper-button[warning][raised]::shadow #ripple {
+  color: #f8d22e;
+}
+
+html grapp-paper-button[error],
+html /deep/ grapp-paper-button[error] {
+  color: #ee5f5b;
+}
+
+html grapp-paper-button[error]:hover,
+html /deep/ grapp-paper-button[error]:hover {
+  color: #e9322d;
+}
+
+html grapp-paper-button[error] #ripple,
+html /deep/ grapp-paper-button[error] #ripple,
+html grapp-paper-button[error]::shadow #ripple,
+html /deep/ grapp-paper-button[error]::shadow #ripple {
+  color: #ffc6b4;
+}
+
+html grapp-paper-button[error][raised],
+html /deep/ grapp-paper-button[error][raised] {
+  background-color: #ee5f5b;
+  color: #fff;
+}
+
+html grapp-paper-button[error][raised]:hover,
+html /deep/ grapp-paper-button[error][raised]:hover {
+  background-color: #e9322d;
+  color: #fff;
+}
+
+html grapp-paper-button[error][raised] #ripple,
+html /deep/ grapp-paper-button[error][raised] #ripple,
+html grapp-paper-button[error][raised]::shadow #ripple,
+html /deep/ grapp-paper-button[error][raised]::shadow #ripple {
+  color: #ff4b13;
+}
+
+html grapp-paper-button[link],
+html /deep/ grapp-paper-button[link] {
+  color: #888;
+}
+
+html grapp-paper-button[link] #ripple,
+html /deep/ grapp-paper-button[link] #ripple,
+html grapp-paper-button[link]::shadow #ripple,
+html /deep/ grapp-paper-button[link]::shadow #ripple {
+  color: #cfcfcf;
+}
+
+html grapp-paper-button[link][raised],
+html /deep/ grapp-paper-button[link][raised] {
+  background-color: #fff;
+  color: #888;
+}
+
+html grapp-paper-button[link][raised] #ripple,
+html /deep/ grapp-paper-button[link][raised] #ripple,
+html grapp-paper-button[link][raised]::shadow #ripple,
+html /deep/ grapp-paper-button[link][raised]::shadow #ripple {
+  color: #d9d9d9;
+}
+
+html grapp-paper-button /deep/ grapp-fa-icon + span,
+html /deep/ grapp-paper-button /deep/ grapp-fa-icon + span {
+  margin-left: 0.5em;
+}
+
+/* ************************************************************************** */
+/* paper-dropdown-menu */
+/* ************************************************************************** */
+
+html /deep/ paper-dropdown-menu[focused] /deep/ #label {
+  color: #fff;
+}
+
+html /deep/ paper-dropdown-menu[focused] /deep/ #arrow {
+  color: #fff;
+}
+
+html /deep/ paper-dropdown-menu[focused] {
+  border-bottom: 1px solid #fff;
+}
+
+/* ************************************************************************** */
+/* paper-dialog */
+/* ************************************************************************** */
 
 html /deep/ paper-dialog {
   background-color: #2d2d2d;
   border-radius: 4px;
+  color: #fff;
+  min-width: 30%;
+  min-height: 40%;
+}
+
+html /deep/ paper-dialog /deep/ h1 {
+  margin-bottom: 10px;
+}
+
+html /deep/ paper-action-dialog {
+  background-color: #2d2d2d;
+  border-radius: 4px;
+  color: #fff;
+  min-width: 30%;
+  min-height: 40%;
+}
+
+html /deep/ paper-action-dialog /deep/ h1 {
+  margin-bottom: 10px;
+}
+
+/* ************************************************************************** */
+/* chartist */
+/* ************************************************************************** */
+
+html /deep/ .ct-label {
+  color: #eee !important;
+}
+
+html /deep/ .ct-grid {
+  stroke: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* ************************************************************************** */
+/* Native scrollbar */
+/* ************************************************************************** */
+
+html /deep/ ::-webkit-scrollbar
+{
+  width: 12px;
+  height: 12px;
+}
+
+html /deep/ ::-webkit-scrollbar-track
+{
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  background-color: #242424;
+}
+
+html /deep/ ::-webkit-scrollbar-thumb
+{
+  background-color: #878787;
+  outline: 1px solid slategrey;
 }

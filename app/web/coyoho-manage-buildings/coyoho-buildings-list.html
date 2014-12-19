@@ -1,0 +1,37 @@
+<link rel="import" href="../../lib/grapp-rest-resource/grapp-rest-resource.html">
+<link rel="import" href="../../lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
+<link rel="import" href="../coyoho-i18n/coyoho-i18n.html">
+<link rel="import" href="../coyoho-data-table/coyoho-data-table.html">
+
+<polymer-element name="coyoho-buildings-list">
+
+  <template>
+
+    <grapp-rest-resource url="/buildings/:id?q={{searchText}}"
+                         resource="{{buildings}}"></grapp-rest-resource>
+
+    <grapp-app-globals>
+      <grapp-app-global-value name="appTitle" value="models.building.other"></grapp-app-global-value>
+      <grapp-app-global-value name="appModule" value="manage"></grapp-app-global-value>
+      <grapp-app-global-value name="appFunction" value="buildings"></grapp-app-global-value>
+    </grapp-app-globals>
+
+    <grapp-breadcrumbs>
+      <grapp-breadcrumb>{{'models.building.other'|i18n}}</grapp-breadcrumb>
+    </grapp-breadcrumbs>
+
+    <coyoho-data-table id="table" model="building" resource="{{buildings}}" searchText="{{searchText}}"
+                       on-data-table-edit="{{edit}}" on-data-table-new="{{new}}">
+
+      <coyoho-data-column name="name" width="30"></coyoho-data-column>
+      <coyoho-data-column name="description" width="70"></coyoho-data-column>
+
+      <coyoho-data-action icon="bars" on-fire="{{showFloors}}"></coyoho-data-action>
+
+    </coyoho-data-table>
+
+  </template>
+
+  <script src="coyoho-buildings-list.js"></script>
+
+</polymer-element>

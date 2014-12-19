@@ -1,24 +1,27 @@
-default: &default
+development:
   adapter: sqlite3
+  database: db/development.sqlite3
   pool: 5
   timeout: 5000
 
-development:
-  <<: *default
-  database: db/development.sqlite3
-
 test:
-  <<: *default
+  adapter: sqlite3
   database: db/test.sqlite3
+  pool: 5
+  timeout: 5000
+
+demo:
+  adapter: sqlite3
+  database: db/demo.sqlite3
+  pool: 5
+  timeout: 5000
 
 production:
-  <<: *default
-  database: db/production.sqlite3
-
-#production:
-#  adapter: postgresql
-#  encoding: unicode
-#  database: coyoho
-#  pool: 5
-#  username: coyoho
-#  password: coyoho
+  adapter: postgresql
+  host: postgres
+  database: coyoho
+  username: coyoho
+  password: coyoho
+  encoding: unicode
+  pool: 5
+  timeout: 5000

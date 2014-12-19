@@ -17,21 +17,27 @@ module.exports = function(grunt) {
       license: {
         src: 'templates/license.tmpl',
         dest: 'LICENSE.txt'
+      },
+      images: {
+        cwd: 'app/',
+        src: ['web/**/*.gif', 'web/**/*.png'],
+        dest: 'public/',
+        expand: true
       }
     },
 
     less: {
       dist: {
-        files: grunt.file.expandMapping(['app/components/**/*.less'], 'public/components/', {
+        files: grunt.file.expandMapping(['app/web/**/*.less'], 'public/web/', {
           rename: function(dest, src) {
-            return dest + src.replace(/app\/components\/(.+)\.less$/, '$1.css');
+            return dest + src.replace(/app\/web\/(.+)\.less$/, '$1.css');
           }
         })
       }
     },
 
     coffeelint: {
-      src: ['app/components/**/*.coffee'],
+      src: ['app/web/**/*.coffee'],
       options: {
         max_line_length: { level: 'ignore' }
       }
@@ -39,9 +45,9 @@ module.exports = function(grunt) {
 
     coffee: {
       build: {
-        cwd: 'app/components',
+        cwd: 'app/web',
         src: ['**/*.coffee'],
-        dest: 'public/components/',
+        dest: 'public/web/',
         ext: '.js',
         expand: true
       }
@@ -49,9 +55,9 @@ module.exports = function(grunt) {
 
     htmlbuild: {
       dist: {
-        cwd: 'app/components',
+        cwd: 'app/web',
         src: '**/*.html',
-        dest: 'public/components',
+        dest: 'public/web',
         expand: true,
         options: {
           data: {
@@ -76,15 +82,15 @@ module.exports = function(grunt) {
 
     watch: {
       stylesheets: {
-        files: ['app/components/**/*.less'],
+        files: ['app/web/**/*.less'],
         tasks: ['newer:less']
       },
       scripts: {
-        files: ['app/components/**/*.coffee'],
+        files: ['app/web/**/*.coffee'],
         tasks: ['newer:coffee']
       },
       html: {
-        files: ['app/components/**/*.html'],
+        files: ['app/web/**/*.html'],
         tasks: ['newer:htmlbuild']
       },
       tests: {
@@ -128,7 +134,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-newer');
 
   grunt.registerTask('build', 'Compile all assets and create the distribution files',
-    ['less', 'coffeelint', 'coffee', 'htmlbuild']);
+    ['less', 'coffeelint', 'coffee', 'copy:images', 'htmlbuild']);
 
   grunt.task.renameTask('bump', 'bumpversion');
 

@@ -4,6 +4,8 @@ en:
   profile: "Profile"
   settings: "Settings"
   system: "System"
+  documentation: "Documentation"
+  account: "Account"
 
   action:
     back: "Back"
@@ -24,7 +26,7 @@ en:
     new_dashboard: "New dashboard"
     add_widget: "Add widget"
     reload_dashboard: "Reload"
-    edit_your_profile: "Edit your user profile"
+    edit_your_profile: "Edit your profile"
     change_your_password: "Change your password"
     save_profile: "Save profile"
     create_widget: "Create widget"
@@ -47,12 +49,12 @@ en:
     successfully_created: "Successfully created %{name}"
     successfully_updated: "Successfully updated %{name}"
     successfully_deleted: "Successfully deleted %{name}"
-    confirm_delete: "Do you really want to delete <br /><b>%{model} %{name}</b>?"
+    confirm_delete: "Do you really want to delete %{model} %{name}?"
     successfully_saved_profile: "Successfully saved your profile changes"
     successfully_changed_password: "Successfully changed your password"
     password_remains_unchanged: "Your password remains unchanged"
     select_device_for_widget: "Select the device to display in the widget"
-    error_loading_dashboard: "Error while loading or updating the Dashbord \"{{dashboard.name}}\""
+    error_loading_dashboard: "Error while loading or updating the Dashbord '{{dashboard.name}}'"
     error_uknown_widget_type: "Unknown widget type"
     choose_optional_widget_title: "Choose an optional widget title"
     select_a_building: "Please select a building"
@@ -60,6 +62,7 @@ en:
     delete_dashboard_confirmation: >
       Do you really want to delete dashboard <strong>{{name}}</strong>?<br>
       All of it's widgets are deleted also and cannot be recovered later!
+    please_log_on: "Please log in"
 
   title:
     app: "CoYoHo"
@@ -76,10 +79,11 @@ en:
     create_a_dashboard: "Create a dashboard!"
 
   description:
-    your_dashboard_is_empty: Your dashboard is currently empty.
-    add_widgets_to_your_dashboard: You can add widgets to your dashboard by clicking on the \"Add widget\" button.
-    you_currently_have_no_dashboard: "You currently have no dashboard"
-    create_your_first_dashboard: "Create your first dashboard by clicking on the \"Create dashboard\" button"
+    your_dashboard_is_empty: "Your dashboard is currently empty."
+    add_widgets_to_your_dashboard: "You can add widgets to your dashboard by clicking on the 'Add widget' button."
+    you_currently_have_no_dashboard: "You currently have no dashboard."
+    create_your_first_dashboard: "Create your first dashboard by clicking on the 'Create dashboard' button."
+    there_are_no_fields_for_this_fieldset: "No further information must be provided."
 
   placeholder:
     search: "Search..."
@@ -136,6 +140,9 @@ en:
     dashboard:
       one: "Dashboard"
       other: "Dashboards"
+    widget:
+      one: "Widget"
+      other: "Widgets"
 
   attributes: &attributes
     user:
@@ -143,7 +150,10 @@ en:
       email: "Email"
       password: "Password"
       password_confirmation: "Password confirmation"
+      new_password: "New Password"
       remember_me: 'Remember me'
+      last_sign_in_at: "Last sign in"
+      roles: "Roles"
     device:
       name: "Name"
       type: "Type"
@@ -164,6 +174,12 @@ en:
     switch_device:
       num_switches: "Number of switches"
       switches_per_row: "Switches per row"
+    easyvr_device:
+      num_buttons: "Number of buttons"
+      buttons_per_row: "Buttons per row"
+    remote_control_device:
+      num_buttons: "Number of buttons"
+      buttons_per_row: "Buttons per row"
     device_script:
       name: "Name"
       name_hint: "Unique Script name"
@@ -174,12 +190,17 @@ en:
     building:
       name: "Name"
       description: "Description"
+    floor:
+      name: "Name"
+      description: "Description"
     room:
       number: "Number"
       description: "Description"
     dashboard:
       name: "Name"
       default: "Default"
+      user:
+        name: "User"
     widget:
       title: "Title"
 

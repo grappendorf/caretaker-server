@@ -1,0 +1,28 @@
+<link rel="import" href="../../lib/paper-input/paper-input.html">
+<link rel="import" href="../../lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
+
+<polymer-element name="coyoho-manage-settings" noscript>
+
+  <template>
+
+    <grapp-app-globals>
+      <grapp-app-global-value name="appTitle" value="settings"></grapp-app-global-value>
+      <grapp-app-global-value name="appModule" value="system"></grapp-app-global-value>
+      <grapp-app-global-value name="appFunction" value="settings"></grapp-app-global-value>
+    </grapp-app-globals>
+
+    <grapp-breadcrumbs>
+      <grapp-breadcrumb>{{'settings'|i18n}}</grapp-breadcrumb>
+    </grapp-breadcrumbs>
+
+    <p>
+      <paper-input label="Serial port" floatingLabel></paper-input>
+    </p>
+
+    <p>
+      <paper-input label="Baud rate" floatingLabel></paper-input>
+    </p>
+
+  </template>
+
+</polymer-element>

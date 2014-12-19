@@ -1,0 +1,50 @@
+<link rel="import" href="../../lib/grapp-rest-resource/grapp-rest-resource.html">
+<link rel="import" href="../../lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
+<link rel="import" href="../coyoho-i18n/coyoho-i18n.html">
+<link rel="import" href="../coyoho-data-table/coyoho-data-table.html">
+<link rel="import" href="../coyoho-select/coyoho-select.html">
+
+<polymer-element name="coyoho-floors-list">
+
+  <template>
+
+    <grapp-rest-resource url="/buildings/:buildingId/floors/:id?q={{searchText}}"
+                         params='{{ {"buildingId":buildingId} }}'
+                         resource="{{floors}}">
+    </grapp-rest-resource>
+
+    <core-ajax id="buildingsNames" url="/buildings/names" handleAs="json" response="{{buildingsNames}}">
+    </core-ajax>
+
+    <grapp-app-globals>
+      <grapp-app-global-value name="appTitle" value="models.floor.other"></grapp-app-global-value>
+      <grapp-app-global-value name="appModule" value="manage"></grapp-app-global-value>
+      <grapp-app-global-value name="appFunction" value="floors"></grapp-app-global-value>
+    </grapp-app-globals>
+
+    <grapp-breadcrumbs>
+      <grapp-breadcrumb href="/#/buildings">{{'models.building.other'|i18n}}</grapp-breadcrumb>
+      <grapp-breadcrumb href="/#/buildings/{{buildingId}}">{{buildingsNames | nameOfBuilding(buildingId)}}</grapp-breadcrumb>
+      <grapp-breadcrumb>{{'models.floor.other'|i18n}}</grapp-breadcrumb>
+    </grapp-breadcrumbs>
+
+    <coyoho-data-table id="table" model="floor" resource="{{floors}}" searchText="{{searchText}}"
+                       on-data-table-edit="{{edit}}" on-data-table-new="{{new}}">
+
+      <coyoho-data-column name="name" width="30"></coyoho-data-column>
+      <coyoho-data-column name="description" width="70"></coyoho-data-column>
+
+      <coyoho-data-action icon="columns" on-fire="{{showRooms}}"></coyoho-data-action>
+
+      <coyoho-toolbar-extension>
+        <coyoho-select items="{{buildingsNames}}" selectedId="{{buildingId}}"
+                       placeholder="{{'models.building.one'|i18n}}..."></coyoho-select>
+      </coyoho-toolbar-extension>
+
+    </coyoho-data-table>
+
+  </template>
+
+  <script src="coyoho-floors-list.js"></script>
+
+</polymer-element>

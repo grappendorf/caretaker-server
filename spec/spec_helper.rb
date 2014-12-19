@@ -2,6 +2,7 @@ $LOAD_PATH << File.expand_path("../../app", __FILE__)
 
 require 'rubygems'
 require 'spork'
+require 'ostruct'
 
 if ENV['coverage']
 	require 'simplecov'
@@ -29,7 +30,6 @@ Spork.prefork do
 	ENV["RAILS_ENV"] ||= 'test'
 	require File.expand_path("../../config/environment", __FILE__)
 	require 'rspec/rails'
-	require 'rspec/autorun'
 
 	# Requires supporting ruby files with custom matchers and macros, etc,
 	# in spec/support/ and its subdirectories.

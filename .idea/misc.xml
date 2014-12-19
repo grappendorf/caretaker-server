@@ -4,6 +4,9 @@
   <component name="EntryPointsManager">
     <entry_points version="2.0" />
   </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <type id="Python" />
+  </component>
   <component name="IdProvider" IDEtalkID="E940EA58692D248F6B2A68D608F6FACF" />
   <component name="IntelliCalc">
     <mode value="0" />

@@ -1,0 +1,42 @@
+<link rel="import" href="../../lib/grapp-rest-resource/grapp-rest-resource.html">
+<link rel="import" href="../../lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
+<link rel="import" href="../coyoho-i18n/coyoho-i18n.html">
+<link rel="import" href="../coyoho-data-editor/coyoho-data-editor.html">
+
+<polymer-element name="coyoho-floors-editor">
+
+  <template>
+
+    <grapp-rest-resource url="/buildings/:buildingId/floors/:id?q={{searchText}}"
+                         params='{{ {"buildingId":buildingId} }}'
+                         resource="{{floors}}">
+    </grapp-rest-resource>
+
+    <core-ajax id="buildingName" url="/buildings/{{buildingId}}/name" handleAs="json" response="{{building}}" auto>
+    </core-ajax>
+
+    <grapp-app-globals>
+      <grapp-app-global-value name="appTitle" value="models.floor.other"></grapp-app-global-value>
+      <grapp-app-global-value name="appModule" value="manage"></grapp-app-global-value>
+      <grapp-app-global-value name="appFunction" value="floors"></grapp-app-global-value>
+    </grapp-app-globals>
+
+    <grapp-breadcrumbs>
+      <grapp-breadcrumb href="/#/buildings">{{'models.building.other'|i18n}}</grapp-breadcrumb>
+      <grapp-breadcrumb href="/#/buildings/{{buildingId}}">{{building.name}}</grapp-breadcrumb>
+      <grapp-breadcrumb href="/#/buildings/{{buildingId}}/floors">{{'models.floor.other'|i18n}}</grapp-breadcrumb>
+      <grapp-breadcrumb>{{$.editor.item.name}}</grapp-breadcrumb>
+    </grapp-breadcrumbs>
+
+    <coyoho-data-editor id="editor" model="floor" resource="{{floors}}" on-data-editor-back="{{back}}">
+
+      <coyoho-data-field name="name"></coyoho-data-field>
+      <coyoho-data-field name="description"></coyoho-data-field>
+
+    </coyoho-data-editor>
+
+  </template>
+
+  <script src="coyoho-floors-editor.js"></script>
+
+</polymer-element>

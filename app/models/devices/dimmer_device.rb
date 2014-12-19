@@ -18,9 +18,9 @@ class DimmerDevice < ActiveRecord::Base
 
   handle_connection_state_with XBeeConnectionState
 
-	def self.small_icon() '16/joystick.png' end
+	def self.small_icon() '16/mixer.png' end
 
-	def self.large_icon() '32/joystick.png' end
+	def self.large_icon() '32/mixer.png' end
 
 	def value
 		@value ||= 0

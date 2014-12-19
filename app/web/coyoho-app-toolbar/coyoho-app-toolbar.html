@@ -1,0 +1,46 @@
+<link rel="import" href="../../lib/core-media-query/core-media-query.html">
+<link rel="import" href="../../lib/core-menu/core-menu.html">
+<link rel="import" href="../../lib/core-signals/core-signals.html">
+<link rel="import" href="../../lib/core-toolbar/core-toolbar.html">
+<link rel="import" href="../../lib/paper-dropdown/paper-dropdown.html">
+<link rel="import" href="../../lib/paper-item/paper-item.html">
+<link rel="import" href="../../lib/paper-menu-button/paper-menu-button.html">
+<link rel="import" href="../../lib/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../lib/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../lib/grapp-paper-button/grapp-paper-button.html">
+<link rel="import" href="../../lib/grapp-fa-icon/grapp-fa-icon.html">
+<link rel="import" href="../../lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
+
+<polymer-element name="coyoho-app-toolbar" attributes="sessionManager app">
+
+  <template>
+
+    <link href="coyoho-app-toolbar.css" rel="stylesheet">
+
+    <grapp-app-globals id="globals"></grapp-app-globals>
+
+    <core-toolbar id="toolbar" category="{{$.globals.appModule}}">
+
+      <!--<div id="drawer">-->
+        <!--<paper-icon-button icon="menu"></paper-icon-button>-->
+      <!--</div>-->
+
+      <div id="title" flex>{{$.globals.appTitle | i18n}}</div>
+
+      <div id="breadcrumbs-wrapper" class="bottom" hidden?="{{hideBreadcrumbs}}">
+        <grapp-breadcrumbs id="breadcrumbs" wrap render></grapp-breadcrumbs>
+      </div>
+
+			<div id="profile">
+				<img src="/images/logo-big.png"/>
+			</div>
+
+      <core-media-query query="max-width: 1024px" queryMatches="{{hideBreadcrumbs}}"></core-media-query>
+
+    </core-toolbar>
+
+  </template>
+
+  <script src="coyoho-app-toolbar.js"></script>
+
+</polymer-element>

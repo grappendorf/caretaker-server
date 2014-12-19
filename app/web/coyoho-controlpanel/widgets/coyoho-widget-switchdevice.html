@@ -1,0 +1,21 @@
+<polymer-element name="coyoho-widget-switchdevice" attributes="widget websocket">
+
+  <template>
+    <link href="coyoho-widget-switchdevice.css" rel="stylesheet">
+
+    <table>
+      <template repeat="{{row in rows}}">
+        <tr>
+          <template repeat="{{num in row}}">
+            <td class="{{classes[num]}}" on-tap="{{toggle}}">{{num + 1}}</td>
+          </template>
+        </tr>
+      </template>
+    </table>
+
+  </template>
+
+
+  <script src="coyoho-widget-switchdevice.js"></script>
+
+</polymer-element>

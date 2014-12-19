@@ -1,0 +1,259 @@
+<link rel="import" href="../../lib/paper-toast/paper-toast.html">
+<link rel="import" href="../coyoho-websocket/coyoho-websocket.html">
+<link rel="import" href="../coyoho-core-ajax/coyoho-core-ajax.html">
+<link rel="import" href="coyoho-controlpanel-widget.html">
+<link rel="import" href="widgets/coyoho-widget-cameradevice.html">
+<link rel="import" href="widgets/coyoho-widget-dimmerdevice.html">
+<link rel="import" href="widgets/coyoho-widget-dimmerrgbdevice.html">
+<link rel="import" href="widgets/coyoho-widget-remotecontroldevice.html">
+<link rel="import" href="widgets/coyoho-widget-reflowovendevice.html">
+<link rel="import" href="widgets/coyoho-widget-robotdevice.html">
+<link rel="import" href="widgets/coyoho-widget-switchdevice.html">
+<link rel="import" href="widgets/coyoho-widget-weather.html">
+<link rel="import" href="dialogs/coyoho-controlpanel-new-dashboard-dialog.html">
+<link rel="import" href="dialogs/coyoho-controlpanel-edit-dashboard-dialog.html">
+<link rel="import" href="dialogs/coyoho-controlpanel-new-widget-dialog.html">
+<link rel="import" href="dialogs/coyoho-controlpanel-edit-widget-dialog.html">
+
+<polymer-element name="coyoho-controlpanel">
+
+  <template>
+
+    <link href="../../stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="coyoho-controlpanel.css" rel="stylesheet">
+
+    <grapp-app-globals id="globals"></grapp-app-globals>
+
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="btn-toolbar">
+          <div class="btn-group">
+            <coyoho-select items="{{dashboardNames}}" selectedId="{{dashboardId}}"></coyoho-select>
+            <button on-click="{{editDashboard}}" disabled?="{{! dashboard}}" class="btn btn-primary">
+              <grapp-fa-icon icon="edit"></grapp-fa-icon>
+            </button>
+            <a class="btn btn-primary" href="/#/dashboards">
+              <grapp-fa-icon icon="list"></grapp-fa-icon>
+            </a>
+          </div>
+          <div class="btn-group">
+            <button on-click="{{reloadDashboard}}" disabled?="{{! dashboard}}" class="btn btn-info">
+              <grapp-fa-icon icon="refresh" spin="{{state == 'loading'}}"></grapp-fa-icon>
+              {{'action.reload_dashboard' | i18n}}
+            </button>
+          </div>
+          <div class="btn-group">
+            <button on-click="{{newWidget}}" disabled?="{{! dashboard}}" class="btn btn-success">
+              <grapp-fa-icon icon="plus"></grapp-fa-icon>
+              {{'action.add_widget' | i18n}}
+            </button>
+          </div>
+          <div class="btn-group">
+            <button on-click="{{newDashboard}}" class="btn btn-warning">
+              <grapp-fa-icon icon="asterisk"></grapp-fa-icon>
+              {{'action.new_dashboard' | i18n}}
+            </button>
+            <button on-click="{{deleteDashboard}}" disabled?="{{! dashboard}}" class="btn btn-danger">
+              <grapp-fa-icon icon="trash-o"></grapp-fa-icon>
+              {{'action.delete_dashboard' | i18n}}
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="widgets" horizontal layout wrap hidden?="{{dashboard.widgets.length === 0}}"
+        on-edit-widget-properties="{{editWidgetProperties}}"
+        on-delete-widget="{{deleteWidget}}">
+      <template repeat="{{widget in dashboard.widgets}}">
+        <template bind ref="{{widget.type}}"></template>
+      </template>
+    </div>
+
+    <template if="{{state === 'ok' && dashboard.widgets.length === 0}}">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-4">
+
+          <br>
+
+          <div class="jumbotron">
+            <h1>
+              <grapp-fa-icon icon="plus"></grapp-fa-icon>
+              {{'title.add_widgets_to_your_dashboard' | i18n}}
+            </h1>
+
+            <p>{{'description.your_dashboard_is_empty' | i18n}}</p>
+
+            <p>{{'description.add_widgets_to_your_dashboard' | i18n}}</p>
+
+            <p>
+              <a class="btn btn-success btn-lg" role="button" on-click="{{newWidget}}">
+                <grapp-fa-icon icon="plus"></grapp-fa-icon>
+                {{'action.add_widget' | i18n}}
+              </a>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </template>
+
+    <template if="{{! dashboard}}">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-4">
+          <div class="jumbotron">
+            <h1><grapp-fa-icon icon="th-large"></grapp-fa-icon>{{'title.create_a_dashboard' | i18n}}</h1>
+
+            <p>{{'description.you_currently_have_no_dashboard' | i18n}}</p>
+
+            <p>{{'description.create_your_first_dashboard' | i18n}}</p>
+
+            <p>
+              <a class="btn btn-success btn-lg" role="button" on-click="{{newDashboard}}">
+                <grapp-fa-icon icon="plus"></grapp-fa-icon>
+                {{'action.create_dashboard' | i18n}}
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template if="{{state === 'error'}}">
+      <div ng-if="" class="row">
+        <div class="col-md-8 col-md-offset-2">
+
+          <br>
+
+          <div class="alert alert-danger">
+            <p class="text-error">
+              <grapp-fa-icon icon="warning"></grapp-fa-icon>
+              {{'message.error_loading_dashboard' | i18n}}
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </template>
+
+    <paper-toast id="toast" text="Event received: {{event}}" duration="2000">
+    </paper-toast>
+
+    <coyoho-core-ajax id="defaultDashboardRequest" auto
+                      url="/dashboards/default" method="GET" handleAs="json"
+                      on-core-response="{{defaultDashboardSucceeded}}">
+    </coyoho-core-ajax>
+
+    <coyoho-core-ajax id="dashboardRequest"
+                      url="/dashboards/{{dashboardId}}" method="GET" handleAs="json"
+                      on-core-response="{{dashboardSucceeded}}" on-core-error="{{dashboardFailed}}">
+    </coyoho-core-ajax>
+
+    <coyoho-core-ajax id="dashboardNamesRequest"
+                      url="/dashboards/names" method="GET" handleAs="json"
+                      response="{{dashboardNames}}">
+    </coyoho-core-ajax>
+
+    <grapp-rest-resource url="/dashboards/:id" resource="{{dashboards}}"></grapp-rest-resource>
+
+    <grapp-rest-resource url="/dashboards/:dashboardId/widgets/:id"
+                         createUrl="/dashboards/:dashboardId/:type/:id"
+                         updateUrl="/dashboards/:dashboardId/:type/:id"
+                         params='{{ {"dashboardId":dashboardId, "type": "device_widgets"} }}'
+                         resource="{{widgets}}"></grapp-rest-resource>
+
+    <coyoho-websocket id="websocket" url="{{$.globals.websocketURL}}">
+      <coyoho-websocket-subscribe channel="devices">
+        <coyoho-websocket-bind event="state" on-data="{{deviceStateRecieved}}"></coyoho-websocket-bind>
+      </coyoho-websocket-subscribe>
+    </coyoho-websocket>
+
+    <coyoho-controlpanel-new-dashboard-dialog id="newDashboardDialog"></coyoho-controlpanel-new-dashboard-dialog>
+
+    <coyoho-controlpanel-edit-dashboard-dialog id="editDashboardDialog"
+        dashboard="{{dashboard}}"></coyoho-controlpanel-edit-dashboard-dialog>
+
+    <coyoho-controlpanel-new-widget-dialog id="newWidgetDialog"></coyoho-controlpanel-new-widget-dialog>
+
+    <coyoho-controlpanel-edit-widget-dialog id="editWidgetDialog"></coyoho-controlpanel-edit-widget-dialog>
+
+    <coyoho-confirmation-dialog id="deleteConfirmDialog" heading="{{'title.delete_confirmation' | i18n}}"
+                                message="{{deleteConfirmMessage}}">
+    </coyoho-confirmation-dialog>
+
+    <template id="CameraDeviceWidget">
+      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
+        <coyoho-widget-cameradevice id="content" widget="{{widget}}"
+                                    websocket="{{$.websocket}}"></coyoho-widget-cameradevice>
+      </coyoho-controlpanel-widget>
+    </template>
+
+    <template id="DimmerDeviceWidget">
+      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
+        <coyoho-widget-dimmerdevice id="content" widget="{{widget}}"
+                                    websocket="{{$.websocket}}"></coyoho-widget-dimmerdevice>
+      </coyoho-controlpanel-widget>
+    </template>
+
+    <template id="DimmerRgbDeviceWidget">
+      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
+        <coyoho-widget-dimmerrgbdevice id="content" widget="{{widget}}"
+                                       websocket="{{$.websocket}}"></coyoho-widget-dimmerrgbdevice>
+      </coyoho-controlpanel-widget>
+    </template>
+
+    <template id="EasyvrDeviceWidget">
+      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
+        <coyoho-widget-easyvrdevice id="content" widget="{{widget}}"
+                                    websocket="{{$.websocket}}"></coyoho-widget-easyvrdevice>
+      </coyoho-controlpanel-widget>
+    </template>
+
+    <template id="IpCameraDeviceWidget">
+      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
+        <coyoho-widget-ipcameradevice id="content" widget="{{widget}}"
+                                      websocket="{{$.websocket}}"></coyoho-widget-ipcameradevice>
+      </coyoho-controlpanel-widget>
+    </template>
+
+    <template id="SwitchDeviceWidget">
+      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
+        <coyoho-widget-switchdevice id="content" widget="{{widget}}"
+                                    websocket="{{$.websocket}}"></coyoho-widget-switchdevice>
+      </coyoho-controlpanel-widget>
+    </template>
+
+    <template id="RemoteControlDeviceWidget">
+      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
+        <coyoho-widget-remotecontroldevice id="content" widget="{{widget}}"
+                                        websocket="{{$.websocket}}"></coyoho-widget-remotecontroldevice>
+      </coyoho-controlpanel-widget>
+    </template>
+
+    <template id="ReflowOvenDeviceWidget">
+      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
+        <coyoho-widget-reflowovendevice id="content" widget="{{widget}}"
+                                        websocket="{{$.websocket}}"></coyoho-widget-reflowovendevice>
+      </coyoho-controlpanel-widget>
+    </template>
+
+    <template id="RobotDeviceWidget">
+      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
+        <coyoho-widget-robotdevice id="content" widget="{{widget}}"
+                                        websocket="{{$.websocket}}"></coyoho-widget-robotdevice>
+      </coyoho-controlpanel-widget>
+    </template>
+
+    <template id="WeatherWidget">
+      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
+        <coyoho-widget-weather id="content" widget="{{widget}}"></coyoho-widget-weather>
+      </coyoho-controlpanel-widget>
+    </template>
+
+  </template>
+
+  <script src="coyoho-controlpanel.js"></script>
+
+</polymer-element>

@@ -1,0 +1,118 @@
+<link rel="import" href="../../lib/paper-input/paper-input.html">
+<link rel="import" href="../../lib/paper-toggle-button/paper-toggle-button.html">
+<link rel="import" href="../../lib/grapp-fa-icon/grapp-fa-icon.html">
+<link rel="import" href="../../lib/grapp-paper-button/grapp-paper-button.html">
+<link rel="import" href="../../lib/grapp-paper-input/grapp-paper-input.html">
+<link rel="import" href="../../lib/grapp-paper-fab/grapp-paper-fab.html">
+<link rel="import" href="../coyoho-codemirror-input/coyoho-codemirror-input.html">
+<link rel="import" href="../coyoho-i18n/coyoho-i18n.html">
+<link rel="import" href="coyoho-data-field.html">
+<link rel="import" href="coyoho-data-fieldset.html">
+
+<polymer-element name="coyoho-data-editor" attributes="resource model header">
+
+  <template>
+
+    <link href="../../stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="coyoho-data-editor.css" rel="stylesheet">
+
+    <template if="{{item}}">
+
+      <template if="{{item[header]}}">
+        <div id="header" horizontal layout>
+          <div class="col-md-offset-2 col-md-6">{{item[header]}}&nbsp;</div>
+        </div>
+      </template>
+
+      <form id="content" class="form-horizontal" role="form">
+
+        <template repeat="{{fieldset in fieldsets}}">
+
+          <fieldset>
+
+            <template if="{{fieldset.label || fieldset.icon || fieldset.image}}">
+              <legend>
+                <template if="{{fieldset.icon}}">
+                  <grapp-fa-icon icon="{{fieldset.icon}}"></grapp-fa-icon>
+                </template>
+                <template if="{{fieldset.image}}">
+                  <img src="{{fieldset.image}}"></grapp-fa-icon>
+                </template>
+                <template if="{{fieldset.label}}">
+                  {{fieldset.label}}
+                </template>
+              </legend>
+            </template>
+
+            <template if="{{fieldset.fields.length === 0}}">
+              <label class="col-md-7 col-md-offset-1">
+                {{'description.there_are_no_fields_for_this_fieldset' | i18n}}
+              </label>
+            </template>
+
+            <template repeat="{{field in fieldset.fields}}">
+              <div class="{{ {'form-group': true, 'has-error': field.error !== null} | tokenList}}">
+
+                <label for="{{field.name}}" class="control-label col-md-2">{{field.label}}</label>
+
+                <div class="col-md-6">
+                  <template if="{{field.type === 'string'}}">
+                    <!--<paper-input id="{{field.name}}" value="{{item[field.name]}}" on-input="{{validate}}" fit></paper-input>-->
+                    <input id="{{field.name}}" class="form-control" value="{{item[field.name]}}" on-input="{{validate}}">
+                  </template>
+                  <template if="{{field.type === 'check'}}">
+                    <!--<paper-toggle-button id="{{field.name}}" checked="{{item[field.name]}}" on-change="{{validate}}"></paper-toggle-button>-->
+                    <div class="check-input"><input id="{{field.name}}" type="checkbox"></div>
+                  </template>
+                  <template if="{{field.type === 'text'}}">
+                    <textarea id="{{field.name}}" class="form-control" rows="3"
+                              on-input="{{validate}}">{{item[field.name]}}</textarea>
+                  </template>
+                  <template if="{{field.type === 'code'}}">
+                    <coyoho-codemirror-input id="{{field.name}}" rows="3" mode="ruby" on-input="{{validate}}"
+                                             value="{{item[field.name]}}">
+                    </coyoho-codemirror-input>
+                  </template>
+
+                  <template if="{{field.error}}">
+                    <span class="help-block">{{field.error}}</span>
+                  </template>
+                </div>
+
+              </div>
+            </template>
+
+          </fieldset>
+
+        </template>
+
+      </form>
+
+      <div id="footer">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-6">
+
+          <grapp-paper-button raised success disabled?="{{! modified || !valid}}"
+                        on-click="{{save}}" on-enter="{{save}}">
+            <grapp-fa-icon icon="{{ {check: !processing, spinner: processing} | tokenList}}"
+                           spin="{{processing}}"></grapp-fa-icon>
+            &nbsp;{{'action.save' | i18n}}
+          </grapp-paper-button>
+
+          <grapp-paper-button raised error on-click="{{cancel}}">
+            <grapp-fa-icon icon="close"></grapp-fa-icon>
+            &nbsp;{{'action.cancel' | i18n}}
+          </grapp-paper-button>
+
+        </div>
+      </div>
+    </template>
+
+    <coyoho-i18n id="i18n"></coyoho-i18n>
+
+  </template>
+
+  <script src="coyoho-data-editor.js"></script>
+
+</polymer-element>

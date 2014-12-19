@@ -32,5 +32,4 @@ doc/*.db
 /public/lib
 
 # Ignore generated web files
-/public/components
-/public/i18n
+/public/web

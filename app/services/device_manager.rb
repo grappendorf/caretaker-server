@@ -71,7 +71,7 @@ class DeviceManager < SingletonService
 		end
 		device.when_changed do |device|
 			WebsocketRails[:devices].trigger('state',
-			                                 {type: device.class.name.underscore, id: device_id, state: device.current_state})
+			                                 {type: device.class.name, id: device_id, state: device.current_state})
 		end
 		device.start
 	end

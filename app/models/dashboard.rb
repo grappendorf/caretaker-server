@@ -16,10 +16,6 @@ class Dashboard < ActiveRecord::Base
 
 	validates :name, presence: true
 
-	def self.attr_accessible
-    [:name, :default]
-  end
-
   scope :search, -> (q) { where('name like ?', "%#{q}%") }
 
 	scope :search_names, -> (q) { where('name like ?', "%#{q}%") }
