@@ -65,10 +65,12 @@
     </div>
 
     <div id="widgets" horizontal layout wrap hidden?="{{dashboard.widgets.length === 0}}"
-        on-edit-widget-properties="{{editWidgetProperties}}"
-        on-delete-widget="{{deleteWidget}}">
+         on-edit-widget-properties="{{editWidgetProperties}}"
+         on-delete-widget="{{deleteWidget}}">
       <template repeat="{{widget in dashboard.widgets}}">
-        <template bind ref="{{widget.type}}"></template>
+        <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
+          <template bind ref="{{widget.type}}"></template>
+        </coyoho-controlpanel-widget>
       </template>
     </div>
 
@@ -104,7 +106,10 @@
       <div class="row">
         <div class="col-md-8 col-md-offset-4">
           <div class="jumbotron">
-            <h1><grapp-fa-icon icon="th-large"></grapp-fa-icon>{{'title.create_a_dashboard' | i18n}}</h1>
+            <h1>
+              <grapp-fa-icon icon="th-large"></grapp-fa-icon>
+              {{'title.create_a_dashboard' | i18n}}
+            </h1>
 
             <p>{{'description.you_currently_have_no_dashboard' | i18n}}</p>
 
@@ -173,7 +178,7 @@
     <coyoho-controlpanel-new-dashboard-dialog id="newDashboardDialog"></coyoho-controlpanel-new-dashboard-dialog>
 
     <coyoho-controlpanel-edit-dashboard-dialog id="editDashboardDialog"
-        dashboard="{{dashboard}}"></coyoho-controlpanel-edit-dashboard-dialog>
+                                               dashboard="{{dashboard}}"></coyoho-controlpanel-edit-dashboard-dialog>
 
     <coyoho-controlpanel-new-widget-dialog id="newWidgetDialog"></coyoho-controlpanel-new-widget-dialog>
 
@@ -184,76 +189,70 @@
     </coyoho-confirmation-dialog>
 
     <template id="CameraDeviceWidget">
-      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
-        <coyoho-widget-cameradevice id="content" widget="{{widget}}"
-                                    websocket="{{$.websocket}}"></coyoho-widget-cameradevice>
-      </coyoho-controlpanel-widget>
+      <coyoho-widget-cameradevice id="content" widget="{{widget}}"
+                                  websocket="{{$.websocket}}"></coyoho-widget-cameradevice>
     </template>
 
     <template id="DimmerDeviceWidget">
-      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
-        <coyoho-widget-dimmerdevice id="content" widget="{{widget}}"
-                                    websocket="{{$.websocket}}"></coyoho-widget-dimmerdevice>
-      </coyoho-controlpanel-widget>
+      <coyoho-widget-dimmerdevice id="content" widget="{{widget}}"
+                                websocket="{{$.websocket}}"></coyoho-widget-dimmerdevice>
     </template>
 
     <template id="DimmerRgbDeviceWidget">
-      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
-        <coyoho-widget-dimmerrgbdevice id="content" widget="{{widget}}"
-                                       websocket="{{$.websocket}}"></coyoho-widget-dimmerrgbdevice>
-      </coyoho-controlpanel-widget>
+      <coyoho-widget-dimmerrgbdevice id="content" widget="{{widget}}"
+                                     websocket="{{$.websocket}}"></coyoho-widget-dimmerrgbdevice>
     </template>
 
     <template id="EasyvrDeviceWidget">
-      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
-        <coyoho-widget-easyvrdevice id="content" widget="{{widget}}"
-                                    websocket="{{$.websocket}}"></coyoho-widget-easyvrdevice>
-      </coyoho-controlpanel-widget>
+      <coyoho-widget-easyvrdevice id="content" widget="{{widget}}"
+                                  websocket="{{$.websocket}}"></coyoho-widget-easyvrdevice>
     </template>
 
     <template id="IpCameraDeviceWidget">
-      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
-        <coyoho-widget-ipcameradevice id="content" widget="{{widget}}"
-                                      websocket="{{$.websocket}}"></coyoho-widget-ipcameradevice>
-      </coyoho-controlpanel-widget>
+      <coyoho-widget-ipcameradevice id="content" widget="{{widget}}"
+                                    websocket="{{$.websocket}}"></coyoho-widget-ipcameradevice>
     </template>
 
     <template id="SwitchDeviceWidget">
-      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
-        <coyoho-widget-switchdevice id="content" widget="{{widget}}"
-                                    websocket="{{$.websocket}}"></coyoho-widget-switchdevice>
-      </coyoho-controlpanel-widget>
+      <coyoho-widget-switchdevice id="content" widget="{{widget}}"
+                                  websocket="{{$.websocket}}"></coyoho-widget-switchdevice>
     </template>
 
     <template id="RemoteControlDeviceWidget">
-      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
-        <coyoho-widget-remotecontroldevice id="content" widget="{{widget}}"
-                                        websocket="{{$.websocket}}"></coyoho-widget-remotecontroldevice>
-      </coyoho-controlpanel-widget>
+      <coyoho-widget-remotecontroldevice id="content" widget="{{widget}}"
+                                         websocket="{{$.websocket}}"></coyoho-widget-remotecontroldevice>
     </template>
 
     <template id="ReflowOvenDeviceWidget">
-      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
-        <coyoho-widget-reflowovendevice id="content" widget="{{widget}}"
-                                        websocket="{{$.websocket}}"></coyoho-widget-reflowovendevice>
-      </coyoho-controlpanel-widget>
+      <coyoho-widget-reflowovendevice id="content" widget="{{widget}}"
+                                      websocket="{{$.websocket}}"></coyoho-widget-reflowovendevice>
     </template>
 
     <template id="RobotDeviceWidget">
-      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
-        <coyoho-widget-robotdevice id="content" widget="{{widget}}"
-                                        websocket="{{$.websocket}}"></coyoho-widget-robotdevice>
-      </coyoho-controlpanel-widget>
+      <coyoho-widget-robotdevice id="content" widget="{{widget}}"
+                                 websocket="{{$.websocket}}"></coyoho-widget-robotdevice>
     </template>
 
     <template id="WeatherWidget">
-      <coyoho-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
-        <coyoho-widget-weather id="content" widget="{{widget}}"></coyoho-widget-weather>
-      </coyoho-controlpanel-widget>
+      <coyoho-widget-weather id="content" widget="{{widget}}"></coyoho-widget-weather>
     </template>
 
   </template>
 
+  <script src="../../lib/classie/classie.js"></script>
+  <script src="../../lib/get-style-property/get-style-property.js"></script>
+  <script src="../../lib/get-size/get-size.js"></script>
+  <script src="../../lib/eventie/eventie.js"></script>
+  <script src="../../lib/eventEmitter/EventEmitter.js"></script>
+  <script src="../../lib/matches-selector/matches-selector.js"></script>
+  <script src="../../lib/draggabilly/draggabilly.js"></script>
+  <script src="../../lib/doc-ready/doc-ready.js"></script>
+  <script src="../../lib/outlayer/item.js"></script>
+  <script src="../../lib/outlayer/outlayer.js"></script>
+  <script src="../../lib/packery/js/rect.js"></script>
+  <script src="../../lib/packery/js/packer.js"></script>
+  <script src="../../lib/packery/js/item.js"></script>
+  <script src="../../lib/packery/js/packery.js"></script>
   <script src="coyoho-controlpanel.js"></script>
 
 </polymer-element>

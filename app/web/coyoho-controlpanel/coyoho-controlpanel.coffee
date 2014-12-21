@@ -7,6 +7,24 @@ Polymer 'coyoho-controlpanel',
 
   ready: ->
     @$.dashboardNamesRequest.go()
+    @onMutation @$.widgets, ->
+      @packery.reloadItems()
+      @packery.layout()
+      for item in @packery.getItemElements()
+        draggability = new Draggabilly item, {handle: '* /deep/ [icon="square"]'}
+        @packery.bindDraggabillyEvents draggability
+
+  domReady: ->
+    @packery = new Packery @$.widgets,
+      rowHeight: 320
+      columnWidth: 320
+      itemSelector: 'coyoho-controlpanel-widget'
+      isInitLayout: true
+      transitionDuration: '.2s'
+      gutter: 4
+
+    @packery.on 'dragItemPositioned', ->
+      console.log 'widget moved'
 
   defaultDashboardSucceeded: (e) ->
     @dashboardId = e.detail.response.id

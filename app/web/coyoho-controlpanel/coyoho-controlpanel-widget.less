@@ -1,12 +1,13 @@
 #widget {
-  width: 400px;
-  height: 400px;
+  width: 320px;
+  height: 320px;
 }
 
 .panel {
   position: relative;
   height: 100%;
   overflow: hidden;
+  background-color: rgba(80, 80, 80, .2);
 
   &.panel-highlight {
     border-width: 2px;
@@ -24,10 +25,14 @@
     }
 
     .widget-actions {
+      position: absolute;
+      right: 8px;
+      top: 6px;
+
       grapp-fa-icon {
         -webkit-transition: 1s linear opacity;
         transition: 0.3s linear opacity;
-        opacity: 0.2;
+        opacity: 0.7;
       }
 
       &:hover grapp-fa-icon {
