@@ -48,16 +48,14 @@ group :test do
 end
 
 group :development do
-	gem 'better_errors', '1.1.0'
+	gem 'better_errors', '2.0.0'
 	gem 'binding_of_caller', '0.7.2'
-	gem 'meta_request', '0.2.8'
-	gem 'rack-webconsole-telcat', github: 'grappendorf/rack-webconsole-telcat'
+	gem 'meta_request', '0.3.4'
 	gem 'awesome_print', '1.2.0'
-	gem 'license_finder', '0.9.5.1'
-	gem 'newrelic_rpm', '3.7.2.195'
-	gem 'jazz_hands', '0.5.2'
-	gem 'annotate', '2.6.3'
-	gem 'libnotify', '0.8.3'
+	gem 'pry', '0.10.1'
+	gem 'license_finder', '1.2'
+	gem 'annotate', '2.6.5'
+	gem 'rack-webconsole-telcat', github: 'grappendorf/rack-webconsole-telcat'
 end
 
 group :development, :test, :demo do

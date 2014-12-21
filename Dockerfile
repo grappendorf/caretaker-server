@@ -1,4 +1,4 @@
-FROM grappendorf/ruby:2.1.3
+FROM grappendorf/ruby:2.1.5
 MAINTAINER Dirk Grappendorf "dirk@grappendorf.net"
 
 # Database drivers
