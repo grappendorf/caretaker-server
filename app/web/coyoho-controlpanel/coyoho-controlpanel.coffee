@@ -6,13 +6,17 @@ Polymer 'coyoho-controlpanel',
     @state = 'ok'
 
   ready: ->
+    self = @
     @$.dashboardNamesRequest.go()
-    @onMutation @$.widgets, ->
-      @packery.reloadItems()
-      @packery.layout()
-      for item in @packery.getItemElements()
+
+    observer = new MutationObserver (o, m) ->
+      self.packery.reloadItems()
+      self.packery.layout()
+      for item in self.packery.getItemElements()
         draggability = new Draggabilly item, {handle: '* /deep/ [icon="square"]'}
-        @packery.bindDraggabillyEvents draggability
+        self.packery.bindDraggabillyEvents draggability
+
+    observer.observe @$.widgets, {childList: true, attributes: false}
 
   domReady: ->
     @packery = new Packery @$.widgets,
@@ -23,8 +27,13 @@ Polymer 'coyoho-controlpanel',
       transitionDuration: '.2s'
       gutter: 4
 
-    @packery.on 'dragItemPositioned', ->
-      console.log 'widget moved'
+    self = @
+
+    @packery.on 'dragItemPositioned', (packery, item) ->
+      for item,index in packery.getItemElements()
+        if (item.widget.position != index)
+          item.widget.position = index
+          self.widgets.update item.widget.id, position:  index
 
   defaultDashboardSucceeded: (e) ->
     @dashboardId = e.detail.response.id
