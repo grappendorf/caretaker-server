@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: devices
+#
+#  id             :integer          not null, primary key
+#  as_device_id   :integer
+#  as_device_type :string(255)
+#  name           :string(255)
+#  address        :string(255)
+#  description    :string(255)
+#
+
 Fabricator :device do
 	name 'Device'
 	address '00:11:22:33:44:55'

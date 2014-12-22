@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer          not null, primary key
+#  name                   :string(255)
+#  email                  :string(255)      default("")
+#  encrypted_password     :string(255)      default("")
+#  reset_password_token   :string(255)
+#  reset_password_sent_at :time
+#  remember_created_at    :time
+#  sign_in_count          :integer          default(0)
+#  current_sign_in_at     :time
+#  last_sign_in_at        :time
+#  current_sign_in_ip     :string(255)
+#  last_sign_in_ip        :string(255)
+#
+
 Fabricator :admin, from: :user do
 	name 'admin'
 	email 'admin@example.com'
