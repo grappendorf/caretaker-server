@@ -102,7 +102,7 @@
       </div>
     </template>
 
-    <template if="{{! dashboard}}">
+    <template if="{{dashboardNames && dashboardNames.length === 0}}">
       <div class="row">
         <div class="col-md-8 col-md-offset-4">
           <div class="jumbotron">
