@@ -49,14 +49,14 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
 				puts 'Create some dashboards...'
 
 				dashboard = Dashboard.create! name: 'Default', default: true, user: User.find_by(email: 'user@example.com')
-				dashboard.widgets << DeviceWidget.new(device: switch8_device, x: 1, y: 1, width: 2, height: 2)
-				dashboard.widgets << DeviceWidget.new(device: switch_device, x: 1, y: 3, width: 2, height: 1)
-				dashboard.widgets << DeviceWidget.new(device: dimmer_device, x: 1, y: 4, width: 2, height: 1)
-				dashboard.widgets << DeviceWidget.new(device: dimmer_rgb_device, x: 3, y: 4, width: 2, height: 1)
-				dashboard.widgets << DeviceWidget.new(device: camera1_device, x: 6, y: 1, width: 2, height: 2)
-				dashboard.widgets << DeviceWidget.new(device: camera2_device, x: 6, y: 3, width: 2, height: 2)
-				dashboard.widgets << DeviceWidget.new(device: reflow_oven_device, x: 3, y: 1, width: 3, height: 3)
-				dashboard.widgets << WeatherWidget.new(x: 0, y: 5, width: 2, height: 2)
+				dashboard.widgets << DeviceWidget.new(device: switch8_device, position: 0, width: 2, height: 2)
+				dashboard.widgets << DeviceWidget.new(device: reflow_oven_device, position: 1, width: 3, height: 3)
+				dashboard.widgets << DeviceWidget.new(device: camera1_device, position: 2, width: 2, height: 2)
+				dashboard.widgets << DeviceWidget.new(device: switch_device, position: 3, width: 2, height: 1)
+				dashboard.widgets << DeviceWidget.new(device: camera2_device, position: 4, width: 2, height: 2)
+				dashboard.widgets << DeviceWidget.new(device: dimmer_device, position: 5, width: 2, height: 1)
+				dashboard.widgets << DeviceWidget.new(device: dimmer_rgb_device, position: 6, width: 2, height: 1)
+				dashboard.widgets << WeatherWidget.new(position: 7, width: 2, height: 2)
 
 				(1..5).each do |i|
 					building = Building.create! name: "Building #{i}", description: "This is building #{i}"
