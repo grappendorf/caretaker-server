@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140420002000) do
+ActiveRecord::Schema.define(version: 20141222100947) do
 
   create_table "buildings", force: true do |t|
     t.string "name"
@@ -146,12 +146,11 @@ ActiveRecord::Schema.define(version: 20140420002000) do
   create_table "widgets", force: true do |t|
     t.integer "as_widget_id"
     t.string  "as_widget_type"
-    t.integer "x",              default: 1
-    t.integer "y",              default: 1
     t.integer "width",          default: 1
     t.integer "height",         default: 1
     t.string  "title"
     t.integer "dashboard_id"
+    t.integer "position"
   end
 
   add_index "widgets", ["as_widget_id", "as_widget_type"], name: "index_widgets_on_as_widget_id_and_as_widget_type"

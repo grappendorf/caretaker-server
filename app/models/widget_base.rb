@@ -1,7 +1,7 @@
 module WidgetBase
 	module ClassMethods
 		def attr_accessible
-			[:dashboard_id, :x, :y, :width, :height, :title]
+			[:dashboard_id, :position, :width, :height, :title]
 		end
 
 		def models

@@ -1,8 +1,7 @@
 json.id widget.as_widget.id
 json.type widget.type
 json.title widget.title
-json.x widget.x
-json.y widget.y
+json.position widget.position
 json.width widget.width
 json.height widget.height
 
