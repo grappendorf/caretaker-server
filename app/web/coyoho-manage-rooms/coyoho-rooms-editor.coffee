@@ -5,9 +5,3 @@ Polymer 'coyoho-rooms-editor',
 
   back: ->
     @router.go "/buildings/#{@buildingId}/floors/#{@floorId}/rooms"
-
-  nameOfBuilding: (names, id) ->
-    id
-
-  nameOfFloor: (names, id) ->
-    id

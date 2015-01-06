@@ -1,10 +1,6 @@
 Polymer 'coyoho-rooms-list',
 
-  ready: ->
-    @$.buildingsNames.go()
-
   buildingIdChanged: ->
-    @$.floorsNames.go()
     @$.table.load()
 
   floorIdChanged: ->

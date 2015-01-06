@@ -12,11 +12,11 @@
                          params='{{ {"buildingId":buildingId, "floorId":floorId} }}'
                          resource="{{rooms}}"></grapp-rest-resource>
 
-    <core-ajax id="buildingsNames" url="/buildings/names" handleAs="json" response="{{buildingsNames}}">
+    <core-ajax id="buildingsNames" url="/buildings/names" handleAs="json" response="{{buildingsNames}}" auto>
     </core-ajax>
 
     <core-ajax id="floorsNames" url="/buildings/{{buildingId}}/floors/names" handleAs="json"
-               response="{{floorsNames}}">
+               response="{{floorsNames}}" auto>
     </core-ajax>
 
     <grapp-app-globals>

@@ -1,8 +1,5 @@
 Polymer 'coyoho-floors-list',
 
-  ready: ->
-    @$.buildingsNames.go()
-
   buildingIdChanged: ->
     @$.table.load()
 
