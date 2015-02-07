@@ -6807,23 +6807,23 @@ a.list-group-item-danger.active:focus {
   border-color: #000;
 }
 
-.btn-group coyoho-select /deep/ select {
+.btn-group caretaker-select /deep/ select {
   background-image: linear-gradient(#8a9196, #7a8288 60%, #70787d);
   margin-top: 1px;
   padding-bottom: 7px;
   color: #fff;
 }
 
-.btn-group coyoho-select:first-child /deep/ select {
+.btn-group caretaker-select:first-child /deep/ select {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.btn-group coyoho-select:last-child /deep/ select {
+.btn-group caretaker-select:last-child /deep/ select {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
 
-.btn-group coyoho-select:not(:first-child):not(:last-child) /deep/ select {
+.btn-group caretaker-select:not(:first-child):not(:last-child) /deep/ select {
   border-radius: 0;
 }

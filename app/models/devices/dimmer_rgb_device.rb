@@ -40,7 +40,7 @@ class DimmerRgbDevice < ActiveRecord::Base
 
 	def rgb= rgb
 		if @rgb != rgb
-			send_message COYOHO_RGB_WRITE, 0, COYOHO_WRITE_ABSOLUTE, rgb[0], rgb[1], rgb[2]
+			send_message CARETAKER_RGB_WRITE, 0, CARETAKER_WRITE_ABSOLUTE, rgb[0], rgb[1], rgb[2]
 		end
 		@rgb = rgb
 	end
@@ -58,11 +58,11 @@ class DimmerRgbDevice < ActiveRecord::Base
 	end
 
 	def update
-		send_message COYOHO_RGB_READ, 0
+		send_message CARETAKER_RGB_READ, 0
 	end
 
 	def message_received message
-		if message[0] == CoYoHoMessages::COYOHO_RGB_READ
+		if message[0] == CaretakerMessages::CARETAKER_RGB_READ
 			@rgb = [message[2], message[3], message[4]]
 			notify_change_listeners
 		end

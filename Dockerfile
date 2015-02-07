@@ -11,11 +11,11 @@ RUN rm -rf tmp
 
 # Production environment, context path
 ENV RAILS_ENV production
-ENV RAILS_RELATIVE_URL_ROOT /coyoho
+ENV RAILS_RELATIVE_URL_ROOT /caretaker
 
 # Install gems, compile assets, link for sub uri
 RUN bundle install --without=development test demo
-RUN ln -s public coyoho
+RUN ln -s public caretaker
 
 # Link log directory to /var/log/app
 RUN rm -rf log

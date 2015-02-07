@@ -1,0 +1,39 @@
+<polymer-element name="caretaker-controlpanel-edit-dashboard-dialog" attributes="dashboard">
+
+  <template>
+
+    <paper-action-dialog id="dialog" backdrop layered="false" heading="{{'title.dashboard_properties' | i18n}}">
+
+      <div vertical layout>
+
+        <grapp-paper-input floatingLabel id="password" label="{{'action.enter_dashboard_name' | i18n}}" type="text"
+                           autofocus
+                           value="{{dashboard.name}}" on-enter="{{submit}}" on-input="{{validate}}">
+        </grapp-paper-input>
+
+        <template if="{{message}}">
+          <grapp-paper-button error dismissive raised>{{message | i18n}}</grapp-paper-button>
+        </template>
+
+      </div>
+
+      <grapp-paper-button affirmative raised success disabled?="{{!valid}}"
+                          on-click="{{ok}}" on-enter="{{ok}}">
+        <grapp-fa-icon icon="{{ {check: !processing, spinner: processing} | tokenList}}"
+                       spin="{{processing}}"></grapp-fa-icon>
+        <span>{{'action.save' | i18n}}</span>
+      </grapp-paper-button>
+
+      <grapp-paper-button affirmative raised error
+                          on-click="{{cancel}}" on-enter="{{cancel}}">
+        <grapp-fa-icon icon="close"></grapp-fa-icon>
+        <span>{{'action.cancel' | i18n}}</span>
+      </grapp-paper-button>
+
+    </paper-action-dialog>
+
+  </template>
+
+  <script src="caretaker-controlpanel-edit-dashboard-dialog.js"></script>
+
+</polymer-element>

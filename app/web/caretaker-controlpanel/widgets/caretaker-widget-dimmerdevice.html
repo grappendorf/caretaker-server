@@ -1,0 +1,15 @@
+<link rel="import" href="../../../lib/paper-slider/paper-slider.html">
+
+<polymer-element name="caretaker-widget-dimmerdevice" attributes="widget websocket">
+
+  <template>
+    <link href="caretaker-widget-dimmerdevice.css" rel="stylesheet">
+
+    <paper-slider id="slider" min="0" max="255" value="{{value}}" immediateValue="{{immediateValue}}"
+                  touch="pan-x"></paper-slider>
+  </template>
+
+
+  <script src="caretaker-widget-dimmerdevice.js"></script>
+
+</polymer-element>

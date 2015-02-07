@@ -2,7 +2,7 @@ require 'xbee_connection_state'
 
 module XbeeDevice
 
-	include CoYoHoMessages
+	include CaretakerMessages
 
 	inject :xbee_master
 
@@ -20,7 +20,7 @@ module XbeeDevice
 
 	def reset
 		super
-		send_message COYOHO_RESET
+		send_message CARETAKER_RESET
 	end
 
 end

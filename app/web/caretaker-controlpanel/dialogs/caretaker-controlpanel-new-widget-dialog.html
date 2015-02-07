@@ -1,0 +1,62 @@
+<link rel="import" href="../../../lib/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../../lib/paper-dropdown/paper-dropdown.html">
+
+<polymer-element name="caretaker-controlpanel-new-widget-dialog">
+
+  <template>
+
+    <style>
+      paper-dropdown {
+        height: 10em;
+      }
+      paper-item {
+        white-space: nowrap;
+      }
+    </style>
+
+    <caretaker-core-ajax id="devicesNames"
+                      url="/devices/names" method="GET" handleAs="json"
+                      response="{{devices}}">
+    </caretaker-core-ajax>
+
+    <paper-action-dialog id="dialog" backdrop layered="false" heading="{{'action.add_widget' | i18n}}">
+
+      <div vertical layout>
+
+        <paper-dropdown-menu label="{{'message.select_device_for_widget' | i18n}}" autofocus>
+          <paper-dropdown class="dropdown" transition="">
+            <core-menu class="menu" selected="{{deviceId}}" valueattr="deviceId">
+              <template repeat="{{devices}}">
+                <paper-item deviceId="{{id}}">{{name}}</paper-item>
+              </template>
+            </core-menu>
+          </paper-dropdown>
+        </paper-dropdown-menu>
+
+        <grapp-paper-input floatingLabel id="password" label="{{'message.choose_optional_widget_title' | i18n}}" type="text"
+                           autofocus
+                           value="{{title}}" on-enter="{{submit}}" on-input="{{validate}}">
+        </grapp-paper-input>
+
+      </div>
+
+      <grapp-paper-button affirmative raised success disabled?="{{!valid}}"
+                          on-click="{{ok}}" on-enter="{{ok}}">
+        <grapp-fa-icon icon="{{ {check: !processing, spinner: processing} | tokenList}}"
+                       spin="{{processing}}"></grapp-fa-icon>
+        <span>{{'action.save' | i18n}}</span>
+      </grapp-paper-button>
+
+      <grapp-paper-button affirmative raised error
+                          on-click="{{cancel}}" on-enter="{{cancel}}">
+        <grapp-fa-icon icon="close"></grapp-fa-icon>
+        <span>{{'action.cancel' | i18n}}</span>
+      </grapp-paper-button>
+
+    </paper-action-dialog>
+
+  </template>
+
+  <script src="caretaker-controlpanel-new-widget-dialog.js"></script>
+
+</polymer-element>

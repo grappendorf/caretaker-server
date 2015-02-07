@@ -53,7 +53,7 @@ describe XBeeConnectionState do
 
 	it 'tries to register with the device after a random delay when connecting' do
 		random.next_number XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY_RANDOM
-		expect(@connection_state).to receive(:send_message).with(CoYoHoMessages::COYOHO_ADD_LISTENER)
+		expect(@connection_state).to receive(:send_message).with(CaretakerMessages::CARETAKER_ADD_LISTENER)
 		@connection_state.connect
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY_RANDOM
@@ -61,7 +61,7 @@ describe XBeeConnectionState do
 
 	it 'retries to connect when a timeout occured when connecting' do
 		random.next_number XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY_RANDOM
-		expect(@connection_state).to receive(:send_message).with(CoYoHoMessages::COYOHO_ADD_LISTENER).twice
+		expect(@connection_state).to receive(:send_message).with(CaretakerMessages::CARETAKER_ADD_LISTENER).twice
 		@connection_state.connect
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY_RANDOM
@@ -109,7 +109,7 @@ describe XBeeConnectionState do
 	end
 
 	it 'renews the registration after a successful registration' do
-		expect(@connection_state).to receive(:send_message).with(CoYoHoMessages::COYOHO_ADD_LISTENER).twice
+		expect(@connection_state).to receive(:send_message).with(CaretakerMessages::CARETAKER_ADD_LISTENER).twice
 		@connection_state.connect
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY
 		@connection_state.xbee_connect_response
@@ -117,7 +117,7 @@ describe XBeeConnectionState do
 	end
 
 	it 'doubles the connection delay after each unsuccessful connect attempt' do
-		expect(@connection_state).to receive(:send_message).with(CoYoHoMessages::COYOHO_ADD_LISTENER).exactly(4).times
+		expect(@connection_state).to receive(:send_message).with(CaretakerMessages::CARETAKER_ADD_LISTENER).exactly(4).times
 		@connection_state.connect
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY
 		scheduler.step XBeeConnectionState::REGISTER_TIMEOUT
@@ -139,7 +139,7 @@ describe XBeeConnectionState do
 
 	it 'unregisters from the device when disconnecting' do
 		allow(@connection_state).to receive(:send_message)
-		expect(@connection_state).to receive(:send_message).with(CoYoHoMessages::COYOHO_REMOVE_LISTENER)
+		expect(@connection_state).to receive(:send_message).with(CaretakerMessages::CARETAKER_REMOVE_LISTENER)
 		@connection_state.connect
 		scheduler.step XBeeConnectionState::REGISTER_FIRST_ATTEMPT_DELAY
 		@connection_state.xbee_connect_response

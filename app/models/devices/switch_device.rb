@@ -40,7 +40,7 @@ class SwitchDevice < ActiveRecord::Base
 
 	def toggle switch_num
 		states[switch_num] = (states[switch_num] == ON ? OFF : ON)
-		send_message COYOHO_SWITCH_WRITE, switch_num, COYOHO_WRITE_TOGGLE
+		send_message CARETAKER_SWITCH_WRITE, switch_num, CARETAKER_WRITE_TOGGLE
 	end
 
 	def get_state switch_num
@@ -49,7 +49,7 @@ class SwitchDevice < ActiveRecord::Base
 
 	def set_state switch_num, state
 		states[switch_num] = state
-		send_message COYOHO_SWITCH_WRITE, switch_num, COYOHO_WRITE_ABSOLUTE, state
+		send_message CARETAKER_SWITCH_WRITE, switch_num, CARETAKER_WRITE_ABSOLUTE, state
 	end
 
 	def switch switch_num, on_or_off
@@ -69,11 +69,11 @@ class SwitchDevice < ActiveRecord::Base
 	end
 
 	def update
-		(0...num_switches).each { |i| send_message COYOHO_SWITCH_READ, i }
+		(0...num_switches).each { |i| send_message CARETAKER_SWITCH_READ, i }
 	end
 
 	def message_received message
-		if message[0] == CoYoHoMessages::COYOHO_SWITCH_READ
+		if message[0] == CaretakerMessages::CARETAKER_SWITCH_READ
 			switch_num = message[1]
 			value = message[2]
 			states[switch_num] = value

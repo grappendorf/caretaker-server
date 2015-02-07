@@ -38,15 +38,15 @@ class DeviceManager < SingletonService
 			return
 		end
 		message_code = data[0]
-		if message_code == (CoYoHoMessages::COYOHO_MESSAGE_RESPONSE | CoYoHoMessages::COYOHO_ADD_LISTENER)
+		if message_code == (CaretakerMessages::CARETAKER_MESSAGE_RESPONSE | CaretakerMessages::CARETAKER_ADD_LISTENER)
 			device.address16 = address16
 			device.xbee_connect_response
 			return
 		end
-		message_type = data[0] & CoYoHoMessages::COYOHO_MESSAGE_TYPE_MASK
-		if message_type == CoYoHoMessages::COYOHO_MESSAGE_RESPONSE or
-				message_type == CoYoHoMessages::COYOHO_MESSAGE_NOTIFY
-			data[0] = data[0] & CoYoHoMessages::COYOHO_MESSAGE_COMMAND_MASK
+		message_type = data[0] & CaretakerMessages::CARETAKER_MESSAGE_TYPE_MASK
+		if message_type == CaretakerMessages::CARETAKER_MESSAGE_RESPONSE or
+				message_type == CaretakerMessages::CARETAKER_MESSAGE_NOTIFY
+			data[0] = data[0] & CaretakerMessages::CARETAKER_MESSAGE_COMMAND_MASK
 			device.message_received data
 		end
 	end

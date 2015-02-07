@@ -72,7 +72,7 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
 
 			task :private => :environment do
 
-				private_data = '../coyoho-private/create-db-sample-data.rb'
+				private_data = '../caretaker-private/create-db-sample-data.rb'
 				require_relative "../../#{private_data}"
 
 			end

@@ -3,7 +3,7 @@ script.src = '/base/public/platform/platform.js'
 document.getElementsByTagName('head')[0].appendChild script
 
 imports = [
-	'coyoho-about/coyoho-about.html'
+	'caretaker-about/caretaker-about.html'
 ]
 
 for i in imports

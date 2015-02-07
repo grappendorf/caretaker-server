@@ -1,0 +1,34 @@
+<link rel="import" href="../../lib/grapp-rest-resource/grapp-rest-resource.html">
+<link rel="import" href="../../lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
+<link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
+<link rel="import" href="../caretaker-data-editor/caretaker-data-editor.html">
+
+<polymer-element name="caretaker-users-editor">
+
+  <template>
+
+    <grapp-rest-resource url="/users/:id" resource="{{users}}"></grapp-rest-resource>
+
+    <grapp-app-globals>
+      <grapp-app-global-value name="appTitle" value="models.user.other"></grapp-app-global-value>
+      <grapp-app-global-value name="appModule" value="system"></grapp-app-global-value>
+      <grapp-app-global-value name="appFunction" value="users"></grapp-app-global-value>
+    </grapp-app-globals>
+
+    <grapp-breadcrumbs>
+      <grapp-breadcrumb href="/#/users">{{'models.user.other'|i18n}}</grapp-breadcrumb>
+      <grapp-breadcrumb>{{$.editor.item.email}}</grapp-breadcrumb>
+    </grapp-breadcrumbs>
+
+    <caretaker-data-editor id="editor" model="user" resource="{{users}}" on-data-editor-back="{{back}}">
+
+      <caretaker-data-field name="email"></caretaker-data-field>
+      <caretaker-data-field name="name"></caretaker-data-field>
+
+    </caretaker-data-editor>
+
+  </template>
+
+  <script src="caretaker-users-editor.js"></script>
+
+</polymer-element>

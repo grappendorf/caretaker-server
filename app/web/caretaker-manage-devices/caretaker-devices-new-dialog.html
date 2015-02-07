@@ -1,0 +1,57 @@
+<link rel="import" href="../../lib/core-list/core-list.html">
+<link rel="import" href="../../lib/paper-dialog/paper-action-dialog.html">
+<link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
+
+
+<polymer-element name="caretaker-devices-new-dialog">
+
+  <template>
+
+    <style>
+      core-list {
+        overflow: auto;
+        width: 100%;
+        height: 12em;
+      }
+
+      paper-item img {
+        vertical-align: middle;
+        margin-right: 8px;
+      }
+    </style>
+
+    <paper-action-dialog id="dialog" backdrop layered="false" heading="New Device">
+
+      <div vertical layout>
+
+        <h3>Select the device type</h3>
+        <core-list data="{{deviceTypes}}" selection="{{deviceType}}">
+          <template>
+            <paper-item class="{{ {'core-selected': selected} | tokenList}}">
+              <nobr><img src="/images/{{model.icon}}"> {{model.label | i18n}}</nobr>
+            </paper-item>
+          </template>
+        </core-list>
+
+      </div>
+
+      <grapp-paper-button affirmative raised success disabled?="{{!valid}}"
+                          on-click="{{ok}}" on-enter="{{ok}}">
+        <grapp-fa-icon icon="{{ {check: !processing, spinner: processing} | tokenList}}"
+                       spin="{{processing}}"></grapp-fa-icon>
+        <span>{{'action.ok' | i18n}}</span>
+      </grapp-paper-button>
+
+      <grapp-paper-button affirmative raised error
+                          on-click="{{cancel}}" on-enter="{{cancel}}">
+        <grapp-fa-icon icon="close"></grapp-fa-icon>
+        <span>{{'action.cancel' | i18n}}</span>
+      </grapp-paper-button>
+
+    </paper-action-dialog>
+
+  </template>
+
+  <script src="caretaker-devices-new-dialog.js"></script>
+
+</polymer-element>

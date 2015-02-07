@@ -19,9 +19,9 @@ demo:
 production:
   adapter: postgresql
   host: postgres
-  database: coyoho
-  username: coyoho
-  password: coyoho
+  database: caretaker
+  username: caretaker
+  password: caretaker
   encoding: unicode
   pool: 5
   timeout: 5000

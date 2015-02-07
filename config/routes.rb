@@ -1,4 +1,4 @@
-CoyohoServer::Application.routes.draw do
+CaretakerServer::Application.routes.draw do
 
 	root to: 'app#index'
 

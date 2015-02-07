@@ -43,7 +43,7 @@ class EasyvrDevice < ActiveRecord::Base
 	end
 
 	def message_received message
-		if message[0] == CoYoHoMessages::COYOHO_SWITCH_READ
+		if message[0] == CaretakerMessages::CARETAKER_SWITCH_READ
 			button_num = message[1]
 			value = message[2]
 			states[button_num] = value

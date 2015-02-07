@@ -1,0 +1,46 @@
+<link rel="import" href="../../lib/core-overlay/core-overlay.html">
+<link rel="import" href="../../lib/grapp-rest-resource/grapp-rest-resource.html">
+<link rel="import" href="../../lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
+<link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
+<link rel="import" href="../caretaker-data-table/caretaker-data-table.html">
+<link rel="import" href="caretaker-devices-new-dialog.html">
+
+<polymer-element name="caretaker-devices-list">
+
+  <template>
+
+    <grapp-app-globals>
+      <grapp-app-global-value name="appTitle" value="models.device.other"></grapp-app-global-value>
+      <grapp-app-global-value name="appModule" value="devices"></grapp-app-global-value>
+      <grapp-app-global-value name="appFunction" value="devices"></grapp-app-global-value>
+    </grapp-app-globals>
+
+    <grapp-breadcrumbs>
+      <grapp-breadcrumb>{{'models.device.other'|i18n}}</grapp-breadcrumb>
+    </grapp-breadcrumbs>
+
+    <grapp-rest-resource url="/devices/:id" resource="{{devices}}"></grapp-rest-resource>
+
+    <caretaker-devices-new-dialog id="newDeviceDialog"></caretaker-devices-new-dialog>
+
+    <caretaker-data-table id="table" model="device" resource="{{devices}}"
+                       on-data-table-edit="{{edit}}" on-data-table-new="{{new}}">
+
+      <caretaker-data-column name="name" width="30"></caretaker-data-column>
+      <caretaker-data-column name="type" width="10">
+        <template>
+          <nobr><img src="/images/{{small_icon}}"> {{type | to_snake_case | i18n('models._.one')}}</nobr>
+        </template>
+      </caretaker-data-column>
+      <caretaker-data-column name="address" width="20"></caretaker-data-column>
+      <caretaker-data-column name="connected" type="check" heading="" icon="bolt" width="0"
+                          headerAlign="center"></caretaker-data-column>
+      <caretaker-data-column name="description" width="40"></caretaker-data-column>
+
+    </caretaker-data-table>
+
+  </template>
+
+  <script src="caretaker-devices-list.js"></script>
+
+</polymer-element>

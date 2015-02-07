@@ -1,0 +1,34 @@
+<link rel="import" href="../../lib/grapp-rest-resource/grapp-rest-resource.html">
+<link rel="import" href="../../lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
+<link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
+<link rel="import" href="../caretaker-data-editor/caretaker-data-editor.html">
+
+<polymer-element name="caretaker-dashboards-editor">
+
+  <template>
+
+    <grapp-rest-resource url="/dashboards/:id" resource="{{dashboards}}"></grapp-rest-resource>
+
+    <grapp-app-globals>
+      <grapp-app-global-value name="appTitle" value="models.dashboard.other"></grapp-app-global-value>
+      <grapp-app-global-value name="appModule" value="system"></grapp-app-global-value>
+      <grapp-app-global-value name="appFunction" value="dashboards"></grapp-app-global-value>
+    </grapp-app-globals>
+
+    <grapp-breadcrumbs>
+      <grapp-breadcrumb href="/#/dashboards">{{'models.dashboard.other'|i18n}}</grapp-breadcrumb>
+      <grapp-breadcrumb>{{$.editor.item.name}}</grapp-breadcrumb>
+    </grapp-breadcrumbs>
+
+    <caretaker-data-editor id="editor" model="dashboard" resource="{{dashboards}}" on-data-editor-back="{{back}}">
+
+      <caretaker-data-field name="name"></caretaker-data-field>
+      <caretaker-data-field name="default" type="check"></caretaker-data-field>
+
+    </caretaker-data-editor>
+
+  </template>
+
+  <script src="caretaker-dashboards-editor.js"></script>
+
+</polymer-element>

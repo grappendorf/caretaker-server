@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="Rails coyoho-server: development" uuid="152c8baa-ead0-4efa-b823-c023d5645156" />
-    <data-source name="Rails coyoho-server: production" uuid="3b357392-b1af-46d9-949c-7dd1175dcf81">
+    <data-source name="Rails caretaker-server: development" uuid="152c8baa-ead0-4efa-b823-c023d5645156" />
+    <data-source name="Rails caretaker-server: production" uuid="3b357392-b1af-46d9-949c-7dd1175dcf81">
       <first-sync>true</first-sync>
-      <user-name>coyoho</user-name>
+      <user-name>caretaker</user-name>
       <user-password>dfc9dfc5dfd3dfc5dfc2dfc5</user-password>
     </data-source>
     <data-source name="dependencies" uuid="b9a63d31-c6b6-4280-9149-a38c683ad4da" />

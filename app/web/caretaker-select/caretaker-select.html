@@ -1,0 +1,21 @@
+<polymer-element name="caretaker-select" attributes="items placeholder selectedId">
+
+  <template>
+
+    <link href="../../stylesheets/bootstrap.css" rel="stylesheet">
+    <link href="caretaker-select.css" rel="stylesheet">
+
+    <select id="select" class="form-control" on-change="{{onChange}}">
+      <template if="{{placeholder != null}}">
+        <option class="placeholder">{{placeholder}}</option>
+      </template>
+      <template repeat="{{item in items}}">
+        <option value="{{item.id}}" selected?="{{item.id == selectedId}}">{{item.name}}</option>
+      </template>
+    </select>
+
+  </template>
+
+  <script src="caretaker-select.js"></script>
+
+</polymer-element>

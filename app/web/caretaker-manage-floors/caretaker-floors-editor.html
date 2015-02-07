@@ -1,0 +1,42 @@
+<link rel="import" href="../../lib/grapp-rest-resource/grapp-rest-resource.html">
+<link rel="import" href="../../lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
+<link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
+<link rel="import" href="../caretaker-data-editor/caretaker-data-editor.html">
+
+<polymer-element name="caretaker-floors-editor">
+
+  <template>
+
+    <grapp-rest-resource url="/buildings/:buildingId/floors/:id?q={{searchText}}"
+                         params='{{ {"buildingId":buildingId} }}'
+                         resource="{{floors}}">
+    </grapp-rest-resource>
+
+    <core-ajax id="buildingName" url="/buildings/{{buildingId}}/name" handleAs="json" response="{{building}}" auto>
+    </core-ajax>
+
+    <grapp-app-globals>
+      <grapp-app-global-value name="appTitle" value="models.floor.other"></grapp-app-global-value>
+      <grapp-app-global-value name="appModule" value="manage"></grapp-app-global-value>
+      <grapp-app-global-value name="appFunction" value="floors"></grapp-app-global-value>
+    </grapp-app-globals>
+
+    <grapp-breadcrumbs>
+      <grapp-breadcrumb href="/#/buildings">{{'models.building.other'|i18n}}</grapp-breadcrumb>
+      <grapp-breadcrumb href="/#/buildings/{{buildingId}}">{{building.name}}</grapp-breadcrumb>
+      <grapp-breadcrumb href="/#/buildings/{{buildingId}}/floors">{{'models.floor.other'|i18n}}</grapp-breadcrumb>
+      <grapp-breadcrumb>{{$.editor.item.name}}</grapp-breadcrumb>
+    </grapp-breadcrumbs>
+
+    <caretaker-data-editor id="editor" model="floor" resource="{{floors}}" on-data-editor-back="{{back}}">
+
+      <caretaker-data-field name="name"></caretaker-data-field>
+      <caretaker-data-field name="description"></caretaker-data-field>
+
+    </caretaker-data-editor>
+
+  </template>
+
+  <script src="caretaker-floors-editor.js"></script>
+
+</polymer-element>

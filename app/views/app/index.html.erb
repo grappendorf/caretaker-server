@@ -2,14 +2,14 @@
 
 <html lang="en">
 <head>
-  <title>CoYoHo</title>
+  <title>Caretaker</title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="mobile-web-app-capable" content="yes">
   <%= csrf_meta_tags %>
-  <meta name="x-coyoho-websocket" content="<%= Settings.websocket.url %>"/>
+  <meta name="x-caretaker-websocket" content="<%= Settings.websocket.url %>"/>
 
   <script src="lib/webcomponentsjs/webcomponents.js"></script>
   <script src="lib/jquery/dist/jquery.min.js"></script>
@@ -19,8 +19,8 @@
 
   <link rel="import" href="lib/polymer/polymer.html">
   <link rel="import" href="lib/grapp-app-globals/grapp-app-globals.html">
-  <link rel="import" href="web/coyoho-i18n/coyoho-i18n.html">
-  <link rel="import" href="web/coyoho-app/coyoho-app.html">
+  <link rel="import" href="web/caretaker-i18n/caretaker-i18n.html">
+  <link rel="import" href="web/caretaker-app/caretaker-app.html">
 </head>
 
 <body fullbleed unresolved touch-action="auto">
@@ -31,7 +31,7 @@
     <grapp-app-global-value name="websocketURL" value="<%= Settings.websocket.url %>"></grapp-app-global-value>
   </grapp-app-globals>
 
-  <coyoho-app></coyoho-app>
+  <caretaker-app></caretaker-app>
 
 </body>
 

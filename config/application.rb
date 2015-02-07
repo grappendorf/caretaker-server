@@ -12,7 +12,7 @@ require 'action_mailer/railtie'
 require 'action_view/railtie'
 require 'sprockets/railtie'
 require_relative '../lib/util/dependency_injection'
-require_relative '../lib/util/coyoho_messages'
+require_relative '../lib/util/caretaker_messages'
 
 if defined?(Bundler)
 	# If you precompile assets before deploying to production, use this line
@@ -23,7 +23,7 @@ end
 
 I18n.config.enforce_available_locales = true
 
-module CoyohoServer
+module CaretakerServer
 	class Application < Rails::Application
 		# Settings in config/environments/* take precedence over those specified here.
 		# Application configuration should go into files in config/initializers

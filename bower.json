@@ -1,14 +1,14 @@
 {
-  "name": "coyoho-server",
+  "name": "caretaker-server",
   "version": "0.1.3",
-  "description": "CoYoHo Control Your Home Server",
+  "description": "Caretaker Home Automation Server",
   "license": "MIT",
   "authors": [
     "Dirk Grappendorf <dirk@grappendorf.net>"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/grappendorf/coyoho-server.git"
+    "url": "https://github.com/grappendorf/caretaker-server.git"
   },
   "dependencies": {
     "bootstrap": "bootstrap#~3.3.1",

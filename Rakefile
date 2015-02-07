@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-CoyohoServer::Application.load_tasks
+CaretakerServer::Application.load_tasks

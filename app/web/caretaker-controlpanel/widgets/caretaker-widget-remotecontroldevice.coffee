@@ -1,0 +1,1 @@
+Polymer 'caretaker-widget-remotecontroldevice'

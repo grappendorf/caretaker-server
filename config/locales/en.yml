@@ -65,7 +65,7 @@ en:
     please_log_on: "Please log in"
 
   title:
-    app: "CoYoHo"
+    app: "Caretaker"
     index_model: "%{model}"
     show_model: "%{model} %{name}"
     edit_model: "Edit %{model} %{name}"

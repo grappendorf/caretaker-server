@@ -1,0 +1,37 @@
+<link rel="import" href="../../../lib/paper-slider/paper-slider.html">
+
+<polymer-element name="caretaker-widget-dimmerrgbdevice" attributes="widget websocket">
+
+  <template>
+    <link href="caretaker-widget-dimmerrgbdevice.css" rel="stylesheet">
+
+    <table>
+      <tr>
+        <td rowspan="3">
+          <div id="dimmerColor"></div>
+        </td>
+        <td>
+          <paper-slider id="red" min="0" max="255" value="{{red}}" immediateValue="{{immediateRed}}"
+                        touch="pan-x"></paper-slider>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <paper-slider id="green" min="0" max="255" value="{{green}}" immediateValue="{{immediateGreen}}"
+                        touch="pan-x"></paper-slider>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <paper-slider id="blue" min="0" max="255" value="{{blue}}" immediateValue="{{immediateBlue}}"
+                        touch="pan-x"></paper-slider>
+        </td>
+      </tr>
+    </table>
+
+  </template>
+
+
+  <script src="caretaker-widget-dimmerrgbdevice.js"></script>
+
+</polymer-element>

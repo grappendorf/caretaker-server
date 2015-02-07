@@ -11,7 +11,7 @@ describe 'Help pages' do
 		it { should have_title 'About' }
 
 		it 'should display the application name' do
-			should have_content 'CoYoHo'
+			should have_content 'Caretaker'
 		end
 
 		it 'should display the application version' do

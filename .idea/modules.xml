@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/coyoho-server.iml" filepath="$PROJECT_DIR$/coyoho-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/caretaker-server.iml" filepath="$PROJECT_DIR$/caretaker-server.iml" />
     </modules>
   </component>
 </project>

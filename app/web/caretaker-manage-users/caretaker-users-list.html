@@ -1,0 +1,36 @@
+<link rel="import" href="../../lib/grapp-rest-resource/grapp-rest-resource.html">
+<link rel="import" href="../../lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
+<link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
+<link rel="import" href="../caretaker-data-table/caretaker-data-table.html">
+
+<polymer-element name="caretaker-users-list">
+
+  <template>
+
+    <grapp-rest-resource url="/users/:id" resource="{{users}}"></grapp-rest-resource>
+
+    <grapp-app-globals>
+      <grapp-app-global-value name="appTitle" value="models.user.other"></grapp-app-global-value>
+      <grapp-app-global-value name="appModule" value="system"></grapp-app-global-value>
+      <grapp-app-global-value name="appFunction" value="users"></grapp-app-global-value>
+    </grapp-app-globals>
+
+    <grapp-breadcrumbs>
+      <grapp-breadcrumb>{{'models.user.other'|i18n}}</grapp-breadcrumb>
+    </grapp-breadcrumbs>
+
+    <caretaker-data-table id="table" model="user" resource="{{users}}"
+                       on-data-table-edit="{{edit}}" on-data-table-new="{{new}}">
+
+      <caretaker-data-column name="email" width="30"></caretaker-data-column>
+      <caretaker-data-column name="name" width="30"></caretaker-data-column>
+      <caretaker-data-column name="roles" type="list" width="20"></caretaker-data-column>
+      <caretaker-data-column name="last_sign_in_at" type="date" width="20"></caretaker-data-column>
+
+    </caretaker-data-table>
+
+  </template>
+
+  <script src="caretaker-users-list.js"></script>
+
+</polymer-element>
