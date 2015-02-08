@@ -7,7 +7,7 @@ unless params[:x]
 	json.address device.address
 	json.description device.description
 
-	managed_device = lookup(:device_manager).device_by_id(device.as_device.id)
+	managed_device = lookup(:xbee_device_manager).device_by_id(device.as_device.id)
   if managed_device
   	json.state managed_device.current_state
   	json.connected managed_device.connected?

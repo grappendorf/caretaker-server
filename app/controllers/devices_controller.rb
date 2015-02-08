@@ -2,7 +2,7 @@ class DevicesController < ApplicationController
 
 	include SortableController
 
-	inject :device_manager
+	inject :xbee_device_manager
 
 	load_and_authorize_resource
 
@@ -24,7 +24,7 @@ class DevicesController < ApplicationController
 		@device = params[:type].singularize.camelcase.constantize.new
 		@device.update_attributes device_params(@device)
 		if @device.save
-			device_manager.add_device @device
+			xbee_device_manager.add_device @device
 			render status: :ok, nothing: true
 		else
 			render status: :bad_request, json: {errors: @device.errors}
@@ -36,7 +36,7 @@ class DevicesController < ApplicationController
 
 	def update
 		if @device.update_attributes device_params(@device)
-			device_manager.update_device @device
+			xbee_device_manager.update_device @device
 			render status: :ok, nothing: true
 		else
 			render status: :bad_request, json: {errors: @device.errors}
@@ -46,7 +46,7 @@ class DevicesController < ApplicationController
 	def destroy
 		model_name = @device.specific.class.model_name.human
 		device_name = @device.name
-		device_manager.remove_device @device.id
+		xbee_device_manager.remove_device @device.id
 		@device.destroy
 		flash[:success] = t('message.successfully_deleted', model: model_name, name: device_name)
 		redirect_to devices_path

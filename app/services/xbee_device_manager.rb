@@ -1,4 +1,4 @@
-class DeviceManager < SingletonService
+class XbeeDeviceManager < SingletonService
 
 	inject :xbee_master
 
