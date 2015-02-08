@@ -4,17 +4,17 @@ describe 'Device pages' do
 
   include ViewHelper
 
-  inject :xbee_device_manager
+  inject :device_manager
   inject :scheduler
 
   before do
-    xbee_device_manager.add_device @switch_device = Fabricate(:switch_device)
-    xbee_device_manager.add_device Fabricate :dimmer_device
-    xbee_device_manager.add_device Fabricate :remote_control_device
+    device_manager.add_device @switch_device = Fabricate(:switch_device)
+    device_manager.add_device Fabricate :dimmer_device
+    device_manager.add_device Fabricate :remote_control_device
   end
 
   after do
-    xbee_device_manager.remove_all_devices
+    device_manager.remove_all_devices
   end
 
   let(:user) { Fabricate :admin }

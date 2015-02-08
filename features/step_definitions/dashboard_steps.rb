@@ -5,7 +5,7 @@ end
 def create_switch_device
   unless @device
     @device = Fabricate :switch_device
-    lookup(:xbee_device_manager).add_device @device
+    lookup(:device_manager).add_device @device
     lookup(:scheduler).travel 1.minute
   end
 end
@@ -129,7 +129,7 @@ Then(/^i see the dashboard management view$/) do
 end
 
 When(/^the switch is unconnected$/) do
-  lookup(:xbee_device_manager).device_by_id(@device.id).disconnect
+  lookup(:device_manager).device_by_id(@device.id).disconnect
 end
 
 Then(/^it is displayed as unconnected in the dashboard$/) do
@@ -137,7 +137,7 @@ Then(/^it is displayed as unconnected in the dashboard$/) do
 end
 
 When(/^the switch is connected$/) do
-  lookup(:xbee_device_manager).device_by_id(@device.id).connect
+  lookup(:device_manager).device_by_id(@device.id).connect
   lookup(:scheduler).travel 1.minute
 end
 

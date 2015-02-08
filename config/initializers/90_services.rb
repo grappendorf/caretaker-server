@@ -14,7 +14,7 @@ module ServiceManager
     register_services
 
     unless File.basename($0) == 'rake'
-      lookup(:xbee_device_manager).start
+      lookup(:device_manager).start
       lookup(:device_script_manager).start
     end
   end
@@ -41,7 +41,7 @@ module ServiceManager
   def self.register_services
     register(:async) { ThreadStorm.new size: 2 }
     register(:xbee_master) { XbeeMaster.new }
-    register(:xbee_device_manager) { XbeeDeviceManager.new }
+    register(:device_manager) { DeviceManager.new }
     register(:device_script_manager) { DeviceScriptManager.new }
   end
 
@@ -49,7 +49,7 @@ module ServiceManager
     Rails.logger.info 'Service manager stopping' if real_mode?
     lookup(:scheduler).try :stop
     lookup(:device_script_manager).try :stop rescue nil
-    lookup(:xbee_device_manager).try :stop rescue nil
+    lookup(:device_manager).try :stop rescue nil
   end
 
 end

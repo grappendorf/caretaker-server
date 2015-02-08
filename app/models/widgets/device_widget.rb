@@ -15,7 +15,7 @@ class DeviceWidget < ActiveRecord::Base
 
   belongs_to :device, polymorphic: true
 
-  inject :xbee_device_manager
+  inject :device_manager
 
   before_save :assign_device_if_only_device_id_is_set
 
