@@ -65,5 +65,5 @@ CaretakerServer::Application.configure do
   config.active_support.deprecation = :notify
 
   # Do not eager load code on boot
-	config.eager_load = false
+  config.eager_load = false
 end

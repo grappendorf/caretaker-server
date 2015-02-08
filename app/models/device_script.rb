@@ -11,8 +11,8 @@
 
 class DeviceScript < ActiveRecord::Base
 
-	validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true
 
-	scope :search, -> (q) { where('name like ? or description like ?', "%#{q}%", "%#{q}%") }
+  scope :search, -> (q) { where('name like ? or description like ?', "%#{q}%", "%#{q}%") }
 
 end

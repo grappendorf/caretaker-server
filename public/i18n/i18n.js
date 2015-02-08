@@ -17,19 +17,19 @@ I18n.locale = null;
 I18n.PLACEHOLDER = /(?:\{\{|%\{)(.*?)(?:\}\}?)/gm;
 
 I18n.isValidNode = function(obj, node, undefined) {
-    return obj[node] !== null && obj[node] !== undefined;
+  return obj[node] !== null && obj[node] !== undefined;
 }
 
 I18n.lookup = function(scope, options) {
   var options = options || {}
-    , lookupInitialScope = scope
-    , translations = this.prepareOptions(I18n.translations)
-    , messages = translations[options.locale || I18n.currentLocale()]
-    , options = this.prepareOptions(options)
-    , currentScope
-  ;
+      , lookupInitialScope = scope
+      , translations = this.prepareOptions(I18n.translations)
+      , messages = translations[options.locale || I18n.currentLocale()]
+      , options = this.prepareOptions(options)
+      , currentScope
+      ;
 
-  if (!messages){
+  if (!messages) {
     return;
   }
 
@@ -49,7 +49,10 @@ I18n.lookup = function(scope, options) {
 
     if (!messages) {
       if (I18n.fallbacks && !options.fallback) {
-        messages = I18n.lookup(lookupInitialScope, this.prepareOptions({ locale: I18n.defaultLocale, fallback: true }, options));
+        messages = I18n.lookup(lookupInitialScope, this.prepareOptions({
+          locale: I18n.defaultLocale,
+          fallback: true
+        }, options));
       }
       break;
     }
@@ -70,9 +73,9 @@ I18n.lookup = function(scope, options) {
 //
 I18n.prepareOptions = function() {
   var options = {}
-    , opts
-    , count = arguments.length
-  ;
+      , opts
+      , count = arguments.length
+      ;
 
   for (var i = 0; i < count; i++) {
     opts = arguments[i];
@@ -94,10 +97,10 @@ I18n.prepareOptions = function() {
 I18n.interpolate = function(message, options) {
   options = this.prepareOptions(options);
   var matches = message.match(this.PLACEHOLDER)
-    , placeholder
-    , value
-    , name
-  ;
+      , placeholder
+      , value
+      , name
+      ;
 
   if (!matches) {
     return message;
@@ -133,7 +136,7 @@ I18n.translate = function(scope, options) {
     } else {
       return this.interpolate(translation, options);
     }
-  } catch(err) {
+  } catch (err) {
     return this.missingTranslation(scope);
   }
 };
@@ -162,7 +165,8 @@ I18n.parseDate = function(date) {
   // we have a date, so just return it.
   if (typeof(date) == "object") {
     return date;
-  };
+  }
+  ;
 
   // it matches the following formats:
   //   yyyy-mm-dd
@@ -205,8 +209,8 @@ I18n.parseDate = function(date) {
 
 I18n.toTime = function(scope, d) {
   var date = this.parseDate(d)
-    , format = this.lookup(scope)
-  ;
+      , format = this.lookup(scope)
+      ;
 
   if (date.toString().match(/invalid/i)) {
     return date.toString();
@@ -229,19 +233,19 @@ I18n.strftime = function(date, format) {
   options.meridian = options.meridian || ["AM", "PM"];
 
   var weekDay = date.getDay()
-    , day = date.getDate()
-    , year = date.getFullYear()
-    , month = date.getMonth() + 1
-    , hour = date.getHours()
-    , hour12 = hour
-    , meridian = hour > 11 ? 1 : 0
-    , secs = date.getSeconds()
-    , mins = date.getMinutes()
-    , offset = date.getTimezoneOffset()
-    , absOffsetHours = Math.floor(Math.abs(offset / 60))
-    , absOffsetMinutes = Math.abs(offset) - (absOffsetHours * 60)
-    , timezoneoffset = (offset > 0 ? "-" : "+") + (absOffsetHours.toString().length < 2 ? "0" + absOffsetHours : absOffsetHours) + (absOffsetMinutes.toString().length < 2 ? "0" + absOffsetMinutes : absOffsetMinutes)
-  ;
+      , day = date.getDate()
+      , year = date.getFullYear()
+      , month = date.getMonth() + 1
+      , hour = date.getHours()
+      , hour12 = hour
+      , meridian = hour > 11 ? 1 : 0
+      , secs = date.getSeconds()
+      , mins = date.getMinutes()
+      , offset = date.getTimezoneOffset()
+      , absOffsetHours = Math.floor(Math.abs(offset / 60))
+      , absOffsetMinutes = Math.abs(offset) - (absOffsetHours * 60)
+      , timezoneoffset = (offset > 0 ? "-" : "+") + (absOffsetHours.toString().length < 2 ? "0" + absOffsetHours : absOffsetHours) + (absOffsetMinutes.toString().length < 2 ? "0" + absOffsetMinutes : absOffsetMinutes)
+      ;
 
   if (hour12 > 12) {
     hour12 = hour12 - 12;
@@ -284,25 +288,25 @@ I18n.strftime = function(date, format) {
 
 I18n.toNumber = function(number, options) {
   options = this.prepareOptions(
-    options,
-    this.lookup("number.format"),
-    {precision: 3, separator: ".", delimiter: ",", strip_insignificant_zeros: false}
+      options,
+      this.lookup("number.format"),
+      {precision: 3, separator: ".", delimiter: ",", strip_insignificant_zeros: false}
   );
 
   var negative = number < 0
-    , string = Math.abs(number).toFixed(options.precision).toString()
-    , parts = string.split(".")
-    , precision
-    , buffer = []
-    , formattedNumber
-  ;
+      , string = Math.abs(number).toFixed(options.precision).toString()
+      , parts = string.split(".")
+      , precision
+      , buffer = []
+      , formattedNumber
+      ;
 
   number = parts[0];
   precision = parts[1];
 
   while (number.length > 0) {
     buffer.unshift(number.substr(Math.max(0, number.length - 3), 3));
-    number = number.substr(0, number.length -3);
+    number = number.substr(0, number.length - 3);
   }
 
   formattedNumber = buffer.join(options.delimiter);
@@ -317,13 +321,13 @@ I18n.toNumber = function(number, options) {
 
   if (options.strip_insignificant_zeros) {
     var regex = {
-        separator: new RegExp(options.separator.replace(/\./, "\\.") + "$")
+      separator: new RegExp(options.separator.replace(/\./, "\\.") + "$")
       , zeros: /0+$/
     };
 
     formattedNumber = formattedNumber
-      .replace(regex.zeros, "")
-      .replace(regex.separator, "")
+        .replace(regex.zeros, "")
+        .replace(regex.separator, "")
     ;
   }
 
@@ -332,16 +336,16 @@ I18n.toNumber = function(number, options) {
 
 I18n.toCurrency = function(number, options) {
   options = this.prepareOptions(
-    options,
-    this.lookup("number.currency.format"),
-    this.lookup("number.format"),
-    {unit: "$", precision: 2, format: "%u%n", delimiter: ",", separator: "."}
+      options,
+      this.lookup("number.currency.format"),
+      this.lookup("number.format"),
+      {unit: "$", precision: 2, format: "%u%n", delimiter: ",", separator: "."}
   );
 
   number = this.toNumber(number, options);
   number = options.format
-    .replace("%u", options.unit)
-    .replace("%n", number)
+      .replace("%u", options.unit)
+      .replace("%n", number)
   ;
 
   return number;
@@ -349,11 +353,11 @@ I18n.toCurrency = function(number, options) {
 
 I18n.toHumanSize = function(number, options) {
   var kb = 1024
-    , size = number
-    , iterations = 0
-    , unit
-    , precision
-  ;
+      , size = number
+      , iterations = 0
+      , unit
+      , precision
+      ;
 
   while (size >= kb && iterations < 4) {
     size = size / kb;
@@ -369,14 +373,14 @@ I18n.toHumanSize = function(number, options) {
   }
 
   options = this.prepareOptions(
-    options,
-    {precision: precision, format: "%n%u", delimiter: ""}
+      options,
+      {precision: precision, format: "%n%u", delimiter: ""}
   );
 
   number = this.toNumber(size, options);
   number = options.format
-    .replace("%u", unit)
-    .replace("%n", number)
+      .replace("%u", unit)
+      .replace("%n", number)
   ;
 
   return number;
@@ -384,10 +388,10 @@ I18n.toHumanSize = function(number, options) {
 
 I18n.toPercentage = function(number, options) {
   options = this.prepareOptions(
-    options,
-    this.lookup("number.percentage.format"),
-    this.lookup("number.format"),
-    {precision: 3, separator: ".", delimiter: ""}
+      options,
+      this.lookup("number.percentage.format"),
+      this.lookup("number.format"),
+      {precision: 3, separator: ".", delimiter: ""}
   );
 
   number = this.toNumber(number, options);
@@ -399,7 +403,8 @@ I18n.pluralize = function(count, scope, options) {
 
   try {
     translation = this.lookup(scope, options);
-  } catch (error) {}
+  } catch (error) {
+  }
 
   if (!translation) {
     return this.missingTranslation(scope);
@@ -409,12 +414,12 @@ I18n.pluralize = function(count, scope, options) {
   options = this.prepareOptions(options);
   options.count = count.toString();
 
-  switch(Math.abs(count)) {
+  switch (Math.abs(count)) {
     case 0:
       message = this.isValidNode(translation, "zero") ? translation.zero :
-                this.isValidNode(translation, "none") ? translation.none :
-                this.isValidNode(translation, "other") ? translation.other :
-                this.missingTranslation(scope, "zero");
+          this.isValidNode(translation, "none") ? translation.none :
+              this.isValidNode(translation, "other") ? translation.other :
+                  this.missingTranslation(scope, "zero");
       break;
     case 1:
       message = this.isValidNode(translation, "one") ? translation.one : this.missingTranslation(scope, "one");
@@ -428,8 +433,8 @@ I18n.pluralize = function(count, scope, options) {
 
 I18n.missingTranslation = function() {
   var message = '[missing "' + this.currentLocale()
-    , count = arguments.length
-  ;
+      , count = arguments.length
+      ;
 
   for (var i = 0; i < count; i++) {
     message += "." + arguments[i];

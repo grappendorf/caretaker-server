@@ -14,16 +14,16 @@
 
 class Widget < ActiveRecord::Base
 
-	is_a_superclass
+  is_a_superclass
 
-	belongs_to :dashboard
+  belongs_to :dashboard
 
-	inherit WidgetBase
+  inherit WidgetBase
 
-	default_scope { order 'position' }
+  default_scope { order 'position' }
 
-	def type
-		specific.class.name
-	end
+  def type
+    specific.class.name
+  end
 
 end

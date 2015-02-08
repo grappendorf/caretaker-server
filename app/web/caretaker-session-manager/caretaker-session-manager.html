@@ -9,11 +9,11 @@
   <template>
 
     <caretaker-login-dialog id="loginDialog" email="{{user.email}}" password="{{password}}"
-                         on-login="{{login}}">
+                            on-login="{{login}}">
     </caretaker-login-dialog>
 
     <caretaker-password-dialog id="passwordDialog" password="{{newPassword}}"
-                            on-submit="{{processPasswordChange}}">
+                               on-submit="{{processPasswordChange}}">
     </caretaker-password-dialog>
 
     <caretaker-profile-dialog id="profileDialog" on-submit="{{processProfileUpdate}}">
@@ -24,23 +24,23 @@
                        on-core-localstorage-load="{{connectedLoaded}}"></core-localstorage>
 
     <caretaker-core-ajax id="signInRequest"
-                      url="/session/sign_in" method="POST" handleAs="json"
-                      params='{"user[email]": "{{user.email}}", "user[password]": "{{password}}"}'
-                      on-core-response="{{loginSucceeded}}" on-core-error="{{loginFailed}}">
+                         url="/session/sign_in" method="POST" handleAs="json"
+                         params='{"user[email]": "{{user.email}}", "user[password]": "{{password}}"}'
+                         on-core-response="{{loginSucceeded}}" on-core-error="{{loginFailed}}">
     </caretaker-core-ajax>
 
     <caretaker-core-ajax id="signOutRequest"
-                      url="/session/sign_out" method="GET" handleAs="json"
-                      on-core-response="{{logoutSucceeded}}" on-core-error="{{logoutFailed}}">
+                         url="/session/sign_out" method="GET" handleAs="json"
+                         on-core-response="{{logoutSucceeded}}" on-core-error="{{logoutFailed}}">
     </caretaker-core-ajax>
 
     <caretaker-core-ajax id="changePasswordRequest"
-                      url="/users/{{user.id}}" method="PUT" handleAs="json"
-                      params='{
+                         url="/users/{{user.id}}" method="PUT" handleAs="json"
+                         params='{
 												"id": {{user.id}},
 												"user[password]": "{{newPassword}}",
 												"user[password_confirmation]": "{{newPassword}}"}'
-                      on-core-response="{{passwordChangeSucceeded}}" on-core-error="{{passwordChangeFailed}}">
+                         on-core-response="{{passwordChangeSucceeded}}" on-core-error="{{passwordChangeFailed}}">
     </caretaker-core-ajax>
 
   </template>

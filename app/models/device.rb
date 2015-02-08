@@ -12,15 +12,15 @@
 
 class Device < ActiveRecord::Base
 
-	is_a_superclass
+  is_a_superclass
 
-	inherit DeviceBase
+  inherit DeviceBase
 
-	validates :name, presence: true, uniqueness: true
-	validates :address, presence: true
+  validates :name, presence: true, uniqueness: true
+  validates :address, presence: true
 
-	scope :search, -> (q) { where('name like ? or address like ? or description like ?', "%#{q}%", "%#{q}%", "%#{q}%") }
+  scope :search, -> (q) { where('name like ? or address like ? or description like ?', "%#{q}%", "%#{q}%", "%#{q}%") }
 
-	scope :search_names, -> (q) { where('name like ?', "%#{q}%") }
+  scope :search_names, -> (q) { where('name like ?', "%#{q}%") }
 
 end

@@ -16,12 +16,12 @@ require 'spec_helper'
 
 describe Widget do
 
-	subject(:widget) { Fabricate.build :widget }
+  subject(:widget) { Fabricate.build :widget }
 
-	it { should respond_to :dashboard }
-	it { should respond_to :title }
-	it { should respond_to :width}
-	it { should respond_to :height}
-	it { should respond_to :position}
+  it { should respond_to :dashboard }
+  it { should respond_to :title }
+  it { should respond_to :width }
+  it { should respond_to :height }
+  it { should respond_to :position }
 
 end

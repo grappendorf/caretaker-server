@@ -10,7 +10,7 @@ CaretakerServer::Application.configure do
   # Configure static asset server for tests with Cache-Control for performance
   config.serve_static_assets = true
 
-	# Commented out because of warning 'Rack::File headers parameter replaces cache_control after Rack 1.5.'
+  # Commented out because of warning 'Rack::File headers parameter replaces cache_control after Rack 1.5.'
   #config.static_cache_control = "public, max-age=3600"
 
   # Show full error reports and disable caching
@@ -36,5 +36,5 @@ CaretakerServer::Application.configure do
   # Do not eager load code on boot
   config.eager_load = false
 
-	#config.ember.variant = :production
+  #config.ember.variant = :production
 end

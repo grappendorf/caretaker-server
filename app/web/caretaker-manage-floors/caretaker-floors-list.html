@@ -24,12 +24,13 @@
 
     <grapp-breadcrumbs>
       <grapp-breadcrumb href="/#/buildings">{{'models.building.other'|i18n}}</grapp-breadcrumb>
-      <grapp-breadcrumb href="/#/buildings/{{buildingId}}">{{buildingsNames | nameOfBuilding(buildingId)}}</grapp-breadcrumb>
+      <grapp-breadcrumb href="/#/buildings/{{buildingId}}">{{buildingsNames | nameOfBuilding(buildingId)}}
+      </grapp-breadcrumb>
       <grapp-breadcrumb>{{'models.floor.other'|i18n}}</grapp-breadcrumb>
     </grapp-breadcrumbs>
 
     <caretaker-data-table id="table" model="floor" resource="{{floors}}" searchText="{{searchText}}"
-                       on-data-table-edit="{{edit}}" on-data-table-new="{{new}}">
+                          on-data-table-edit="{{edit}}" on-data-table-new="{{new}}">
 
       <caretaker-data-column name="name" width="30"></caretaker-data-column>
       <caretaker-data-column name="description" width="70"></caretaker-data-column>
@@ -38,7 +39,7 @@
 
       <caretaker-toolbar-extension>
         <caretaker-select items="{{buildingsNames}}" selectedId="{{buildingId}}"
-                       placeholder="{{'models.building.one'|i18n}}..."></caretaker-select>
+                          placeholder="{{'models.building.one'|i18n}}..."></caretaker-select>
       </caretaker-toolbar-extension>
 
     </caretaker-data-table>

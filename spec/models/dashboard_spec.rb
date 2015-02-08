@@ -12,20 +12,20 @@ require 'spec_helper'
 
 describe Dashboard do
 
-	subject(:dashboard) { Fabricate.build :dashboard }
+  subject(:dashboard) { Fabricate.build :dashboard }
 
-	it { should respond_to :name }
-	it { should respond_to :default }
-	it { should respond_to :user }
-	it { should respond_to :widgets }
+  it { should respond_to :name }
+  it { should respond_to :default }
+  it { should respond_to :user }
+  it { should respond_to :widgets }
 
-	describe 'is invalid if' do
+  describe 'is invalid if' do
 
-		it 'has an empty name' do
-			subject.name = ''
-			should_not be_valid
-		end
+    it 'has an empty name' do
+      subject.name = ''
+      should_not be_valid
+    end
 
-	end
+  end
 
 end

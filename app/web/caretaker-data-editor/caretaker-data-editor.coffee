@@ -83,4 +83,4 @@ Polymer 'caretaker-data-editor',
     @modified = true
 
   isValidItemId: (id) ->
-    ! isNaN(id)
+    !isNaN(id)

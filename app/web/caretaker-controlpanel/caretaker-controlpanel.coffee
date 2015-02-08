@@ -33,7 +33,7 @@ Polymer 'caretaker-controlpanel',
       for item,index in packery.getItemElements()
         if (item.widget.position != index)
           item.widget.position = index
-          self.widgets.update item.widget.id, position:  index
+          self.widgets.update item.widget.id, position: index
 
   defaultDashboardSucceeded: (e) ->
     @dashboardId = e.detail.response.id
@@ -94,7 +94,7 @@ Polymer 'caretaker-controlpanel',
         self.$.newWidgetDialog.end()
         self.$.dashboardRequest.go()
       ,
-        self.$.newWidgetDialog.end()
+          self.$.newWidgetDialog.end()
 
   editWidgetProperties: (e) ->
     self = @
@@ -103,7 +103,7 @@ Polymer 'caretaker-controlpanel',
       self.widgets.update widget.id, widget, ->
         self.$.editWidgetDialog.end()
       ,
-        self.$.editWidgetDialog.end()
+          self.$.editWidgetDialog.end()
 
   deleteWidget: (e) ->
     self = @

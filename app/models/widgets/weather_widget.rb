@@ -7,19 +7,19 @@
 
 class WeatherWidget < ActiveRecord::Base
 
-	inherit WidgetBase
+  inherit WidgetBase
 
-	is_a :widget
+  is_a :widget
 
-	before_validation :set_default_title
+  before_validation :set_default_title
 
-	def self.attr_accessible
-		Widget.attr_accessible
-	end
+  def self.attr_accessible
+    Widget.attr_accessible
+  end
 
-	private
-	def set_default_title
-		self.title = 'Weather' unless self.title.present?
-	end
+  private
+  def set_default_title
+    self.title = 'Weather' unless self.title.present?
+  end
 
 end

@@ -18,25 +18,25 @@
 
 class User < ActiveRecord::Base
 
-	rolify
+  rolify
 
-	has_many :dashboards, dependent: :destroy do
-		def default
-			where(default: true).first
-		end
-	end
+  has_many :dashboards, dependent: :destroy do
+    def default
+      where(default: true).first
+    end
+  end
 
-	validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true
 
-	scope :search, -> (q) { where('name like ? or email like ?', "%#{q}%", "%#{q}%") }
+  scope :search, -> (q) { where('name like ? or email like ?', "%#{q}%", "%#{q}%") }
 
-	def to_s
-		%Q{"#{name}" <#{email}>}
-	end
+  def to_s
+    %Q{"#{name}" <#{email}>}
+  end
 
-	# Devise
+  # Devise
 
-	# Include default devise modules. Others available are:
+  # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :registerable,
   # :lockable, and :omniauthable
   devise :database_authenticatable, :recoverable, :rememberable, :trackable, :validatable, :timeoutable

@@ -44,7 +44,8 @@
           </span>
         </core-toolbar>
 
-        <caretaker-app-drawer fit router="{{$.router}}" sessionManager="{{$.sessionManager}}" app="{{app}}"></caretaker-app-drawer>
+        <caretaker-app-drawer fit router="{{$.router}}" sessionManager="{{$.sessionManager}}"
+                              app="{{app}}"></caretaker-app-drawer>
 
       </core-header-panel>
 
@@ -52,7 +53,7 @@
                          on-grapp-authentication-error="{{authenticationError}}">
 
         <caretaker-app-toolbar class="core-header" app="{{app}}"
-                            sessionManager="{{$.sessionManager}}">
+                               sessionManager="{{$.sessionManager}}">
         </caretaker-app-toolbar>
 
         <div id="content">
@@ -67,10 +68,13 @@
             <app-route path="/buildings/:id" element="caretaker-buildings-editor" bindRouter></app-route>
             <app-route path="/floors" element="caretaker-floors-list" bindRouter></app-route>
             <app-route path="/buildings/:buildingId/floors" element="caretaker-floors-list" bindRouter></app-route>
-            <app-route path="/buildings/:buildingId/floors/:id" element="caretaker-floors-editor" bindRouter></app-route>
+            <app-route path="/buildings/:buildingId/floors/:id" element="caretaker-floors-editor"
+                       bindRouter></app-route>
             <app-route path="/rooms" element="caretaker-rooms-list" bindRouter></app-route>
-            <app-route path="/buildings/:buildingId/floors/:floorId/rooms" element="caretaker-rooms-list" bindRouter></app-route>
-            <app-route path="/buildings/:buildingId/floors/:floorId/rooms/:id" element="caretaker-rooms-editor" bindRouter></app-route>
+            <app-route path="/buildings/:buildingId/floors/:floorId/rooms" element="caretaker-rooms-list"
+                       bindRouter></app-route>
+            <app-route path="/buildings/:buildingId/floors/:floorId/rooms/:id" element="caretaker-rooms-editor"
+                       bindRouter></app-route>
             <app-route path="/users" element="caretaker-users-list" bindRouter></app-route>
             <app-route path="/users/:id" element="caretaker-users-editor" bindRouter></app-route>
             <app-route path="/dashboards" element="caretaker-dashboards-list" bindRouter></app-route>

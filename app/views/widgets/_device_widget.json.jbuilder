@@ -1,3 +1,3 @@
 json.device do
-	json.partial! "devices/device", device: widget.device
+  json.partial! "devices/device", device: widget.device
 end

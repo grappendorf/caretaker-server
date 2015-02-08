@@ -1,24 +1,24 @@
 class Ability
-	include CanCan::Ability
+  include CanCan::Ability
 
-	def initialize(user)
+  def initialize(user)
 
-		alias_action :names, :to => :read
+    alias_action :names, :to => :read
 
-		user ||= User.new
+    user ||= User.new
 
-		if user.has_role? :admin
-			can :manage, :all
-		elsif user.has_role? :manager
-			can :manage, Dashboard, user: user
-			can :manage, Widget, dashboard: {user: user}
-			can :manage, [Device, DeviceScript, Room, Floor, Building]
-		elsif user.has_role? :user
-			can :manage, Dashboard, user: user
-			can :manage, Widget, dashboard: {user: user}
-			can :read, [Device] + Device.models
-			can [:read, :update], User, id: user.id
-		end
+    if user.has_role? :admin
+      can :manage, :all
+    elsif user.has_role? :manager
+      can :manage, Dashboard, user: user
+      can :manage, Widget, dashboard: { user: user }
+      can :manage, [Device, DeviceScript, Room, Floor, Building]
+    elsif user.has_role? :user
+      can :manage, Dashboard, user: user
+      can :manage, Widget, dashboard: { user: user }
+      can :read, [Device] + Device.models
+      can [:read, :update], User, id: user.id
+    end
 
-	end
+  end
 end

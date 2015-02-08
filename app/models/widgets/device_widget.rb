@@ -9,30 +9,30 @@
 
 class DeviceWidget < ActiveRecord::Base
 
-	inherit WidgetBase
+  inherit WidgetBase
 
-	is_a :widget
+  is_a :widget
 
-	belongs_to :device, polymorphic: true
+  belongs_to :device, polymorphic: true
 
-	inject :xbee_device_manager
+  inject :xbee_device_manager
 
-	before_save :assign_device_if_only_device_id_is_set
+  before_save :assign_device_if_only_device_id_is_set
 
-	def type
-		"#{device.class.name}Widget"
-	end
+  def type
+    "#{device.class.name}Widget"
+  end
 
-	def title
-		as_widget.title.present? ? as_widget.title : device.name
-	end
+  def title
+    as_widget.title.present? ? as_widget.title : device.name
+  end
 
-	def self.attr_accessible
-		Widget.attr_accessible + [:device_id]
-	end
+  def self.attr_accessible
+    Widget.attr_accessible + [:device_id]
+  end
 
-	private
-	def assign_device_if_only_device_id_is_set
-		self.device = Device.find(device_id).specific if device_type.nil?
-	end
+  private
+  def assign_device_if_only_device_id_is_set
+    self.device = Device.find(device_id).specific if device_type.nil?
+  end
 end

@@ -1,11 +1,11 @@
 @javascript
 Feature: Show dashboard after login
 
-	Background:
+  Background:
 
-		Given a user with a default dashboard
+    Given a user with a default dashboard
 
-	Scenario:
+  Scenario:
 
-		When i log in
-		Then i see the dashboard
+    When i log in
+    Then i see the dashboard

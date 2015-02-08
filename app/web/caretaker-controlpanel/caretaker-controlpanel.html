@@ -147,18 +147,18 @@
     </paper-toast>
 
     <caretaker-core-ajax id="defaultDashboardRequest" auto
-                      url="/dashboards/default" method="GET" handleAs="json"
-                      on-core-response="{{defaultDashboardSucceeded}}">
+                         url="/dashboards/default" method="GET" handleAs="json"
+                         on-core-response="{{defaultDashboardSucceeded}}">
     </caretaker-core-ajax>
 
     <caretaker-core-ajax id="dashboardRequest"
-                      url="/dashboards/{{dashboardId}}" method="GET" handleAs="json"
-                      on-core-response="{{dashboardSucceeded}}" on-core-error="{{dashboardFailed}}">
+                         url="/dashboards/{{dashboardId}}" method="GET" handleAs="json"
+                         on-core-response="{{dashboardSucceeded}}" on-core-error="{{dashboardFailed}}">
     </caretaker-core-ajax>
 
     <caretaker-core-ajax id="dashboardNamesRequest"
-                      url="/dashboards/names" method="GET" handleAs="json"
-                      response="{{dashboardNames}}">
+                         url="/dashboards/names" method="GET" handleAs="json"
+                         response="{{dashboardNames}}">
     </caretaker-core-ajax>
 
     <grapp-rest-resource url="/dashboards/:id" resource="{{dashboards}}"></grapp-rest-resource>
@@ -178,59 +178,59 @@
     <caretaker-controlpanel-new-dashboard-dialog id="newDashboardDialog"></caretaker-controlpanel-new-dashboard-dialog>
 
     <caretaker-controlpanel-edit-dashboard-dialog id="editDashboardDialog"
-                                               dashboard="{{dashboard}}"></caretaker-controlpanel-edit-dashboard-dialog>
+                                                  dashboard="{{dashboard}}"></caretaker-controlpanel-edit-dashboard-dialog>
 
     <caretaker-controlpanel-new-widget-dialog id="newWidgetDialog"></caretaker-controlpanel-new-widget-dialog>
 
     <caretaker-controlpanel-edit-widget-dialog id="editWidgetDialog"></caretaker-controlpanel-edit-widget-dialog>
 
     <caretaker-confirmation-dialog id="deleteConfirmDialog" heading="{{'title.delete_confirmation' | i18n}}"
-                                message="{{deleteConfirmMessage}}">
+                                   message="{{deleteConfirmMessage}}">
     </caretaker-confirmation-dialog>
 
     <template id="CameraDeviceWidget">
       <caretaker-widget-cameradevice id="content" widget="{{widget}}"
-                                  websocket="{{$.websocket}}"></caretaker-widget-cameradevice>
+                                     websocket="{{$.websocket}}"></caretaker-widget-cameradevice>
     </template>
 
     <template id="DimmerDeviceWidget">
       <caretaker-widget-dimmerdevice id="content" widget="{{widget}}"
-                                websocket="{{$.websocket}}"></caretaker-widget-dimmerdevice>
+                                     websocket="{{$.websocket}}"></caretaker-widget-dimmerdevice>
     </template>
 
     <template id="DimmerRgbDeviceWidget">
       <caretaker-widget-dimmerrgbdevice id="content" widget="{{widget}}"
-                                     websocket="{{$.websocket}}"></caretaker-widget-dimmerrgbdevice>
+                                        websocket="{{$.websocket}}"></caretaker-widget-dimmerrgbdevice>
     </template>
 
     <template id="EasyvrDeviceWidget">
       <caretaker-widget-easyvrdevice id="content" widget="{{widget}}"
-                                  websocket="{{$.websocket}}"></caretaker-widget-easyvrdevice>
+                                     websocket="{{$.websocket}}"></caretaker-widget-easyvrdevice>
     </template>
 
     <template id="IpCameraDeviceWidget">
       <caretaker-widget-ipcameradevice id="content" widget="{{widget}}"
-                                    websocket="{{$.websocket}}"></caretaker-widget-ipcameradevice>
+                                       websocket="{{$.websocket}}"></caretaker-widget-ipcameradevice>
     </template>
 
     <template id="SwitchDeviceWidget">
       <caretaker-widget-switchdevice id="content" widget="{{widget}}"
-                                  websocket="{{$.websocket}}"></caretaker-widget-switchdevice>
+                                     websocket="{{$.websocket}}"></caretaker-widget-switchdevice>
     </template>
 
     <template id="RemoteControlDeviceWidget">
       <caretaker-widget-remotecontroldevice id="content" widget="{{widget}}"
-                                         websocket="{{$.websocket}}"></caretaker-widget-remotecontroldevice>
+                                            websocket="{{$.websocket}}"></caretaker-widget-remotecontroldevice>
     </template>
 
     <template id="ReflowOvenDeviceWidget">
       <caretaker-widget-reflowovendevice id="content" widget="{{widget}}"
-                                      websocket="{{$.websocket}}"></caretaker-widget-reflowovendevice>
+                                         websocket="{{$.websocket}}"></caretaker-widget-reflowovendevice>
     </template>
 
     <template id="RobotDeviceWidget">
       <caretaker-widget-robotdevice id="content" widget="{{widget}}"
-                                 websocket="{{$.websocket}}"></caretaker-widget-robotdevice>
+                                    websocket="{{$.websocket}}"></caretaker-widget-robotdevice>
     </template>
 
     <template id="WeatherWidget">

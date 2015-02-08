@@ -1,6 +1,6 @@
 class HelpController < ApplicationController
 
-	def about
-	end
+  def about
+  end
 
 end

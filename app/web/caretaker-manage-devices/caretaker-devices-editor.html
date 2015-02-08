@@ -33,7 +33,8 @@
       </caretaker-data-fieldset>
 
       <template if="{{$.editor.item.type === 'CameraDevice'}}">
-        <caretaker-data-fieldset label="{{'models.camera_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+        <caretaker-data-fieldset label="{{'models.camera_device.one'|i18n}}"
+                                 image="/images/{{$.editor.item.large_icon}}">
           <caretaker-data-field name="host" model="camera_device"></caretaker-data-field>
           <caretaker-data-field name="port" model="camera_device"></caretaker-data-field>
           <caretaker-data-field name="user" model="camera_device"></caretaker-data-field>
@@ -43,24 +44,28 @@
       </template>
 
       <template if="{{$.editor.item.type === 'DimmerDevice'}}">
-        <caretaker-data-fieldset label="{{'models.dimmer_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+        <caretaker-data-fieldset label="{{'models.dimmer_device.one'|i18n}}"
+                                 image="/images/{{$.editor.item.large_icon}}">
         </caretaker-data-fieldset>
       </template>
 
       <template if="{{$.editor.item.type === 'DimmerRgbDevice'}}">
-        <caretaker-data-fieldset label="{{'models.dimmer_rgb_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+        <caretaker-data-fieldset label="{{'models.dimmer_rgb_device.one'|i18n}}"
+                                 image="/images/{{$.editor.item.large_icon}}">
         </caretaker-data-fieldset>
       </template>
 
       <template if="{{$.editor.item.type === 'EasyvrDevice'}}">
-        <caretaker-data-fieldset label="{{'models.easyvr_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+        <caretaker-data-fieldset label="{{'models.easyvr_device.one'|i18n}}"
+                                 image="/images/{{$.editor.item.large_icon}}">
           <caretaker-data-field name="num_buttons" model="easyvr_device"></caretaker-data-field>
           <caretaker-data-field name="buttons_per_row" model="easyvr_device"></caretaker-data-field>
         </caretaker-data-fieldset>
       </template>
 
       <template if="{{$.editor.item.type === 'IpCameraDevice'}}">
-        <caretaker-data-fieldset label="{{'models.ip_camera_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+        <caretaker-data-fieldset label="{{'models.ip_camera_device.one'|i18n}}"
+                                 image="/images/{{$.editor.item.large_icon}}">
           <caretaker-data-field name="host" model="ip_camera_device"></caretaker-data-field>
           <caretaker-data-field name="port" model="ip_camera_device"></caretaker-data-field>
           <caretaker-data-field name="user" model="ip_camera_device"></caretaker-data-field>
@@ -70,24 +75,28 @@
       </template>
 
       <template if="{{$.editor.item.type === 'ReflowOvenDevice'}}">
-        <caretaker-data-fieldset label="{{'models.reflow_oven_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+        <caretaker-data-fieldset label="{{'models.reflow_oven_device.one'|i18n}}"
+                                 image="/images/{{$.editor.item.large_icon}}">
         </caretaker-data-fieldset>
       </template>
 
       <template if="{{$.editor.item.type === 'RemoteControlDevice'}}">
-        <caretaker-data-fieldset label="{{'models.remote_control_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+        <caretaker-data-fieldset label="{{'models.remote_control_device.one'|i18n}}"
+                                 image="/images/{{$.editor.item.large_icon}}">
           <caretaker-data-field name="num_buttons" model="remote_control_device"></caretaker-data-field>
           <caretaker-data-field name="buttons_per_row" model="remote_control_device"></caretaker-data-field>
         </caretaker-data-fieldset>
       </template>
 
       <template if="{{$.editor.item.type === 'RobotDevice'}}">
-        <caretaker-data-fieldset label="{{'models.robot_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+        <caretaker-data-fieldset label="{{'models.robot_device.one'|i18n}}"
+                                 image="/images/{{$.editor.item.large_icon}}">
         </caretaker-data-fieldset>
       </template>
 
       <template if="{{$.editor.item.type === 'SwitchDevice'}}">
-        <caretaker-data-fieldset label="{{'models.switch_device.one'|i18n}}" image="/images/{{$.editor.item.large_icon}}">
+        <caretaker-data-fieldset label="{{'models.switch_device.one'|i18n}}"
+                                 image="/images/{{$.editor.item.large_icon}}">
           <caretaker-data-field name="num_switches" model="switch_device"></caretaker-data-field>
           <caretaker-data-field name="switches_per_row" model="switch_device"></caretaker-data-field>
         </caretaker-data-fieldset>

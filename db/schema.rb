@@ -21,37 +21,37 @@ ActiveRecord::Schema.define(version: 20141222100947) do
   add_index "buildings", ["name"], name: "index_buildings_on_name"
 
   create_table "camera_devices", force: true do |t|
-    t.string  "host"
+    t.string "host"
     t.integer "port"
-    t.string  "user"
-    t.string  "password"
-    t.string  "refresh_interval"
+    t.string "user"
+    t.string "password"
+    t.string "refresh_interval"
   end
 
   create_table "dashboards", force: true do |t|
-    t.string  "name"
+    t.string "name"
     t.boolean "default"
     t.integer "user_id"
   end
 
   create_table "device_scripts", force: true do |t|
-    t.string  "name"
-    t.string  "description"
-    t.text    "script"
+    t.string "name"
+    t.string "description"
+    t.text "script"
     t.boolean "enabled"
   end
 
   create_table "device_widgets", force: true do |t|
     t.integer "device_id"
-    t.string  "device_type"
+    t.string "device_type"
   end
 
   create_table "devices", force: true do |t|
     t.integer "as_device_id"
-    t.string  "as_device_type"
-    t.string  "name"
-    t.string  "address"
-    t.string  "description"
+    t.string "as_device_type"
+    t.string "name"
+    t.string "address"
+    t.string "description"
   end
 
   add_index "devices", ["as_device_id", "as_device_type"], name: "index_devices_on_as_device_id_and_as_device_type"
@@ -69,19 +69,19 @@ ActiveRecord::Schema.define(version: 20141222100947) do
   end
 
   create_table "floors", force: true do |t|
-    t.string  "name"
-    t.string  "description"
+    t.string "name"
+    t.string "description"
     t.integer "building_id"
   end
 
   add_index "floors", ["name"], name: "index_floors_on_name"
 
   create_table "ip_camera_devices", force: true do |t|
-    t.string  "host"
+    t.string "host"
     t.integer "port"
-    t.string  "user"
-    t.string  "password"
-    t.string  "refresh_interval"
+    t.string "user"
+    t.string "password"
+    t.string "refresh_interval"
   end
 
   create_table "reflow_oven_devices", force: true do |t|
@@ -96,17 +96,17 @@ ActiveRecord::Schema.define(version: 20141222100947) do
   end
 
   create_table "roles", force: true do |t|
-    t.string  "name"
+    t.string "name"
     t.integer "resource_id"
-    t.string  "resource_type"
+    t.string "resource_type"
   end
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
 
   create_table "rooms", force: true do |t|
-    t.string  "number"
-    t.string  "description"
+    t.string "number"
+    t.string "description"
     t.integer "floor_id"
   end
 
@@ -118,17 +118,17 @@ ActiveRecord::Schema.define(version: 20141222100947) do
   end
 
   create_table "users", force: true do |t|
-    t.string  "name"
-    t.string  "email",                  default: ""
-    t.string  "encrypted_password",     default: ""
-    t.string  "reset_password_token"
-    t.time    "reset_password_sent_at"
-    t.time    "remember_created_at"
-    t.integer "sign_in_count",          default: 0
-    t.time    "current_sign_in_at"
-    t.time    "last_sign_in_at"
-    t.string  "current_sign_in_ip"
-    t.string  "last_sign_in_ip"
+    t.string "name"
+    t.string "email", default: ""
+    t.string "encrypted_password", default: ""
+    t.string "reset_password_token"
+    t.time "reset_password_sent_at"
+    t.time "remember_created_at"
+    t.integer "sign_in_count", default: 0
+    t.time "current_sign_in_at"
+    t.time "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
   end
 
   add_index "users", ["email"], name: "index_users_on_email"
@@ -145,10 +145,10 @@ ActiveRecord::Schema.define(version: 20141222100947) do
 
   create_table "widgets", force: true do |t|
     t.integer "as_widget_id"
-    t.string  "as_widget_type"
-    t.integer "width",          default: 1
-    t.integer "height",         default: 1
-    t.string  "title"
+    t.string "as_widget_type"
+    t.integer "width", default: 1
+    t.integer "height", default: 1
+    t.string "title"
     t.integer "dashboard_id"
     t.integer "position"
   end

@@ -58,7 +58,8 @@
                 <div class="col-md-6">
                   <template if="{{field.type === 'string'}}">
                     <!--<paper-input id="{{field.name}}" value="{{item[field.name]}}" on-input="{{validate}}" fit></paper-input>-->
-                    <input id="{{field.name}}" class="form-control" value="{{item[field.name]}}" on-input="{{validate}}">
+                    <input id="{{field.name}}" class="form-control" value="{{item[field.name]}}"
+                           on-input="{{validate}}">
                   </template>
                   <template if="{{field.type === 'check'}}">
                     <!--<paper-toggle-button id="{{field.name}}" checked="{{item[field.name]}}" on-change="{{validate}}"></paper-toggle-button>-->
@@ -70,7 +71,7 @@
                   </template>
                   <template if="{{field.type === 'code'}}">
                     <caretaker-codemirror-input id="{{field.name}}" rows="3" mode="ruby" on-input="{{validate}}"
-                                             value="{{item[field.name]}}">
+                                                value="{{item[field.name]}}">
                     </caretaker-codemirror-input>
                   </template>
 
@@ -94,7 +95,7 @@
         <div class="col-md-6">
 
           <grapp-paper-button raised success disabled?="{{! modified || !valid}}"
-                        on-click="{{save}}" on-enter="{{save}}">
+                              on-click="{{save}}" on-enter="{{save}}">
             <grapp-fa-icon icon="{{ {check: !processing, spinner: processing} | tokenList}}"
                            spin="{{processing}}"></grapp-fa-icon>
             &nbsp;{{'action.save' | i18n}}

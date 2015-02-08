@@ -10,7 +10,7 @@ module.exports = function(grunt) {
 
     copy: {
       options: {
-        processContent: function (content, srcpath) {
+        processContent: function(content, srcpath) {
           return grunt.template.process(content);
         }
       },
@@ -39,7 +39,7 @@ module.exports = function(grunt) {
     coffeelint: {
       src: ['app/web/**/*.coffee'],
       options: {
-        max_line_length: { level: 'ignore' }
+        max_line_length: {level: 'ignore'}
       }
     },
 
@@ -108,17 +108,16 @@ module.exports = function(grunt) {
         updateConfigs: ['pkg'],
         commit: true,
         commitFiles: ['-a'],
-        commitMessage:'Bump version number to %VERSION%',
+        commitMessage: 'Bump version number to %VERSION%',
         createTag: true,
         tagName: '%VERSION%',
-        tagMessage:'Version %VERSION%',
+        tagMessage: 'Version %VERSION%',
         push: false
       }
     },
 
     changelog: {
-      options: {
-      }
+      options: {}
     }
   });
 
@@ -134,7 +133,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-newer');
 
   grunt.registerTask('build', 'Compile all assets and create the distribution files',
-    ['less', 'coffeelint', 'coffee', 'copy:images', 'htmlbuild']);
+      ['less', 'coffeelint', 'coffee', 'copy:images', 'htmlbuild']);
 
   grunt.task.renameTask('bump', 'bumpversion');
 
@@ -145,6 +144,6 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('default', 'Build the software, start a web server and watch for changes',
-    ['build', 'watch']
+      ['build', 'watch']
   );
 };

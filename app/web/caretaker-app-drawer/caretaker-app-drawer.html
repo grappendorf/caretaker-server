@@ -13,7 +13,8 @@
     <core-menu on-core-activate="{{menuSelected}}" valueattr="id" selected="{{$.globals.appModule}}">
 
       <template if="{{sessionManager.connected}}">
-        <core-item id="dashboard" go="/controlpanel" label="{{'models.dashboard.one' | i18n}}" icon="dashboard" category="misc"></core-item>
+        <core-item id="dashboard" go="/controlpanel" label="{{'models.dashboard.one' | i18n}}" icon="dashboard"
+                   category="misc"></core-item>
       </template>
 
       <template if="{{sessionManager.userIsAdmin}}">
@@ -22,11 +23,13 @@
                       valueattr="id" selected="{{$.globals.appFunction}}">
 
           <core-item id="devices" go="/devices">
-            <grapp-fa-icon icon="gears"></grapp-fa-icon>{{'models.device.other' | i18n}}
+            <grapp-fa-icon icon="gears"></grapp-fa-icon>
+            {{'models.device.other' | i18n}}
           </core-item>
 
           <core-item id="device_scripts" go="/device_scripts">
-            <grapp-fa-icon icon="code"></grapp-fa-icon>{{'models.device_script.other' | i18n}}
+            <grapp-fa-icon icon="code"></grapp-fa-icon>
+            {{'models.device_script.other' | i18n}}
           </core-item>
 
         </core-submenu>
@@ -38,16 +41,19 @@
         <core-submenu id="manage" label="{{'manage' | i18n}}" icon="create" category="manage"
                       valueattr="id" selected="{{$.globals.appFunction}}">
 
-            <core-item id="buildings" go="/buildings">
-            <grapp-fa-icon icon="building-o"></grapp-fa-icon>{{'models.building.other' | i18n}}
+          <core-item id="buildings" go="/buildings">
+            <grapp-fa-icon icon="building-o"></grapp-fa-icon>
+            {{'models.building.other' | i18n}}
           </core-item>
 
           <core-item id="floors" go="/floors">
-            <grapp-fa-icon icon="bars"></grapp-fa-icon>{{'models.floor.other' | i18n}}
+            <grapp-fa-icon icon="bars"></grapp-fa-icon>
+            {{'models.floor.other' | i18n}}
           </core-item>
 
           <core-item id="rooms" go="/rooms">
-            <grapp-fa-icon icon="columns"></grapp-fa-icon>{{'models.room.other' | i18n}}
+            <grapp-fa-icon icon="columns"></grapp-fa-icon>
+            {{'models.room.other' | i18n}}
           </core-item>
 
         </core-submenu>
@@ -59,17 +65,20 @@
         <core-submenu id="system" label="{{'system' | i18n}}" icon="hardware:computer" category="system"
                       valueattr="id" selected="{{$.globals.appFunction}}">
 
-            <core-item id="users" go="/users">
-              <grapp-fa-icon icon="users"></grapp-fa-icon>{{'models.user.other' | i18n}}
-            </core-item>
+          <core-item id="users" go="/users">
+            <grapp-fa-icon icon="users"></grapp-fa-icon>
+            {{'models.user.other' | i18n}}
+          </core-item>
 
-            <core-item id="dashboards" go="/dashboards">
-              <grapp-fa-icon icon="th-large"></grapp-fa-icon>{{'models.dashboard.other' | i18n}}
-            </core-item>
+          <core-item id="dashboards" go="/dashboards">
+            <grapp-fa-icon icon="th-large"></grapp-fa-icon>
+            {{'models.dashboard.other' | i18n}}
+          </core-item>
 
-            <core-item id="settings" go="/settings">
-              <grapp-fa-icon icon="wrench"></grapp-fa-icon>{{'settings' | i18n}}
-            </core-item>
+          <core-item id="settings" go="/settings">
+            <grapp-fa-icon icon="wrench"></grapp-fa-icon>
+            {{'settings' | i18n}}
+          </core-item>
 
         </core-submenu>
 
@@ -79,11 +88,13 @@
                     valueattr="id" selected="{{$.globals.appFunction}}">
 
         <core-item id="documentation" go="/documentation">
-          <grapp-fa-icon icon="book"></grapp-fa-icon>{{'documentation' | i18n}}
+          <grapp-fa-icon icon="book"></grapp-fa-icon>
+          {{'documentation' | i18n}}
         </core-item>
 
         <core-item id="about" go="/about">
-          <grapp-fa-icon icon="info"></grapp-fa-icon>{{'action.help_about' | i18n}}
+          <grapp-fa-icon icon="info"></grapp-fa-icon>
+          {{'action.help_about' | i18n}}
         </core-item>
 
       </core-submenu>
@@ -94,15 +105,18 @@
                       valueattr="id" selected="{{$.globals.appFunction}}">
 
           <core-item delegate="app.editProfile">
-            <grapp-fa-icon icon="credit-card"></grapp-fa-icon>{{'profile' | i18n}}
+            <grapp-fa-icon icon="credit-card"></grapp-fa-icon>
+            {{'profile' | i18n}}
           </core-item>
 
           <core-item delegate="app.changePassword">
-            <grapp-fa-icon icon="key"></grapp-fa-icon>{{'action.change_password' | i18n}}
+            <grapp-fa-icon icon="key"></grapp-fa-icon>
+            {{'action.change_password' | i18n}}
           </core-item>
 
           <core-item delegate="app.logout">
-            <grapp-fa-icon icon="sign-out"></grapp-fa-icon>{{'action.sign_out' | i18n}}
+            <grapp-fa-icon icon="sign-out"></grapp-fa-icon>
+            {{'action.sign_out' | i18n}}
           </core-item>
 
         </core-submenu>
