@@ -2,8 +2,6 @@ require 'xbee_connection_state'
 
 module XbeeDevice
 
-  include CaretakerMessages
-
   inject :xbee_master
 
   def address16= address16
@@ -20,7 +18,7 @@ module XbeeDevice
 
   def reset
     super
-    send_message CARETAKER_RESET
+    send_message CaretakerXbeeMessages::RESET
   end
 
 end

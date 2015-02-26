@@ -36,23 +36,23 @@ class CameraDevice < ActiveRecord::Base
   end
 
   def left
-    send_message CARETAKER_SERVO_WRITE, CARETAKER_SERVO_AZIMUTH, CARETAKER_WRITE_INCREMENT_DEFAULT
+    send_message CaretakerXbeeMessages::SERVO_WRITE, CaretakerXbeeMessages::SERVO_AZIMUTH, CaretakerXbeeMessages::WRITE_INCREMENT_DEFAULT
   end
 
   def right
-    send_message CARETAKER_SERVO_WRITE, CARETAKER_SERVO_AZIMUTH, CARETAKER_WRITE_DECREMENT_DEFAULT
+    send_message CaretakerXbeeMessages::SERVO_WRITE, CaretakerXbeeMessages::SERVO_AZIMUTH, CaretakerXbeeMessages::WRITE_DECREMENT_DEFAULT
   end
 
   def up
-    send_message CARETAKER_SERVO_WRITE, CARETAKER_SERVO_ALTITUDE, CARETAKER_WRITE_DECREMENT_DEFAULT
+    send_message CaretakerXbeeMessages::SERVO_WRITE, CaretakerXbeeMessages::SERVO_ALTITUDE, CaretakerXbeeMessages::WRITE_DECREMENT_DEFAULT
   end
 
   def down
-    send_message CARETAKER_SERVO_WRITE, CARETAKER_SERVO_ALTITUDE, CARETAKER_WRITE_INCREMENT_DEFAULT
+    send_message CaretakerXbeeMessages::SERVO_WRITE, CaretakerXbeeMessages::SERVO_ALTITUDE, CaretakerXbeeMessages::WRITE_INCREMENT_DEFAULT
   end
 
   def center
-    send_message CARETAKER_SERVO_WRITE, CARETAKER_SERVO_ALL, CARETAKER_WRITE_DEFAULT
+    send_message CaretakerXbeeMessages::SERVO_WRITE, CaretakerXbeeMessages::SERVO_ALL, CaretakerXbeeMessages::WRITE_DEFAULT
   end
 
   def message_received _

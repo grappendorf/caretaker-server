@@ -77,7 +77,7 @@ module XBeeConnectionState
   private
 
   def device_disconnect
-    send_message CaretakerMessages::CARETAKER_REMOVE_LISTENER
+    send_message CaretakerXbeeMessages::REMOVE_LISTENER
     device_disconnected
   end
 
@@ -85,7 +85,7 @@ module XBeeConnectionState
     Rails.logger.debug "Try to register with device #{name}"
     scheduler.in(@register_attempt_delay) do
       Rails.logger.debug "Sending registration message to device #{name}"
-      send_message CaretakerMessages::CARETAKER_ADD_LISTENER
+      send_message CaretakerXbeeMessages::ADD_LISTENER
       @timeout_job = scheduler.in(REGISTER_TIMEOUT) do
         @timeout_job = nil
         Rails.logger.debug "Registration with device #{name} timed out"

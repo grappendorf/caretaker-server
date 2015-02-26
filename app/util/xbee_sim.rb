@@ -70,19 +70,19 @@ class XbeeSim
       when 0x10 # TxRequest
         tx_response data
         case data[14]
-          when CaretakerMessages::CARETAKER_ADD_LISTENER
+          when CaretakerXbeeMessages::ADD_LISTENER
             rx_response_listener_added data
-          when CaretakerMessages::CARETAKER_SWITCH_READ
+          when CaretakerXbeeMessages::SWITCH_READ
             rx_response_switch_read data
-          when CaretakerMessages::CARETAKER_SWITCH_WRITE
+          when CaretakerXbeeMessages::SWITCH_WRITE
             rx_response_switch_write data
-          when CaretakerMessages::CARETAKER_PWM_READ
+          when CaretakerXbeeMessages::PWM_READ
             rx_response_pwm_read data
-          when CaretakerMessages::CARETAKER_PWM_WRITE
+          when CaretakerXbeeMessages::PWM_WRITE
             rx_response_pwm_write data
-          when CaretakerMessages::CARETAKER_RGB_READ
+          when CaretakerXbeeMessages::RGB_READ
             rx_response_rgb_read data
-          when CaretakerMessages::CARETAKER_RGB_WRITE
+          when CaretakerXbeeMessages::RGB_WRITE
             rx_response_rgb_write data
         end
     end
@@ -112,7 +112,7 @@ class XbeeSim
 
   def rx_response_listener_added data
     device = @devices[data[2..9]]
-    push_read_bytes XBeeRuby::Packet.new([0x90] + data[2..9] + [device[:address16][0], device[:address16][1], 0x01, CaretakerMessages::CARETAKER_ADD_LISTENER|CaretakerMessages::CARETAKER_MESSAGE_RESPONSE]).bytes_escaped
+    push_read_bytes XBeeRuby::Packet.new([0x90] + data[2..9] + [device[:address16][0], device[:address16][1], 0x01, CaretakerXbeeMessages::ADD_LISTENER|CaretakerXbeeMessages::MESSAGE_RESPONSE]).bytes_escaped
   end
 
   def device_by_name name
@@ -122,7 +122,7 @@ class XbeeSim
   def rx_response_switch_read data
     device = @devices[data[2..9]]
     switch_num = data[15]
-    msg = [CaretakerMessages::CARETAKER_SWITCH_READ|CaretakerMessages::CARETAKER_MESSAGE_RESPONSE, switch_num, device[:states][switch_num]]
+    msg = [CaretakerXbeeMessages::SWITCH_READ|CaretakerXbeeMessages::MESSAGE_RESPONSE, switch_num, device[:states][switch_num]]
     push_read_bytes XBeeRuby::Packet.new([0x90] + data[2..9] + device[:address16] + [0x01] + msg).bytes_escaped
   end
 
@@ -133,7 +133,7 @@ class XbeeSim
   def set_switch name, num, state
     address64, device = device_by_name(name)
     device[:states][num] = state
-    msg = [CaretakerMessages::CARETAKER_SWITCH_READ|CaretakerMessages::CARETAKER_MESSAGE_NOTIFY, num, device[:states][num]]
+    msg = [CaretakerXbeeMessages::SWITCH_READ|CaretakerXbeeMessages::MESSAGE_NOTIFY, num, device[:states][num]]
     push_read_bytes XBeeRuby::Packet.new([0x90] + address64 + device[:address16] + [0x01] + msg).bytes_escaped
   end
 
@@ -145,7 +145,7 @@ class XbeeSim
   def rx_response_pwm_read data
     device = @devices[data[2..9]]
     pwm_num = data[15]
-    msg = [CaretakerMessages::CARETAKER_PWM_READ|CaretakerMessages::CARETAKER_MESSAGE_RESPONSE, pwm_num, device[:value]]
+    msg = [CaretakerXbeeMessages::PWM_READ|CaretakerXbeeMessages::MESSAGE_RESPONSE, pwm_num, device[:value]]
     push_read_bytes XBeeRuby::Packet.new([0x90] + data[2..9] + device[:address16] + [0x01] + msg).bytes_escaped
   end
 
@@ -157,7 +157,7 @@ class XbeeSim
     address64, device = device_by_name(name)
     device[:value] = value
     pwm_num = 0
-    msg = [CaretakerMessages::CARETAKER_PWM_READ|CaretakerMessages::CARETAKER_MESSAGE_NOTIFY, pwm_num, device[:value]]
+    msg = [CaretakerXbeeMessages::PWM_READ|CaretakerXbeeMessages::MESSAGE_NOTIFY, pwm_num, device[:value]]
     push_read_bytes XBeeRuby::Packet.new([0x90] + address64 + device[:address16] + [0x01] + msg).bytes_escaped
   end
 
@@ -169,7 +169,7 @@ class XbeeSim
   def rx_response_rgb_read data
     device = @devices[data[2..9]]
     rgb_num = 0
-    msg = [CaretakerMessages::CARETAKER_RGB_READ|CaretakerMessages::CARETAKER_MESSAGE_RESPONSE, rgb_num, device[:red], device[:green], device[:blue]]
+    msg = [CaretakerXbeeMessages::RGB_READ|CaretakerXbeeMessages::MESSAGE_RESPONSE, rgb_num, device[:red], device[:green], device[:blue]]
     push_read_bytes XBeeRuby::Packet.new([0x90] + data[2..9] + device[:address16] + [0x01] + msg).bytes_escaped
   end
 
@@ -181,7 +181,7 @@ class XbeeSim
     address64, device = device_by_name(name)
     device[:red], device[:green], device[:blue] = red, green, blue
     rgb_num = 0
-    msg = [CaretakerMessages::CARETAKER_RGB_READ|CaretakerMessages::CARETAKER_MESSAGE_NOTIFY, rgb_num, device[:red], device[:green], device[:blue]]
+    msg = [CaretakerXbeeMessages::RGB_READ|CaretakerXbeeMessages::MESSAGE_NOTIFY, rgb_num, device[:red], device[:green], device[:blue]]
     push_read_bytes XBeeRuby::Packet.new([0x90] + address64 + device[:address16] + [0x01] + msg).bytes_escaped
   end
 

@@ -32,15 +32,15 @@ class DimmerDevice < ActiveRecord::Base
 
   def value= value
     @value = value
-    send_message CARETAKER_PWM_WRITE, 0, CARETAKER_WRITE_ABSOLUTE, @value
+    send_message CaretakerXbeeMessages::PWM_WRITE, 0, CaretakerXbeeMessages::WRITE_ABSOLUTE, @value
   end
 
   def update
-    send_message CARETAKER_PWM_READ, 0
+    send_message CaretakerXbeeMessages::PWM_READ, 0
   end
 
   def message_received message
-    if message[0] == CaretakerMessages::CARETAKER_PWM_READ
+    if message[0] == CaretakerXbeeMessages::PWM_READ
       @value = message[2]
       notify_change_listeners
     end
