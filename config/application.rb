@@ -11,8 +11,8 @@ require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'action_view/railtie'
 require 'sprockets/railtie'
-require_relative '../lib/util/dependency_injection'
-require_relative '../lib/util/caretaker_messages'
+require_relative '../app/util/dependency_injection'
+require_relative '../app/util/caretaker_xbee_messages'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
