@@ -1,7 +1,7 @@
 module DeviceBase
   module ClassMethods
     def attr_accessible
-      [:name, :address, :description]
+      [:guid, :name, :address, :description]
     end
 
     def handle_connection_state_with connection_state_handler

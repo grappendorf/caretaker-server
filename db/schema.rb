@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141222100947) do
+ActiveRecord::Schema.define(version: 20150225235510) do
 
   create_table "buildings", force: true do |t|
     t.string "name"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20141222100947) do
     t.string  "name"
     t.string  "address"
     t.string  "description"
+    t.string  "guid"
   end
 
   add_index "devices", ["as_device_id", "as_device_type"], name: "index_devices_on_as_device_id_and_as_device_type"

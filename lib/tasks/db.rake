@@ -21,23 +21,30 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
 
         puts 'Create some devices...'
 
-        switch_device = SwitchDevice.create! name: 'Switch', address: '0000000000000001', description: '1 Switch',
+        switch_device = SwitchDevice.create! guid: '6a27c513-994d-46cb-b9dd-7bbaf97fa504',
+                                             name: 'Switch', address: '0000000000000001', description: '1 Switch',
                                              num_switches: 1, switches_per_row: 1
 
-        switch8_device = SwitchDevice.create! name: '8-Port Switch', address: '0000000000000002', description: 'Lot\'s of Switches',
+        switch8_device = SwitchDevice.create! guid: 'a7f9fad6-2779-4bac-a2de-555fa1a67527',
+                                              name: '8-Port Switch', address: '0000000000000002', description: 'Lot\'s of Switches',
                                               num_switches: 8, switches_per_row: 4
 
-        dimmer_device = DimmerDevice.create! name: 'Dimmer', address: '0000000000000003', description: '0% to 100%'
+        dimmer_device = DimmerDevice.create! guid: '082ea83d-6a39-4b13-8855-1dff06b6d556',
+                                             name: 'Dimmer', address: '0000000000000003', description: '0% to 100%'
 
-        dimmer_rgb_device = DimmerRgbDevice.create! name: 'Dimmer RGB', address: '0000000000000004', description: 'Ghost Light'
+        dimmer_rgb_device = DimmerRgbDevice.create! guid: '7157e214-0093-47a4-a511-3180d49bd4f1',
+                                                    name: 'Dimmer RGB', address: '0000000000000004', description: 'Ghost Light'
 
-        camera1_device = CameraDevice.create! name: 'Camera 1', address: '0000000000000005', description: 'What\'r you doing Dave?',
+        camera1_device = CameraDevice.create! guid: '3ce1c6e2-1085-431a-8c24-a5cc66466d2e',
+                                              name: 'Camera 1', address: '0000000000000005', description: 'What\'r you doing Dave?',
                                               host: '192.168.0.1', port: '80', user: 'view', password: 'view', refresh_interval: '5'
 
-        camera2_device = IpCameraDevice.create! name: 'Camera 2', address: '0000000000000006', description: 'What\'r you doing Dave?',
+        camera2_device = IpCameraDevice.create! guid: '976e79c8-a722-49c7-b1b1-2c36093f9c03',
+                                                name: 'Camera 2', address: '0000000000000006', description: 'What\'r you doing Dave?',
                                                 host: '192.168.0.2', port: '80', user: 'view', password: 'view', refresh_interval: '5'
 
-        reflow_oven_device = ReflowOvenDevice.create! name: 'Reflow Oven', address: '0000000000000007', description: 'Reflow Oven'
+        reflow_oven_device = ReflowOvenDevice.create! guid: '22dbd24d-225b-4cea-bfb9-36e0a319ef0f',
+                                                      name: 'Reflow Oven', address: '0000000000000007', description: 'Reflow Oven'
 
         puts 'Create some device scripts...'
 

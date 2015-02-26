@@ -8,6 +8,7 @@
 #  name           :string(255)
 #  address        :string(255)
 #  description    :string(255)
+#  guid           :string(255)
 #
 
 class Device < ActiveRecord::Base
@@ -16,6 +17,7 @@ class Device < ActiveRecord::Base
 
   inherit DeviceBase
 
+  validates :guid, presence: true, uniqueness: true
   validates :name, presence: true, uniqueness: true
   validates :address, presence: true
 
