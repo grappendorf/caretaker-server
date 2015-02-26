@@ -68,13 +68,11 @@ describe User do
     end
 
     it 'has a password that is too short' do
-      #noinspection RubyResolve
-      user.password = user.password_confirmation = '1234'
+      user.password = user.password_confirmation = '123'
       should_not be_valid
     end
 
     it 'has a password that does not match the confirmation' do
-      #noinspection RubyResolve
       user.password_confirmation = 'unmatched_confirmation'
       should_not be_valid
     end
