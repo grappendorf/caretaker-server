@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20150225235510) do
     t.string  "name"
     t.string  "address"
     t.string  "description"
-    t.string  "guid"
+    t.string  "uuid"
   end
 
   add_index "devices", ["as_device_id", "as_device_type"], name: "index_devices_on_as_device_id_and_as_device_type"

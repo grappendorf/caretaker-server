@@ -155,7 +155,7 @@ en:
       last_sign_in_at: "Last sign in"
       roles: "Roles"
     device:
-      guid: "GUID"
+      uuid: "UUID"
       name: "Name"
       type: "Type"
       address: "Address"

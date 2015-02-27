@@ -1,5 +1,5 @@
 json.id device.as_device.id
-json.guid device.guid
+json.uuid device.uuid
 json.name device.name
 json.small_icon device.class.small_icon
 json.large_icon device.class.large_icon
