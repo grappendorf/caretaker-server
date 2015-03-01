@@ -16,8 +16,6 @@ class RobotDevice < ActiveRecord::Base
     Device.attr_accessible
   end
 
-  handle_connection_state_with XBeeConnectionState
-
   def self.small_icon()
     '16/cat.png'
   end
@@ -26,7 +24,8 @@ class RobotDevice < ActiveRecord::Base
     '32/cat.png'
   end
 
-  def message_received _
+  def message_received _message
+    super
   end
 
   def current_state

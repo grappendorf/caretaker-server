@@ -1,21 +1,30 @@
+require 'socket'
+
 class DeviceManager < SingletonService
 
+  inject :wlan_master
   inject :xbee_master
 
   def initialize
     @devices_by_address = {}
     @devices_by_id = {}
+    @devices_by_uuid = {}
   end
 
   def start
     super
     Rails.logger.info 'Device Manager starting'
+
     xbee_master.when_message_received { |*args| xbee_message_received *args }
     begin
       xbee_master.start
     rescue => x
       Rails.logger.error "Unable to open xbee device #{x}"
     end
+
+    wlan_master.when_message_received { |*args| wlan_message_received *args }
+    wlan_master.start
+
     Device.all.each do |device|
       add_device device.specific
     end
@@ -24,31 +33,13 @@ class DeviceManager < SingletonService
   def stop
     Rails.logger.info 'Device Manager stopping'
     xbee_master.stop
+    wlan_master.stop
     super
   end
 
   def restart
     stop
     start
-  end
-
-  def xbee_message_received address64, address16, data
-    device = @devices_by_address[address64.to_s]
-    if not device
-      return
-    end
-    message_code = data[0]
-    if message_code == (CaretakerMessages::CARETAKER_MESSAGE_RESPONSE | CaretakerMessages::CARETAKER_ADD_LISTENER)
-      device.address16 = address16
-      device.xbee_connect_response
-      return
-    end
-    message_type = data[0] & CaretakerMessages::CARETAKER_MESSAGE_TYPE_MASK
-    if message_type == CaretakerMessages::CARETAKER_MESSAGE_RESPONSE or
-        message_type == CaretakerMessages::CARETAKER_MESSAGE_NOTIFY
-      data[0] = data[0] & CaretakerMessages::CARETAKER_MESSAGE_COMMAND_MASK
-      device.message_received data
-    end
   end
 
   def device_by_address address
@@ -59,9 +50,14 @@ class DeviceManager < SingletonService
     @devices_by_id[id]
   end
 
+  def device_by_uuid uuid
+    @devices_by_uuid[uuid]
+  end
+
   def add_device device
     device_id = device.as_device.id
     @devices_by_id[device_id] = device
+    @devices_by_uuid[device.uuid] = device
     if device.address
       @devices_by_address[device.address] = device
     end
@@ -87,8 +83,9 @@ class DeviceManager < SingletonService
 
   def remove_device device_id
     device = @devices_by_id[device_id]
-    @devices_by_address.delete(device.address)
-    @devices_by_id.delete(device_id)
+    @devices_by_address.delete device.address
+    @devices_by_uuid.delete device.uuid
+    @devices_by_id.delete device_id
   end
 
   def remove_all_devices
@@ -101,6 +98,50 @@ class DeviceManager < SingletonService
 
   def devices_by_id
     @devices_by_id
+  end
+
+  def xbee_message_received address64, address16, data
+    device = @devices_by_address[address64.to_s]
+    unless device
+      return
+    end
+    message_code = data[0]
+    if message_code == (CaretakerXbeeMessages::MESSAGE_RESPONSE | CaretakerXbeeMessages::ADD_LISTENER)
+      device.address16 = address16
+      device.xbee_connect_response
+      return
+    end
+    message_type = data[0] & CaretakerXbeeMessages::MESSAGE_TYPE_MASK
+    if message_type == CaretakerXbeeMessages::MESSAGE_RESPONSE or
+        message_type == CaretakerXbeeMessages::MESSAGE_NOTIFY
+      data[0] = data[0] & CaretakerXbeeMessages::MESSAGE_COMMAND_MASK
+      device.message_received data
+    end
+  end
+
+  def wlan_message_received address, msg, params
+    Rails.logger.debug "WLAN device message received: #{address}, #{msg}, #{params}"
+    if msg == CaretakerMessages::REGISTER_REQUEST
+      Rails.logger.debug "Registration request from: #{params[0]}"
+      unless Device.exists? uuid: params[0]
+        Rails.logger.debug "Create new device: #{params[2]}"
+        device = SwitchDevice.create! uuid: params[0], address: address, name: params[2],
+                                      description: params[3], num_switches: params[4].to_i, switches_per_row: params[4].to_i
+        add_device device
+      else
+        device = Device.find_by_uuid params[0]
+        if device.address != address
+          Rails.logger.debug "Device address changed to: #{address}"
+          @devices_by_address.delete device.address
+          @devices_by_address[address] = device
+        else
+          Rails.logger.debug "Known device re-registered"
+        end
+      end
+      wlan_master.send_message address, CaretakerMessages::REGISTER_RESPONSE
+    elsif msg > 0
+      device_by_address(address).message_received msg, params
+    end
   end
 
 end

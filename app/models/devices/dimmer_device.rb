@@ -16,8 +16,6 @@ class DimmerDevice < ActiveRecord::Base
     Device.attr_accessible
   end
 
-  handle_connection_state_with XBeeConnectionState
-
   def self.small_icon()
     '16/mixer.png'
   end
@@ -40,6 +38,7 @@ class DimmerDevice < ActiveRecord::Base
   end
 
   def message_received message
+    super
     if message[0] == CaretakerXbeeMessages::PWM_READ
       @value = message[2]
       notify_change_listeners

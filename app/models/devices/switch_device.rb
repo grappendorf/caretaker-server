@@ -10,7 +10,7 @@
 class SwitchDevice < ActiveRecord::Base
 
   inherit DeviceBase
-  include XbeeDevice
+  include WlanDevice
 
   is_a :device
 
@@ -21,14 +21,12 @@ class SwitchDevice < ActiveRecord::Base
     Device.attr_accessible + [:num_switches, :switches_per_row]
   end
 
-  handle_connection_state_with XBeeConnectionState
-
   def self.small_icon()
-    '16/joystick.png'
+    '16/switch_device.png'
   end
 
   def self.large_icon()
-    '32/joystick.png'
+    '32/switch_device.png'
   end
 
   ON = 1
@@ -40,7 +38,7 @@ class SwitchDevice < ActiveRecord::Base
 
   def toggle switch_num
     states[switch_num] = (states[switch_num] == ON ? OFF : ON)
-    send_message CaretakerXbeeMessages::SWITCH_WRITE, switch_num, CaretakerXbeeMessages::WRITE_TOGGLE
+    send_message CaretakerMessages::SWITCH_WRITE, switch_num, CaretakerMessages::WRITE_TOGGLE
   end
 
   def get_state switch_num
@@ -48,8 +46,7 @@ class SwitchDevice < ActiveRecord::Base
   end
 
   def set_state switch_num, state
-    states[switch_num] = state
-    send_message CaretakerXbeeMessages::SWITCH_WRITE, switch_num, CaretakerXbeeMessages::WRITE_ABSOLUTE, state
+    send_message CaretakerMessages::SWITCH_WRITE, switch_num, CaretakerMessages::WRITE_ABSOLUTE, state
   end
 
   def switch switch_num, on_or_off
@@ -69,13 +66,14 @@ class SwitchDevice < ActiveRecord::Base
   end
 
   def update
-    (0...num_switches).each { |i| send_message CaretakerXbeeMessages::SWITCH_READ, i }
+    (0...num_switches).each { |i| send_message CaretakerMessages::SWITCH_READ, i }
   end
 
-  def message_received message
-    if message[0] == CaretakerXbeeMessages::SWITCH_READ
-      switch_num = message[1]
-      value = message[2]
+  def message_received message, params
+    super
+    if message == CaretakerMessages::SWITCH_STATE
+      switch_num = params[0].to_i
+      value = params[1].to_i
       states[switch_num] = value
       notify_change_listeners
     end

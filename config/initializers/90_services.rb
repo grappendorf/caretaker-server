@@ -40,6 +40,7 @@ module ServiceManager
 
   def self.register_services
     register(:async) { ThreadStorm.new size: 2 }
+    register(:wlan_master) { WlanMaster.new }
     register(:xbee_master) { XbeeMaster.new }
     register(:device_manager) { DeviceManager.new }
     register(:device_script_manager) { DeviceScriptManager.new }

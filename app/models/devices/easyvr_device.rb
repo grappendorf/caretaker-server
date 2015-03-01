@@ -21,8 +21,6 @@ class EasyvrDevice < ActiveRecord::Base
     Device.attr_accessible + [:num_buttons, :buttons_per_row]
   end
 
-  handle_connection_state_with XBeeConnectionState
-
   def self.small_icon()
     '16/gamepad.png'
   end
@@ -47,6 +45,7 @@ class EasyvrDevice < ActiveRecord::Base
   end
 
   def message_received message
+    super
     if message[0] == CaretakerXbeeMessages::SWITCH_READ
       button_num = message[1]
       value = message[2]

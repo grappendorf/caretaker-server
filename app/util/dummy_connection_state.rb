@@ -1,5 +1,7 @@
 module DummyConnectionState
 
+  include ConnectionState
+
   def init_connection_state
   end
 

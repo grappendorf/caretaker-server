@@ -28,15 +28,22 @@ Licenses
 The Caretaker Server code is licensed under the MIT license
 You find the license in the attached LICENSE file
 
-### Nuvola Icon Set
+### Nuvola Icon Set icons
 
-Uses some of the Nuvola icons, licensed under the GNU LGPL 2.1 license
+Uses some of the Nuvola Icon Set icons
+Licensed under the GNU LGPL 2.1 license
 You find the license at http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
 You find the icon set at http://www.icon-king.com/projects/nuvola/
+
+### Kyo Tux Soft icons
+
+Uses some of the Kyo Tux Soft icons
+Licensed under the Creative Commons (Attribution-Noncommercial-Share Alike 3.0 Unported) license
+You find the license at http://creativecommons.org/licenses/by-nc-sa/3.0/
+You find the icon set at https://www.iconfinder.com/iconsets/softicons
 
 ### Third party gems
 
 The used Ruby gems and JavaScript libraries either use the MIT license or the Apache Version 2.0 license.
-
 You find the Apache license at http://opensource.org/licenses/Apache-2.0
 You find the MIT license at http://opensource.org/licenses/MIT

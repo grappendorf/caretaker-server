@@ -2,6 +2,8 @@ require 'statemachine'
 
 module XBeeConnectionState
 
+  include ConnectionState
+
   inject :scheduler
   inject :random
 
@@ -12,6 +14,8 @@ module XBeeConnectionState
   REGISTER_TIMEOUT ||= 5
   REGISTER_LEASE ||= 5 * 60
 
+  # noinspection RubyArgCount
+  # (ambigious state method)
   def init_connection_state
     @connection_listeners = []
     @connected = false
@@ -21,10 +25,12 @@ module XBeeConnectionState
       context device
       state :DISCONNECTED do
         event :connect, :WAIT_FOR_CONNECTION, :try_to_register
-        event :connect_response, :DISCONNECTED, proc {
-                                 Rails.logger.debug "Connect response from #{device.name} while in state UNCONNECTED" }
-        event :timeout, :DISCONNECTED, proc {
-                        Rails.logger.debug "Timeout from #{device.name} while in state UNCONNECTED" }
+        event :connect_response, :DISCONNECTED, (-> do
+          Rails.logger.debug "Connect response from #{device.name} while in state UNCONNECTED"
+        end)
+        event :timeout, :DISCONNECTED, (-> do
+          Rails.logger.debug "Timeout from #{device.name} while in state UNCONNECTED"
+        end)
         event :disconnect, :DISCONNECTED
       end
       state :WAIT_FOR_CONNECTION do
@@ -51,7 +57,7 @@ module XBeeConnectionState
   end
 
   def state
-    return @connected ? ConnectionState::State::CONNECTED : ConnectionState::State::DISCONNECTED
+    @connected ? ConnectionState::State::CONNECTED : ConnectionState::State::DISCONNECTED
   end
 
   def connected?

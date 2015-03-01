@@ -12,6 +12,7 @@
 
 class IpCameraDevice < ActiveRecord::Base
 
+  include DummyConnectionState
   inherit DeviceBase
 
   is_a :device
@@ -23,8 +24,6 @@ class IpCameraDevice < ActiveRecord::Base
   def self.attr_accessible
     Device.attr_accessible + [:host, :port, :user, :password, :refresh_interval]
   end
-
-  handle_connection_state_with DummyConnectionState
 
   def self.small_icon()
     '16/camera.png'
@@ -80,7 +79,8 @@ class IpCameraDevice < ActiveRecord::Base
   def send_message *_
   end
 
-  def message_received _
+  def message_received _message
+    super
   end
 
   def current_state

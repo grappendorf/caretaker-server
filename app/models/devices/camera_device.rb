@@ -25,8 +25,6 @@ class CameraDevice < ActiveRecord::Base
     Device.attr_accessible + [:host, :port, :user, :password, :refresh_interval]
   end
 
-  handle_connection_state_with XBeeConnectionState
-
   def self.small_icon()
     '16/camera.png'
   end
@@ -55,7 +53,8 @@ class CameraDevice < ActiveRecord::Base
     send_message CaretakerXbeeMessages::SERVO_WRITE, CaretakerXbeeMessages::SERVO_ALL, CaretakerXbeeMessages::WRITE_DEFAULT
   end
 
-  def message_received _
+  def message_received _message
+    super
   end
 
   def current_state

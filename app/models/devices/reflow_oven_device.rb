@@ -16,8 +16,6 @@ class ReflowOvenDevice < ActiveRecord::Base
     Device.attr_accessible
   end
 
-  handle_connection_state_with XBeeConnectionState
-
   def self.small_icon()
     '16/oven.png'
   end
@@ -32,6 +30,7 @@ class ReflowOvenDevice < ActiveRecord::Base
   end
 
   def message_received message
+    super
     case message[0]
       when CaretakerXbeeMessages::SENSOR_TEMPERATURE
         @temperature = { timestamp: Time.now, value: (message[2] << 8) + message[3] }

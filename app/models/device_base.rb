@@ -4,11 +4,6 @@ module DeviceBase
       [:uuid, :name, :address, :description]
     end
 
-    def handle_connection_state_with connection_state_handler
-      include ConnectionState
-      include connection_state_handler
-    end
-
     def small_icon()
       '16/processor.png'
     end

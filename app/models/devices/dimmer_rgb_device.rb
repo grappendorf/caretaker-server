@@ -16,14 +16,12 @@ class DimmerRgbDevice < ActiveRecord::Base
     Device.attr_accessible
   end
 
-  handle_connection_state_with XBeeConnectionState
-
   def self.small_icon()
-    '16/mixer.png'
+    '16/dimmer_rgb_device.png'
   end
 
   def self.large_icon()
-    '32/mixer.png'
+    '32/dimmer_rgb_device.png'
   end
 
   def rgb
@@ -66,6 +64,7 @@ class DimmerRgbDevice < ActiveRecord::Base
   end
 
   def message_received message
+    super
     if message[0] == CaretakerXbeeMessages::RGB_READ
       @rgb = [message[2], message[3], message[4]]
       notify_change_listeners

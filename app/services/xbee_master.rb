@@ -10,6 +10,7 @@ class XbeeMaster
   end
 
   def start
+    Rails.logger.info 'XBee master starting'
     xbee.open
     @listener_thread = Thread.new do
       loop do
@@ -31,6 +32,7 @@ class XbeeMaster
   end
 
   def stop
+    Rails.logger.info 'XBee master stopping'
     @listener_thread.kill if @listener_thread
     xbee.close if @xbee
   end
