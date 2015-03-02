@@ -29,7 +29,7 @@ doc/*.db
 
 # Ignore node modules and bower packages
 /node_modules
-/public/lib
+/public/web_lib
 
 # Ignore generated web files
 /public/web

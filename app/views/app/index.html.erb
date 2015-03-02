@@ -11,14 +11,12 @@
   <%= csrf_meta_tags %>
   <meta name="x-caretaker-websocket" content="<%= Settings.websocket.url %>"/>
 
-  <script src="lib/webcomponentsjs/webcomponents.js"></script>
-  <script src="lib/jquery/dist/jquery.min.js"></script>
-  <script src="lib/es6-promise-polyfill/promise.js"></script>
+  <script src="web_lib/jquery/dist/jquery.min.js"></script>
+  <script src="web_lib/es6-promise-polyfill/promise.js"></script>
 
   <link rel="stylesheet" href="stylesheets/app.css" shim-shadowdom>
 
-  <link rel="import" href="lib/polymer/polymer.html">
-  <link rel="import" href="lib/grapp-app-globals/grapp-app-globals.html">
+  <link rel="import" href="web_lib/grapp-app-globals/grapp-app-globals.html">
   <link rel="import" href="web/caretaker-i18n/caretaker-i18n.html">
   <link rel="import" href="web/caretaker-app/caretaker-app.html">
 </head>
