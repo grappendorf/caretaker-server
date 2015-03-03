@@ -128,6 +128,7 @@ class DeviceManager < SingletonService
         device = SwitchDevice.create! uuid: params[0], address: address, name: params[2],
                                       description: params[3], num_switches: params[4].to_i, switches_per_row: params[4].to_i
         add_device device
+        WebsocketRails[:devices].trigger 'register', { id: device.id }
       else
         device = Device.find_by_uuid params[0]
         if device.address != address

@@ -169,7 +169,7 @@
                          params='{{ {"dashboardId":dashboardId, "type": "device_widgets"} }}'
                          resource="{{widgets}}"></grapp-rest-resource>
 
-    <caretaker-websocket id="websocket" url="{{$.globals.websocketURL}}">
+    <caretaker-websocket id="websocket">
       <caretaker-websocket-subscribe channel="devices">
         <caretaker-websocket-bind event="state" on-data="{{deviceStateRecieved}}"></caretaker-websocket-bind>
       </caretaker-websocket-subscribe>

@@ -1,7 +1,7 @@
 Polymer 'caretaker-devices-list',
 
   ready: ->
-    @$.table.load()
+    @loadTable
 
   edit: (e) ->
     @router.go "/devices/#{e.detail.id}"
@@ -11,3 +11,6 @@ Polymer 'caretaker-devices-list',
     @$.newDeviceDialog.start().then (type) ->
       self.$.newDeviceDialog.end()
       self.router.go "/devices/new/#{type}"
+
+  loadTable: ->
+    @$.table.load()

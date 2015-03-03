@@ -39,6 +39,12 @@
 
     </caretaker-data-table>
 
+    <caretaker-websocket>
+      <caretaker-websocket-subscribe channel="devices">
+        <caretaker-websocket-bind event="register" on-data="{{loadTable}}"></caretaker-websocket-bind>
+      </caretaker-websocket-subscribe>
+    </caretaker-websocket>
+
   </template>
 
   <script src="caretaker-devices-list.js"></script>

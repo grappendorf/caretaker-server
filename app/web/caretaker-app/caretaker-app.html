@@ -2,6 +2,7 @@
 <link rel="import" href="../../web_lib/core-drawer-panel/core-drawer-panel.html">
 <link rel="import" href="../../web_lib/app-router/app-router.html">
 <link rel="import" href="../../web_lib/grapp-launcher-tile/grapp-launcher-tile.html">
+<link rel="import" href="../caretaker-websocket/caretaker-websocket.html">
 <link rel="import" href="../caretaker-session-manager/caretaker-session-manager.html">
 <link rel="import" href="../caretaker-help/caretaker-about.html">
 <link rel="import" href="../caretaker-help/caretaker-documentation.html">
@@ -30,9 +31,14 @@
 
     <link href="caretaker-app.css" rel="stylesheet" shim-shadowdom>
 
+    <grapp-app-globals id="globals"></grapp-app-globals>
+
     <caretaker-i18n defaultLocale="{{$.globals.defaultLocale}}" locale="{{$.globals.locale}}"></caretaker-i18n>
 
     <caretaker-session-manager id="sessionManager" on-loaded="{{sessionManagerLoaded}}"></caretaker-session-manager>
+
+    <caretaker-websocket url="{{$.globals.websocketURL}}">
+    </caretaker-websocket>
 
     <core-drawer-panel id="drawer">
 
