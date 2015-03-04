@@ -1,6 +1,6 @@
 <link rel="import" href="../../web_lib/paper-toast/paper-toast.html">
+<link rel="import" href="../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
 <link rel="import" href="../caretaker-websocket/caretaker-websocket.html">
-<link rel="import" href="../caretaker-core-ajax/caretaker-core-ajax.html">
 <link rel="import" href="caretaker-controlpanel-widget.html">
 <link rel="import" href="widgets/caretaker-widget-cameradevice.html">
 <link rel="import" href="widgets/caretaker-widget-dimmerdevice.html">
@@ -146,20 +146,20 @@
     <paper-toast id="toast" text="Event received: {{event}}" duration="2000">
     </paper-toast>
 
-    <caretaker-core-ajax id="defaultDashboardRequest" auto
+    <grapp-core-ajax id="defaultDashboardRequest" auto
                          url="/dashboards/default" method="GET" handleAs="json"
                          on-core-response="{{defaultDashboardSucceeded}}">
-    </caretaker-core-ajax>
+    </grapp-core-ajax>
 
-    <caretaker-core-ajax id="dashboardRequest"
+    <grapp-core-ajax id="dashboardRequest"
                          url="/dashboards/{{dashboardId}}" method="GET" handleAs="json"
                          on-core-response="{{dashboardSucceeded}}" on-core-error="{{dashboardFailed}}">
-    </caretaker-core-ajax>
+    </grapp-core-ajax>
 
-    <caretaker-core-ajax id="dashboardNamesRequest"
+    <grapp-core-ajax id="dashboardNamesRequest"
                          url="/dashboards/names" method="GET" handleAs="json"
                          response="{{dashboardNames}}">
-    </caretaker-core-ajax>
+    </grapp-core-ajax>
 
     <grapp-rest-resource url="/dashboards/:id" resource="{{dashboards}}"></grapp-rest-resource>
 

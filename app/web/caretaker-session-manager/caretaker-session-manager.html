@@ -1,5 +1,5 @@
+<link rel="import" href="../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
 <link rel="import" href="../../web_lib/core-localstorage/core-localstorage.html">
-<link rel="import" href="../caretaker-core-ajax/caretaker-core-ajax.html">
 <link rel="import" href="caretaker-login-dialog.html">
 <link rel="import" href="caretaker-password-dialog.html">
 <link rel="import" href="caretaker-profile-dialog.html">
@@ -23,25 +23,25 @@
     <core-localstorage name="caretaker-session-manager:{{id}}:connected" value="{{connected}}"
                        on-core-localstorage-load="{{connectedLoaded}}"></core-localstorage>
 
-    <caretaker-core-ajax id="signInRequest"
+    <grapp-core-ajax id="signInRequest"
                          url="/session/sign_in" method="POST" handleAs="json"
                          params='{"user[email]": "{{user.email}}", "user[password]": "{{password}}"}'
                          on-core-response="{{loginSucceeded}}" on-core-error="{{loginFailed}}">
-    </caretaker-core-ajax>
+    </grapp-core-ajax>
 
-    <caretaker-core-ajax id="signOutRequest"
+    <grapp-core-ajax id="signOutRequest"
                          url="/session/sign_out" method="GET" handleAs="json"
                          on-core-response="{{logoutSucceeded}}" on-core-error="{{logoutFailed}}">
-    </caretaker-core-ajax>
+    </grapp-core-ajax>
 
-    <caretaker-core-ajax id="changePasswordRequest"
+    <grapp-core-ajax id="changePasswordRequest"
                          url="/users/{{user.id}}" method="PUT" handleAs="json"
                          params='{
 												"id": {{user.id}},
 												"user[password]": "{{newPassword}}",
 												"user[password_confirmation]": "{{newPassword}}"}'
                          on-core-response="{{passwordChangeSucceeded}}" on-core-error="{{passwordChangeFailed}}">
-    </caretaker-core-ajax>
+    </grapp-core-ajax>
 
   </template>
 

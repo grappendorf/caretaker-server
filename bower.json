@@ -52,7 +52,8 @@
     "grapp-paper-fab": "~0.0.3",
     "grapp-paper-input": "~0.0.3",
     "grapp-app-globals": "~0.0.3",
-    "grapp-rest-resource": "~0.0.5"
+    "grapp-rest-resource": "~0.0.5",
+    "grapp-core-ajax": "~0.0.1"
   },
   "resolutions": {
     "polymer": "^0.5.1",
