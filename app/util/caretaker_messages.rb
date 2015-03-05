@@ -9,6 +9,9 @@ module CaretakerMessages
   SWITCH_WRITE      = 5
   SWITCH_READ       = 6
   SWITCH_STATE      = 7
+  RGB_WRITE         = 8
+  RGB_READ          = 9
+  RGB_STATE         = 10
 
   # Value write modes
   WRITE_DEFAULT           = 0

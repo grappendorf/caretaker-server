@@ -25,4 +25,12 @@ class Device < ActiveRecord::Base
 
   scope :search_names, -> (q) { where('name like ?', "%#{q}%") }
 
+  def self.new_from_type type
+    klass = type.to_s.singularize.camelcase.constantize
+    unless klass.ancestors.include? ActiveRecord::ActsAsModules::ActsAsDevice
+      raise ArgumentError
+    end
+    klass.new
+  end
+
 end

@@ -21,7 +21,7 @@ class DevicesController < ApplicationController
   end
 
   def create
-    @device = params[:type].singularize.camelcase.constantize.new
+    @device = Device.new_from_type params[:type]
     @device.update_attributes device_params(@device)
     if @device.save
       device_manager.add_device @device

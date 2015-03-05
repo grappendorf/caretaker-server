@@ -29,6 +29,10 @@ class SwitchDevice < ActiveRecord::Base
     '32/switch_device.png'
   end
 
+  def update_attributes_from_registration params
+    update_attributes num_switches: params[0], switches_per_row: Math.sqrt(params[0].to_i).ceil
+  end
+
   ON = 1
   OFF = 0
 

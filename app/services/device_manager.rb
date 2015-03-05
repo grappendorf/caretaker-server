@@ -125,8 +125,10 @@ class DeviceManager < SingletonService
       Rails.logger.debug "Registration request from: #{params[0]}"
       unless Device.exists? uuid: params[0]
         Rails.logger.debug "Create new device: #{params[2]}"
-        device = SwitchDevice.create! uuid: params[0], address: address, name: params[2],
-                                      description: params[3], num_switches: params[4].to_i, switches_per_row: params[4].to_i
+        device = Device.new_from_type "#{params[1]}Device"
+        device.update_attributes uuid: params[0], address: address, name: params[2], description: params[3]
+        device.update_attributes_from_registration params[4..-1]
+        device.save!
         add_device device
         WebsocketRails[:devices].trigger 'register', { id: device.id }
       else
