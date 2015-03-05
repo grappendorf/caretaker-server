@@ -1,3 +1,3 @@
 if defined? Rack::Webconsole
-  Rack::Webconsole.exclude = [%r{^/live/}]
+  Rack::Webconsole.exclude = [%r{^/websocket/}]
 end
