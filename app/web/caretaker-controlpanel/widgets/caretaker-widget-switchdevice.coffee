@@ -16,4 +16,6 @@ Polymer 'caretaker-widget-switchdevice',
 
   toggle: (e) ->
     num = e.target.templateInstance.model.num
-    @websocket.trigger 'device.state', id: @device.id, state: {num: num, value: 1 - @states[num]}
+    @states[num] = 1 - @states[num]
+    @classes[num] = ['off', 'on'][@states[num]]
+    @websocket.trigger 'device.state', id: @device.id, state: {num: num, value: @states[num]}
