@@ -1,7 +1,7 @@
 Polymer 'caretaker-devices-list',
 
   ready: ->
-    @loadTable
+    @loadTable()
 
   edit: (e) ->
     @router.go "/devices/#{e.detail.id}"
