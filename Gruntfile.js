@@ -133,7 +133,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-newer');
 
   grunt.registerTask('build', 'Compile all assets and create the distribution files',
-      ['less', 'coffeelint', 'coffee', 'copy:images', 'htmlbuild']);
+      ['newer:less', 'coffeelint', 'newer:coffee', 'newer:copy:images', 'newer:htmlbuild']);
 
   grunt.task.renameTask('bump', 'bumpversion');
 
