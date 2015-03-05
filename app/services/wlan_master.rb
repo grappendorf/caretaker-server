@@ -10,9 +10,9 @@ class WlanMaster
     # Every message from a device is sent as a UDP message to port 2000
     # We call every message listener with the message parameters
 
+    @message_socket = UDPSocket.new
     @message_receiver = Thread.new do
       begin
-        @message_socket = UDPSocket.new
         @message_socket.do_not_reverse_lookup = true
         @message_socket.bind '0.0.0.0', '2000'
         loop do
@@ -43,7 +43,7 @@ class WlanMaster
           device_address = addr[3]
           device_name = data[60..91].unpack('Z*')[0]
           Rails.logger.debug "UDP broadcast from device #{device_name} at #{device_address}"
-          UDPSocket.new.send "*SERVER*\n192.168.1.1\n", 0, device_address, 2000
+          @broadcast_socket.send "*SERVER*\n192.168.1.1\n", 0, device_address, 2000
         end
       rescue => x
         Rails.logger.error x
@@ -60,7 +60,7 @@ class WlanMaster
 
   def send_message address, msg, params = []
     Rails.logger.debug "#{msg}#{',' unless params.empty?}#{params.join ','}; -> #{address}"
-    UDPSocket.new.send "#{msg}#{',' unless params.empty?}#{params.join ','};\n", 0, address, 2000
+    @message_socket.send "#{msg}#{',' unless params.empty?}#{params.join ','};\n", 0, address, 2000
   end
 
   def when_message_received &block
