@@ -1,5 +1,7 @@
 <% require 'socket' %>
 
+network:
+  broadcast_port: 55555
 websocket:
   standalone: false
   url: '<%= IPSocket.getaddress(Socket.gethostname) %>:3000/websocket'

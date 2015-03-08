@@ -10,13 +10,14 @@ class WlanMaster
     # Every message from a device is sent as a UDP message to port 2000
     # We call every message listener with the message parameters
 
-    @message_socket = UDPSocket.new
+    @message_send_socket = UDPSocket.new
     @message_receiver = Thread.new do
       begin
-        @message_socket.do_not_reverse_lookup = true
-        @message_socket.bind '0.0.0.0', '2000'
+        message_reveice_socket = UDPSocket.new
+        message_reveice_socket.do_not_reverse_lookup = true
+        message_reveice_socket.bind '0.0.0.0', '2000'
         loop do
-          data, addr = @message_socket.recvfrom 1024
+          data, addr = message_reveice_socket.recvfrom 1024
           device_address = addr[3].force_encoding('UTF-8')
           msg, *params = data.split(';')[0].split(',').map{|d| d.force_encoding('UTF-8')}
           @message_listeners.each do |l|
@@ -35,15 +36,15 @@ class WlanMaster
 
     @broadcast_receiver = Thread.new do
       begin
-        @broadcast_socket = UDPSocket.new
-        @broadcast_socket.do_not_reverse_lookup = true
-        @broadcast_socket.bind '0.0.0.0', 55555
+        broadcast_socket = UDPSocket.new
+        broadcast_socket.do_not_reverse_lookup = true
+        broadcast_socket.bind '0.0.0.0', Settings.network.broadcast_port
         loop do
-          data, addr = @broadcast_socket.recvfrom 1024
+          data, addr = broadcast_socket.recvfrom 1024
           device_address = addr[3]
           device_name = data[60..91].unpack('Z*')[0]
           Rails.logger.debug "UDP broadcast from device #{device_name} at #{device_address}"
-          @broadcast_socket.send "*SERVER*\n192.168.1.1\n", 0, device_address, 2000
+          broadcast_socket.send "*SERVER*\n192.168.1.1\n", 0, device_address, 2000
         end
       rescue => x
         Rails.logger.error x
@@ -60,7 +61,7 @@ class WlanMaster
 
   def send_message address, msg, params = []
     Rails.logger.debug "#{msg}#{',' unless params.empty?}#{params.join ','}; -> #{address}"
-    @message_socket.send "#{msg}#{',' unless params.empty?}#{params.join ','};\n", 0, address, 2000
+    @message_send_socket.send "#{msg}#{',' unless params.empty?}#{params.join ','};\n", 0, address, 2000
   end
 
   def when_message_received &block
