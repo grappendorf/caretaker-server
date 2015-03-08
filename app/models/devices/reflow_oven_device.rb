@@ -8,7 +8,6 @@
 class ReflowOvenDevice < ActiveRecord::Base
 
   inherit DeviceBase
-  include XbeeDevice
 
   is_a :device
 
@@ -25,17 +24,16 @@ class ReflowOvenDevice < ActiveRecord::Base
   end
 
   def update
-    # send_message CaretakerXbeeMessages::SENSOR_READ, 0
-    send_message CaretakerXbeeMessages::REFLOW_OVEN_STATUS
+    send_message CaretakerMessages::REFLOW_OVEN_STATUS
   end
 
   def message_received message
     super
     case message[0]
-      when CaretakerXbeeMessages::SENSOR_TEMPERATURE
+      when CaretakerMessages::SENSOR_TEMPERATURE
         @temperature = { timestamp: Time.now, value: (message[2] << 8) + message[3] }
         notify_change_listeners
-      when CaretakerXbeeMessages::REFLOW_OVEN_STATUS
+      when CaretakerMessages::REFLOW_OVEN_STATUS
         @mode = message[1]
         @state = message[2]
         @heater = message[3] != 0
@@ -51,11 +49,11 @@ class ReflowOvenDevice < ActiveRecord::Base
   def put_state params
     case params['action']
       when 'start'
-        send_message CaretakerXbeeMessages::REFLOW_OVEN_ACTION, CaretakerXbeeMessages::REFLOW_OVEN_START
+        send_message CaretakerMessages::REFLOW_OVEN_ACTION, CaretakerMessages::REFLOW_OVEN_START
       when 'off'
-        send_message CaretakerXbeeMessages::REFLOW_OVEN_ACTION, CaretakerXbeeMessages::REFLOW_OVEN_OFF
+        send_message CaretakerMessages::REFLOW_OVEN_ACTION, CaretakerMessages::REFLOW_OVEN_OFF
       when 'cool'
-        send_message CaretakerXbeeMessages::REFLOW_OVEN_ACTION, CaretakerXbeeMessages::REFLOW_OVEN_COOL
+        send_message CaretakerMessages::REFLOW_OVEN_ACTION, CaretakerMessages::REFLOW_OVEN_COOL
     end
   end
 

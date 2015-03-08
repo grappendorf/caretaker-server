@@ -21,8 +21,6 @@ gem 'acts_as_relation', github: 'grappendorf/acts_as_relation'
 gem 'rails_semantic_logger', '1.5.0'
 gem 'i18n-js', '2.1.2'
 gem 'kaminari', '0.15.1'
-gem 'serialport', '1.3.0'
-gem 'xbee-ruby', '0.0.3'
 
 group :test, :development do
   gem 'faker', '1.2.0'

@@ -10,7 +10,6 @@
 class EasyvrDevice < ActiveRecord::Base
 
   inherit DeviceBase
-  include XbeeDevice
 
   is_a :device
 
@@ -46,7 +45,7 @@ class EasyvrDevice < ActiveRecord::Base
 
   def message_received message
     super
-    if message[0] == CaretakerXbeeMessages::SWITCH_READ
+    if message[0] == CaretakerMessages::SWITCH_READ
       button_num = message[1]
       value = message[2]
       states[button_num] = value

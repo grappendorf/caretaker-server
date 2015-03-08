@@ -8,7 +8,6 @@
 class RobotDevice < ActiveRecord::Base
 
   inherit DeviceBase
-  include XbeeDevice
 
   is_a :device
 

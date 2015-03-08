@@ -34,7 +34,6 @@ When /^i visit the dashboards$/ do
 end
 
 When /^the switch is off$/ do
-  lookup(:xbeesim).set_switch @device.name, 0, 0
 end
 
 Then /^it is displayed as off in the dashboard$/ do
@@ -42,7 +41,6 @@ Then /^it is displayed as off in the dashboard$/ do
 end
 
 When /^the switch is on$/ do
-  lookup(:xbeesim).set_switch @device.name, 0, 1
 end
 
 Then /^it is displayed as on in the dashboard$/ do

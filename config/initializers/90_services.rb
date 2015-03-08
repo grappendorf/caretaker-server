@@ -21,19 +21,11 @@ module ServiceManager
 
   def self.register_real_services
     register(:random) { Random.new Random.new_seed }
-    register(:xbee) { XBeeRuby::XBee.new port: Settings.xbee.tty, rate: Settings.xbee.rate }
     register(:scheduler) { SingletonService.new { Rufus::Scheduler.start_new } }
   end
 
   def self.register_fake_services
     register(:random) { DeterministicRandom.new }
-    case Settings.xbee.driver
-      when :serial
-        register(:xbee) { XBeeRuby::XBee.new port: Settings.xbee.tty, rate: Settings.xbee.rate }
-      else
-        register(:xbeesim) { XbeeSim.new }
-        register(:xbee) { XBeeRuby::XBee.new serial: lookup(:xbeesim) }
-    end
     register(:scheduler) { SingletonService.new { Rufus::Scheduler.start_new } } if Rails.env.development?
     register(:scheduler) { ManualScheduler.new } if Rails.env.test?
   end
@@ -41,7 +33,6 @@ module ServiceManager
   def self.register_services
     register(:async) { ThreadStorm.new size: 2 }
     register(:wlan_master) { WlanMaster.new }
-    register(:xbee_master) { XbeeMaster.new }
     register(:device_manager) { DeviceManager.new }
     register(:device_script_manager) { DeviceScriptManager.new }
   end

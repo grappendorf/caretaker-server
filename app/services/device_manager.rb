@@ -3,7 +3,6 @@ require 'socket'
 class DeviceManager < SingletonService
 
   inject :wlan_master
-  inject :xbee_master
 
   def initialize
     @devices_by_address = {}
@@ -15,13 +14,6 @@ class DeviceManager < SingletonService
     super
     Rails.logger.info 'Device Manager starting'
 
-    xbee_master.when_message_received { |*args| xbee_message_received *args }
-    begin
-      xbee_master.start
-    rescue => x
-      Rails.logger.error "Unable to open xbee device #{x}"
-    end
-
     wlan_master.when_message_received { |*args| wlan_message_received *args }
     wlan_master.start
 
@@ -32,7 +24,6 @@ class DeviceManager < SingletonService
 
   def stop
     Rails.logger.info 'Device Manager stopping'
-    xbee_master.stop
     wlan_master.stop
     super
   end
@@ -98,25 +89,6 @@ class DeviceManager < SingletonService
 
   def devices_by_id
     @devices_by_id
-  end
-
-  def xbee_message_received address64, address16, data
-    device = @devices_by_address[address64.to_s]
-    unless device
-      return
-    end
-    message_code = data[0]
-    if message_code == (CaretakerXbeeMessages::MESSAGE_RESPONSE | CaretakerXbeeMessages::ADD_LISTENER)
-      device.address16 = address16
-      device.xbee_connect_response
-      return
-    end
-    message_type = data[0] & CaretakerXbeeMessages::MESSAGE_TYPE_MASK
-    if message_type == CaretakerXbeeMessages::MESSAGE_RESPONSE or
-        message_type == CaretakerXbeeMessages::MESSAGE_NOTIFY
-      data[0] = data[0] & CaretakerXbeeMessages::MESSAGE_COMMAND_MASK
-      device.message_received data
-    end
   end
 
   def wlan_message_received address, msg, params
