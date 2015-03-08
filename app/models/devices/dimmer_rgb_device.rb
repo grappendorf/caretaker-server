@@ -67,7 +67,6 @@ class DimmerRgbDevice < ActiveRecord::Base
     super
     if message == CaretakerMessages::RGB_STATE
       @rgb = [params[1], params[2], params[3]]
-      Rails.logger.debug @rgb
       notify_change_listeners
     end
   end
