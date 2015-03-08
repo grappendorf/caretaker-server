@@ -4,14 +4,16 @@ module CaretakerMessages
   INVALID           = 0
   REGISTER_REQUEST  = 1
   REGISTER_RESPONSE = 2
-  PING_REQUEST      = 3
-  PING_RESPONSE     = 4
-  SWITCH_WRITE      = 5
-  SWITCH_READ       = 6
-  SWITCH_STATE      = 7
-  RGB_WRITE         = 8
-  RGB_READ          = 9
-  RGB_STATE         = 10
+  PING              = 3
+  SWITCH_WRITE      = 4
+  SWITCH_READ       = 5
+  SWITCH_STATE      = 6
+  RGB_WRITE         = 7
+  RGB_READ          = 8
+  RGB_STATE         = 9
+  PWM_WRITE         = 10
+  PWM_READ          = 11
+  PWM_STATE         = 12
 
   # Value write modes
   WRITE_DEFAULT           = 0

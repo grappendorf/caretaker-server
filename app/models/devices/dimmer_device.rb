@@ -8,7 +8,7 @@
 class DimmerDevice < ActiveRecord::Base
 
   inherit DeviceBase
-  include XbeeDevice
+  include WlanDevice
 
   is_a :device
 
@@ -24,23 +24,29 @@ class DimmerDevice < ActiveRecord::Base
     '32/mixer.png'
   end
 
+  def update_attributes_from_registration params
+  end
+
   def value
     @value ||= 0
   end
 
   def value= value
     @value = value
-    send_message CaretakerXbeeMessages::PWM_WRITE, 0, CaretakerXbeeMessages::WRITE_ABSOLUTE, @value
+  end
+
+  def set_value value
+    send_message CaretakerMessages::PWM_WRITE, 0, CaretakerMessages::WRITE_ABSOLUTE, value
   end
 
   def update
-    send_message CaretakerXbeeMessages::PWM_READ, 0
+    send_message CaretakerMessages::PWM_READ, 0
   end
 
-  def message_received message
+  def message_received message, params
     super
-    if message[0] == CaretakerXbeeMessages::PWM_READ
-      @value = message[2]
+    if message == CaretakerMessages::PWM_STATE
+      @value = params[1]
       notify_change_listeners
     end
   end
@@ -50,7 +56,7 @@ class DimmerDevice < ActiveRecord::Base
   end
 
   def put_state params
-    self.value = params[:value].to_i
+    set_value params[:value].to_i
   end
 
 end
