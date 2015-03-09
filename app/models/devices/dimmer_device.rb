@@ -46,7 +46,7 @@ class DimmerDevice < ActiveRecord::Base
   def message_received message, params
     super
     if message == CaretakerMessages::PWM_STATE
-      @value = params[0]
+      @value = params[0].to_i
       notify_change_listeners
     end
   end
