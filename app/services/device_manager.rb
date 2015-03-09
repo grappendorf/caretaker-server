@@ -54,11 +54,11 @@ class DeviceManager < SingletonService
     end
     device.init_connection_state
     device.when_connection_changed do |device|
-      WebsocketRails[:devices].trigger('connection', { id: device_id, connected: device.connected? })
+      WebsocketRails[:devices].trigger 'connection', { id: device_id, connected: device.connected? }
     end
     device.when_changed do |device|
-      WebsocketRails[:devices].trigger('state',
-                                       { type: device.class.name, id: device_id, state: device.current_state })
+      WebsocketRails[:devices].trigger 'state',
+                                       { type: device.class.name, id: device_id, state: device.current_state }
     end
     device.start
   end
@@ -92,11 +92,8 @@ class DeviceManager < SingletonService
   end
 
   def wlan_message_received address, msg, params
-    Rails.logger.debug "WLAN device message received: #{address}, #{msg}, #{params}"
     if msg == CaretakerMessages::REGISTER_REQUEST
-      Rails.logger.debug "Registration request from: #{params[0]}"
       unless Device.exists? uuid: params[0]
-        Rails.logger.debug "Create new device: #{params[2]}"
         device = Device.new_from_type "#{params[1]}Device"
         device.update_attributes uuid: params[0], address: address, name: params[2], description: params[3]
         device.update_attributes_from_registration params[4..-1]
@@ -106,11 +103,8 @@ class DeviceManager < SingletonService
       else
         device = Device.find_by_uuid params[0]
         if device.address != address
-          Rails.logger.debug "Device address changed to: #{address}"
           @devices_by_address.delete device.address
           @devices_by_address[address] = device
-        else
-          Rails.logger.debug "Known device re-registered"
         end
       end
       wlan_master.send_message address, CaretakerMessages::REGISTER_RESPONSE

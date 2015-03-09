@@ -60,7 +60,6 @@ class WlanMaster
   end
 
   def send_message address, msg, params = []
-    Rails.logger.debug "#{msg}#{',' unless params.empty?}#{params.join ','}; -> #{address}"
     @message_send_socket.send "#{msg}#{',' unless params.empty?}#{params.join ','};\n", 0, address, 2000
   end
 
