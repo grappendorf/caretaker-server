@@ -24,8 +24,8 @@ module WlanDevice
   end
 
   def message_received message, params
-    if message == CaretakerMessages::PING_RESPONSE
-      on_ping_response
+    if message == CaretakerMessages::PING
+      on_ping
     end
   end
 
