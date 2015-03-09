@@ -24,7 +24,7 @@ class DimmerDevice < ActiveRecord::Base
     '32/mixer.png'
   end
 
-  def update_attributes_from_registration params
+  def update_attributes_from_registration _params
   end
 
   def value
@@ -36,17 +36,17 @@ class DimmerDevice < ActiveRecord::Base
   end
 
   def set_value value
-    send_message CaretakerMessages::PWM_WRITE, 0, CaretakerMessages::WRITE_ABSOLUTE, value
+    send_message CaretakerMessages::PWM_WRITE, CaretakerMessages::WRITE_ABSOLUTE, value
   end
 
   def update
-    send_message CaretakerMessages::PWM_READ, 0
+    send_message CaretakerMessages::PWM_READ
   end
 
   def message_received message, params
     super
     if message == CaretakerMessages::PWM_STATE
-      @value = params[1]
+      @value = params[0]
       notify_change_listeners
     end
   end
