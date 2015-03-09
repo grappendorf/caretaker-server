@@ -56,17 +56,17 @@ class DimmerRgbDevice < ActiveRecord::Base
   end
 
   def set_rgb red, green, blue
-    send_message CaretakerMessages::RGB_WRITE, 0, CaretakerMessages::WRITE_ABSOLUTE, red, green, blue
+    send_message CaretakerMessages::RGB_WRITE, CaretakerMessages::WRITE_ABSOLUTE, red, green, blue
   end
 
   def update
-    send_message CaretakerMessages::RGB_READ, 0
+    send_message CaretakerMessages::RGB_READ
   end
 
   def message_received message, params
     super
     if message == CaretakerMessages::RGB_STATE
-      @rgb = [params[1], params[2], params[3]]
+      @rgb = [params[0], params[1], params[2]]
       notify_change_listeners
     end
   end
