@@ -1,4 +1,4 @@
 #!/bin/sh
 
 mkdir -p /var/log/app/
-rails server -e production -p 80
+rails server -e production -p 3000
