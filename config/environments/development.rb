@@ -32,9 +32,6 @@ CaretakerServer::Application.configure do
   # Do not eager load code on boot
   config.eager_load = false
 
-  unless defined? Rails::Console
-    SemanticLogger.add_appender(STDOUT)
-  end
   config.log_level = :debug
 
   config.middleware.delete Rack::Lock
