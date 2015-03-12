@@ -2,6 +2,7 @@
 
 network:
   broadcast_port: 44444
+  public_ip: '<%= IPSocket.getaddress(Socket.gethostname) %>'
 websocket:
   standalone: false
   url: '<%= IPSocket.getaddress(Socket.gethostname) %>:3000/websocket'

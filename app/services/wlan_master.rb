@@ -38,13 +38,13 @@ class WlanMaster
       begin
         broadcast_socket = UDPSocket.new
         broadcast_socket.do_not_reverse_lookup = true
-        broadcast_socket.bind '0.0.0.0', Settings.network.broadcast_port
+        broadcast_socket.bind '0.0.0.0', Settings.network.broadcast_port.to_i
         loop do
           data, addr = broadcast_socket.recvfrom 1024
           device_address = addr[3]
           device_name = data[60..91].unpack('Z*')[0]
           Rails.logger.debug "UDP broadcast from device #{device_name} at #{device_address}"
-          broadcast_socket.send "*SERVER*\n192.168.1.1\n", 0, device_address, 2000
+          broadcast_socket.send "*SERVER*\n#{Settings.network.public_ip}\n", 0, device_address, 2000
         end
       rescue => x
         Rails.logger.error x
