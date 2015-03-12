@@ -1,6 +1,6 @@
 require 'socket'
 
-class DeviceManager < SingletonService
+class DeviceManager
 
   inject :wlan_master
 
@@ -11,7 +11,6 @@ class DeviceManager < SingletonService
   end
 
   def start
-    super
     Rails.logger.info 'Device Manager starting'
 
     wlan_master.when_message_received { |*args| wlan_message_received *args }
