@@ -1,28 +1,30 @@
 FROM grappendorf/ruby:2.1.5
 MAINTAINER Dirk Grappendorf "dirk@grappendorf.net"
 
-# Database drivers
-RUN apt-get install -y libpq-dev
+ENV LAST_APT_GET_UPDATE 20150311
+RUN apt-get update -qqy
+RUN apt-get install -qqy libpq-dev libsqlite3-dev
 
-# Add application
-ADD . /opt/app
-WORKDIR /opt/app
-RUN rm -rf tmp
+ADD . /var/app
+WORKDIR /var/app
+RUN rm -rf db/*.sqlite3
+RUN rm -rf tmp/*
+RUN rm -rf log/*
 
-# Production environment, context path
 ENV RAILS_ENV production
-ENV RAILS_RELATIVE_URL_ROOT /caretaker
+#ENV RAILS_RELATIVE_URL_ROOT /caretaker
 
-# Install gems, compile assets, link for sub uri
 RUN bundle install --without=development test demo
+RUN rake db:migrate
+RUN rake db:seed
 RUN ln -s public caretaker
 
-# Link log directory to /var/log/app
-RUN rm -rf log
-RUN ln -s /var/log/app log
+ADD docker/start.sh /bin/
 
-ADD docker/start.sh /usr/local/bin/
+VOLUME /var/app/db
 
-EXPOSE 80
+EXPOSE 3000
+EXPOSE 2000/udp
+EXPOSE 55555/udp
 
 ENTRYPOINT ["start.sh"]
