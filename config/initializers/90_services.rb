@@ -1,7 +1,11 @@
 module ServiceManager
 
   def self.start
-    Rails.logger.info 'Service manager starting' if real_mode?
+    if File.basename($0) == 'rake'
+      return
+    end
+
+    Rails.logger.info 'Service manager starting'
 
     # Preload all device classes
     Dir['app/models/devices/*_device.rb'].each { |f| require_relative "../../#{f}" }
@@ -13,20 +17,18 @@ module ServiceManager
     register_fake_services unless real_mode?
     register_services
 
-    unless File.basename($0) == 'rake'
-      lookup(:device_manager).start
-      lookup(:device_script_manager).start
-    end
+    lookup(:device_manager).start
+    lookup(:device_script_manager).start
   end
 
   def self.register_real_services
     register(:random) { Random.new Random.new_seed }
-    register(:scheduler) { SingletonService.new { Rufus::Scheduler.start_new } }
+    register(:scheduler) { Rufus::Scheduler.start_new }
   end
 
   def self.register_fake_services
     register(:random) { DeterministicRandom.new }
-    register(:scheduler) { SingletonService.new { Rufus::Scheduler.start_new } } if Rails.env.development?
+    register(:scheduler) { Rufus::Scheduler.start_new } if Rails.env.development?
     register(:scheduler) { ManualScheduler.new } if Rails.env.test?
   end
 
@@ -38,7 +40,12 @@ module ServiceManager
   end
 
   def self.stop
-    Rails.logger.info 'Service manager stopping' if real_mode?
+    if File.basename($0) == 'rake'
+      return
+    end
+
+    Rails.logger.info 'Service manager stopping'
+
     lookup(:scheduler).try :stop
     lookup(:device_script_manager).try :stop rescue nil
     lookup(:device_manager).try :stop rescue nil

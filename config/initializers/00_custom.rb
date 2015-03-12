@@ -1,3 +1,4 @@
 def real_mode?
-  Rails.env.production? || Rails.env.demo?
+  File.basename($0) != 'rake' &&
+      (Rails.env.production? || Rails.env.demo?)
 end
