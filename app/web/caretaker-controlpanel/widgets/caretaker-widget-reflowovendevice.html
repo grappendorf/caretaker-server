@@ -7,29 +7,30 @@
     <link href="../../../web_lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="caretaker-widget-reflowovendevice.css" rel="stylesheet">
 
-    <div class="controls">
+    <div class="controls" layout horizontal justified>
       <div class="btn-group">
         <button on-tap="{{start}}" class="btn btn-danger">Start</button>
         <button on-tap="{{cool}}" class="btn btn-info">Cool</button>
         <button on-tap="{{off}}" class="btn btn-success">Off</button>
       </div>
-      <span class="badge temperature"><strong>100{{temperature}} °C</strong></span>
+
+      <div id="temperature" class="badge"><strong>{{temperature}} °C</strong></div>
 
       <div class="pull-right">
-			<span class="badge {{ {'alert-danger': heater} | tokenList }}">
-				<grapp-fa-icon icon="power-off"></grapp-fa-icon>
-			</span>
-			<span class="badge {{ {'alert-danger': fan}  | tokenList }}">
-				<grapp-fa-icon icon="fire-extinguisher"></grapp-fa-icon>
-			</span>
+        <span class="badge {{ {'alert-danger': heater} | tokenList }}">
+          <grapp-fa-icon icon="power-off"></grapp-fa-icon>
+        </span>
+        <span class="badge {{ {'alert-danger': fan}  | tokenList }}">
+          <grapp-fa-icon icon="fire-extinguisher"></grapp-fa-icon>
+        </span>
         <span class="label label-warning">{{mode}}</span>
         <span class="label label-info">{{state}}</span>
       </div>
     </div>
 
-    <grapp-graph-epoch id="graph" type="time.line" axis="left,bottom" width="660" height="240" theme="dark">
-      <grapp-graph-epoch-series label="Layer 1"
-                                data="[ {'time': 0, 'y': 0}, {'time': 1, 'y': 1}, {'time': 2, 'y': 2} ]">
+    <grapp-graph-epoch id="graph" type="time.line" axis="left,bottom" width="660" height="240" theme="dark"
+                       windowSize="200" ticks="time:40">
+      <grapp-graph-epoch-series label="Layer 1" data="{{initialData}}">
       </grapp-graph-epoch-series>
     </grapp-graph-epoch>
 

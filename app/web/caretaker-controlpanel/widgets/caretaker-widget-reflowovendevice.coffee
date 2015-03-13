@@ -1,11 +1,15 @@
 Polymer 'caretaker-widget-reflowovendevice',
 
+  created: ->
+    @initialData = [ time: (new Date).getTime(), y: 0 ]
+
   ready: ->
     @mode = 'Unknwon'
     @state = 'Unknwon'
     @heater = false
     @fan = false
     @device = @widget.device
+    @temperature = 0
 
   domReady: ->
     # Hack: Real time graph styles are currently not computed correctly
@@ -23,6 +27,7 @@ Polymer 'caretaker-widget-reflowovendevice',
     @websocket.trigger 'device.state', id: @device.id, state: {action: 'off'}
 
   updateState: (e) ->
+    @temperature = e.state.temperature.value
     @$.graph.push (new Date()).getTime() / 1000, e.state.temperature.value
     @mode = ['Unknwon', 'Off', 'Reflow', 'Manual',
              'Cool'][if e.state.mode? then e.state.mode + 1 else 0]
