@@ -1,37 +1,40 @@
 <link rel="import" href="../../../web_lib/grapp-fa-icon/grapp-fa-icon.html">
+<link rel="import" href="../../../web_lib/grapp-graph-epoch/grapp-graph-epoch.html">
 
-<polymer-element name="caretaker-widget-reflowovendevice">
+<polymer-element name="caretaker-widget-reflowovendevice" attributes="widget websocket">
 
   <template>
     <link href="../../../web_lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../../web_lib/chartist/dist/chartist.min.css" rel="stylesheet">
     <link href="caretaker-widget-reflowovendevice.css" rel="stylesheet">
 
     <div class="controls">
       <div class="btn-group">
         <button on-tap="{{start}}" class="btn btn-danger">Start</button>
-        <button on-tapp="{{cool}}" class="btn btn-info">Cool</button>
+        <button on-tap="{{cool}}" class="btn btn-info">Cool</button>
         <button on-tap="{{off}}" class="btn btn-success">Off</button>
       </div>
       <span class="badge temperature"><strong>100{{temperature}} °C</strong></span>
 
       <div class="pull-right">
-			<span class="badge" class="{{ {'alert-danger': 'heater'} }}">
+			<span class="badge {{ {'alert-danger': heater} | tokenList }}">
 				<grapp-fa-icon icon="power-off"></grapp-fa-icon>
 			</span>
-			<span class="badge" class="{{ {'alert-danger': 'fan'} }}">
+			<span class="badge {{ {'alert-danger': fan}  | tokenList }}">
 				<grapp-fa-icon icon="fire-extinguisher"></grapp-fa-icon>
 			</span>
-        <span class="label label-warning">Off{{mode}}</span>
-        <span class="label label-info">Idle{{state}}</span>
+        <span class="label label-warning">{{mode}}</span>
+        <span class="label label-info">{{state}}</span>
       </div>
     </div>
 
-    <div id="chart" class="ct-chart"></div>
+    <grapp-graph-epoch id="graph" type="time.line" axis="left,bottom" width="660" height="240" theme="dark">
+      <grapp-graph-epoch-series label="Layer 1"
+                                data="[ {'time': 0, 'y': 0}, {'time': 1, 'y': 1}, {'time': 2, 'y': 2} ]">
+      </grapp-graph-epoch-series>
+    </grapp-graph-epoch>
 
   </template>
 
   <script src="caretaker-widget-reflowovendevice.js"></script>
-  <script src="../../../web_lib/chartist/dist/chartist.min.js"></script>
 
 </polymer-element>

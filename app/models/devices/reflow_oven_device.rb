@@ -8,6 +8,7 @@
 class ReflowOvenDevice < ActiveRecord::Base
 
   inherit DeviceBase
+  include WlanDevice
 
   is_a :device
 
@@ -24,20 +25,23 @@ class ReflowOvenDevice < ActiveRecord::Base
   end
 
   def update
-    send_message CaretakerMessages::REFLOW_OVEN_STATUS
+    send_message CaretakerMessages::REFLOW_OVEN_READ
   end
 
-  def message_received message
+  def message_received message, params
     super
-    case message[0]
-      when CaretakerMessages::SENSOR_TEMPERATURE
-        @temperature = { timestamp: Time.now, value: (message[2] << 8) + message[3] }
-        notify_change_listeners
-      when CaretakerMessages::REFLOW_OVEN_STATUS
-        @mode = message[1]
-        @state = message[2]
-        @heater = message[3] != 0
-        @fan = message[4] != 0
+    case message
+      when CaretakerMessages::SENSOR_STATE
+        if params[0].to_i == CaretakerMessages::SENSOR_TEMPERATURE
+          @temperature = { timestamp: Time.now, value: params[1] }
+          notify_change_listeners
+        end
+      when CaretakerMessages::REFLOW_OVEN_STATE
+        p params
+        @mode = params[0].to_i
+        @state = params[1].to_i
+        @heater = params[2].to_i != 0
+        @fan = params[3].to_i != 0
         notify_change_listeners
     end
   end
@@ -47,13 +51,16 @@ class ReflowOvenDevice < ActiveRecord::Base
   end
 
   def put_state params
+    Rails.logger.debug params
     case params['action']
       when 'start'
-        send_message CaretakerMessages::REFLOW_OVEN_ACTION, CaretakerMessages::REFLOW_OVEN_START
+        send_message CaretakerMessages::REFLOW_OVEN_CMD, CaretakerMessages::REFLOW_OVEN_CMD_START
       when 'off'
-        send_message CaretakerMessages::REFLOW_OVEN_ACTION, CaretakerMessages::REFLOW_OVEN_OFF
+        send_message CaretakerMessages::REFLOW_OVEN_CMD, CaretakerMessages::REFLOW_OVEN_CMD_OFF
       when 'cool'
-        send_message CaretakerMessages::REFLOW_OVEN_ACTION, CaretakerMessages::REFLOW_OVEN_COOL
+        send_message CaretakerMessages::REFLOW_OVEN_CMD, CaretakerMessages::REFLOW_OVEN_CMD_COOL
+      else
+        raise InvalidArgumentError
     end
   end
 

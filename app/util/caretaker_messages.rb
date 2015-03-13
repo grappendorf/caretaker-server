@@ -15,11 +15,13 @@ module CaretakerMessages
   PWM_READ            = 11
   PWM_STATE           = 12
   SENSOR_READ         = 13
-  SERVO_WRITE         = 14
-  SERVO_READ          = 15
-  SERVO_STATE         = 16
-  REFLOW_OVEN_ACTION  = 17
-  REFLOW_OVEN_STATUS  = 18
+  SENSOR_STATE        = 14
+  SERVO_WRITE         = 15
+  SERVO_READ          = 16
+  SERVO_STATE         = 17
+  REFLOW_OVEN_CMD     = 18
+  REFLOW_OVEN_READ    = 19
+  REFLOW_OVEN_STATE   = 20
 
   # Value write modes
   WRITE_DEFAULT           = 0
@@ -43,9 +45,9 @@ module CaretakerMessages
   SERVO_ALTITUDE  = 2
 
   # Reflow oven actions
-  REFLOW_OVEN_OFF   = 0
-  REFLOW_OVEN_START = 1
-  REFLOW_OVEN_COOL  = 2
+  REFLOW_OVEN_CMD_OFF   = 0
+  REFLOW_OVEN_CMD_START = 1
+  REFLOW_OVEN_CMD_COOL  = 2
 
   # Reflow oven modes
   REFLOW_OVEN_MODE_OFF    = 0
