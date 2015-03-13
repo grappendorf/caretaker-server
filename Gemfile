@@ -19,7 +19,6 @@ gem 'cancan', '1.6.10'
 gem 'inherit', '0.0.1'
 gem 'acts_as_relation', github: 'grappendorf/acts_as_relation'
 gem 'i18n-js', '2.1.2'
-gem 'rails_stdout_logging', '0.0.3'
 gem 'sqlite3', '1.3.9'
 gem 'kaminari', '0.15.1'
 
@@ -50,4 +49,8 @@ group :development do
   gem 'pry', '0.10.1'
   gem 'license_finder', '1.2'
   gem 'annotate', '2.6.5'
+end
+
+group :production do
+  gem 'rails_stdout_logging', '0.0.3'
 end
