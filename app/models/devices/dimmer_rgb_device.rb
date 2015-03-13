@@ -24,9 +24,6 @@ class DimmerRgbDevice < ActiveRecord::Base
     '32/mixer.png'
   end
 
-  def update_attributes_from_registration params
-  end
-
   def rgb
     @rgb ||= [0, 0, 0]
   end

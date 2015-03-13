@@ -24,9 +24,6 @@ class DimmerDevice < ActiveRecord::Base
     '32/mixer.png'
   end
 
-  def update_attributes_from_registration _params
-  end
-
   def value
     @value ||= 0
   end

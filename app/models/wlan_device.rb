@@ -29,4 +29,7 @@ module WlanDevice
     end
   end
 
+  def update_attributes_from_registration params
+  end
+
 end
