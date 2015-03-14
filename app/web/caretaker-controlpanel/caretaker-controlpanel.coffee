@@ -20,7 +20,7 @@ Polymer 'caretaker-controlpanel',
 
   domReady: ->
     @packery = new Packery @$.widgets,
-      rowHeight: 180
+      rowHeight: 200
       columnWidth: 180
       itemSelector: 'caretaker-controlpanel-widget'
       isInitLayout: true

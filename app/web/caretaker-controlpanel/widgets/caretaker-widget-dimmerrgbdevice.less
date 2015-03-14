@@ -1,34 +1,61 @@
 paper-slider {
-  width: 14em;
+  width: 16em;
 }
 
 paper-slider#red::shadow {
   #sliderKnobInner {
     background-color: #b00510;
+    width: 24px;
+    height: 24px;
   }
 
   #sliderBar::shadow #activeProgress {
     background-color: #b00510;
+  }
+
+  /deep/ #progressContainer {
+    background-color: #444444;
+    top: -4px;
+    height: 10px;
+    border-radius: 4px;
   }
 }
 
 paper-slider#green::shadow {
   #sliderKnobInner {
     background-color: #2aa300;
+    width: 24px;
+    height: 24px;
   }
 
   #sliderBar::shadow #activeProgress {
     background-color: #2aa300;
+  }
+
+  /deep/ #progressContainer {
+    background-color: #444444;
+    top: -4px;
+    height: 10px;
+    border-radius: 4px;
   }
 }
 
 paper-slider#blue::shadow {
   #sliderKnobInner {
     background-color: #1800bc;
+    width: 24px;
+    height: 24px;
   }
 
   #sliderBar::shadow #activeProgress {
     background-color: #1800bc;
+  }
+
+  /deep/ #progressContainer {
+    background-color: #444444;
+    top: -4px;
+    height: 10px;
+    border-radius: 4px;
   }
 }
 

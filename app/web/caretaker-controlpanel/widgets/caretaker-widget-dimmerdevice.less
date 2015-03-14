@@ -1,11 +1,20 @@
-paper-slider {
-  width: 18em;
+#slider {
+  width: 20em;
 }
 
-paper-slider::shadow #sliderKnobInner {
+#slider::shadow #sliderKnobInner {
+  background-color: #ffac25;
+  width: 24px;
+  height: 24px;
+}
+
+#slider::shadow #sliderBar::shadow #activeProgress {
   background-color: #ffac25;
 }
 
-paper-slider::shadow #sliderBar::shadow #activeProgress {
-  background-color: #ffac25;
+#slider::shadow /deep/ #progressContainer {
+  background-color: #444444;
+  top: -4px;
+  height: 10px;
+  border-radius: 4px;
 }
