@@ -7,7 +7,7 @@ Polymer 'caretaker-websocket',
     @websocketDispatcher = websocketDispatcher
 
   trigger: (event, data) ->
-    websocketDispatcher.trigger event, data
+    @websocketDispatcher.instance.trigger event, data
 
   urlChanged: ->
     websocketDispatcher.instance = new WebSocketRails @url
