@@ -2,7 +2,7 @@
 
 network:
   broadcast_port: 44444
-  public_ip: '<%= IPSocket.getaddress(Socket.gethostname) %>'
+  public_ip: "127.0.0.1"
 websocket:
   standalone: false
-  url: '<%= IPSocket.getaddress(Socket.gethostname) %>:3000/websocket'
+  url: "127.0.0.1:3000/websocket"
