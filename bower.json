@@ -54,7 +54,7 @@
     "grapp-app-globals": "0.0.3",
     "grapp-rest-resource": "0.0.5",
     "grapp-core-ajax": "0.0.1",
-    "grapp-graph-epoch": "0.0.6"
+    "grapp-graph-epoch": "0.0.7"
   },
   "resolutions": {
     "core-ajax": "0.5.4",
