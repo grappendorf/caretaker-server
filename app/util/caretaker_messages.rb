@@ -22,6 +22,8 @@ module CaretakerMessages
   REFLOW_OVEN_CMD     = 18
   REFLOW_OVEN_READ    = 19
   REFLOW_OVEN_STATE   = 20
+  BUTTON_READ         = 21
+  BUTTON_STATE        = 22
 
   # Value write modes
   WRITE_DEFAULT           = 0
@@ -67,5 +69,9 @@ module CaretakerMessages
   REFLOW_OVEN_STATE_REFLOW_COOL = 8
   REFLOW_OVEN_STATE_COOL        = 9
   REFLOW_OVEN_STATE_COMPLETE    = 10
+
+  # Button states
+  BUTTON_RELEASED = 0
+  BUTTON_PRESSED  = 1
 
 end
