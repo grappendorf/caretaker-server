@@ -49,6 +49,8 @@ Polymer 'caretaker-session-manager',
 
   logout: ->
     @$.signOutRequest.go()
+    @connected = false
+    @userIsAdmin = false
 
   logoutSucceeded: ->
     @connected = false
