@@ -17,11 +17,7 @@ demo:
   timeout: 5000
 
 production:
-  adapter: postgresql
-  host: postgres
-  database: caretaker
-  username: caretaker
-  password: caretaker
-  encoding: unicode
+  adapter: sqlite3
+  database: db/production.sqlite3
   pool: 5
   timeout: 5000
