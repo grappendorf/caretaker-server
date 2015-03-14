@@ -1,4 +1,4 @@
-json.id widget.as_widget.id
+json.id widget.acting_as.id
 json.type widget.type
 json.title widget.title
 json.position widget.position

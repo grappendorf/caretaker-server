@@ -3,17 +3,17 @@
 # Table name: users
 #
 #  id                     :integer          not null, primary key
-#  name                   :string(255)
-#  email                  :string(255)      default("")
-#  encrypted_password     :string(255)      default("")
-#  reset_password_token   :string(255)
+#  name                   :string
+#  email                  :string           default("")
+#  encrypted_password     :string           default("")
+#  reset_password_token   :string
 #  reset_password_sent_at :time
 #  remember_created_at    :time
-#  sign_in_count          :integer          default(0)
+#  sign_in_count          :integer          default("0")
 #  current_sign_in_at     :time
 #  last_sign_in_at        :time
-#  current_sign_in_ip     :string(255)
-#  last_sign_in_ip        :string(255)
+#  current_sign_in_ip     :string
+#  last_sign_in_ip        :string
 #
 
 Fabricator :admin, from: :user do

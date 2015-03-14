@@ -2,13 +2,13 @@
 #
 # Table name: devices
 #
-#  id             :integer          not null, primary key
-#  as_device_id   :integer
-#  as_device_type :string(255)
-#  name           :string(255)
-#  address        :string(255)
-#  description    :string(255)
-#  uuid           :string(255)
+#  id           :integer          not null, primary key
+#  actable_id   :integer
+#  actable_type :string
+#  name         :string
+#  address      :string
+#  description  :string
+#  uuid         :string
 #
 
 class Device < ActiveRecord::Base

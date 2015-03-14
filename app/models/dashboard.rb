@@ -3,7 +3,7 @@
 # Table name: dashboards
 #
 #  id      :integer          not null, primary key
-#  name    :string(255)
+#  name    :string
 #  default :boolean
 #  user_id :integer
 #

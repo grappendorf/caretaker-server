@@ -4,7 +4,7 @@
 #
 #  id          :integer          not null, primary key
 #  device_id   :integer
-#  device_type :string(255)
+#  device_type :string
 #
 
 class DeviceWidget < ActiveRecord::Base
@@ -24,7 +24,7 @@ class DeviceWidget < ActiveRecord::Base
   end
 
   def title
-    as_widget.title.present? ? as_widget.title : device.name
+    acting_as.title.present? ? acting_as.title : device.name
   end
 
   def self.attr_accessible

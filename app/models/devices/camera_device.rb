@@ -3,11 +3,11 @@
 # Table name: camera_devices
 #
 #  id               :integer          not null, primary key
-#  host             :string(255)
+#  host             :string
 #  port             :integer
-#  user             :string(255)
-#  password         :string(255)
-#  refresh_interval :string(255)
+#  user             :string
+#  password         :string
+#  refresh_interval :string
 #
 
 class CameraDevice < ActiveRecord::Base

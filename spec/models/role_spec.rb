@@ -3,9 +3,9 @@
 # Table name: roles
 #
 #  id            :integer          not null, primary key
-#  name          :string(255)
+#  name          :string
 #  resource_id   :integer
-#  resource_type :string(255)
+#  resource_type :string
 #
 
 require 'spec_helper'

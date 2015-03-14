@@ -3,8 +3,8 @@
 # Table name: rooms
 #
 #  id          :integer          not null, primary key
-#  number      :string(255)
-#  description :string(255)
+#  number      :string
+#  description :string
 #  floor_id    :integer
 #
 

@@ -3,8 +3,8 @@
 # Table name: buildings
 #
 #  id          :integer          not null, primary key
-#  name        :string(255)
-#  description :string(255)
+#  name        :string
+#  description :string
 #
 
 class Building < ActiveRecord::Base
