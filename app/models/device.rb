@@ -27,7 +27,7 @@ class Device < ActiveRecord::Base
 
   def self.new_from_type type
     klass = type.to_s.singularize.camelcase.constantize
-    unless klass.ancestors.include? ActiveRecord::ActsAsModules::ActsAsDevice
+    unless klass.ancestors.include? DeviceBase::InstanceMethods
       raise ArgumentError
     end
     klass.new
