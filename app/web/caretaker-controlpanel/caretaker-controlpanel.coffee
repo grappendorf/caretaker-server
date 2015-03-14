@@ -42,7 +42,7 @@ Polymer 'caretaker-controlpanel',
     @state = 'ok'
     @dashboard = e.detail.response
 
-  deviceStateRecieved: (e) ->
+  updateDeviceState: (e) ->
     widgets = @$.widgets.querySelectorAll "[type=#{e.detail.type}Widget] #content"
     for widget in widgets
       widget.updateState e.detail
@@ -113,3 +113,8 @@ Polymer 'caretaker-controlpanel',
     @$.deleteConfirmDialog.ask().then ->
       self.widgets.delete e.detail.id
       self.reloadDashboard()
+
+  updateDeviceConnection: (e) ->
+    widgets = @$.widgets.querySelectorAll "caretaker-controlpanel-widget"
+    for w in widgets
+      w.widget.device.connected =  e.detail.connected if w.widget.device.id == e.detail.id

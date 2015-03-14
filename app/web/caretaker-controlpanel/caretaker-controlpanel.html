@@ -171,7 +171,8 @@
 
     <caretaker-websocket id="websocket">
       <caretaker-websocket-subscribe channel="devices">
-        <caretaker-websocket-bind event="state" on-data="{{deviceStateRecieved}}"></caretaker-websocket-bind>
+        <caretaker-websocket-bind event="state" on-data="{{updateDeviceState}}"></caretaker-websocket-bind>
+        <caretaker-websocket-bind event="connection" on-data="{{updateDeviceConnection}}"></caretaker-websocket-bind>
       </caretaker-websocket-subscribe>
     </caretaker-websocket>
 
