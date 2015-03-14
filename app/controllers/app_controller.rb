@@ -12,7 +12,6 @@ class AppController < ApplicationController
   end
 
   def static
-    p params[:path]
     render file: File.join(Rails.root, 'public', params[:path])
   end
 
