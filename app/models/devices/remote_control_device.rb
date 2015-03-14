@@ -11,7 +11,7 @@ class RemoteControlDevice < ActiveRecord::Base
 
   inherit DeviceBase
 
-  is_a :device
+  acts_as :device
 
   validates :num_buttons, presence: true, numericality: { greater_than: 0 }
   validates :buttons_per_row, presence: true, numericality: { greater_than: 0 }

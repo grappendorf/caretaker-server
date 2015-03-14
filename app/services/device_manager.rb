@@ -45,7 +45,7 @@ class DeviceManager
   end
 
   def add_device device
-    device_id = device.as_device.id
+    device_id = device.acting_as.id
     @devices_by_id[device_id] = device
     @devices_by_uuid[device.uuid] = device
     if device.address
@@ -67,7 +67,7 @@ class DeviceManager
   end
 
   def update_device device
-    remove_device device.as_device.id
+    remove_device device.acting_as.id
     add_device device
   end
 

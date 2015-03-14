@@ -12,7 +12,7 @@ class SwitchDevice < ActiveRecord::Base
   inherit DeviceBase
   include WlanDevice
 
-  is_a :device
+  acts_as :device
 
   validates :num_switches, presence: true, numericality: { greater_than: 0 }
   validates :switches_per_row, presence: true, numericality: { greater_than: 0 }

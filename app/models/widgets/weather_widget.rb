@@ -9,7 +9,7 @@ class WeatherWidget < ActiveRecord::Base
 
   inherit WidgetBase
 
-  is_a :widget
+  acts_as :widget
 
   before_validation :set_default_title
 

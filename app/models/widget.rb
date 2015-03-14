@@ -14,7 +14,7 @@
 
 class Widget < ActiveRecord::Base
 
-  is_a_superclass
+  actable
 
   belongs_to :dashboard
 

@@ -1,7 +1,8 @@
 class CreateDevices < ActiveRecord::Migration
 
   def change
-    create_table :devices, as_relation_superclass: true do |t|
+    create_table :devices do |t|
+      t.actable
       t.string :name
       t.string :address
       t.string :description

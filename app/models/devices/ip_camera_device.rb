@@ -15,7 +15,7 @@ class IpCameraDevice < ActiveRecord::Base
   include DummyConnectionState
   inherit DeviceBase
 
-  is_a :device
+  acts_as :device
 
   validates :host, presence: true
   validates :port, numericality: { greater_than: 0 }

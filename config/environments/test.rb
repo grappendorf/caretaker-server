@@ -37,4 +37,7 @@ CaretakerServer::Application.configure do
   config.eager_load = false
 
   #config.ember.variant = :production
+
+  # Log to stdout
+  config.logger = Logger.new(STDOUT)
 end

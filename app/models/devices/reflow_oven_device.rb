@@ -10,7 +10,7 @@ class ReflowOvenDevice < ActiveRecord::Base
   inherit DeviceBase
   include WlanDevice
 
-  is_a :device
+  acts_as :device
 
   def self.attr_accessible
     Device.attr_accessible

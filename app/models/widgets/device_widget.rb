@@ -11,7 +11,7 @@ class DeviceWidget < ActiveRecord::Base
 
   inherit WidgetBase
 
-  is_a :widget
+  acts_as :widget
 
   belongs_to :device, polymorphic: true
 

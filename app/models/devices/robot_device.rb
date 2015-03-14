@@ -9,7 +9,7 @@ class RobotDevice < ActiveRecord::Base
 
   inherit DeviceBase
 
-  is_a :device
+  acts_as :device
 
   def self.attr_accessible
     Device.attr_accessible
