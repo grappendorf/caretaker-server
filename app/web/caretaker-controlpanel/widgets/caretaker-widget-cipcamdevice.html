@@ -1,0 +1,24 @@
+<polymer-element name="caretaker-widget-cipcamdevice" attributes="widget websocket">
+
+  <template>
+
+    <link href="../../../web_lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="caretaker-widget-cipcamdevice.css" rel="stylesheet">
+
+    <img id="image" width="320"/>
+
+    <div id="controls" layout horizontal center-justified>
+      <div class="btn-group">
+        <button on-tap="{{left}}" class="btn btn-success">Left</button>
+        <button on-tap="{{right}}" class="btn btn-success">Right</button>
+        <button on-tap="{{up}}" class="btn btn-success">Up</button>
+        <button on-tap="{{down}}" class="btn btn-success">Down</button>
+      </div>
+    </div>
+
+  </template>
+
+
+  <script src="caretaker-widget-cipcamdevice.js"></script>
+
+</polymer-element>

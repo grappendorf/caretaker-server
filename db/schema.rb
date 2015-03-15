@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225235510) do
+ActiveRecord::Schema.define(version: 20150315180134) do
 
   create_table "buildings", force: :cascade do |t|
     t.string "name"
@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 20150225235510) do
     t.string  "user"
     t.string  "password"
     t.string  "refresh_interval"
+  end
+
+  create_table "cipcam_devices", force: :cascade do |t|
+    t.string "user"
+    t.string "password"
+    t.string "refresh_interval"
   end
 
   create_table "dashboards", force: :cascade do |t|

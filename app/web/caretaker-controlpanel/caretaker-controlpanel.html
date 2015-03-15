@@ -2,6 +2,7 @@
 <link rel="import" href="../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
 <link rel="import" href="../caretaker-websocket/caretaker-websocket.html">
 <link rel="import" href="caretaker-controlpanel-widget.html">
+<link rel="import" href="widgets/caretaker-widget-cipcamdevice.html">
 <link rel="import" href="widgets/caretaker-widget-cameradevice.html">
 <link rel="import" href="widgets/caretaker-widget-dimmerdevice.html">
 <link rel="import" href="widgets/caretaker-widget-dimmerrgbdevice.html">
@@ -147,18 +148,18 @@
     </paper-toast>
 
     <grapp-core-ajax id="defaultDashboardRequest" auto
-                         url="/dashboards/default" method="GET" handleAs="json"
-                         on-core-response="{{defaultDashboardSucceeded}}">
+                     url="/dashboards/default" method="GET" handleAs="json"
+                     on-core-response="{{defaultDashboardSucceeded}}">
     </grapp-core-ajax>
 
     <grapp-core-ajax id="dashboardRequest"
-                         url="/dashboards/{{dashboardId}}" method="GET" handleAs="json"
-                         on-core-response="{{dashboardSucceeded}}" on-core-error="{{dashboardFailed}}">
+                     url="/dashboards/{{dashboardId}}" method="GET" handleAs="json"
+                     on-core-response="{{dashboardSucceeded}}" on-core-error="{{dashboardFailed}}">
     </grapp-core-ajax>
 
     <grapp-core-ajax id="dashboardNamesRequest"
-                         url="/dashboards/names" method="GET" handleAs="json"
-                         response="{{dashboardNames}}">
+                     url="/dashboards/names" method="GET" handleAs="json"
+                     response="{{dashboardNames}}">
     </grapp-core-ajax>
 
     <grapp-rest-resource url="/dashboards/:id" resource="{{dashboards}}"></grapp-rest-resource>
@@ -188,6 +189,11 @@
     <caretaker-confirmation-dialog id="deleteConfirmDialog" heading="{{'title.delete_confirmation' | i18n}}"
                                    message="{{deleteConfirmMessage}}">
     </caretaker-confirmation-dialog>
+
+    <template id="CipcamDeviceWidget">
+      <caretaker-widget-cipcamdevice id="content" widget="{{widget}}"
+                                     websocket="{{$.websocket}}"></caretaker-widget-cipcamdevice>
+    </template>
 
     <template id="CameraDeviceWidget">
       <caretaker-widget-cameradevice id="content" widget="{{widget}}"
