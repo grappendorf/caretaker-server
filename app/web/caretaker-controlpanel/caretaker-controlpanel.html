@@ -3,12 +3,10 @@
 <link rel="import" href="../caretaker-websocket/caretaker-websocket.html">
 <link rel="import" href="caretaker-controlpanel-widget.html">
 <link rel="import" href="widgets/caretaker-widget-cipcamdevice.html">
-<link rel="import" href="widgets/caretaker-widget-cameradevice.html">
 <link rel="import" href="widgets/caretaker-widget-dimmerdevice.html">
 <link rel="import" href="widgets/caretaker-widget-dimmerrgbdevice.html">
 <link rel="import" href="widgets/caretaker-widget-remotecontroldevice.html">
 <link rel="import" href="widgets/caretaker-widget-reflowovendevice.html">
-<link rel="import" href="widgets/caretaker-widget-robotdevice.html">
 <link rel="import" href="widgets/caretaker-widget-switchdevice.html">
 <link rel="import" href="widgets/caretaker-widget-weather.html">
 <link rel="import" href="dialogs/caretaker-controlpanel-new-dashboard-dialog.html">
@@ -195,11 +193,6 @@
                                      websocket="{{$.websocket}}"></caretaker-widget-cipcamdevice>
     </template>
 
-    <template id="CameraDeviceWidget">
-      <caretaker-widget-cameradevice id="content" widget="{{widget}}"
-                                     websocket="{{$.websocket}}"></caretaker-widget-cameradevice>
-    </template>
-
     <template id="DimmerDeviceWidget">
       <caretaker-widget-dimmerdevice id="content" widget="{{widget}}"
                                      websocket="{{$.websocket}}"></caretaker-widget-dimmerdevice>
@@ -215,11 +208,6 @@
                                      websocket="{{$.websocket}}"></caretaker-widget-easyvrdevice>
     </template>
 
-    <template id="IpCameraDeviceWidget">
-      <caretaker-widget-ipcameradevice id="content" widget="{{widget}}"
-                                       websocket="{{$.websocket}}"></caretaker-widget-ipcameradevice>
-    </template>
-
     <template id="SwitchDeviceWidget">
       <caretaker-widget-switchdevice id="content" widget="{{widget}}"
                                      websocket="{{$.websocket}}"></caretaker-widget-switchdevice>
@@ -233,11 +221,6 @@
     <template id="ReflowOvenDeviceWidget">
       <caretaker-widget-reflowovendevice id="content" widget="{{widget}}"
                                          websocket="{{$.websocket}}"></caretaker-widget-reflowovendevice>
-    </template>
-
-    <template id="RobotDeviceWidget">
-      <caretaker-widget-robotdevice id="content" widget="{{widget}}"
-                                    websocket="{{$.websocket}}"></caretaker-widget-robotdevice>
     </template>
 
     <template id="WeatherWidget">

@@ -95,7 +95,7 @@ de:
     device:
       one: "Gerät"
       other: "Geräte"
-    camera_device:
+    cipcam_device:
       one: "Kamera"
       other: "Kameras"
     dimmer_device:
@@ -107,18 +107,12 @@ de:
     easyvr_device:
       one: "EasyVR"
       other: "EasyVRs"
-    ip_camera_device:
-      one: "IP Camera"
-      other: "IP Cameras"
     reflow_oven_device:
       one: "Reflow Oven"
       other: "Reflow Ovens"
     remote_control_device:
       one: "Fernsteuerung"
       other: "Fernsteuerungen"
-    robot_device:
-      one: "Roboter"
-      other: "Roboter"
     switch_device:
       one: "Schalter"
       other: "Schalter"
@@ -160,15 +154,7 @@ de:
       type: "Typ"
       address: "Adresse"
       description: "Beschreibung"
-    camera_device:
-      host: "Host"
-      port: "Port"
-      user: "Benutzer"
-      password: "Passwort"
-      refresh_interval: "Aktualisierung"
-    ip_camera_device:
-      host: "Host"
-      port: "Port"
+    cipcam_device:
       user: "Benutzer"
       password: "Passwort"
       refresh_interval: "Aktualisierung"

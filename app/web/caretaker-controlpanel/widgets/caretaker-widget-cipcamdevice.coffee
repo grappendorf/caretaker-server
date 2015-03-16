@@ -5,7 +5,7 @@ Polymer 'caretaker-widget-cipcamdevice',
     @reloadImage()
 
   reloadImage: ->
-    @$.image.src = "http://#{@device.address}/snapshot.cgi?t=#{(new Date).getTime()}"
+    @$.image.src = "http://#{@device.user}:#{@device.password}@#{@device.address}/snapshot.cgi?t=#{(new Date).getTime()}"
     @async @reloadImage, null, @device.refresh_interval * 1000
 
   left: ->

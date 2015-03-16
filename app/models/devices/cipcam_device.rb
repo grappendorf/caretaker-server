@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: cipcam_camera_devices
+# Table name: cipcam_devices
 #
 #  id               :integer          not null, primary key
 #  user             :string

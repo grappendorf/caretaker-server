@@ -1,1 +1,0 @@
-Polymer 'caretaker-widget-robotdevice'

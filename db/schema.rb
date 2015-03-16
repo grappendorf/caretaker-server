@@ -20,14 +20,6 @@ ActiveRecord::Schema.define(version: 20150315180134) do
 
   add_index "buildings", ["name"], name: "index_buildings_on_name"
 
-  create_table "camera_devices", force: :cascade do |t|
-    t.string  "host"
-    t.integer "port"
-    t.string  "user"
-    t.string  "password"
-    t.string  "refresh_interval"
-  end
-
   create_table "cipcam_devices", force: :cascade do |t|
     t.string "user"
     t.string "password"
@@ -82,23 +74,12 @@ ActiveRecord::Schema.define(version: 20150315180134) do
 
   add_index "floors", ["name"], name: "index_floors_on_name"
 
-  create_table "ip_camera_devices", force: :cascade do |t|
-    t.string  "host"
-    t.integer "port"
-    t.string  "user"
-    t.string  "password"
-    t.string  "refresh_interval"
-  end
-
   create_table "reflow_oven_devices", force: :cascade do |t|
   end
 
   create_table "remote_control_devices", force: :cascade do |t|
     t.integer "num_buttons"
     t.integer "buttons_per_row"
-  end
-
-  create_table "robot_devices", force: :cascade do |t|
   end
 
   create_table "roles", force: :cascade do |t|

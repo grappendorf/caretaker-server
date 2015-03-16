@@ -33,14 +33,12 @@
         <caretaker-data-field name="description"></caretaker-data-field>
       </caretaker-data-fieldset>
 
-      <template if="{{$.editor.item.type === 'CameraDevice'}}">
-        <caretaker-data-fieldset label="{{'models.camera_device.one'|i18n}}"
+      <template if="{{$.editor.item.type === 'CipcamDevice'}}">
+        <caretaker-data-fieldset label="{{'models.cipcam_device.one'|i18n}}"
                                  image="/images/{{$.editor.item.large_icon}}">
-          <caretaker-data-field name="host" model="camera_device"></caretaker-data-field>
-          <caretaker-data-field name="port" model="camera_device"></caretaker-data-field>
-          <caretaker-data-field name="user" model="camera_device"></caretaker-data-field>
-          <caretaker-data-field name="password" model="camera_device"></caretaker-data-field>
-          <caretaker-data-field name="refresh_interval" model="camera_device"></caretaker-data-field>
+          <caretaker-data-field name="user" model="cipcam_device"></caretaker-data-field>
+          <caretaker-data-field name="password" model="cipcam_device"></caretaker-data-field>
+          <caretaker-data-field name="refresh_interval" model="cipcam_device"></caretaker-data-field>
         </caretaker-data-fieldset>
       </template>
 
@@ -64,17 +62,6 @@
         </caretaker-data-fieldset>
       </template>
 
-      <template if="{{$.editor.item.type === 'IpCameraDevice'}}">
-        <caretaker-data-fieldset label="{{'models.ip_camera_device.one'|i18n}}"
-                                 image="/images/{{$.editor.item.large_icon}}">
-          <caretaker-data-field name="host" model="ip_camera_device"></caretaker-data-field>
-          <caretaker-data-field name="port" model="ip_camera_device"></caretaker-data-field>
-          <caretaker-data-field name="user" model="ip_camera_device"></caretaker-data-field>
-          <caretaker-data-field name="password" model="ip_camera_device"></caretaker-data-field>
-          <caretaker-data-field name="refresh_interval" model="ip_camera_device"></caretaker-data-field>
-        </caretaker-data-fieldset>
-      </template>
-
       <template if="{{$.editor.item.type === 'ReflowOvenDevice'}}">
         <caretaker-data-fieldset label="{{'models.reflow_oven_device.one'|i18n}}"
                                  image="/images/{{$.editor.item.large_icon}}">
@@ -86,12 +73,6 @@
                                  image="/images/{{$.editor.item.large_icon}}">
           <caretaker-data-field name="num_buttons" model="remote_control_device"></caretaker-data-field>
           <caretaker-data-field name="buttons_per_row" model="remote_control_device"></caretaker-data-field>
-        </caretaker-data-fieldset>
-      </template>
-
-      <template if="{{$.editor.item.type === 'RobotDevice'}}">
-        <caretaker-data-fieldset label="{{'models.robot_device.one'|i18n}}"
-                                 image="/images/{{$.editor.item.large_icon}}">
         </caretaker-data-fieldset>
       </template>
 
