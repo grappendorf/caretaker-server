@@ -51,7 +51,6 @@ class ReflowOvenDevice < ActiveRecord::Base
   end
 
   def put_state params
-    Rails.logger.debug params
     case params['action']
       when 'start'
         send_message CaretakerMessages::REFLOW_OVEN_CMD, CaretakerMessages::REFLOW_OVEN_CMD_START
