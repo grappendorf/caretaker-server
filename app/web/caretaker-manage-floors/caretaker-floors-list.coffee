@@ -1,6 +1,6 @@
 Polymer 'caretaker-floors-list',
 
-  tokenChanged: ->
+  domReady: ->
     @$.table.load()
 
   buildingIdChanged: ->

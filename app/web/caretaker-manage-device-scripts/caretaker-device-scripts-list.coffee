@@ -1,6 +1,6 @@
 Polymer 'caretaker-device-scripts-list',
 
-  tokenChanged: ->
+  domReady: ->
     @$.table.load()
 
   edit: (e) ->

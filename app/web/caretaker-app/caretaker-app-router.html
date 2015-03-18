@@ -1,50 +1,50 @@
 <link rel="import" href="../../web_lib/app-router/app-router.html">
-<link rel="import" href="../caretaker-help/caretaker-about.html">
-<link rel="import" href="../caretaker-help/caretaker-documentation.html">
 <link rel="import" href="../caretaker-app-dashboard/caretaker-app-dashboard.html">
-<link rel="import" href="../caretaker-manage-settings/caretaker-manage-settings.html">
 <link rel="import" href="../caretaker-manage-devices/caretaker-devices-list.html">
 <link rel="import" href="../caretaker-manage-devices/caretaker-devices-editor.html">
 <link rel="import" href="../caretaker-manage-device-scripts/caretaker-device-scripts-list.html">
 <link rel="import" href="../caretaker-manage-device-scripts/caretaker-device-scripts-editor.html">
-<link rel="import" href="../caretaker-manage-users/caretaker-users-list.html">
-<link rel="import" href="../caretaker-manage-users/caretaker-users-editor.html">
-<link rel="import" href="../caretaker-manage-dashboards/caretaker-dashboards-list.html">
-<link rel="import" href="../caretaker-manage-dashboards/caretaker-dashboards-editor.html">
 <link rel="import" href="../caretaker-manage-buildings/caretaker-buildings-list.html">
 <link rel="import" href="../caretaker-manage-buildings/caretaker-buildings-editor.html">
 <link rel="import" href="../caretaker-manage-floors/caretaker-floors-list.html">
 <link rel="import" href="../caretaker-manage-floors/caretaker-floors-editor.html">
 <link rel="import" href="../caretaker-manage-rooms/caretaker-rooms-list.html">
 <link rel="import" href="../caretaker-manage-rooms/caretaker-rooms-editor.html">
+<link rel="import" href="../caretaker-manage-users/caretaker-users-list.html">
+<link rel="import" href="../caretaker-manage-users/caretaker-users-editor.html">
+<link rel="import" href="../caretaker-manage-dashboards/caretaker-dashboards-list.html">
+<link rel="import" href="../caretaker-manage-dashboards/caretaker-dashboards-editor.html">
+<link rel="import" href="../caretaker-manage-settings/caretaker-manage-settings.html">
+<link rel="import" href="../caretaker-help/caretaker-about.html">
+<link rel="import" href="../caretaker-help/caretaker-documentation.html">
 
 <polymer-element name="caretaker-app-router" attributes="sessionManager router">
 
   <template>
 
     <app-router id="router" on-before-data-binding="{{bindRouteAttributes}}">
-      <app-route path="/controlpanel" element="caretaker-app-dashboard" bindRouter></app-route>
-      <app-route path="/devices" element="caretaker-devices-list" bindRouter></app-route>
-      <app-route path="/devices/:id" element="caretaker-devices-editor" bindRouter></app-route>
-      <app-route path="/devices/new/:type" element="caretaker-devices-editor" bindRouter></app-route>
-      <app-route path="/device_scripts" element="caretaker-device-scripts-list" bindRouter></app-route>
-      <app-route path="/device_scripts/:id" element="caretaker-device-scripts-editor" bindRouter></app-route>
-      <app-route path="/buildings" element="caretaker-buildings-list" bindRouter></app-route>
-      <app-route path="/buildings/:id" element="caretaker-buildings-editor" bindRouter></app-route>
-      <app-route path="/floors" element="caretaker-floors-list" bindRouter></app-route>
-      <app-route path="/buildings/:buildingId/floors" element="caretaker-floors-list" bindRouter></app-route>
+      <app-route path="/controlpanel" element="caretaker-app-dashboard"></app-route>
+      <app-route path="/devices" element="caretaker-devices-list" ></app-route>
+      <app-route path="/devices/:id" element="caretaker-devices-editor" ></app-route>
+      <app-route path="/devices/new/:type" element="caretaker-devices-editor" ></app-route>
+      <app-route path="/device_scripts" element="caretaker-device-scripts-list" ></app-route>
+      <app-route path="/device_scripts/:id" element="caretaker-device-scripts-editor" ></app-route>
+      <app-route path="/buildings" element="caretaker-buildings-list" ></app-route>
+      <app-route path="/buildings/:id" element="caretaker-buildings-editor" ></app-route>
+      <app-route path="/floors" element="caretaker-floors-list" ></app-route>
+      <app-route path="/buildings/:buildingId/floors" element="caretaker-floors-list" ></app-route>
       <app-route path="/buildings/:buildingId/floors/:id" element="caretaker-floors-editor"
-                 bindRouter></app-route>
-      <app-route path="/rooms" element="caretaker-rooms-list" bindRouter></app-route>
+                 ></app-route>
+      <app-route path="/rooms" element="caretaker-rooms-list" ></app-route>
       <app-route path="/buildings/:buildingId/floors/:floorId/rooms" element="caretaker-rooms-list"
-                 bindRouter></app-route>
+                 ></app-route>
       <app-route path="/buildings/:buildingId/floors/:floorId/rooms/:id" element="caretaker-rooms-editor"
-                 bindRouter></app-route>
-      <app-route path="/users" element="caretaker-users-list" bindRouter></app-route>
-      <app-route path="/users/:id" element="caretaker-users-editor" bindRouter></app-route>
-      <app-route path="/dashboards" element="caretaker-dashboards-list" bindRouter></app-route>
-      <app-route path="/dashboards/:id" element="caretaker-dashboards-editor" bindRouter></app-route>
-      <app-route path="/settings" element="caretaker-manage-settings" bindRouter></app-route>
+                 ></app-route>
+      <app-route path="/users" element="caretaker-users-list"></app-route>
+      <app-route path="/users/:id" element="caretaker-users-editor"></app-route>
+      <app-route path="/dashboards" element="caretaker-dashboards-list" ></app-route>
+      <app-route path="/dashboards/:id" element="caretaker-dashboards-editor" ></app-route>
+      <app-route path="/settings" element="caretaker-manage-settings" ></app-route>
       <app-route path="/about" element="caretaker-about"></app-route>
       <app-route path="/documentation" element="caretaker-documentation"></app-route>
       <app-route path="*" redirect="/controlpanel"></app-route>

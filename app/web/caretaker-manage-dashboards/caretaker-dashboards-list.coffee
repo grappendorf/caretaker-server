@@ -1,6 +1,6 @@
 Polymer 'caretaker-dashboards-list',
 
-  tokenChanged: ->
+  domReady: ->
     @$.table.load()
 
   edit: (e) ->

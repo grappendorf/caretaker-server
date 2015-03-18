@@ -1,6 +1,6 @@
 Polymer 'caretaker-buildings-list',
 
-  tokenChanged: ->
+  domReady: ->
     @$.table.load()
 
   edit: (e) ->

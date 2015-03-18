@@ -1,6 +1,5 @@
 <link rel="import" href="../../web_lib/paper-toast/paper-toast.html">
 <link rel="import" href="../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
-<link rel="import" href="../caretaker-session-manager/caretaker-session-token.html">
 <link rel="import" href="../caretaker-websocket/caretaker-websocket.html">
 <link rel="import" href="caretaker-controlpanel-widget.html">
 <link rel="import" href="widgets/caretaker-widget-cipcamdevice.html">
@@ -15,7 +14,7 @@
 <link rel="import" href="dialogs/caretaker-controlpanel-new-widget-dialog.html">
 <link rel="import" href="dialogs/caretaker-controlpanel-edit-widget-dialog.html">
 
-<polymer-element name="caretaker-controlpanel">
+<polymer-element name="caretaker-controlpanel" attributes="token">
 
   <template>
 
@@ -23,8 +22,6 @@
     <link href="caretaker-controlpanel.css" rel="stylesheet">
 
     <grapp-app-globals id="globals"></grapp-app-globals>
-
-    <caretaker-session-token token="{{token}}"></caretaker-session-token>
 
     <div class="row">
       <div class="col-md-12">
@@ -179,14 +176,18 @@
       </caretaker-websocket-subscribe>
     </caretaker-websocket>
 
-    <caretaker-controlpanel-new-dashboard-dialog id="newDashboardDialog"></caretaker-controlpanel-new-dashboard-dialog>
+    <caretaker-controlpanel-new-dashboard-dialog id="newDashboardDialog">
+    </caretaker-controlpanel-new-dashboard-dialog>
 
     <caretaker-controlpanel-edit-dashboard-dialog id="editDashboardDialog"
-                                                  dashboard="{{dashboard}}"></caretaker-controlpanel-edit-dashboard-dialog>
+                                                  dashboard="{{dashboard}}">
+    </caretaker-controlpanel-edit-dashboard-dialog>
 
-    <caretaker-controlpanel-new-widget-dialog id="newWidgetDialog"></caretaker-controlpanel-new-widget-dialog>
+    <caretaker-controlpanel-new-widget-dialog id="newWidgetDialog" token="{{token}}">
+    </caretaker-controlpanel-new-widget-dialog>
 
-    <caretaker-controlpanel-edit-widget-dialog id="editWidgetDialog"></caretaker-controlpanel-edit-widget-dialog>
+    <caretaker-controlpanel-edit-widget-dialog id="editWidgetDialog" token="{{token}}">
+    </caretaker-controlpanel-edit-widget-dialog>
 
     <caretaker-confirmation-dialog id="deleteConfirmDialog" heading="{{'title.delete_confirmation' | i18n}}"
                                    message="{{deleteConfirmMessage}}">

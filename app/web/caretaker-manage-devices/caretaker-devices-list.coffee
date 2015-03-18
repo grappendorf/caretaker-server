@@ -1,6 +1,6 @@
 Polymer 'caretaker-devices-list',
 
-  tokenChanged: ->
+  domReady: ->
     @loadTable()
 
   edit: (e) ->

@@ -1,6 +1,6 @@
 Polymer 'caretaker-rooms-list',
 
-  tokenChanged: ->
+  domReady: ->
     @$.table.load()
 
   buildingIdChanged: ->
