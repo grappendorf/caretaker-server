@@ -12,7 +12,7 @@
 
     <core-menu on-core-activate="{{menuSelected}}" valueattr="id" selected="{{$.globals.appModule}}">
 
-      <template if="{{sessionManager.connected}}">
+      <template if="{{sessionManager.token}}">
         <core-item id="dashboard" go="/controlpanel" label="{{'models.dashboard.one' | i18n}}" icon="dashboard"
                    category="misc"></core-item>
       </template>
@@ -99,7 +99,7 @@
 
       </core-submenu>
 
-      <template if="{{sessionManager.connected}}">
+      <template if="{{sessionManager.token}}">
 
         <core-submenu id="account" label="{{'account' | i18n}}" icon="account-circle"
                       valueattr="id" selected="{{$.globals.appFunction}}">
@@ -123,7 +123,7 @@
 
       </template>
 
-      <template if="{{! sessionManager.connected}}">
+      <template if="{{! sessionManager.token}}">
         <core-item delegate="app.login" icon="exit-to-app" label="{{'action.sign_in' | i18n}}"></core-item>
       </template>
 

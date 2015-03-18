@@ -1,14 +1,15 @@
-<link rel="import" href="../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
 <link rel="import" href="../../web_lib/core-localstorage/core-localstorage.html">
+<link rel="import" href="../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
+<link rel="import" href="../../web_lib/grapp-app-globals/grapp-app-globals.html">
 <link rel="import" href="caretaker-login-dialog.html">
 <link rel="import" href="caretaker-password-dialog.html">
 <link rel="import" href="caretaker-profile-dialog.html">
 
-<polymer-element name="caretaker-session-manager" attributes="user roles userIsAdmin connected">
+<polymer-element name="caretaker-session-manager" attributes="user roles userIsAdmin token">
 
   <template>
 
-    <caretaker-login-dialog id="loginDialog" email="{{user.email}}" password="{{password}}"
+    <caretaker-login-dialog id="loginDialog" email="{{user}}" password="{{password}}"
                             on-login="{{login}}">
     </caretaker-login-dialog>
 
@@ -19,19 +20,15 @@
     <caretaker-profile-dialog id="profileDialog" on-submit="{{processProfileUpdate}}">
     </caretaker-profile-dialog>
 
-    <core-localstorage name="caretaker-session-manager:{{id}}:user" value="{{user}}"></core-localstorage>
-    <core-localstorage name="caretaker-session-manager:{{id}}:connected" value="{{connected}}"
-                       on-core-localstorage-load="{{connectedLoaded}}"></core-localstorage>
+    <core-localstorage name="caretaker-session-manager:user" value="{{user}}"></core-localstorage>
+    <core-localstorage name="caretaker-session-manager:roles" value="{{roles}}"></core-localstorage>
+    <core-localstorage name="caretaker-session-manager:token" value="{{token}}"
+                       on-core-localstorage-load="{{tokenLoaded}}"></core-localstorage>
 
     <grapp-core-ajax id="signInRequest"
                          url="/session/sign_in" method="POST" handleAs="json"
-                         params='{"user[email]": "{{user.email}}", "user[password]": "{{password}}"}'
+                         params='{"user[email]": "{{user}}", "user[password]": "{{password}}"}'
                          on-core-response="{{loginSucceeded}}" on-core-error="{{loginFailed}}">
-    </grapp-core-ajax>
-
-    <grapp-core-ajax id="signOutRequest"
-                         url="/session/sign_out" method="GET" handleAs="json"
-                         on-core-response="{{logoutSucceeded}}" on-core-error="{{logoutFailed}}">
     </grapp-core-ajax>
 
     <grapp-core-ajax id="changePasswordRequest"

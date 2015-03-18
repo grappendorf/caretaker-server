@@ -1,6 +1,7 @@
 <link rel="import" href="../../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
 <link rel="import" href="../../../web_lib/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../../../web_lib/paper-dropdown/paper-dropdown.html">
+<link rel="import" href="../../caretaker-session-manager/caretaker-session-token.html">
 
 <polymer-element name="caretaker-controlpanel-new-widget-dialog">
 
@@ -15,9 +16,11 @@
       }
     </style>
 
+    <caretaker-session-token token="{{token}}"></caretaker-session-token>
+
     <grapp-core-ajax id="devicesNames"
                       url="/devices/names" method="GET" handleAs="json"
-                      response="{{devices}}">
+                      response="{{devices}}" token="{{token}}">
     </grapp-core-ajax>
 
     <paper-action-dialog id="dialog" backdrop layered="false" heading="{{'action.add_widget' | i18n}}">

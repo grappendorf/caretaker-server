@@ -5,7 +5,7 @@ Polymer 'caretaker-controlpanel',
     @dashboard = null
     @state = 'ok'
 
-  ready: ->
+  tokenChanged: ->
     self = @
     @$.dashboardNamesRequest.go()
 
@@ -93,8 +93,8 @@ Polymer 'caretaker-controlpanel',
       self.widgets.create widget, (response) ->
         self.$.newWidgetDialog.end()
         self.$.dashboardRequest.go()
-      ,
-          self.$.newWidgetDialog.end()
+      , ->
+        self.$.newWidgetDialog.end()
 
   editWidgetProperties: (e) ->
     self = @
@@ -102,8 +102,8 @@ Polymer 'caretaker-controlpanel',
     @$.editWidgetDialog.start().then (widget) ->
       self.widgets.update widget.id, widget, ->
         self.$.editWidgetDialog.end()
-      ,
-          self.$.editWidgetDialog.end()
+      , ->
+        self.$.editWidgetDialog.end()
 
   deleteWidget: (e) ->
     self = @
@@ -117,4 +117,4 @@ Polymer 'caretaker-controlpanel',
   updateDeviceConnection: (e) ->
     widgets = @$.widgets.querySelectorAll "caretaker-controlpanel-widget"
     for w in widgets
-      w.widget.device.connected =  e.detail.connected if w.widget.device.id == e.detail.id
+      w.widget.device.connected = e.detail.connected if w.widget.device.id == e.detail.id

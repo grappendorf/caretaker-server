@@ -1,7 +1,10 @@
 Polymer 'caretaker-floors-list',
 
-  buildingIdChanged: ->
+  tokenChanged: ->
     @$.table.load()
+
+  buildingIdChanged: ->
+    @$.table.load() if @token
 
   edit: (e) ->
     @router.go "/buildings/#{@buildingId}/floors/#{e.detail.id}"

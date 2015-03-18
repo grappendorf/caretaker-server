@@ -1,6 +1,6 @@
 Polymer 'caretaker-users-list',
 
-  ready: ->
+  tokenChanged: ->
     @$.table.load()
 
   edit: (e) ->

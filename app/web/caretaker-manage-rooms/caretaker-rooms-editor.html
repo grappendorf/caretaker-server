@@ -1,5 +1,7 @@
+<link rel="import" href="../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
 <link rel="import" href="../../web_lib/grapp-rest-resource/grapp-rest-resource.html">
 <link rel="import" href="../../web_lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
+<link rel="import" href="../caretaker-session-manager/caretaker-session-token.html">
 <link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
 <link rel="import" href="../caretaker-data-editor/caretaker-data-editor.html">
 
@@ -7,15 +9,20 @@
 
   <template>
 
+    <caretaker-session-token token="{{token}}"></caretaker-session-token>
+
     <grapp-rest-resource url="/buildings/:buildingId/floors/:floorId/rooms/:id?q={{searchText}}"
                          params='{{ {"buildingId":buildingId, "floorId":floorId} }}'
-                         resource="{{rooms}}"></grapp-rest-resource>
+                         resource="{{rooms}}" token="{{token}}"></grapp-rest-resource>
 
-    <core-ajax url="/buildings/{{buildingId}}/name" handleAs="json" response="{{building}}" auto>
-    </core-ajax>
+    <grapp-core-ajax id="buildingName" url="/buildings/{{buildingId}}/name" handleAs="json" response="{{building}}"
+               token="{{token}}" auto>
+    </grapp-core-ajax>
 
-    <core-ajax url="/buildings/{{buildingId}}/floors/{{floorId}}/name" handleAs="json" response="{{floor}}" auto>
-    </core-ajax>
+    <grapp-core-ajax id="floorName" url="/buildings/{{buildingId}}/floors/{{floorId}}/name" handleAs="json" response="{{floor}}"
+               token="{{token}}" auto>
+
+    </grapp-core-ajax>
 
     <grapp-app-globals>
       <grapp-app-global-value name="appTitle" value="models.room.other"></grapp-app-global-value>

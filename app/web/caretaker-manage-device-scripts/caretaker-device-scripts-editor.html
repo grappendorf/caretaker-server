@@ -1,5 +1,6 @@
 <link rel="import" href="../../web_lib/grapp-rest-resource/grapp-rest-resource.html">
 <link rel="import" href="../../web_lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
+<link rel="import" href="../caretaker-session-manager/caretaker-session-token.html">
 <link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
 <link rel="import" href="../caretaker-data-editor/caretaker-data-editor.html">
 
@@ -7,7 +8,10 @@
 
   <template>
 
-    <grapp-rest-resource url="/device_scripts/:id" resource="{{deviceScripts}}"></grapp-rest-resource>
+    <caretaker-session-token token="{{token}}"></caretaker-session-token>
+
+    <grapp-rest-resource url="/device_scripts/:id" resource="{{deviceScripts}}"
+                         token="{{token}}"></grapp-rest-resource>
 
     <grapp-app-globals>
       <grapp-app-global-value name="appTitle" value="models.device_script.other"></grapp-app-global-value>

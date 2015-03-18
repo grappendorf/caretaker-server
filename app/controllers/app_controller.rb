@@ -2,7 +2,7 @@ class AppController < ApplicationController
 
   layout false
 
-  skip_before_filter :verify_authenticity_token, :only => [:static]
+  skip_before_filter :verify_jwt_token
 
   def index
   end
@@ -13,6 +13,10 @@ class AppController < ApplicationController
 
   def static
     render file: File.join(Rails.root, 'public', params[:path])
+  end
+
+  def not_found
+    render status: :not_found, nothing: true
   end
 
 end

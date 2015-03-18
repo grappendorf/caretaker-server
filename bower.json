@@ -43,7 +43,7 @@
     "es6-promise-polyfill": "es6-promise-polyfill#1.0.0",
     "github-readme": "0.0.3",
     "github-ribbon": "0.0.1",
-    "app-router": "2.1.0",
+    "app-router": "2.6.0",
     "current-weather": "0.3.0",
     "grapp-breadcrumbs": "0.0.1",
     "grapp-fa-icon": "0.0.2",
@@ -52,14 +52,12 @@
     "grapp-paper-fab": "0.0.3",
     "grapp-paper-input": "0.0.3",
     "grapp-app-globals": "0.0.3",
-    "grapp-rest-resource": "0.0.5",
-    "grapp-core-ajax": "0.0.1",
+    "grapp-rest-resource": "0.0.8",
+    "grapp-core-ajax": "0.0.3",
     "grapp-graph-epoch": "0.0.7"
   },
   "resolutions": {
     "core-ajax": "0.5.4",
-    "polymer": "0.5.4",
-    "core-component-page": "^0.5",
-    "platform": "^0.4.0"
+    "polymer": "0.5.4"
   }
 }

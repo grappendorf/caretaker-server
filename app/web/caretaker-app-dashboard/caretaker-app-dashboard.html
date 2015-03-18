@@ -2,7 +2,7 @@
 <link rel="import" href="../caretaker-session-manager/caretaker-session-manager.html">
 <link rel="import" href="../caretaker-controlpanel/caretaker-controlpanel.html">
 
-<polymer-element name="caretaker-app-dashboard">
+<polymer-element name="caretaker-app-dashboard" attributes="router sessionManager">
 
   <template>
 
@@ -15,7 +15,7 @@
     </grapp-app-globals>
 
     <div id="controlpanel" horizontal layout wrap on-grapp-launch="{{launch}}">
-      <template if="{{app.$.sessionManager.userIsAdmin}}">
+      <template if="{{sessionManager.userIsAdmin}}">
         <grapp-launcher-tile name="devices" class="devices" faicon="gears" label="{{'models.device.other' | i18n}}">
         </grapp-launcher-tile>
         <grapp-launcher-tile name="device_scripts" class="devices" faicon="code"
@@ -40,7 +40,7 @@
         <grapp-launcher-tile name="documentation" class="help" faicon="book" label="{{'documentation' | i18n}}">
         </grapp-launcher-tile>
       </template>
-      <template if="{{! app.$.sessionManager.userIsAdmin}}">
+      <template if="{{! sessionManager.userIsAdmin}}">
         <caretaker-controlpanel></caretaker-controlpanel>
       </template>
     </div>

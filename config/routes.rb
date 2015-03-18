@@ -67,5 +67,6 @@ CaretakerServer::Application.routes.draw do
   get '/floors' => 'floors#index', as: :floors, defaults: { format: :json }
   get '/rooms' => 'rooms#index', as: :rooms, defaults: { format: :json }
 
-  get '/invalid' => 'catchall#index', as: :invalid
+  # get '*any', via: :all, to: 'app#not_found'
+
 end

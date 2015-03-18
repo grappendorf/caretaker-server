@@ -1,15 +1,10 @@
 Polymer 'caretaker-session-manager',
 
   created: ->
-    @user = {}
+    @user = ''
     @roles = []
     @userIsAdmin = false
-    @connected = false
-
-  userChanged: ->
-    @roles = {}
-    @roles[role] = true for role in @user.roles
-    @userIsAdmin = @hasRole 'admin'
+    @token = null
 
   connect: ->
     @$.loginDialog.show()
@@ -18,13 +13,16 @@ Polymer 'caretaker-session-manager',
     @logout()
 
   reconnect: ->
-    @connected = false
+    @token = null
     @connect()
 
   hasRole: (role) ->
-    role in @user.roles
+    role in @roles
 
-  connectedLoaded: ->
+  rolesChanged: ->
+    @userIsAdmin = @hasRole 'admin'
+
+  tokenLoaded: ->
     @fire 'loaded'
 
   changePassword: ->
@@ -38,22 +36,19 @@ Polymer 'caretaker-session-manager',
     @$.loginDialog.processing = false
     @$.loginDialog.hide()
     @password = ''
-    if e.detail.response.user
-      @user = e.detail.response.user
-      @connected = true
+    @user = e.detail.response.user
+    @roles = e.detail.response.roles
+    @token = e.detail.response.token
 
   loginFailed: (e) ->
     @$.loginDialog.processing = false
-    @$.loginDialog.error = e.detail.response.message
+#    @$.loginDialog.error = e.detail.response.message
+    @$.loginDialog.error = 'Not authorized'
     @password = ''
 
   logout: ->
-    @$.signOutRequest.go()
-    @connected = false
-    @userIsAdmin = false
-
-  logoutSucceeded: ->
-    @connected = false
+    @token = null
+    @roles = []
     @userIsAdmin = false
 
   processPasswordChange: ->

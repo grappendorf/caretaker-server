@@ -1,0 +1,9 @@
+<link rel="import" href="../../web_lib/core-localstorage/core-localstorage.html">
+
+<polymer-element name="caretaker-session-token" attributes="token" noscript>
+
+  <template>
+    <core-localstorage name="caretaker-session-manager:token" value="{{token}}"></core-localstorage>
+  </template>
+
+</polymer-element>

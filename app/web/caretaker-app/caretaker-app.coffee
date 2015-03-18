@@ -8,12 +8,13 @@ Polymer 'caretaker-app',
 
   logout: ->
     @$.sessionManager.disconnect()
+    @$.sessionManager.connect()
 
   changePassword: ->
     @$.sessionManager.changePassword()
 
   sessionManagerLoaded: ->
-    @login() unless @$.sessionManager.connected
+    @login() unless @$.sessionManager.token
 
   editProfile: ->
     @$.sessionManager.editProfile()
@@ -22,7 +23,11 @@ Polymer 'caretaker-app',
     @unauthenticatedLocation = window.location.hash[1..]
     @$.sessionManager.reconnect()
 
-  '$.sessionManager.connectedChanged': ->
-    if @$.sessionManager.connected && @unauthenticatedLocation
+  '$.sessionManager.tokenChanged': ->
+    if @$.sessionManager.token && @unauthenticatedLocation
       @$.router.go @unauthenticatedLocation
       @unauthenticatedLocation = null
+
+  bindRouteAttributes: (e) ->
+    console.log @$.sessionManager
+    e.detail.model.sessionManager = @sessionManager
