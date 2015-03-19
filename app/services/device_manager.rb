@@ -13,12 +13,12 @@ class DeviceManager
   def start
     Rails.logger.info 'Device Manager starting'
 
-    wlan_master.when_message_received { |*args| wlan_message_received *args }
-    wlan_master.start
-
     Device.all.each do |device|
       add_device device.specific
     end
+
+    wlan_master.when_message_received { |*args| wlan_message_received *args }
+    wlan_master.start
   end
 
   def stop
