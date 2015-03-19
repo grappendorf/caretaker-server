@@ -10,6 +10,7 @@
 class RemoteControlDevice < ActiveRecord::Base
 
   inherit DeviceBase
+  include WlanDevice
 
   acts_as :device
 
@@ -39,24 +40,19 @@ class RemoteControlDevice < ActiveRecord::Base
     @states ||= Array.new(num_buttons, RELEASED)
   end
 
+  alias button_states states
+
   def pressed? button_num
     states[button_num] == PRESSED
   end
 
-  def message_received message
+  def message_received message, params
     super
-    if message[0] == CaretakerMessages::SWITCH_READ
-      button_num = message[1]
-      value = message[2]
-      states[button_num] = value
+    if message == CaretakerMessages::BUTTON_STATE
+      switch_num = params[0].to_i
+      value = params[1].to_i
+      states[switch_num] = value
       notify_change_listeners
-      button_listeners.each do |listener|
-        if value == PRESSED
-          listener.button_pressed button_num
-        else
-          listener.button_released button_num
-        end
-      end
     end
   end
 

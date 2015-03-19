@@ -1,9 +1,19 @@
-<polymer-element name="caretaker-widget-remotecontroldevice">
+<polymer-element name="caretaker-widget-remotecontroldevice" attributes="widget websocket">
 
   <template>
+
     <link href="caretaker-widget-remotecontroldevice.css" rel="stylesheet">
 
-    Robot
+    <table>
+      <template repeat="{{row in rows}}">
+        <tr>
+          <template repeat="{{num in row}}">
+            <td class="{{classes[num]}}" on-tap="{{toggle}}"><span>{{num + 1}}<span></td>
+          </template>
+        </tr>
+      </template>
+    </table>
+
 
   </template>
 
