@@ -67,7 +67,7 @@
                   </template>
                   <template if="{{field.type === 'text'}}">
                     <textarea id="{{field.name}}" class="form-control" rows="3"
-                              on-input="{{validate}}">{{item[field.name]}}</textarea>
+                              on-input="{{validate}}" value="{{item[field.name]}}"></textarea>
                   </template>
                   <template if="{{field.type === 'code'}}">
                     <caretaker-codemirror-input id="{{field.name}}" rows="3" mode="ruby" on-input="{{validate}}"

@@ -18,4 +18,5 @@ Polymer 'caretaker-codemirror-input',
       lineNumbers: true
       matchBrackets: true
     codemirror.getDoc().setValue @value
+    codemirror.on 'change', (-> @value = codemirror.getValue()).bind @
     @async -> codemirror.refresh()
