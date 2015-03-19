@@ -67,7 +67,7 @@
          on-edit-widget-properties="{{editWidgetProperties}}"
          on-delete-widget="{{deleteWidget}}">
       <template repeat="{{widget in dashboard.widgets}}">
-        <caretaker-controlpanel-widget type="{{widget.type}}" widget="{{widget}}">
+        <caretaker-controlpanel-widget type="{{widget.type}}" widget="{{widget}}" width="{{widget.width}}" height="{{widget.height}}">
           <template bind ref="{{widget.type}}"></template>
         </caretaker-controlpanel-widget>
       </template>

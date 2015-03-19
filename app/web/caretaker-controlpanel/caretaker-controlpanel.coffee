@@ -2,23 +2,25 @@ Polymer 'caretaker-controlpanel',
 
   created: ->
     @dashboardId = 'default'
-    @dashboard = null
     @state = 'ok'
 
-  tokenChanged: ->
+  domReady: ->
     self = @
     @$.dashboardNamesRequest.go()
 
-    observer = new MutationObserver (o, m) ->
+    observer = new MutationObserver (mutations, observer) ->
       self.packery.reloadItems()
-      self.packery.layout()
       for item in self.packery.getItemElements()
         draggability = new Draggabilly item, {handle: '* /deep/ [icon="square"]'}
         self.packery.bindDraggabillyEvents draggability
+        widgetObserver = new MutationObserver (widgetMutations, widgetObserver) ->
+          if widgetMutations[0].attributeName == 'width' || widgetMutations[0].attributeName == 'height'
+            self.packery.layout()
+        widgetObserver.observe item, {childList: false, attributes: true}
+      self.packery.layout()
 
     observer.observe @$.widgets, {childList: true, attributes: false}
 
-  domReady: ->
     @packery = new Packery @$.widgets,
       rowHeight: 200
       columnWidth: 180

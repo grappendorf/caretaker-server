@@ -10,14 +10,15 @@
       paper-dropdown {
         height: 10em;
       }
+
       paper-item {
         white-space: nowrap;
       }
     </style>
 
     <grapp-core-ajax id="devicesNames"
-                      url="/devices/names" method="GET" handleAs="json"
-                      response="{{devices}}" token="{{token}}">
+                     url="/devices/names" method="GET" handleAs="json"
+                     response="{{devices}}" token="{{token}}">
     </grapp-core-ajax>
 
     <paper-action-dialog id="dialog" backdrop layered="false" heading="{{'action.add_widget' | i18n}}">
@@ -34,16 +35,17 @@
           </paper-dropdown>
         </paper-dropdown-menu>
 
-        <grapp-paper-input id="title" floatingLabel label="{{'message.choose_optional_widget_title' | i18n}}" type="text"
+        <grapp-paper-input id="title" floatingLabel label="{{'message.choose_optional_widget_title' | i18n}}"
+                           type="text"
                            autofocus value="{{title}}" on-enter="{{submit}}" on-input="{{validate}}">
         </grapp-paper-input>
 
         <label for="width">{{'attributes.widget.width' | i18n}}</label>
-        <paper-slider id="width" pin snaps min="1" max=4" step="1" value="{{widget.width}}">
+        <paper-slider id="width" pin snaps min="1" max=4" step="1" immediateValue="{{widget.width}}">
         </paper-slider>
 
         <label for="height">{{'attributes.widget.height' | i18n}}</label>
-        <paper-slider id="height" pin snaps min="1" max=4" step="1" value="{{widget.height}}">
+        <paper-slider id="height" pin snaps min="1" max=4" step="1" immediateValue="{{widget.height}}">
         </paper-slider>
 
       </div>
