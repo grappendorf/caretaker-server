@@ -41,12 +41,14 @@ class DeviceScriptsController < ApplicationController
   def enable
     @device_script = DeviceScript.find params[:id]
     @device_script.update_attribute :enabled, true
+    device_script_manager.update_script @device_script
     render status: :ok, nothing: true
   end
 
   def disable
     @device_script = DeviceScript.find params[:id]
     @device_script.update_attribute :enabled, false
+    device_script_manager.update_script @device_script
     render status: :ok, nothing: true
   end
 
