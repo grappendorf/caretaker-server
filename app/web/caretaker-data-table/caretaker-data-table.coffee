@@ -32,7 +32,7 @@ Polymer 'caretaker-data-table',
       self.data = result
 
   attribute: (item, attr) ->
-    [item].concat(attr.split('.')).reduce (i, p) -> i[p]
+    ([item].concat(attr.split('.')).reduce (i, p) -> i[p]) || ''
 
   attributeCheckIcon: (item, attr) ->
     if @attribute(item, attr) then 'check-square-o' else 'square-o'
