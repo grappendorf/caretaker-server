@@ -25,6 +25,7 @@ en:
     delete_dashboard: "Delete dashboard"
     new_dashboard: "New dashboard"
     add_widget: "Add widget"
+    edit_widget: "Edit widget"
     reload_dashboard: "Reload"
     edit_your_profile: "Edit your profile"
     change_your_password: "Change your password"
@@ -190,6 +191,8 @@ en:
         name: "User"
     widget:
       title: "Title"
+      width: "Width"
+      height: "Height"
 
   activerecord:
     models:

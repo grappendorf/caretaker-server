@@ -1,6 +1,7 @@
 <link rel="import" href="../../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
 <link rel="import" href="../../../web_lib/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../../../web_lib/paper-dropdown/paper-dropdown.html">
+<link rel="import" href="../../../web_lib/paper-slider/paper-slider.html">
 
 <polymer-element name="caretaker-controlpanel-edit-widget-dialog" attributes="widget token">
 
@@ -20,11 +21,11 @@
                       response="{{devices}}" token="{{token}}">
     </grapp-core-ajax>
 
-    <paper-action-dialog id="dialog" backdrop layered="false" heading="{{'action.add_widget' | i18n}}">
+    <paper-action-dialog id="dialog" backdrop layered="false" heading="{{'action.edit_widget' | i18n}}">
 
       <div vertical layout>
 
-        <paper-dropdown-menu label="device" autofocus>
+        <paper-dropdown-menu id="device" label="device" autofocus>
           <paper-dropdown class="dropdown" transition="">
             <core-menu class="menu" selected="{{widget.device.id}}" valueattr="deviceId">
               <template repeat="{{devices}}">
@@ -34,10 +35,17 @@
           </paper-dropdown>
         </paper-dropdown-menu>
 
-        <grapp-paper-input floatingLabel id="password" label="{{'message.choose_optional_widget_title' | i18n}}" type="text"
-                           autofocus
-                           value="{{widget.title}}" on-enter="{{submit}}" on-input="{{validate}}">
+        <grapp-paper-input id="title" floatingLabel label="{{'message.choose_optional_widget_title' | i18n}}" type="text"
+                           autofocus value="{{widget.title}}" on-enter="{{submit}}" on-input="{{validate}}">
         </grapp-paper-input>
+
+        <label for="width">{{'attributes.widget.width' | i18n}}</label>
+        <paper-slider id="width" pin snaps min="1" max=4" step="1" value="{{widget.width}}">
+        </paper-slider>
+
+        <label for="height">{{'attributes.widget.height' | i18n}}</label>
+        <paper-slider id="height" pin snaps min="1" max=4" step="1" value="{{widget.height}}">
+        </paper-slider>
 
       </div>
 

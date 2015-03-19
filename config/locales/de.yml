@@ -25,6 +25,7 @@ de:
     delete_dashboard: "Dashboard löschen"
     new_dashboard: "Neues Dashboard"
     add_widget: "Widget hinzufügen"
+    edit_widget: "Widget bearbeiten"
     reload_dashboard: "Aktualisieren"
     edit_your_profile: "Ändern Sie Ihr Profil"
     change_your_password: "Ändern Sie Ihr Passwort"
@@ -190,6 +191,8 @@ de:
         name: "Benutzer"
     widget:
       title: "Title"
+      width: "Breite"
+      height: "Höhe"
 
   activerecord:
     models:

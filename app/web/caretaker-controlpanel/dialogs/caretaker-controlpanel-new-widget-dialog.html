@@ -24,7 +24,7 @@
 
       <div vertical layout>
 
-        <paper-dropdown-menu label="{{'message.select_device_for_widget' | i18n}}" autofocus>
+        <paper-dropdown-menu id="device" label="{{'message.select_device_for_widget' | i18n}}" autofocus>
           <paper-dropdown class="dropdown" transition="">
             <core-menu class="menu" selected="{{deviceId}}" valueattr="deviceId">
               <template repeat="{{devices}}">
@@ -34,10 +34,17 @@
           </paper-dropdown>
         </paper-dropdown-menu>
 
-        <grapp-paper-input floatingLabel id="password" label="{{'message.choose_optional_widget_title' | i18n}}" type="text"
-                           autofocus
-                           value="{{title}}" on-enter="{{submit}}" on-input="{{validate}}">
+        <grapp-paper-input id="title" floatingLabel label="{{'message.choose_optional_widget_title' | i18n}}" type="text"
+                           autofocus value="{{title}}" on-enter="{{submit}}" on-input="{{validate}}">
         </grapp-paper-input>
+
+        <label for="width">{{'attributes.widget.width' | i18n}}</label>
+        <paper-slider id="width" pin snaps min="1" max=4" step="1" value="{{widget.width}}">
+        </paper-slider>
+
+        <label for="height">{{'attributes.widget.height' | i18n}}</label>
+        <paper-slider id="height" pin snaps min="1" max=4" step="1" value="{{widget.height}}">
+        </paper-slider>
 
       </div>
 

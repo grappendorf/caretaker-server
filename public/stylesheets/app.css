@@ -895,3 +895,12 @@ html /deep/ ::-webkit-scrollbar-thumb {
   background-color: #878787;
   outline: 1px solid slategrey;
 }
+
+/* ************************************************************************** */
+/* Forms */
+/* ************************************************************************** */
+
+html /deep/ label {
+  margin-top: 1em;
+  color: #757575;
+}
