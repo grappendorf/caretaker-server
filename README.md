@@ -29,17 +29,30 @@ You find the license in the attached LICENSE file
 
 ### Nuvola Icon Set icons
 
-Uses some of the Nuvola Icon Set icons
+Uses some of the "Nuvola Icon Set" icons by David Vignoni
 Licensed under the GNU LGPL 2.1 license
 You find the license at http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
 You find the icon set at http://www.icon-king.com/projects/nuvola/
 
 ### Kyo Tux Soft icons
 
-Uses some of the Kyo Tux Soft icons
+Uses some of the "Soft icons" icons by "Kyo Tux" 
 Licensed under the Creative Commons (Attribution-Noncommercial-Share Alike 3.0 Unported) license
 You find the license at http://creativecommons.org/licenses/by-nc-sa/3.0/
 You find the icon set at https://www.iconfinder.com/iconsets/softicons
+
+### I like buttons icons
+
+Uses some of the "I like buttons" icons by "MazeNL77"
+Licensed under a free for commercial use license
+You find the icon set at https://www.iconfinder.com/iconsets/ilb
+
+### Crystal Clear icon
+
+Uses some of the "Crystal Clear" icons by Everaldo Coelho
+Licensed under the GNU LGPL 3 license
+You can find the license at http://www.gnu.org/licenses/lgpl-3.0.html
+You can find the icon set at https://www.iconfinder.com/iconsets/CrystalClear
 
 ### Third party gems
 
