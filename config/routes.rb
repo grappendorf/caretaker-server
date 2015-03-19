@@ -33,6 +33,8 @@ CaretakerServer::Application.routes.draw do
     end
   end
 
+  get '/cipcam_device/:id/image' => 'cipcam_device#image'
+
   resources :device_scripts, defaults: { format: :json } do
     member do
       put :enable

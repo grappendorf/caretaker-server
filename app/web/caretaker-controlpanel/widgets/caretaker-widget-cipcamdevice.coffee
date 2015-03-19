@@ -5,8 +5,13 @@ Polymer 'caretaker-widget-cipcamdevice',
     @reloadImage()
 
   reloadImage: ->
-    @$.image.src = "http://#{@device.user}:#{@device.password}@#{@device.address}/snapshot.cgi?t=#{(new Date).getTime()}"
+    if document.visibilityState == 'visible'
+      @$.imageRequest.go()
     @async @reloadImage, null, @device.refresh_interval * 1000
+
+  updateImage: (e) ->
+    data = btoa String.fromCharCode.apply null, new Uint8Array(e.detail.response)
+    @$.image.src = "data:image/jpg;base64,#{data}"
 
   left: ->
     @websocket.trigger 'device.state', id: @device.id, state: {action: 'left'}

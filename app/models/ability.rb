@@ -16,7 +16,7 @@ class Ability
     elsif user.has_role? :user
       can :manage, Dashboard, user: user
       can :manage, Widget, dashboard: { user: user }
-      can :read, [Device] + Device.models
+      can [:read, :image], [Device] + Device.models
       can [:read, :update], User, id: user.id
     end
 

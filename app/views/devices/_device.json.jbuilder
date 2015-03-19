@@ -1,4 +1,5 @@
 json.id device.acting_as.id
+json.specific_id device.id
 json.uuid device.uuid
 json.name device.name
 json.small_icon device.class.small_icon
