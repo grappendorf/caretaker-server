@@ -19,12 +19,20 @@ class DeviceScriptManager
   end
 
   def update_script script
-    script_instance = @scripts_by_id[script.id]
-    if script_instance
-      script_instance.stop if script_instance.respond_to? :stop
+    begin
+      script_instance = @scripts_by_id[script.id]
+
+      if script_instance && script_instance.respond_to?(:stop)
+        script_instance.stop
+      end
+
       if script.enabled?
         instantiate_script_class script
+      elsif script_instance
+        @scripts_by_id.delete script.id
       end
+    rescue Exception => x
+      Rails.logger.error %Q[#{x.message}\n\t#{x.backtrace.join "\n\t"}]
     end
   end
 
