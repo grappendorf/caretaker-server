@@ -55,30 +55,35 @@
 
                 <label for="{{field.name}}" class="control-label col-md-2">{{field.label}}</label>
 
-                <div class="col-md-6">
-                  <template if="{{field.type === 'string'}}">
-                    <!--<paper-input id="{{field.name}}" value="{{item[field.name]}}" on-input="{{validate}}" fit></paper-input>-->
+                <template if="{{field.type === 'string'}}">
+                  <div class="col-md-6">
                     <input id="{{field.name}}" class="form-control" value="{{item[field.name]}}"
                            on-input="{{validate}}">
-                  </template>
-                  <template if="{{field.type === 'check'}}">
-                    <!--<paper-toggle-button id="{{field.name}}" checked="{{item[field.name]}}" on-change="{{validate}}"></paper-toggle-button>-->
+                  </div>
+                </template>
+                <template if="{{field.type === 'check'}}">
+                  <div class="col-md-6">
                     <div class="check-input"><input id="{{field.name}}" type="checkbox"></div>
-                  </template>
-                  <template if="{{field.type === 'text'}}">
+                  </div>
+                </template>
+                <template if="{{field.type === 'text'}}">
+                  <div class="col-md-6">
                     <textarea id="{{field.name}}" class="form-control" rows="3"
                               on-input="{{validate}}" value="{{item[field.name]}}"></textarea>
-                  </template>
-                  <template if="{{field.type === 'code'}}">
+                  </div>
+                </template>
+                <template if="{{field.type === 'code'}}">
+                  <div class="col-md-8">
                     <caretaker-codemirror-input id="{{field.name}}" rows="3" mode="ruby" on-input="{{validate}}"
                                                 value="{{item[field.name]}}">
                     </caretaker-codemirror-input>
-                  </template>
+                  </div>
+                </template>
 
-                  <template if="{{field.error}}">
-                    <span class="help-block">{{field.error}}</span>
-                  </template>
-                </div>
+                <template if="{{field.error}}">
+                  <span class="help-block">{{field.error}}</span>
+                </template>
+              </div>
 
               </div>
             </template>
