@@ -24,17 +24,18 @@ module ServiceManager
   def self.register_real_services
     register(:random) { Random.new Random.new_seed }
     register(:scheduler) { Rufus::Scheduler.start_new }
+    register(:wlan_master) { WlanMaster.new }
   end
 
   def self.register_fake_services
     register(:random) { DeterministicRandom.new }
     register(:scheduler) { Rufus::Scheduler.start_new } if Rails.env.development?
     register(:scheduler) { ManualScheduler.new } if Rails.env.test?
+    register(:wlan_master) { WlanMasterSimulator.new }
   end
 
   def self.register_services
     register(:async) { ThreadStorm.new size: 2 }
-    register(:wlan_master) { WlanMaster.new }
     register(:device_manager) { DeviceManager.new }
     register(:device_script_manager) { DeviceScriptManager.new }
   end
