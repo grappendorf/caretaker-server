@@ -2,6 +2,12 @@ Polymer 'caretaker-controlpanel-edit-widget-dialog',
 
   start: ->
     @processing = false
+    @initial =
+      deviceId: @widget.device.id
+      title: @widget.title
+      width: @widget.width
+      height: @widget.height
+    console.log @initial
     @$.devicesNames.go()
     @validate()
     promise = new Promise ((resolve, reject) ->
@@ -20,6 +26,11 @@ Polymer 'caretaker-controlpanel-edit-widget-dialog',
     @resolve @widget
 
   cancel: ->
+    console.log @initial
+    @widget.device.id = @initial.deviceId
+    @widget.title = @initial.title
+    @widget.width = @initial.width
+    @widget.height = @initial.height
     @end()
 
   validate: ->
