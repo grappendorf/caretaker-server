@@ -8,6 +8,7 @@ Polymer 'caretaker-app',
 
   logout: ->
     @$.sessionManager.disconnect()
+    @router.go '/'
     @$.sessionManager.connect()
 
   changePassword: ->
