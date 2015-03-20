@@ -20,8 +20,7 @@ class BuildingsController < ApplicationController
   end
 
   def create
-    @building = Building.new building_params
-    if @building.save
+    if @building.update_attributes building_params
       render status: :ok, nothing: true
     else
       render status: :bad_request, json: { errors: @building.errors }

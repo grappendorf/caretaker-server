@@ -8,7 +8,7 @@
 
   <template>
 
-    <grapp-rest-resource url="/buildings/:buildingId/floors/:floorId/rooms/:id?q={{searchText}}"
+    <grapp-rest-resource url="/buildings/:buildingId/floors/:floorId/rooms/:id"
                          params='{{ {"buildingId":buildingId, "floorId":floorId} }}'
                          resource="{{rooms}}" token="{{token}}"></grapp-rest-resource>
 

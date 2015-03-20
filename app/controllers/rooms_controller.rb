@@ -33,8 +33,7 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @floor.rooms << @room
-    if @room.save
+    if @room.update_attributes room_params
       render status: :ok, nothing: true
     else
       render status: :bad_request, json: { errors: @room.errors }

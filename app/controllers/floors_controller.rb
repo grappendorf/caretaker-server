@@ -27,8 +27,7 @@ class FloorsController < ApplicationController
   end
 
   def create
-    @building.floors << @floor
-    if @floor.save
+    if @floor.update_attributes floor_params
       render status: :ok, nothing: true
     else
       render status: :bad_request, json: { errors: @floor.errors }
