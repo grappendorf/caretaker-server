@@ -8,15 +8,15 @@
       <template repeat="{{row in rows}}">
         <tr>
           <template repeat="{{num in row}}">
-            <td class="{{classes[num]}}" on-tap="{{toggle}}"><span>{{num + 1}}<span></td>
+            <td class="{{classes[num]}}" on-mousedown="{{press}}" on-mouseup="{{release}}">
+              <span>{{num + 1}}</span>
+            </td>
           </template>
         </tr>
       </template>
     </table>
 
-
   </template>
-
 
   <script src="caretaker-widget-remotecontroldevice.js"></script>
 

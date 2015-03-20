@@ -13,3 +13,15 @@ Polymer 'caretaker-widget-remotecontroldevice',
     for state, num in e.state
       @states[num] = state
       @classes[num] = ['off', 'on'][state]
+
+  press: (e) ->
+    num = e.target.templateInstance.model.num
+    @states[num] = 1
+    @classes[num] = 'on'
+    @websocket.trigger 'device.state', id: @device.id, state: {num: num, value: 1}
+
+  release: (e) ->
+    num = e.target.templateInstance.model.num
+    @states[num] = 0
+    @classes[num] = 'off'
+    @websocket.trigger 'device.state', id: @device.id, state: {num: num, value: 0}

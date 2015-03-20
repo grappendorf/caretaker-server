@@ -70,4 +70,9 @@ class RemoteControlDevice < ActiveRecord::Base
     states
   end
 
+  def put_state params
+    states[params[:num].to_i] = params[:value].to_i
+    notify_change_listeners
+  end
+
 end
