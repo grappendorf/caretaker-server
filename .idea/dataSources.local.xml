@@ -1,2 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="4" />
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails caretaker-server: development" uuid="c33b9e50-b934-49d2-9a3f-5cd256a3fff9" />
+    <data-source name="Rails caretaker-server: production" uuid="0e1b353c-9b8d-4eb9-a77e-a85d720ca481" />
+    <data-source name="Rails caretaker-server: test" uuid="883b5b98-2a3a-4b81-9e8a-ee80368ab0eb" />
+  </component>
+</project>
