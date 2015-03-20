@@ -29,6 +29,10 @@ class RemoteControlDevice < ActiveRecord::Base
     '32/gamepad.png'
   end
 
+  def update_attributes_from_registration params
+    update_attributes num_buttons: params[0], buttons_per_row: Math.sqrt(params[0].to_i).ceil
+  end
+
   PRESSED = 1
   RELEASED = 0
 
