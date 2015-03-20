@@ -1,3 +1,5 @@
+require 'ostruct'
+
 module DeviceBase
   module ClassMethods
     def attr_accessible
@@ -27,11 +29,18 @@ module DeviceBase
     end
 
     def when_changed &block
-      change_listeners << block
+      @device_base_uuidgen ||= UUID.new
+      listener = OpenStruct.new id: @device_base_uuidgen.generate, handler: block
+      change_listeners << listener
+      listener.id
     end
 
     def notify_change_listeners
-      change_listeners.each { |l| l.call self }
+      change_listeners.each { |l| l.handler.call self }
+    end
+
+    def remove_change_listener id
+      change_listeners.delete_if { |l| l.id == id }
     end
 
     def update

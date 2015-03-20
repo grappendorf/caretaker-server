@@ -22,6 +22,7 @@ gem 'sqlite3', '1.3.10'
 gem 'kaminari', '0.16.3'
 gem 'jwt', '1.3.0'
 gem 'httparty', '0.13.3'
+gem 'uuid', '2.3.7'
 
 group :test, :development do
   gem 'faker', '1.2.0'
