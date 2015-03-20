@@ -901,6 +901,11 @@ html /deep/ ::-webkit-scrollbar-thumb {
 /* ************************************************************************** */
 
 html /deep/ label {
+  color: #ccc;
+  font-weight: normal;
+}
+
+html /deep/ paper-action-dialog label {
   margin-top: 1em;
   color: #757575;
 }
