@@ -16,12 +16,12 @@ module WlanConnectionState
       context device
       state :DISCONNECTED do
         on_entry :device_disconnected
-        event :connect, :WAIT_FOR_PING, :send_ping
+        event :connect, :WAIT_FOR_PING
         event :ping, :CONNECTED
       end
       state :WAIT_FOR_PING do
         event :ping, :CONNECTED
-        event :timeout, :WAIT_FOR_PING, :send_ping
+        event :timeout, :WAIT_FOR_PING
       end
       state :CONNECTED do
         on_entry :device_connected
@@ -53,10 +53,6 @@ module WlanConnectionState
 
   def notify_connection_listeners
     @connection_listeners.each { |l| l.call self }
-  end
-
-  def send_ping
-    send_message CaretakerMessages::PING
   end
 
   def on_ping
