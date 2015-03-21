@@ -10,33 +10,19 @@ class WlanMasterSimulator
     @devices = {
         '192.168.1.37' =>
             {
-                name: 'Caretaker-0006669346CC',
+                name: 'Switch-8-Port',
                 description: '8-Port Switch',
                 address: '192.168.1.37',
                 states: [1, 0, 1, 1, 1, 0, 1, 1]
             },
         '192.168.1.33' =>
             {
-                name: 'Caretaker-000666803418',
+                name: 'Dimmer',
                 description: 'Dimmer',
                 address: '192.168.1.33',
                 value: 100
             }
     }
-
-    state = 0
-    Thread.new do
-      begin
-        loop do
-          fire_message_received '192.168.1.38', CaretakerMessages::BUTTON_STATE, 0, state
-          state = 1 - state
-          sleep 1
-        end
-      rescue => x
-        puts x.message
-        puts x.backtrace.join "\n"
-      end
-    end
   end
 
   def stop
