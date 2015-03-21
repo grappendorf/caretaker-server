@@ -22,11 +22,11 @@ class SwitchDevice < ActiveRecord::Base
   end
 
   def self.small_icon()
-    '16/switch_device.png'
+    '16/lightbulb_on.png'
   end
 
   def self.large_icon()
-    '32/switch_device.png'
+    '32/lightbulb_on.png'
   end
 
   def update_attributes_from_registration params

@@ -17,11 +17,11 @@ class DimmerRgbDevice < ActiveRecord::Base
   end
 
   def self.small_icon()
-    '16/mixer.png'
+    '16/slider.png'
   end
 
   def self.large_icon()
-    '32/mixer.png'
+    '32/slider.png'
   end
 
   def rgb

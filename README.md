@@ -54,6 +54,20 @@ Licensed under the GNU LGPL 3 license
 You can find the license at http://www.gnu.org/licenses/lgpl-3.0.html
 You can find the icon set at https://www.iconfinder.com/iconsets/CrystalClear
 
+### Shift Free icons
+
+Uses some of the "Shift Free" icons by Tahsin Tahil
+Licensed under the Creative Commons (Attribution 3.0 Unported) license
+You can find the license at https://creativecommons.org/licenses/by/3.0/
+https://www.iconfinder.com/iconsets/shift-free
+
+### small-n-flat icons
+
+Uses some of the "small-n-flat" icons by "Paomedia"
+Licensed under the Creative Commons (Attribution 3.0 Unported) license
+You can find the license at https://creativecommons.org/licenses/by/3.0/
+https://www.iconfinder.com/iconsets/small-n-flat
+
 ### Third party gems
 
 The used Ruby gems and JavaScript libraries either use the MIT license or the Apache Version 2.0 license.

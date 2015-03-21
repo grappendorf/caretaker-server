@@ -22,11 +22,11 @@ class RemoteControlDevice < ActiveRecord::Base
   end
 
   def self.small_icon()
-    '16/gamepad.png'
+    '16/button_red.png'
   end
 
   def self.large_icon()
-    '32/gamepad.png'
+    '32/button_red.png'
   end
 
   def update_attributes_from_registration params
