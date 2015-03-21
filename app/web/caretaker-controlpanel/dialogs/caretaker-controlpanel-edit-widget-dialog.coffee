@@ -26,7 +26,6 @@ Polymer 'caretaker-controlpanel-edit-widget-dialog',
     @resolve @widget
 
   cancel: ->
-    console.log @initial
     @widget.device.id = @initial.deviceId
     @widget.title = @initial.title
     @widget.width = @initial.width
