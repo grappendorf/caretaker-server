@@ -7,7 +7,6 @@ Polymer 'caretaker-controlpanel-edit-widget-dialog',
       title: @widget.title
       width: @widget.width
       height: @widget.height
-    console.log @initial
     @$.devicesNames.go()
     @validate()
     promise = new Promise ((resolve, reject) ->
