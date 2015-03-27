@@ -39,7 +39,9 @@ Polymer 'caretaker-data-editor',
   show: (item) ->
     @modified = false
     @valid = true
-    field.error = null for field in @fields
+    for fieldset in @fieldsets
+      for field in fieldset.fields
+        field.error = null
     @item = item
 
   load: (id) ->
@@ -47,7 +49,9 @@ Polymer 'caretaker-data-editor',
     @id = id
     @modified = false
     @valid = true
-    field.error = null for field in @fields
+    for fieldset in @fieldsets
+      for field in fieldset.fields
+        field.error = null
     if @isValidItemId id
       @processing = true
       @resource.show id, (result) ->
@@ -65,7 +69,9 @@ Polymer 'caretaker-data-editor',
         self.modified = false
         self.fire 'data-editor-back'
       , (response)->
-        field.error = response.errors[field.name] for field in self.fields when field.name of response.errors
+        for fieldset in self.fieldsets
+          for field in fieldset.fields when field.name of response.errors
+            field.error = response.errors[field.name]
         self.processing = false
     else
       @resource.create @item, ->
@@ -73,7 +79,9 @@ Polymer 'caretaker-data-editor',
         self.modified = false
         self.fire 'data-editor-back'
       , (response)->
-        field.error = response.errors[field.name] for field in self.fields when field.name of response.errors
+        for fieldset in self.fieldsets
+          for field in fieldset.fields when field.name of response.errors
+            field.error = response.errors[field.name]
         self.processing = false
 
   cancel: ->
