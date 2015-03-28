@@ -1,0 +1,21 @@
+<link rel="import" href="../../../web_lib/grapp-fa-icon/grapp-fa-icon.html">
+<link rel="import" href="../../../web_lib/grapp-graph-epoch/grapp-graph-epoch.html">
+
+<polymer-element name="caretaker-widget-sensordevice" attributes="widget websocket">
+
+  <template>
+    <link href="../../../web_lib/epoch/epoch.min.css" rel="stylesheet">
+    <link href="caretaker-widget-sensordevice.css" rel="stylesheet">
+
+    <div id="graphContainer" layout horizontal around-justified wrap class="epoch-theme-dark">
+      <template repeat="{{sensor in device.sensors}}">
+        <div id="{{sensor.id}}" type="{{sensor.type}}" min="{{sensor.min}}" max="{{sensor.max}}" class="epoch gauge-tiny"></div>
+      </template>
+    </div>
+
+  </template>
+
+  <script src="../../../web_lib/epoch/epoch.min.js"></script>
+  <script src="caretaker-widget-sensordevice.js"></script>
+
+</polymer-element>

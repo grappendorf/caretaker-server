@@ -117,6 +117,9 @@ en:
     switch_device:
       one: "Switch"
       other: "Switches"
+    sensor_device:
+      one: "Sensor"
+      other: "Sensors"
     device_script:
       one: "Device Script"
       other: "Device Scripts"

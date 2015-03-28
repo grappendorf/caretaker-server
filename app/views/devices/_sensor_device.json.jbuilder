@@ -1,0 +1,1 @@
+json.sensors device.sensors

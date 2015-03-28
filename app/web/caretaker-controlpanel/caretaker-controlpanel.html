@@ -8,6 +8,7 @@
 <link rel="import" href="widgets/caretaker-widget-remotecontroldevice.html">
 <link rel="import" href="widgets/caretaker-widget-reflowovendevice.html">
 <link rel="import" href="widgets/caretaker-widget-switchdevice.html">
+<link rel="import" href="widgets/caretaker-widget-sensordevice.html">
 <link rel="import" href="widgets/caretaker-widget-weather.html">
 <link rel="import" href="dialogs/caretaker-controlpanel-new-dashboard-dialog.html">
 <link rel="import" href="dialogs/caretaker-controlpanel-edit-dashboard-dialog.html">
@@ -226,6 +227,11 @@
     <template id="ReflowOvenDeviceWidget">
       <caretaker-widget-reflowovendevice id="content" widget="{{widget}}"
                                          websocket="{{$.websocket}}"></caretaker-widget-reflowovendevice>
+    </template>
+
+    <template id="SensorDeviceWidget">
+      <caretaker-widget-sensordevice id="content" widget="{{widget}}"
+                                         websocket="{{$.websocket}}"></caretaker-widget-sensordevice>
     </template>
 
     <template id="WeatherWidget">
