@@ -1,7 +1,7 @@
 module ServiceManager
 
   def self.start
-    if File.basename($0) == 'rake'
+    if ['rake', 'annotate'].include?(File.basename($0)) || Rails.const_defined?('Console')
       return
     end
 
@@ -41,7 +41,7 @@ module ServiceManager
   end
 
   def self.stop
-    if File.basename($0) == 'rake'
+    if ['rake', 'annotate'].include?(File.basename($0)) || Rails.const_defined?('Console')
       return
     end
 
