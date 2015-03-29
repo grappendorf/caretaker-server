@@ -43,7 +43,6 @@ class WidgetsController < ApplicationController
   private
   def widget_params
     json_params = ActionController::Parameters.new JSON.parse request.body.read
-    p json_params
     if @widget && params[:type].present?
       json_params.permit(@widget.class.attr_accessible)
     else
