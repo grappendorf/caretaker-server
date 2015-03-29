@@ -1,6 +1,7 @@
 network:
-  broadcast_port: 55555
-  public_ip: '<%= IPSocket.getaddress(Socket.gethostname) %>'
+  broadcast_port: 44444
+  public_ip: "192.168.1.1"
+  device_ip: "192.168.1.1"
 websocket:
   standalone: false
-  url: '<%= IPSocket.getaddress(Socket.gethostname) %>:3000/websocket'
+  url: "192.168.1.1:3000/websocket"

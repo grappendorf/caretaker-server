@@ -44,7 +44,7 @@ class WlanMaster
           device_address = addr[3]
           device_name = data[60..91].unpack('Z*')[0]
           Rails.logger.debug "UDP broadcast from device #{device_name} at #{device_address}"
-          broadcast_socket.send "*SERVER*\n#{Settings.network.public_ip}\n", 0, device_address, 2000
+          broadcast_socket.send "*SERVER*\n#{Settings.network.device_ip}\n", 0, device_address, 2000
         end
       rescue => x
         Rails.logger.error x

@@ -1,6 +1,7 @@
 network:
   broadcast_port: 55555
-  public_ip: 192.168.1.2
+  public_ip: <%= ENV['RAILS_PUBLIC_IP'] %>
+  device_ip: <%= ENV['RAILS_DEVICE_IP'] %>
 websocket:
   standalone: false
-  url: '192.168.1.2:3000/websocket'
+  url: "<%= ENV['RAILS_PUBLIC_IP'] %>:3000/websocket"
