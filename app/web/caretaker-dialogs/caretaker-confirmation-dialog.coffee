@@ -1,6 +1,7 @@
 Polymer 'caretaker-confirmation-dialog',
 
-  ask: ->
+  ask: (messageParams)->
+    @text = I18n.t @message, messageParams
     promise = new Promise ((resolve, reject) ->
       @resolve = resolve
     ).bind @
@@ -13,5 +14,3 @@ Polymer 'caretaker-confirmation-dialog',
 
   no: ->
     @async -> @$.dialog.close()
-
-

@@ -50,7 +50,7 @@ de:
     successfully_created: "%{model} %{name} wurde erfolgreich angelegt"
     successfully_updated: "%{model} %{name} wurde erfolgreich gespeichert"
     successfully_deleted: "%{model} %{name} wurde erfolgreich gelöscht"
-    confirm_delete: "Soll %{model} %{name} wirklich gelöscht werden?"
+    confirm_delete: "Soll %{model} <b>'%{name}'</b> wirklich gelöscht werden?"
     successfully_saved_profile: "Ihr Benutzerprofil wurde erfolgreich gespeichert"
     successfully_changed_password: "Ihr Passwort wurde erfolgreich geändert"
     password_remains_unchanged: "Ihr Passwort wurde nicht geändert"

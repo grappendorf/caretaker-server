@@ -1,6 +1,6 @@
 {
   "name": "caretaker-server",
-  "version": "0.2.10",
+  "version": "0.2.20",
   "description": "Caretaker Home Automation Server",
   "license": "MIT",
   "authors": [
@@ -45,6 +45,7 @@
     "github-ribbon": "0.0.1",
     "app-router": "2.6.0",
     "current-weather": "0.3.0",
+    "juicy-html": "Juicy/juicy-html#0.0.20141119",
     "grapp-breadcrumbs": "0.0.1",
     "grapp-fa-icon": "0.0.2",
     "grapp-launcher-tile": "0.0.3",

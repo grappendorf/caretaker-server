@@ -1,6 +1,7 @@
 <link rel="import" href="../../web_lib/paper-dialog/paper-action-dialog.html">
 <link rel="import" href="../../web_lib/grapp-paper-fab/grapp-paper-fab.html">
 <link rel="import" href="../../web_lib/grapp-fa-icon/grapp-fa-icon.html">
+<link rel="import" href="../../web_lib/juicy-html/juicy-html.html">
 
 <polymer-element name="caretaker-confirmation-dialog" attributes="heading message">
 
@@ -9,7 +10,9 @@
     <paper-action-dialog id="dialog" heading="{{heading}}">
 
       <div vertical layout>
-        <div>{{message}}</div>
+        <div>
+          <template is="juicy-html" content="{{text}}"></template>
+        </div>
         <content></content>
       </div>
 

@@ -5,7 +5,7 @@
 <link rel="import" href="caretaker-data-column.html">
 <link rel="import" href="caretaker-data-action.html">
 
-<polymer-element name="caretaker-data-table" attributes="data resource model router searchText realtimeSearch">
+<polymer-element name="caretaker-data-table" attributes="data resource model router searchText realtimeSearch titleAttribute">
 
   <template>
 
@@ -99,8 +99,7 @@
     </table>
 
     <caretaker-confirmation-dialog id="deleteConfirmation" heading="{{'title.delete_confirmation' | i18n}}"
-                                   message="{{'message.confirm_delete' | i18n({'model':'abc', 'name':'xyz'})}}">
-    </caretaker-confirmation-dialog>
+        message="message.confirm_delete"></caretaker-confirmation-dialog>
 
     <caretaker-i18n id="i18n"></caretaker-i18n>
 

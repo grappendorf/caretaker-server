@@ -1,7 +1,6 @@
 Polymer 'caretaker-users-list',
 
   domReady: ->
-    console.log @token
     @$.table.load()
 
   edit: (e) ->

@@ -50,7 +50,7 @@ en:
     successfully_created: "Successfully created %{name}"
     successfully_updated: "Successfully updated %{name}"
     successfully_deleted: "Successfully deleted %{name}"
-    confirm_delete: "Do you really want to delete %{model} %{name}?"
+    confirm_delete: "Do you really want to delete %{model} <b>'%{name}'</b>?"
     successfully_saved_profile: "Successfully saved your profile changes"
     successfully_changed_password: "Successfully changed your password"
     password_remains_unchanged: "Your password remains unchanged"

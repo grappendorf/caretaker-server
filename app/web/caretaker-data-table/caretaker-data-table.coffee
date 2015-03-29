@@ -10,6 +10,7 @@ Polymer 'caretaker-data-table',
     @actions = []
     @selectedId = null
     @realtimeSearch = false
+    @titleAttribute = 'name'
 
   ready: ->
     column_nodes = @querySelectorAll('caretaker-data-column')
@@ -48,9 +49,13 @@ Polymer 'caretaker-data-table',
     @fire 'data-table-edit', id: @selectedId
 
   delete: (e) ->
+    item = e.target.templateInstance.model.item
+    message =
+      model: I18n.t PolymerExpressions.prototype.to_snake_case "models.#{item.type || @model}.one"
+      name: item[@titleAttribute]
     self = @
     id = eventToItemId(e)
-    @$.deleteConfirmation.ask().then ->
+    @$.deleteConfirmation.ask(message).then ->
       self.resource.delete id
       self.load()
 
