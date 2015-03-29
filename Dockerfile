@@ -13,7 +13,7 @@ ENV RAILS_ENV production
 
 ADD . /var/app
 WORKDIR /var/app
-RUN rm -rf db/*.sqlite3
+RUN rm -rf db/sqlite/*
 RUN rm -rf tmp/*
 RUN rm -rf log/*
 
@@ -27,7 +27,7 @@ RUN ln -s public caretaker
 
 ADD docker/start.sh /bin/
 
-VOLUME /var/app/db
+VOLUME /var/app/db/sqlite
 
 EXPOSE 3000
 EXPOSE 2000/udp
