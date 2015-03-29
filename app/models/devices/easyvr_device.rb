@@ -21,11 +21,11 @@ class EasyvrDevice < ActiveRecord::Base
   end
 
   def self.small_icon()
-    '16/gamepad.png'
+    '16/speak.png'
   end
 
   def self.large_icon()
-    '32/gamepad.png'
+    '32/speak.png'
   end
 
   PRESSED = 1
