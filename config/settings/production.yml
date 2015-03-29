@@ -1,7 +1,7 @@
 network:
   broadcast_port: 55555
-  public_ip: <%= ENV['RAILS_PUBLIC_IP'] %>
-  device_ip: <%= ENV['RAILS_DEVICE_IP'] %>
+  public_ip: <%= ENV['CARETAKER_PUBLIC_IP'] %>
+  device_ip: <%= ENV['CARETAKER_DEVICE_IP'] %>
 websocket:
   standalone: false
-  url: "<%= ENV['RAILS_PUBLIC_IP'] %>:3000/websocket"
+  url: "<%= ENV['CARETAKER_PUBLIC_IP'] %>:3000/websocket"
