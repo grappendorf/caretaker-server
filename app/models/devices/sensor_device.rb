@@ -29,9 +29,9 @@ class SensorDevice < ActiveRecord::Base
   end
 
   def update_attributes_from_registration params
-    num_sensors = params[0]
+    num_sensors = params[0].to_i
     sensor_defs = params[1..-1].in_groups_of(3).take num_sensors
-    update_attributes sensors: sensor_defs.each_with_index.map { |d| { type: d[0], min: d[1], max: d[2] } }
+    update_attributes sensors: sensor_defs.each_with_index.map { |d| { type: d[0].to_i, min: d[1].to_i, max: d[2].to_i } }
   end
 
   def states
