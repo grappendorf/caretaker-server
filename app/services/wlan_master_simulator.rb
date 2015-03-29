@@ -8,21 +8,33 @@ class WlanMasterSimulator
     Rails.logger.info 'WLAN master simualtor starting'
 
     @devices = {
-        '192.168.1.37' =>
+        '192.168.1.1' =>
             {
-                name: 'Switch-8-Port',
-                description: '8-Port Switch',
-                address: '192.168.1.37',
+                name: 'Switch 1-Port',
+                address: '192.168.1.1',
+                states: [0]
+            },
+        '192.168.1.2' =>
+            {
+                name: 'Switch 8-Port',
+                address: '192.168.1.2',
                 states: [1, 0, 1, 1, 1, 0, 1, 1]
             },
-        '192.168.1.33' =>
+        '192.168.1.3' =>
             {
                 name: 'Dimmer',
-                description: 'Dimmer',
-                address: '192.168.1.33',
+                address: '192.168.1.3',
                 value: 100
             }
     }
+
+    Thread.new do
+      loop do
+        fire_message_received '192.168.1.5', CaretakerMessages::SENSOR_STATE,
+            0, (rand(11500) - 3000) / 100, 1, rand(100000) / 100
+        sleep 5
+      end
+    end
   end
 
   def stop
@@ -37,6 +49,10 @@ class WlanMasterSimulator
           set_switch device, params
         when CaretakerMessages::SWITCH_READ
           get_switch device, params
+        when CaretakerMessages::PWM_WRITE
+          set_pwm device, params
+        when CaretakerMessages::PWM_READ
+          get_pwm device, params
       end
     end
   end
@@ -65,6 +81,18 @@ class WlanMasterSimulator
   def get_switch address, params
     num = params[0]
     fire_message_received address, CaretakerMessages::SWITCH_STATE, num, device[:states][num]
+  end
+
+  def set_pwm device, params
+    case params[0]
+      when CaretakerMessages::WRITE_ABSOLUTE
+        device[:value] = params[1]
+    end
+    fire_message_received device[:address], CaretakerMessages::PWM_STATE, device[:value]
+  end
+
+  def get_pwm address, params
+    fire_message_received device[:address], CaretakerMessages::PWM_STATE, device[:value]
   end
 
 end
