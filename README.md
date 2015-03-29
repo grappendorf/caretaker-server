@@ -16,7 +16,7 @@ Installation
 ------------
 
 For a minimal system setup, please refer to this
-[installtion tutorial](http://www.grappendorf.net/projects/caretaker/minimal-caretaker-setup-guide) on the
+[installtion tutorial](http://www.grappendorf.net/projects/caretaker/caretaker-setup-guide) on the
 [project webiste](http://www.grappendorf.net/projects/caretaker).
 
 Licenses
