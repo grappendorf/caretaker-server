@@ -47,12 +47,12 @@ html /deep/ .core-header {
   padding: 0 0;
   transition: height 0.2s;
   background-color: #424b4b;
-  color: #bdced7;
+  color: #f2f0eb;
 }
 
 html .core-header a,
 html /deep/ .core-header a {
-  color: #bdced7;
+  color: #f2f0eb;
 }
 
 html .core-header paper-item,
@@ -218,7 +218,7 @@ html /deep/ paper-tabs,
 html core-toolbar,
 html /deep/ core-toolbar {
   background-color: #424b4b;
-  color: #bdced7;
+  color: #cbd3d6;
   -webkit-box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.2);
   font-size: 100%;
