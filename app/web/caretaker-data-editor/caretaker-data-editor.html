@@ -63,7 +63,7 @@
                 </template>
                 <template if="{{field.type === 'check'}}">
                   <div class="col-md-6">
-                    <div class="check-input"><input id="{{field.name}}" type="checkbox"></div>
+                    <div class="check-input"><input id="{{field.name}}" type="checkbox" checked?="{{item[field.name]}}" on-change="{{updateCheckField}}"></div>
                   </div>
                 </template>
                 <template if="{{field.type === 'text'}}">

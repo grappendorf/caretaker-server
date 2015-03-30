@@ -92,3 +92,7 @@ Polymer 'caretaker-data-editor',
 
   isValidItemId: (id) ->
     !isNaN(id)
+
+  updateCheckField: (e) ->
+    @validate()
+    e.target.templateInstance.model.item.enabled = e.path[0].checked
