@@ -50,7 +50,7 @@ Polymer 'caretaker-data-table',
 
   delete: (e) ->
     item = e.target.templateInstance.model.item
-    message =
+    message = I18n.t 'message.confirm_delete',
       model: I18n.t PolymerExpressions.prototype.to_snake_case "models.#{item.type || @model}.one"
       name: item[@titleAttribute]
     self = @
@@ -58,6 +58,7 @@ Polymer 'caretaker-data-table',
     @$.deleteConfirmation.ask(message).then ->
       self.resource.delete id
       self.load()
+    , ->
 
   new: ->
     @fire 'data-table-new'

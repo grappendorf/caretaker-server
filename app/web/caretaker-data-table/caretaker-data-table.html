@@ -1,11 +1,12 @@
 <link rel="import" href="../../web_lib/grapp-fa-icon/grapp-fa-icon.html">
 <link rel="import" href="../../web_lib/grapp-paper-button/grapp-paper-button.html">
+<link rel="import" href="../../web_lib/grapp-dialogs/grapp-confirmation-dialog.html">
 <link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
-<link rel="import" href="../caretaker-dialogs/caretaker-confirmation-dialog.html">
 <link rel="import" href="caretaker-data-column.html">
 <link rel="import" href="caretaker-data-action.html">
 
-<polymer-element name="caretaker-data-table" attributes="data resource model router searchText realtimeSearch titleAttribute">
+<polymer-element name="caretaker-data-table"
+                 attributes="data resource model router searchText realtimeSearch titleAttribute">
 
   <template>
 
@@ -98,8 +99,9 @@
       </tbody>
     </table>
 
-    <caretaker-confirmation-dialog id="deleteConfirmation" heading="{{'title.delete_confirmation' | i18n}}"
-        message="message.confirm_delete"></caretaker-confirmation-dialog>
+    <grapp-confirmation-dialog id="deleteConfirmation" heading="{{'title.delete_confirmation' | i18n}}" htmlMessage
+                               yesLabel="{{'action.ok' | i18n}}" yesIcon="check"
+                               noLabel="{{'action.cancel' | i18n}}" noIcon="close"></grapp-confirmation-dialog>
 
     <caretaker-i18n id="i18n"></caretaker-i18n>
 

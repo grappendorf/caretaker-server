@@ -81,13 +81,14 @@ Polymer 'caretaker-controlpanel',
 
   deleteDashboard: ->
     self = @
-    @deleteConfirmMessage = I18n.t 'message.confirm_delete',
+    message = I18n.t 'message.confirm_delete',
       model: I18n.t 'models.dashboard.one'
       name: @dashboard.name
-    @$.deleteConfirmDialog.ask().then ->
+    @$.deleteConfirmDialog.ask(message).then ->
       self.dashboards.delete self.dashboardId
       self.$.dashboardNamesRequest.go()
       self.$.defaultDashboardRequest.go()
+    , ->
 
   newWidget: ->
     self = @
@@ -109,12 +110,13 @@ Polymer 'caretaker-controlpanel',
 
   deleteWidget: (e) ->
     self = @
-    @deleteConfirmMessage = I18n.t 'message.confirm_delete',
+    message = I18n.t 'message.confirm_delete',
       model: I18n.t 'models.widget.one'
       name: e.detail.title
-    @$.deleteConfirmDialog.ask().then ->
+    @$.deleteConfirmDialog.ask(message).then ->
       self.widgets.delete e.detail.id
       self.reloadDashboard()
+    , ->
 
   updateDeviceConnection: (e) ->
     widgets = @$.widgets.querySelectorAll "caretaker-controlpanel-widget"
