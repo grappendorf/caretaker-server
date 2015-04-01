@@ -1,4 +1,15 @@
-class ApplicationController < ActionController::Base
+class ApplicationController < ActionController::API
+
+  include ActionController::MimeResponds
+  include ActionController::StrongParameters
+  include CanCan::ControllerAdditions
+  include ActionController::ImplicitRender
+
+  def self.respond_to(*mimes)
+    include ActionController::RespondWith::ClassMethods
+  end
+
+  respond_to :json
 
   require 'auth_token'
 

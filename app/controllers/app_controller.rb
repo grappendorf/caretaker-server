@@ -1,7 +1,5 @@
 class AppController < ApplicationController
 
-  layout false
-
   skip_before_filter :verify_jwt_token
 
   def index

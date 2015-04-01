@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.0'
+gem 'rails-api', '0.4.0'
 gem 'rails-i18n', '4.0.4'
 gem 'thin', '1.6.3'
 gem 'micon', '0.1.28'
