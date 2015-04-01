@@ -44,12 +44,9 @@ class DevicesController < ApplicationController
   end
 
   def destroy
-    model_name = @device.specific.class.model_name.human
-    device_name = @device.name
     device_manager.remove_device @device.id
     @device.destroy
-    flash[:success] = t('message.successfully_deleted', model: model_name, name: device_name)
-    redirect_to devices_path
+    render status: :ok, nothing: true
   end
 
   private
