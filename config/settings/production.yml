@@ -4,4 +4,4 @@ network:
   device_ip: <%= ENV['CARETAKER_DEVICE_IP'] %>
 websocket:
   standalone: false
-  url: "<%= ENV['CARETAKER_PUBLIC_IP'] %>:3000/websocket"
+  url: "ws://<%= ENV['CARETAKER_PUBLIC_IP'] %>:3000/websocket"
