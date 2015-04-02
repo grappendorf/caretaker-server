@@ -46,6 +46,7 @@
     "app-router": "2.6.0",
     "current-weather": "0.3.0",
     "juicy-html": "Juicy/juicy-html#0.0.20141119",
+    "polymer-github-card": "0.0.1",
     "grapp-breadcrumbs": "0.0.1",
     "grapp-fa-icon": "0.0.2",
     "grapp-launcher-tile": "0.0.3",
