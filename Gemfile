@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails-api', '0.4.0'
 gem 'rails-i18n', '4.0.4'
@@ -24,6 +24,7 @@ gem 'jwt', '1.3.0'
 gem 'httparty', '0.13.3'
 gem 'uuid', '2.3.7'
 gem 'hue-lib', '0.7.2'
+gem 'rack-cors', '0.3.1'
 
 group :test, :development do
   gem 'faker', '1.2.0'
