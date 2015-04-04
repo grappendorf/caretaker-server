@@ -1,4 +1,4 @@
-FROM grappendorf/ruby:2.1.5
+FROM grappendorf/ruby:2.2.1
 MAINTAINER Dirk Grappendorf "dirk@grappendorf.net"
 
 ENV LAST_APT_GET_UPDATE 20150311
@@ -28,6 +28,7 @@ RUN ln -s public caretaker
 ADD docker/start.sh /bin/
 
 VOLUME /var/app/db/sqlite
+VOLUME /root/.hue-lib
 
 EXPOSE 3000
 EXPOSE 2000/udp

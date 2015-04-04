@@ -19,6 +19,7 @@ module ServiceManager
 
     lookup(:device_manager).start
     lookup(:device_script_manager).start
+    lookup(:philips_hue).start
   end
 
   def self.register_real_services
@@ -38,6 +39,7 @@ module ServiceManager
     register(:async) { ThreadStorm.new size: 2 }
     register(:device_manager) { DeviceManager.new }
     register(:device_script_manager) { DeviceScriptManager.new }
+    register(:philips_hue) { PhilipsHueManager.new }
   end
 
   def self.stop
@@ -50,6 +52,7 @@ module ServiceManager
     lookup(:scheduler).try :stop
     lookup(:device_script_manager).try :stop rescue nil
     lookup(:device_manager).try :stop rescue nil
+    lookup(:philips_hue).try :stop rescue nil
   end
 
 end

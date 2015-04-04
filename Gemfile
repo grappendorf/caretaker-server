@@ -23,6 +23,7 @@ gem 'kaminari', '0.16.3'
 gem 'jwt', '1.3.0'
 gem 'httparty', '0.13.3'
 gem 'uuid', '2.3.7'
+gem 'hue-lib', '0.7.2'
 
 group :test, :development do
   gem 'faker', '1.2.0'

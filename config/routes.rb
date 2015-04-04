@@ -35,6 +35,14 @@ CaretakerServer::Application.routes.draw do
 
   get '/cipcam_device/:id/image' => 'cipcam_device#image'
 
+  scope '/philips_hue', defaults: { format: :json } do
+    get '/bridge' => 'philips_hue#bridge'
+    post '/register' => 'philips_hue#register'
+    post '/unregister' => 'philips_hue#unregister'
+    post '/synchronize' => 'philips_hue#synchronize'
+    put '/lights/:id' => 'philips_hue#lights_update'
+  end
+
   resources :device_scripts, defaults: { format: :json } do
     member do
       put :enable

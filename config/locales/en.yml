@@ -9,6 +9,7 @@ en:
 
   action:
     back: "Back"
+    cancel: "Cancel"
     change_password: "Change password"
     dashboards: "Dashboards"
     delete: "Delete"
@@ -16,8 +17,8 @@ en:
     help: "Help"
     home: "Home"
     new: "New"
+    rename: "Rename"
     save: "Save"
-    cancel: "Cancel"
     'on': "On"
     'off': "Off"
     sign_in: "Sign in"
@@ -40,6 +41,9 @@ en:
     widget_properties: "Widget properties"
     help_about: "About"
     create_dashboard: "Create dashboard"
+    philips_hue_bridge_register: "Register with Hue bridge (Press Hue button!)"
+    philips_hue_bridge_unregister: "Unregister from Hue bridge"
+    philips_hue_synchronize_lights: "Synchronize lights to database"
 
   message:
     error_not_authorized: "You are not authorized to use this function"
@@ -64,6 +68,12 @@ en:
       Do you really want to delete dashboard <strong>{{name}}</strong>?<br>
       All of it's widgets are deleted also and cannot be recovered later!
     please_log_on: "Please log in"
+    philips_hue_communication_error: >
+      Unfortunately, the communication with the Hue Bridge was not successful.<br><br>
+      Error message:<br><br>
+      <b>%{error}</b>
+    philips_hue_unregister_confirmation: "Do you really want to unregister from the Hue-Bridge?"
+    philips_hue_rename_light: "Please enter the new name of the light and click on 'Save'"
 
   title:
     app: "Caretaker"
@@ -78,6 +88,7 @@ en:
     add_widgets_to_your_dashboard: "Add widgets to your dashboard!"
     delete_confirmation: "Please confirm deletion"
     create_a_dashboard: "Create a dashboard!"
+    philips_hue: "Philips Hue"
 
   description:
     your_dashboard_is_empty: "Your dashboard is currently empty."
@@ -120,6 +131,9 @@ en:
     sensor_device:
       one: "Sensor"
       other: "Sensors"
+    philips_hue_light_device:
+      one: "Philips Hue Light"
+      other: "Philips Hue Lig ht"
     device_script:
       one: "Device Script"
       other: "Device Scripts"
@@ -196,6 +210,20 @@ en:
       title: "Title"
       width: "Width"
       height: "Height"
+    philips_hue:
+      bridge: "Bridge"
+      application_id: "Application ID"
+      bridge_uri: "Bridge URI"
+      lights: "Lights"
+      light:
+        name: "Name"
+        type: "Type"
+        uniqueid: "ID"
+        reachable: "Reachable"
+        brightness: "Brightness"
+        hue: "Hue"
+        saturation: "Saturation"
+        mode: "Mode"
 
   activerecord:
     models:

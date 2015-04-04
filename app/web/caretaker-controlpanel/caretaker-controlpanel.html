@@ -6,6 +6,7 @@
 <link rel="import" href="widgets/caretaker-widget-cipcamdevice.html">
 <link rel="import" href="widgets/caretaker-widget-dimmerdevice.html">
 <link rel="import" href="widgets/caretaker-widget-dimmerrgbdevice.html">
+<link rel="import" href="widgets/caretaker-widget-philipshuelightdevice.html">
 <link rel="import" href="widgets/caretaker-widget-remotecontroldevice.html">
 <link rel="import" href="widgets/caretaker-widget-reflowovendevice.html">
 <link rel="import" href="widgets/caretaker-widget-switchdevice.html">
@@ -214,6 +215,11 @@
     <template id="EasyvrDeviceWidget">
       <caretaker-widget-easyvrdevice id="content" widget="{{widget}}"
                                      websocket="{{$.websocket}}"></caretaker-widget-easyvrdevice>
+    </template>
+
+    <template id="PhilipsHueLightDeviceWidget">
+      <caretaker-widget-philipshuelightdevice id="content" widget="{{widget}}"
+                                     websocket="{{$.websocket}}"></caretaker-widget-philipshuelightdevice>
     </template>
 
     <template id="SwitchDeviceWidget">

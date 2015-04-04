@@ -42,7 +42,6 @@ Polymer 'caretaker-data-table',
     @attribute(item, attr).join delimiter
 
   attributeCustom: (item, column) ->
-    console.log @
 
   edit: (e) ->
     @selectedId = eventToItemId(e)

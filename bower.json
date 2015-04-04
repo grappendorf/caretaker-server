@@ -1,6 +1,6 @@
 {
   "name": "caretaker-server",
-  "version": "0.2.23",
+  "version": "0.2.26",
   "description": "Caretaker Home Automation Server",
   "license": "MIT",
   "authors": [
@@ -57,7 +57,7 @@
     "grapp-rest-resource": "0.0.8",
     "grapp-core-ajax": "0.0.3",
     "grapp-graph-epoch": "0.0.7",
-    "grapp-dialogs": "0.0.1",
+    "grapp-dialogs": "0.0.3",
     "morrisjs": "0.5.1",
     "raphael": "2.1.4"
   },
@@ -65,6 +65,8 @@
     "core-ajax": "0.5.4",
     "polymer": "0.5.4",
     "core-component-page": "^0.5",
-    "platform": "^0.4.0"
+    "platform": "^0.4.0",
+    "paper-button": "0.5.5",
+    "paper-dialog": "0.5.5"
   }
 }

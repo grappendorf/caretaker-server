@@ -22,8 +22,8 @@ Polymer 'caretaker-controlpanel',
     observer.observe @$.widgets, {childList: true, attributes: false}
 
     @packery = new Packery @$.widgets,
-      rowHeight: 200
-      columnWidth: 180
+      rowHeight: 220
+      columnWidth: 200
       itemSelector: 'caretaker-controlpanel-widget'
       isInitLayout: true
       transitionDuration: '.2s'

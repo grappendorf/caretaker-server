@@ -90,6 +90,12 @@
         </caretaker-data-fieldset>
       </template>
 
+      <template if="{{$.editor.item.type === 'PhilipsHueLightDevice'}}">
+        <caretaker-data-fieldset label="{{'models.philips_hue_light_device.one'|i18n}}"
+                                 image="/images/{{$.editor.item.large_icon}}">
+        </caretaker-data-fieldset>
+      </template>
+
     </caretaker-data-editor>
 
   </template>

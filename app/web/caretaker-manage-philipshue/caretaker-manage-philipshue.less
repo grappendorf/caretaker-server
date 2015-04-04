@@ -1,0 +1,20 @@
+grapp-launcher-tile {
+  &::shadow #tile {
+    width: 12em;
+    height: 12em;
+    background-color: rgba(147, 81, 166, 0.7);
+    &[mouseover] {
+      background-color: rgba(147, 81, 166, 0.9);
+    }
+  }
+}
+
+.editable grapp-fa-icon {
+  visibility: hidden;
+  float: right;
+}
+
+.editable:hover grapp-fa-icon {
+  visibility: visible;
+  float: right;
+}

@@ -9,6 +9,7 @@ de:
 
   action:
     back: "Zurück"
+    cancel: "Abbrechen"
     change_password: "Passwort ändern"
     dashboards: "Dashboards"
     delete: "Löschen"
@@ -17,7 +18,7 @@ de:
     home: "Start"
     new: "Neu"
     save: "Speichern"
-    cancel: "Abbrechen"
+    rename: "Umbenennen"
     'on': "Ein"
     'off': "Aus"
     sign_in: "Anmelden"
@@ -40,6 +41,9 @@ de:
     widget_properties: "Widget Eigenschaften"
     help_about: "Über"
     create_dashboard: "Dashboard anlegen"
+    philips_hue_bridge_register: "An der Hue-Bridge registrieren (Hue Knopf drücken!)"
+    philips_hue_bridge_unregister: "Von der Hue-Bridge abmelden"
+    philips_hue_synchronize_lights: "Lampen mit der Datenbank synchronisieren"
 
   message:
     error_not_authorized: "Sie sind nicht berechtigt diese Funktion aufzurufen"
@@ -64,6 +68,12 @@ de:
       Soll das Dashboard <strong>{{name}}</strong> wirklich gelöscht werden?<br>
       Alle Widgets werden ebenfalls gelöscht und können später nicht wieder hergestellt werden!
     please_log_on: "Bitte melden Sie sich an"
+    philips_hue_communication_error: >
+      Die Kommunikation mit der Hue Bridge war leider nicht erfolgreich.<br><br>
+      Fehlermeldung:<br><br>
+      <b>%{error}</b>
+    philips_hue_unregister_confirmation: "Wollen Sie sich wirklich von der Hue-Bridge abmelden?"
+    philips_hue_rename_light: "Bitte geben Sie den neuen Namen der Lampe ein und rücken Sie auf 'Speichern'"
 
   title:
     app: "Caretaker"
@@ -78,6 +88,7 @@ de:
     add_widgets_to_your_dashboard: "Fügen Sie Ihrem Dashboard Widgets hinzu!"
     delete_confirmation: "Bitte bestätigen Sie die Löschung"
     create_a_dashboard: "Legen Sie ein Dashboard an!"
+    philips_hue: "Philips Hue"
 
   description:
     your_dashboard_is_empty: Ihr Dashboard ist momentan leer.
@@ -120,6 +131,9 @@ de:
     sensor_device:
       one: "Sensor"
       other: "Sensoren"
+    philips_hue_light_device:
+      one: "Philips Hue Light"
+      other: "Philips Hue Lights"
     device_script:
       one: "Geräte-Skript"
       other: "Geräte-Skripte"
@@ -196,6 +210,20 @@ de:
       title: "Title"
       width: "Breite"
       height: "Höhe"
+    philips_hue:
+      bridge: "Bridge"
+      application_id: "Applikations ID"
+      bridge_uri: "Bridge URI"
+      lights: "Lampen"
+      light:
+        name: "Name"
+        type: "Typ"
+        uniqueid: "ID"
+        reachable: "Erreichbar"
+        brightness: "Helligkeit"
+        hue: "Farbton"
+        saturation: "Sättigung"
+        mode: "Modus"
 
   activerecord:
     models:

@@ -6,22 +6,19 @@ class WidgetsController < ApplicationController
   before_action :set_specific_widget, only: [:show, :update]
 
   def create
-    respond_to do |format|
-      @widget = params[:type].singularize.camelcase.constantize.new
-      # copy_subclass_params_to_nested_hash
-      @widget.update_attributes widget_params
-      @dashboard.widgets << @widget
-      if @widget.save
-        format.json
-      else
-        format.json { render json: { errors: @widget.errors }, status: :bad_request }
-      end
+    @widget = params[:type].singularize.camelcase.constantize.new
+    # copy_subclass_params_to_nested_hash
+    @widget.update_attributes widget_params
+    @dashboard.widgets << @widget
+    if @widget.save
+      render json: { id: @widget.id }
+    else
+      render status: :bad_request, json: { errors: @widget.errors }
     end
   end
 
   def show
     respond_to do |format|
-      format.html
       format.json
     end
   end

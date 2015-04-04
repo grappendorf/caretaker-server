@@ -105,6 +105,8 @@ GEM
     httparty (0.13.3)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
+    hue-lib (0.7.2)
+      json
     i18n (0.7.0)
     i18n-js (2.1.2)
       i18n
@@ -287,6 +289,7 @@ DEPENDENCIES
   fabrication (= 2.11.3)
   faker (= 1.2.0)
   httparty (= 0.13.3)
+  hue-lib (= 0.7.2)
   i18n-js (= 2.1.2)
   inherit (= 0.0.1)
   jbuilder (= 2.2.11)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150321232546) do
+ActiveRecord::Schema.define(version: 20150403105550) do
 
   create_table "buildings", force: :cascade do |t|
     t.string "name"
@@ -73,6 +73,9 @@ ActiveRecord::Schema.define(version: 20150321232546) do
   end
 
   add_index "floors", ["name"], name: "index_floors_on_name"
+
+  create_table "philips_hue_light_devices", force: :cascade do |t|
+  end
 
   create_table "reflow_oven_devices", force: :cascade do |t|
   end

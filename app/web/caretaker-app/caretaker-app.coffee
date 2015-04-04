@@ -30,5 +30,4 @@ Polymer 'caretaker-app',
       @unauthenticatedLocation = null
 
   bindRouteAttributes: (e) ->
-    console.log @$.sessionManager
     e.detail.model.sessionManager = @sessionManager
