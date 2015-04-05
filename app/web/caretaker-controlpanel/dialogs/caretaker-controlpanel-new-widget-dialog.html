@@ -1,3 +1,4 @@
+<link rel="import" href="../../../web_lib/grapp-app-globals/grapp-app-globals.html">
 <link rel="import" href="../../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
 <link rel="import" href="../../../web_lib/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../../../web_lib/paper-dropdown/paper-dropdown.html">
@@ -16,8 +17,10 @@
       }
     </style>
 
+    <grapp-app-globals id="globals"></grapp-app-globals>
+
     <grapp-core-ajax id="devicesNames"
-                     url="/devices/names" method="GET" handleAs="json"
+                     url="{{$.globals.apiURL}}/devices/names" method="GET" handleAs="json"
                      response="{{devices}}" token="{{token}}">
     </grapp-core-ajax>
 

@@ -9,6 +9,8 @@
 
   <template>
 
+    <grapp-app-globals id="globals"></grapp-app-globals>
+
     <caretaker-login-dialog id="loginDialog" email="{{user}}" password="{{password}}"
                             on-login="{{login}}">
     </caretaker-login-dialog>
@@ -26,13 +28,13 @@
                        on-core-localstorage-load="{{tokenLoaded}}"></core-localstorage>
 
     <grapp-core-ajax id="signInRequest"
-                         url="/session/sign_in" method="POST" handleAs="json"
+                         url="{{$.globals.apiURL}}/session/sign_in" method="POST" handleAs="json"
                          params='{"user[email]": "{{user}}", "user[password]": "{{password}}"}'
                          on-core-response="{{loginSucceeded}}" on-core-error="{{loginFailed}}">
     </grapp-core-ajax>
 
     <grapp-core-ajax id="changePasswordRequest"
-                         url="/users/{{user.id}}" method="PUT" handleAs="json"
+                         url="{{$.globals.apiURL}}/users/{{user.id}}" method="PUT" handleAs="json"
                          params='{
 												"id": {{user.id}},
 												"user[password]": "{{newPassword}}",

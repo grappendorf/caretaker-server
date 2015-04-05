@@ -1,3 +1,4 @@
+<link rel="import" href="../../web_lib/grapp-app-globals/grapp-app-globals.html">
 <link rel="import" href="../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
 <link rel="import" href="../../web_lib/grapp-rest-resource/grapp-rest-resource.html">
 <link rel="import" href="../../web_lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
@@ -8,24 +9,24 @@
 
   <template>
 
-    <grapp-rest-resource url="/buildings/:buildingId/floors/:floorId/rooms/:id"
-                         params='{{ {"buildingId":buildingId, "floorId":floorId} }}'
-                         resource="{{rooms}}" token="{{token}}"></grapp-rest-resource>
-
-    <grapp-core-ajax id="buildingName" url="/buildings/{{buildingId}}/name" handleAs="json" response="{{building}}"
-               token="{{token}}" auto>
-    </grapp-core-ajax>
-
-    <grapp-core-ajax id="floorName" url="/buildings/{{buildingId}}/floors/{{floorId}}/name" handleAs="json" response="{{floor}}"
-               token="{{token}}" auto>
-
-    </grapp-core-ajax>
-
-    <grapp-app-globals>
+    <grapp-app-globals id="globals">
       <grapp-app-global-value name="appTitle" value="models.room.other"></grapp-app-global-value>
       <grapp-app-global-value name="appModule" value="manage"></grapp-app-global-value>
       <grapp-app-global-value name="appFunction" value="rooms"></grapp-app-global-value>
     </grapp-app-globals>
+
+    <grapp-rest-resource url="{{$.globals.apiURL}}/buildings/:buildingId/floors/:floorId/rooms/:id"
+                         params='{{ {"buildingId":buildingId, "floorId":floorId} }}'
+                         resource="{{rooms}}" token="{{token}}"></grapp-rest-resource>
+
+    <grapp-core-ajax id="buildingName" url="{{$.globals.apiURL}}/buildings/{{buildingId}}/name" handleAs="json" response="{{building}}"
+                     token="{{token}}" auto>
+    </grapp-core-ajax>
+
+    <grapp-core-ajax id="floorName" url="{{$.globals.apiURL}}/buildings/{{buildingId}}/floors/{{floorId}}/name" handleAs="json" response="{{floor}}"
+                     token="{{token}}" auto>
+
+    </grapp-core-ajax>
 
     <grapp-breadcrumbs>
       <grapp-breadcrumb href="/#/buildings">{{'models.building.other'|i18n}}</grapp-breadcrumb>

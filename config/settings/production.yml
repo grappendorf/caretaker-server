@@ -2,6 +2,7 @@ network:
   broadcast_port: 55555
   public_ip: <%= ENV['CARETAKER_PUBLIC_IP'] %>
   device_ip: <%= ENV['CARETAKER_DEVICE_IP'] %>
+  api_url: <%= ENV['CARETAKER_API_URL'] %>
 websocket:
   standalone: false
   url: "ws://<%= ENV['CARETAKER_PUBLIC_IP'] %>:3000/websocket"

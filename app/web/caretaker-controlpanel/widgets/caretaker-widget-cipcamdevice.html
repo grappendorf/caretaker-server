@@ -1,3 +1,4 @@
+<link rel="import" href="../../../web_lib/grapp-app-globals/grapp-app-globals.html">
 <link rel="import" href="../../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
 
 <polymer-element name="caretaker-widget-cipcamdevice" attributes="widget websocket token">
@@ -7,7 +8,9 @@
     <link href="../../../web_lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="caretaker-widget-cipcamdevice.css" rel="stylesheet">
 
-    <grapp-core-ajax id="imageRequest" url="/cipcam_device/{{device.specific_id}}/image"
+    <grapp-app-globals id="globals"></grapp-app-globals>
+
+    <grapp-core-ajax id="imageRequest" url="{{$.globals.apiURL}}/cipcam_device/{{device.specific_id}}/image"
         method="GET" handleAs="arraybuffer" on-core-response="{{updateImage}}" token="{{token}}"
         ></grapp-core-ajax>
 

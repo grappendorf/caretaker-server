@@ -1,4 +1,5 @@
 <link rel="import" href="../../web_lib/core-overlay/core-overlay.html">
+<link rel="import" href="../../web_lib/grapp-app-globals/grapp-app-globals.html">
 <link rel="import" href="../../web_lib/grapp-rest-resource/grapp-rest-resource.html">
 <link rel="import" href="../../web_lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
 <link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
@@ -9,17 +10,17 @@
 
   <template>
 
-    <grapp-app-globals>
+    <grapp-app-globals id="globals">
       <grapp-app-global-value name="appTitle" value="models.device.other"></grapp-app-global-value>
       <grapp-app-global-value name="appModule" value="devices"></grapp-app-global-value>
       <grapp-app-global-value name="appFunction" value="devices"></grapp-app-global-value>
     </grapp-app-globals>
 
+    <grapp-rest-resource url="{{$.globals.apiURL}}/devices/:id" resource="{{devices}}" token="{{token}}"></grapp-rest-resource>
+
     <grapp-breadcrumbs>
       <grapp-breadcrumb>{{'models.device.other'|i18n}}</grapp-breadcrumb>
     </grapp-breadcrumbs>
-
-    <grapp-rest-resource url="/devices/:id" resource="{{devices}}" token="{{token}}"></grapp-rest-resource>
 
     <caretaker-devices-new-dialog id="newDeviceDialog"></caretaker-devices-new-dialog>
 

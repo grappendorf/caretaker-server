@@ -1,6 +1,7 @@
 <link rel="import" href="../../web_lib/paper-toast/paper-toast.html">
 <link rel="import" href="../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
 <link rel="import" href="../../web_lib/grapp-dialogs/grapp-confirmation-dialog.html">
+<link rel="import" href="../../web_lib/grapp-app-globals/grapp-app-globals.html">
 <link rel="import" href="../caretaker-websocket/caretaker-websocket.html">
 <link rel="import" href="caretaker-controlpanel-widget.html">
 <link rel="import" href="widgets/caretaker-widget-cipcamdevice.html">
@@ -149,24 +150,24 @@
     </paper-toast>
 
     <grapp-core-ajax id="defaultDashboardRequest" auto
-                     url="/dashboards/default" method="GET" handleAs="json" token="{{token}}"
+                     url="{{$.globals.apiURL}}/dashboards/default" method="GET" handleAs="json" token="{{token}}"
                      on-core-response="{{defaultDashboardSucceeded}}">
     </grapp-core-ajax>
 
     <grapp-core-ajax id="dashboardRequest"
-                     url="/dashboards/{{dashboardId}}" method="GET" handleAs="json" token="{{token}}"
+                     url="{{$.globals.apiURL}}/dashboards/{{dashboardId}}" method="GET" handleAs="json" token="{{token}}"
                      on-core-response="{{dashboardSucceeded}}" on-core-error="{{dashboardFailed}}">
     </grapp-core-ajax>
 
     <grapp-core-ajax id="dashboardNamesRequest"
-                     url="/dashboards/names" method="GET" handleAs="json" token="{{token}}"
+                     url="{{$.globals.apiURL}}/dashboards/names" method="GET" handleAs="json" token="{{token}}"
                      response="{{dashboardNames}}">
     </grapp-core-ajax>
 
-    <grapp-rest-resource url="/dashboards/:id" resource="{{dashboards}}"
+    <grapp-rest-resource url="{{$.globals.apiURL}}/dashboards/:id" resource="{{dashboards}}"
                          token="{{token}}"></grapp-rest-resource>
 
-    <grapp-rest-resource url="/dashboards/:dashboardId/widgets/:id"
+    <grapp-rest-resource url="{{$.globals.apiURL}}/dashboards/:dashboardId/widgets/:id"
                          createUrl="/dashboards/:dashboardId/:type/:id"
                          updateUrl="/dashboards/:dashboardId/:type/:id"
                          params='{{ {"dashboardId":dashboardId, "type": "device_widgets"} }}'

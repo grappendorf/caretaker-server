@@ -1,4 +1,5 @@
 <link rel="import" href="../../web_lib/paper-input/paper-input.html">
+<link rel="import" href="../../web_lib/grapp-app-globals/grapp-app-globals.html">
 <link rel="import" href="../../web_lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
 <link rel="import" href="../../web_lib/grapp-dialogs/grapp-message-dialog.html">
 <link rel="import" href="../../web_lib/grapp-dialogs/grapp-confirmation-dialog.html">
@@ -10,7 +11,7 @@
     <link href="../../stylesheets/bootstrap.css" rel="stylesheet">
     <link href="caretaker-manage-philipshue.css" rel="stylesheet">
 
-    <grapp-app-globals>
+    <grapp-app-globals id="globals">
       <grapp-app-global-value name="appTitle" value="title.philips_hue"></grapp-app-global-value>
       <grapp-app-global-value name="appModule" value="system"></grapp-app-global-value>
       <grapp-app-global-value name="appFunction" value="philipshue"></grapp-app-global-value>
@@ -20,25 +21,28 @@
       <grapp-breadcrumb>{{'title.philips_hue'|i18n}}</grapp-breadcrumb>
     </grapp-breadcrumbs>
 
-    <grapp-core-ajax id="bridgeRequest" url="/philips_hue/bridge" handleAs="json"
+    <grapp-core-ajax id="bridgeRequest" url="{{$.globals.apiURL}}/philips_hue/bridge" handleAs="json"
                      response="{{bridge}}" token="{{token}}" auto>
     </grapp-core-ajax>
 
-    <grapp-core-ajax id="registerRequest" url="/philips_hue/register" method="POST" handleAs="json"
+    <grapp-core-ajax id="registerRequest" url="{{$.globals.apiURL}}/philips_hue/register" method="POST" handleAs="json"
                      on-core-response="{{registered}}" on-core-error="{{error}}" token="{{token}}">
     </grapp-core-ajax>
 
-    <grapp-core-ajax id="unregisterRequest" url="/philips_hue/unregister" method="POST" handleAs="json"
+    <grapp-core-ajax id="unregisterRequest" url="{{$.globals.apiURL}}/philips_hue/unregister" method="POST"
+                     handleAs="json"
                      on-core-response="{{unregistered}}" on-core-error="{{error}}"
                      token="{{token}}">
     </grapp-core-ajax>
 
-    <grapp-core-ajax id="synchronizeRequest" url="/philips_hue/synchronize" method="POST" handleAs="json"
+    <grapp-core-ajax id="synchronizeRequest" url="{{$.globals.apiURL}}/philips_hue/synchronize" method="POST"
+                     handleAs="json"
                      on-core-response="{{synchronized}}" on-core-error="{{error}}"
                      token="{{token}}">
     </grapp-core-ajax>
 
-    <grapp-core-ajax id="renameLightRequest" url="/philips_hue/lights/{{lightId}}" method="PUT" handleAs="json"
+    <grapp-core-ajax id="renameLightRequest" url="{{$.globals.apiURL}}/philips_hue/lights/{{lightId}}" method="PUT"
+                     handleAs="json"
                      body='{"name": "{{newLightName}}" }'
                      on-core-response="{{renamed}}" on-core-error="{{error}}"
                      token="{{token}}">

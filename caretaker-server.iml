@@ -100,6 +100,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rails-i18n (v4.0.4, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails_config (v0.4.2, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="railties (v4.2.1, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rake (v10.4.2, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="redis (v3.2.1, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="redis-objects (v1.1.0, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="renum (v1.4.0, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
