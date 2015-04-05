@@ -1,5 +1,7 @@
 eventToItemId = (e) ->
-  $(e.target).parents('tr')[0].attributes['data-item-id'].value
+  rowNode = e.target.parentNode
+  rowNode = rowNode.parentNode while rowNode.localName != 'tr'
+  rowNode.attributes['data-item-id'].value
 
 
 Polymer 'caretaker-data-table',
