@@ -1,18 +1,9 @@
-# Ignore bundler config
 /.bundle
-
-# Ignore the default SQLite database.
 /db/sqlite
-
-# Ignore all logfiles and tempfiles.
 *.log
 /tmp
 /public/assets
-
-# Ignore generated coverage reports
 /coverage/*
-
-# IntelliJ
 .iws
 .idea/workspace.xml
 .idea/tasks.xml
@@ -20,16 +11,10 @@
 .idea/dataSources.xml
 .idea/dataSources.ids
 atlassian-ide-plugin.xml
-
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
-
 doc/*.db
-
-# Ignore node modules and bower packages
 /node_modules
 /public/web_lib
-
-# Ignore generated web files
 /public/web
