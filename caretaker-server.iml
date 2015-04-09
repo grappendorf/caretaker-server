@@ -41,7 +41,7 @@
     <orderEntry type="library" scope="PROVIDED" name="bundler (v1.9.2, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cancan (v1.6.10, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="capybara (v2.4.4, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="childprocess (v0.5.5, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="childprocess (v0.5.6, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="chromedriver2-helper (v0.0.8, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coderay (v1.1.0, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cucumber (v2.0.0, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
@@ -61,7 +61,7 @@
     <orderEntry type="library" scope="PROVIDED" name="faye-websocket (v0.7.4, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.9.8, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="gherkin (v2.12.2, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="globalid (v0.3.3, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="globalid (v0.3.5, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hike (v1.2.3, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hiredis (v0.6.0, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="httparty (v0.13.3, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
@@ -74,7 +74,7 @@
     <orderEntry type="library" scope="PROVIDED" name="jwt (v1.3.0, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kaminari (v0.16.3, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="launchy (v2.4.2, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="license_finder (v1.2, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="license_finder (v2.0.3, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="loofah (v2.0.1, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="macaddr (v1.7.1, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.6.3, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
@@ -115,7 +115,6 @@
     <orderEntry type="library" scope="PROVIDED" name="rubyzip (v1.0.0, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rufus-scheduler (v2.0.24, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="selenium-webdriver (v2.40.0, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="sequel (v4.21.0, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="simplecov (v0.8.2, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="simplecov-html (v0.8.0, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="simplecov-rcov (v0.2.3, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />

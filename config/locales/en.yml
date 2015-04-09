@@ -125,6 +125,9 @@ en:
     remote_control_device:
       one: "Remote Control"
       other: "Remote Controls"
+    rotary_knob_device:
+      one: "Rotary Knob"
+      other: "Rotary Knob"
     switch_device:
       one: "Switch"
       other: "Switches"

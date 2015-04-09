@@ -10,6 +10,7 @@
 <link rel="import" href="widgets/caretaker-widget-philipshuelightdevice.html">
 <link rel="import" href="widgets/caretaker-widget-remotecontroldevice.html">
 <link rel="import" href="widgets/caretaker-widget-reflowovendevice.html">
+<link rel="import" href="widgets/caretaker-widget-rotaryknobdevice.html">
 <link rel="import" href="widgets/caretaker-widget-switchdevice.html">
 <link rel="import" href="widgets/caretaker-widget-sensordevice.html">
 <link rel="import" href="widgets/caretaker-widget-weather.html">
@@ -236,6 +237,11 @@
     <template id="ReflowOvenDeviceWidget">
       <caretaker-widget-reflowovendevice id="content" widget="{{widget}}"
                                          websocket="{{$.websocket}}"></caretaker-widget-reflowovendevice>
+    </template>
+
+    <template id="RotaryKnobDeviceWidget">
+      <caretaker-widget-rotaryknobdevice id="content" widget="{{widget}}"
+                                         websocket="{{$.websocket}}"></caretaker-widget-rotaryknobdevice>
     </template>
 
     <template id="SensorDeviceWidget">

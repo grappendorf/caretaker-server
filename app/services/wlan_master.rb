@@ -17,11 +17,15 @@ class WlanMaster
         message_reveice_socket.do_not_reverse_lookup = true
         message_reveice_socket.bind '0.0.0.0', '2000'
         loop do
-          data, addr = message_reveice_socket.recvfrom 1024
-          device_address = addr[3].force_encoding('UTF-8')
-          msg, *params = data.split(';')[0].split(',').map{|d| d.force_encoding('UTF-8')}
-          @message_listeners.each do |l|
-            l.call device_address, msg.to_i, params
+          begin
+            data, addr = message_reveice_socket.recvfrom 1024
+            device_address = addr[3].force_encoding('UTF-8')
+            msg, *params = data.split(';')[0].split(',').map { |d| d.force_encoding('UTF-8') }
+            @message_listeners.each do |l|
+              l.call device_address, msg.to_i, params
+            end
+          rescue => x
+            Rails.logger.error x
           end
         end
       rescue => x

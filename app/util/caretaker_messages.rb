@@ -24,6 +24,9 @@ module CaretakerMessages
   REFLOW_OVEN_STATE   = 20
   BUTTON_READ         = 21
   BUTTON_STATE        = 22
+  ROTARY_READ         = 23
+  ROTARY_WRITE        = 24
+  ROTARY_STATE        = 25
 
   # Value write modes
   WRITE_DEFAULT           = 0

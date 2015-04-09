@@ -1,5 +1,3 @@
-require 'wlan_connection_state'
-
 module WlanDevice
 
   include WlanConnectionState

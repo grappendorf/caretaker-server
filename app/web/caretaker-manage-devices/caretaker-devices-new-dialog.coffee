@@ -10,6 +10,7 @@ Polymer 'caretaker-devices-new-dialog',
       {type: 'philips_hue_light_devices', label: 'models.philips_hue_light_device.one', icon: '32/lightbulb_on.png'},
       {type: 'reflow_oven_devices', label: 'models.reflow_oven_device.one', icon: '32/oven.png'},
       {type: 'remote_control_devices', label: 'models.remote_control_device.one', icon: '32/button_red.png'},
+      {type: 'rotary_knob_devices', label: 'models.rotary_knob_device.one', icon: '32/knob.png'},
       {type: 'switch_devices', label: 'models.switch_device.one', icon: '32/lightbulb_on.png'},
       {type: 'sensor_devices', label: 'models.sensor_device.one', icon: '32/thermometer.png'}
     ]

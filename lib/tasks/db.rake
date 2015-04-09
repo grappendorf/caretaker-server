@@ -44,25 +44,26 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
             name: 'Remote Control', address: '192.168.1.6', description: 'Lot\'s of buttons',
             num_buttons: 8, buttons_per_row: 4
 
+        rotary_knob_device = RotaryKnobDevice.create! uuid: '00:00:00:00:00:07',
+            name: 'Rotary Knob', address: '192.168.1.7', description: 'Knob'
+
         puts 'Create some device scripts...'
 
         DeviceScript.create! name: "Remote Control", description: "Script for Remote Control buttons",
-            enabled: true, script: <<-EOS
+            enabled: true, script: <<-EOS.strip_heredoc
               def start()
                 device_manager = lookup :device_manager
                 @remote = device_manager.device_by_uuid '00:00:00:00:00:06'
-                @switch1 = device_manager.device_by_uuid '00:00:00:00:00:01'
                 @switch8 = device_manager.device_by_uuid '00:00:00:00:00:02'
                 @dimmer = device_manager.device_by_uuid '00:00:00:00:00:03'
-                @sensor = device_manager.device_by_uuid '00:00:00:00:00:05'
 
                 @lights_on = false
 
                 @remote_listener = @remote.when_changed do
                   if @remote.states[0] == 1
                     if @lights_on
-                    @switch8.set_state 0, 0
-                    @switch8.set_state 1, 0
+                      @switch8.set_state 0, 0
+                      @switch8.set_state 1, 0
                       @dimmer.set_value 0
                     else
                       @switch8.set_state 0, 1
@@ -72,6 +73,19 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
                     @lights_on = !@lights_on
                   end
                 end
+              end
+
+              def stop
+                @remote.remove_change_listener @remote_listener
+              end
+        EOS
+
+        DeviceScript.create! name: "Sonsors", description: "Devices controlled by sensors",
+            enabled: true, script: <<-EOS.strip_heredoc
+              def start()
+                device_manager = lookup :device_manager
+                @switch1 = device_manager.device_by_uuid '00:00:00:00:00:01'
+                @sensor = device_manager.device_by_uuid '00:00:00:00:00:05'
 
                 @last_temp = 0.0
 
@@ -87,8 +101,24 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
               end
 
               def stop
-                @remote.remove_change_listener @remote_listener
                 @sensor.remove_change_listener @sensor_listener
+              end
+        EOS
+
+        DeviceScript.create! name: "Rotary", description: "Rotary Knob => Dimmer",
+            enabled: true, script: <<-EOS.strip_heredoc
+              def start()
+                device_manager = lookup :device_manager
+                @rotary = device_manager.device_by_uuid '00:00:00:00:00:07'
+                @dimmer = device_manager.device_by_uuid '00:00:00:00:00:03'
+
+                @rotary_listener = @rotary.when_changed do
+                  @dimmer.set_value @rotary.value
+                end
+              end
+
+              def stop
+                @rotary.remove_change_listener @rotary_listener
               end
         EOS
 
@@ -101,6 +131,7 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
         dashboard.widgets << DeviceWidget.new(device: dimmer_rgb_device, position: 3, width: 2, height: 1)
         dashboard.widgets << DeviceWidget.new(device: sensor_device, position: 4, width: 2, height: 1)
         dashboard.widgets << DeviceWidget.new(device: remotecontrol_device, position: 5, width: 2, height: 1)
+        dashboard.widgets << DeviceWidget.new(device: rotary_knob_device, position: 6, width: 1, height: 1)
 
         (1..5).each do |i|
           building = Building.create! name: "Building #{i}", description: "This is building #{i}"

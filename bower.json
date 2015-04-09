@@ -59,14 +59,15 @@
     "grapp-graph-epoch": "0.0.7",
     "grapp-dialogs": "0.0.3",
     "morrisjs": "0.5.1",
-    "raphael": "2.1.4"
+    "raphael": "2.1.4",
+    "webaudio-controls": "webaudio-controls#master"
   },
   "resolutions": {
     "core-ajax": "0.5.5",
     "polymer": "0.5.5",
-    "core-component-page": "^0.5",
-    "platform": "^0.4.0",
     "paper-button": "0.5.5",
-    "paper-dialog": "0.5.5"
+    "platform": "^0.4.0",
+    "core-component-page": "^0.5",
+    "webcomponentsjs": "^0.5"
   }
 }

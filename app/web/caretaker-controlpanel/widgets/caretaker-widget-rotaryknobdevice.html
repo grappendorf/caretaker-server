@@ -1,0 +1,20 @@
+<link rel="import" href="../../../web_lib/webaudio-controls/webaudio-controls.html">
+
+<polymer-element name="caretaker-widget-rotaryknobdevice" attributes="widget websocket">
+
+  <template>
+    <link href="../../../web_lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="caretaker-widget-rotaryknobdevice.css" rel="stylesheet">
+
+    <div layout vertical center>
+      <div>
+        <webaudio-knob id="knob" src="../../../images/knobs/BlackAngleUni.png" sprites="64" min="0"
+                       max="255" width="128" height="128" valuetip="0" value="{{value}}"></webaudio-knob>
+      </div>
+    </div>
+
+  </template>
+
+  <script src="caretaker-widget-rotaryknobdevice.js"></script>
+
+</polymer-element>

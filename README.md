@@ -19,63 +19,13 @@ For a minimal system setup, please refer to this
 [installtion tutorial](http://www.grappendorf.net/projects/caretaker/caretaker-setup-guide) on the
 [project webiste](http://www.grappendorf.net/projects/caretaker).
 
-Licenses
---------
-
-### Caretaker Server
+License
+-------
 
 The Caretaker Server code is licensed under the MIT license
 You find the license in the attached LICENSE file
 
-### Nuvola Icon Set icons
+3d Party Software and Graphics
+------------------------------
 
-Uses some of the "Nuvola Icon Set" icons by David Vignoni
-Licensed under the GNU LGPL 2.1 license
-You find the license at http://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
-You find the icon set at http://www.icon-king.com/projects/nuvola/
-
-### Kyo Tux Soft icons
-
-Uses some of the "Soft icons" icons by "Kyo Tux" 
-Licensed under the Creative Commons (Attribution-Noncommercial-Share Alike 3.0 Unported) license
-You find the license at http://creativecommons.org/licenses/by-nc-sa/3.0/
-You find the icon set at https://www.iconfinder.com/iconsets/softicons
-
-### I like buttons icons
-
-Uses some of the "I like buttons" icons by "MazeNL77"
-Licensed under a free for commercial use license
-You find the icon set at https://www.iconfinder.com/iconsets/ilb
-
-### Crystal Clear icon
-
-Uses some of the "Crystal Clear" icons by Everaldo Coelho
-Licensed under the GNU LGPL 3 license
-You can find the license at http://www.gnu.org/licenses/lgpl-3.0.html
-You can find the icon set https://www.iconfinder.com/iconsets/CrystalClear
-
-### Shift Free icons
-
-Uses some of the "Shift Free" icons by Tahsin Tahil
-Licensed under the Creative Commons (Attribution 3.0 Unported) license
-You can find the license at https://creativecommons.org/licenses/by/3.0/
-You can find the icon set https://www.iconfinder.com/iconsets/shift-free
-
-### small-n-flat icons
-
-Uses some of the "small-n-flat" icons by "Paomedia"
-Licensed under the Creative Commons (Attribution 3.0 Unported) license
-You can find the license at https://creativecommons.org/licenses/by/3.0/
-You can find the icon set https://www.iconfinder.com/iconsets/small-n-flat
-
-### Iconsland Weather icons
-
-Uses some of the "Iconsland Weather" icons by "Icons Land"
-Licensed under a Free for commercial use (Include link to authors website) license
-You can find the icon set at https://www.iconfinder.com/iconsets/iconsland-weather
-
-### Third party gems
-
-The used Ruby gems and JavaScript libraries either use the MIT license or the Apache Version 2.0 license.
-You find the Apache license at http://opensource.org/licenses/Apache-2.0
-You find the MIT license at http://opensource.org/licenses/MIT
+A list of the used 3d party software and graphics can be found in the file 3DPARTY.md

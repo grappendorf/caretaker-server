@@ -77,6 +77,12 @@
         </caretaker-data-fieldset>
       </template>
 
+      <template if="{{$.editor.item.type === 'RotaryKnobDevice'}}">
+        <caretaker-data-fieldset label="{{'models.rotary_knob_device.one'|i18n}}"
+                                 image="/images/{{$.editor.item.large_icon}}">
+        </caretaker-data-fieldset>
+      </template>
+
       <template if="{{$.editor.item.type === 'SwitchDevice'}}">
         <caretaker-data-fieldset label="{{'models.switch_device.one'|i18n}}"
                                  image="/images/{{$.editor.item.large_icon}}">
