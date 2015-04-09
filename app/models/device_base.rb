@@ -48,6 +48,7 @@ module DeviceBase
 
     def start
       connect
+      update
     end
 
     def stop

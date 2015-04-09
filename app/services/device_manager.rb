@@ -13,12 +13,12 @@ class DeviceManager
   def start
     Rails.logger.info 'Device Manager starting'
 
-    Device.all.each do |device|
-      add_device device.specific
-    end
+    Device.all.each {|device| add_device device.specific}
 
     wlan_master.when_message_received { |*args| wlan_message_received *args }
     wlan_master.start
+
+    devices.each {|device| device.start }
   end
 
   def stop
@@ -59,20 +59,23 @@ class DeviceManager
       WebsocketRails[:devices].trigger 'state',
                                        { type: device.class.name, id: device_id, state: device.current_state }
     end
-    device.start
   end
 
   def create_device device
     add_device device
+    device.start
   end
 
   def update_device device
+    device.stop
     remove_device device.acting_as.id
     add_device device
+    device.start
   end
 
   def remove_device device_id
     device = @devices_by_id[device_id]
+    device.stop
     @devices_by_address.delete device.address
     @devices_by_uuid.delete device.uuid
     @devices_by_id.delete device_id
@@ -108,7 +111,7 @@ class DeviceManager
       end
       wlan_master.send_message address, CaretakerMessages::REGISTER_RESPONSE
     elsif msg > 0
-      device_by_address(address).message_received msg, params
+      device_by_address(address).try(:message_received, msg, params)
     end
   end
 
