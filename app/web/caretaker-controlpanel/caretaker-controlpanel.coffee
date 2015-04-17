@@ -5,37 +5,33 @@ Polymer 'caretaker-controlpanel',
     @state = 'ok'
 
   domReady: ->
-    self = @
     @$.dashboardNamesRequest.go()
-
-    observer = new MutationObserver (mutations, observer) ->
-      self.packery.reloadItems()
-      for item in self.packery.getItemElements()
-        draggability = new Draggabilly item, {handle: '* /deep/ [icon="square"]'}
-        self.packery.bindDraggabillyEvents draggability
-        widgetObserver = new MutationObserver (widgetMutations, widgetObserver) ->
-          if widgetMutations[0].attributeName == 'width' || widgetMutations[0].attributeName == 'height'
-            self.packery.layout()
-        widgetObserver.observe item, {childList: false, attributes: true}
-      self.packery.layout()
-
-    observer.observe @$.widgets, {childList: true, attributes: false}
 
     @packery = new Packery @$.widgets,
       rowHeight: 220
       columnWidth: 200
       itemSelector: 'caretaker-controlpanel-widget'
-      isInitLayout: true
       transitionDuration: '.2s'
-      gutter: 4
+      gutter: 2
 
-    self = @
-
-    @packery.on 'dragItemPositioned', (packery, item) ->
-      for item,index in packery.getItemElements()
+    @packery.on 'dragItemPositioned', (packery, item) =>
+      for item,index in @packery.getItemElements()
         if (item.widget.position != index)
           item.widget.position = index
-          self.widgets.update item.widget.id, position: index
+          @widgets.update item.widget.id, position: index
+
+    observer = new MutationObserver (mutations, observer) =>
+      @packery.reloadItems()
+      for item in @packery.getItemElements()
+        draggability = new Draggabilly item, {handle: ':host /deep/ [icon="square"]'}
+        @packery.bindDraggabillyEvents draggability
+        widgetObserver = new MutationObserver (widgetMutations, widgetObserver) =>
+          if widgetMutations[0].attributeName == 'width' || widgetMutations[0].attributeName == 'height'
+            @packery.layout()
+        widgetObserver.observe item, {childList: false, attributes: true}
+      @packery.layout()
+
+    observer.observe @$.widgets, {childList: true, attributes: false}
 
   defaultDashboardSucceeded: (e) ->
     @dashboardId = e.detail.response.id

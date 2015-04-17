@@ -72,7 +72,8 @@
          on-edit-widget-properties="{{editWidgetProperties}}"
          on-delete-widget="{{deleteWidget}}">
       <template repeat="{{widget in dashboard.widgets}}">
-        <caretaker-controlpanel-widget type="{{widget.type}}" widget="{{widget}}" width="{{widget.width}}" height="{{widget.height}}">
+        <caretaker-controlpanel-widget type="{{widget.type}}" widget="{{widget}}" width="{{widget.width}}"
+                                       height="{{widget.height}}">
           <template bind ref="{{widget.type}}"></template>
         </caretaker-controlpanel-widget>
       </template>
@@ -156,7 +157,8 @@
     </grapp-core-ajax>
 
     <grapp-core-ajax id="dashboardRequest"
-                     url="{{$.globals.apiURL}}/dashboards/{{dashboardId}}" method="GET" handleAs="json" token="{{token}}"
+                     url="{{$.globals.apiURL}}/dashboards/{{dashboardId}}" method="GET" handleAs="json"
+                     token="{{token}}"
                      on-core-response="{{dashboardSucceeded}}" on-core-error="{{dashboardFailed}}">
     </grapp-core-ajax>
 
@@ -200,57 +202,57 @@
     </grapp-confirmation-dialog>
 
     <template id="CipcamDeviceWidget">
-      <caretaker-widget-cipcamdevice id="content" widget="{{widget}}" websocket="{{$.websocket}}"
+      <caretaker-widget-cipcamdevice widget="{{widget}}" websocket="{{$.websocket}}"
                                      token="{{token}}"></caretaker-widget-cipcamdevice>
     </template>
 
     <template id="DimmerDeviceWidget">
-      <caretaker-widget-dimmerdevice id="content" widget="{{widget}}"
+      <caretaker-widget-dimmerdevice widget="{{widget}}"
                                      websocket="{{$.websocket}}"></caretaker-widget-dimmerdevice>
     </template>
 
     <template id="DimmerRgbDeviceWidget">
-      <caretaker-widget-dimmerrgbdevice id="content" widget="{{widget}}"
+      <caretaker-widget-dimmerrgbdevice widget="{{widget}}"
                                         websocket="{{$.websocket}}"></caretaker-widget-dimmerrgbdevice>
     </template>
 
     <template id="EasyvrDeviceWidget">
-      <caretaker-widget-easyvrdevice id="content" widget="{{widget}}"
+      <caretaker-widget-easyvrdevice widget="{{widget}}"
                                      websocket="{{$.websocket}}"></caretaker-widget-easyvrdevice>
     </template>
 
     <template id="PhilipsHueLightDeviceWidget">
-      <caretaker-widget-philipshuelightdevice id="content" widget="{{widget}}"
-                                     websocket="{{$.websocket}}"></caretaker-widget-philipshuelightdevice>
+      <caretaker-widget-philipshuelightdevice widget="{{widget}}"
+                                              websocket="{{$.websocket}}"></caretaker-widget-philipshuelightdevice>
     </template>
 
     <template id="SwitchDeviceWidget">
-      <caretaker-widget-switchdevice id="content" widget="{{widget}}"
+      <caretaker-widget-switchdevice widget="{{widget}}"
                                      websocket="{{$.websocket}}"></caretaker-widget-switchdevice>
     </template>
 
     <template id="RemoteControlDeviceWidget">
-      <caretaker-widget-remotecontroldevice id="content" widget="{{widget}}"
+      <caretaker-widget-remotecontroldevice widget="{{widget}}"
                                             websocket="{{$.websocket}}"></caretaker-widget-remotecontroldevice>
     </template>
 
     <template id="ReflowOvenDeviceWidget">
-      <caretaker-widget-reflowovendevice id="content" widget="{{widget}}"
+      <caretaker-widget-reflowovendevice widget="{{widget}}"
                                          websocket="{{$.websocket}}"></caretaker-widget-reflowovendevice>
     </template>
 
     <template id="RotaryKnobDeviceWidget">
-      <caretaker-widget-rotaryknobdevice id="content" widget="{{widget}}"
+      <caretaker-widget-rotaryknobdevice widget="{{widget}}"
                                          websocket="{{$.websocket}}"></caretaker-widget-rotaryknobdevice>
     </template>
 
     <template id="SensorDeviceWidget">
-      <caretaker-widget-sensordevice id="content" widget="{{widget}}"
-                                         websocket="{{$.websocket}}"></caretaker-widget-sensordevice>
+      <caretaker-widget-sensordevice widget="{{widget}}"
+                                     websocket="{{$.websocket}}"></caretaker-widget-sensordevice>
     </template>
 
     <template id="WeatherWidget">
-      <caretaker-widget-weather id="content" widget="{{widget}}"></caretaker-widget-weather>
+      <caretaker-widget-weather widget="{{widget}}"></caretaker-widget-weather>
     </template>
 
   </template>
@@ -258,16 +260,19 @@
   <script src="../../web_lib/classie/classie.js"></script>
   <script src="../../web_lib/get-style-property/get-style-property.js"></script>
   <script src="../../web_lib/get-size/get-size.js"></script>
-  <script src="../../web_lib/eventie/eventie.js"></script>
   <script src="../../web_lib/eventEmitter/EventEmitter.js"></script>
-  <script src="../../web_lib/matches-selector/matches-selector.js"></script>
+  <script src="../../web_lib/eventie/eventie.js"></script>
+  <script src="../../web_lib/unipointer/unipointer.js"></script>
+  <script src="../../web_lib/unidragger/unidragger.js"></script>
   <script src="../../web_lib/draggabilly/draggabilly.js"></script>
+  <script src="../../web_lib/matches-selector/matches-selector.js"></script>
   <script src="../../web_lib/doc-ready/doc-ready.js"></script>
+  <script src="../../web_lib/fizzy-ui-utils/utils.js"></script>
   <script src="../../web_lib/outlayer/item.js"></script>
   <script src="../../web_lib/outlayer/outlayer.js"></script>
   <script src="../../web_lib/packery/js/rect.js"></script>
-  <script src="../../web_lib/packery/js/packer.js"></script>
   <script src="../../web_lib/packery/js/item.js"></script>
+  <script src="../../web_lib/packery/js/packer.js"></script>
   <script src="../../web_lib/packery/js/packery.js"></script>
   <script src="caretaker-controlpanel.js"></script>
 

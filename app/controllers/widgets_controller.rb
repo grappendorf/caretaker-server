@@ -18,23 +18,16 @@ class WidgetsController < ApplicationController
   end
 
   def show
-    respond_to do |format|
-      format.json
-    end
   end
 
   def update
     @widget.update_attributes widget_params
-    respond_to do |format|
-      format.json { head :no_content }
-    end
+    render status: :ok, nothing: true
   end
 
   def destroy
     @widget.destroy
-    respond_to do |format|
-      format.json { head :no_content }
-    end
+    render status: :ok, nothing: true
   end
 
   private
