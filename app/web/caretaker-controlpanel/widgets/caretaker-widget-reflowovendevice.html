@@ -28,14 +28,18 @@
       </div>
     </div>
 
-    <grapp-graph-epoch id="graph" type="time.line" axis="left,bottom" width="660" height="240" theme="dark"
-                       windowSize="200" ticks="time:40">
-      <grapp-graph-epoch-series label="Layer 1" data="{{initialData}}">
-      </grapp-graph-epoch-series>
-    </grapp-graph-epoch>
+    <div id="graph"></div>
+
+    <!--<grapp-graph-epoch id="graph" type="time.line" axis="left,bottom" width="660" height="240" theme="dark"-->
+                       <!--windowSize="200" ticks="time:40">-->
+      <!--<grapp-graph-epoch-series label="Layer 1" data="{{initialData}}">-->
+      <!--</grapp-graph-epoch-series>-->
+    <!--</grapp-graph-epoch>-->
 
   </template>
 
+  <script src="../../../web_lib/raphael/raphael.js"></script>
+  <script src="../../../web_lib/morrisjs/morris.js"></script>
   <script src="caretaker-widget-reflowovendevice.js"></script>
 
 </polymer-element>
