@@ -320,3 +320,6 @@ DEPENDENCIES
   websocket-driver (= 0.3.2)
   websocket-rails (= 0.7.0)
   zip-zip (= 0.2)
+
+BUNDLED WITH
+   1.10.2

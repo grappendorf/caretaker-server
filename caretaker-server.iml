@@ -38,7 +38,7 @@
     <orderEntry type="library" scope="PROVIDED" name="awesome_print (v1.2.0, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bcrypt (v3.1.10, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.2, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.9.2, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="bundler (v1.10.2, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="cancan (v1.6.10, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="capybara (v2.4.4, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="childprocess (v0.5.6, RVM: ruby-2.2.1 [caretaker-server]) [gem]" level="application" />
