@@ -1,3 +1,12 @@
+<a name="0.3.0"></a>
+## 0.3.0 (2015-11-11)
+
+
+#### Features
+
+* update to Polymer 1.0 ([4ce5f9e2](https://github.com/grappendorf/caretaker-server/commit/4ce5f9e28fe14f1a0359ff95ae5e1d042266de29))
+
+
 <a name="0.1.3"></a>
 ### 0.1.3 (2014-12-23)
 
