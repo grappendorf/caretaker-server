@@ -1,15 +1,19 @@
-Polymer 'caretaker-codemirror-input',
+Polymer
 
-  created: ->
-    @theme = 'base16-dark'
-    @value = ''
+  is: 'caretaker-codemirror-input'
 
-  ready: ->
+  properties:
+    value: {type: String, notify: true}
+    mode: {type: String}
+    theme: {type: String, value: 'base16-dark'}
+    rows: {type: String}
+
+  attached: ->
     input = @$.input
     classes = @getAttribute 'class'
-    @removeAttribute 'class'
+    Polymer.dom(@).removeAttribute 'class'
     id = @getAttribute 'id'
-    @removeAttribute 'id'
+    Polymer.dom(@).removeAttribute 'id'
     input.id = id
     input.setAttribute 'class', classes
     codemirror = CodeMirror.fromTextArea input,
@@ -17,6 +21,7 @@ Polymer 'caretaker-codemirror-input',
       theme: @theme
       lineNumbers: true
       matchBrackets: true
-    codemirror.getDoc().setValue @value
-    codemirror.on 'change', (-> @value = codemirror.getValue()).bind @
+    codemirror.getDoc().setValue(@value || '')
+    codemirror.on 'change', =>
+      @value = codemirror.getValue()
     @async -> codemirror.refresh()

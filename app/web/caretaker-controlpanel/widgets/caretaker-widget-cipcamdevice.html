@@ -1,7 +1,7 @@
 <link rel="import" href="../../../web_lib/grapp-app-globals/grapp-app-globals.html">
-<link rel="import" href="../../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
+<link rel="import" href="../../../web_lib/grapp-iron-ajax/grapp-iron-ajax.html">
 
-<polymer-element name="caretaker-widget-cipcamdevice" attributes="widget websocket token">
+<dom-module id="caretaker-widget-cipcamdevice">
 
   <template>
 
@@ -10,24 +10,24 @@
 
     <grapp-app-globals id="globals"></grapp-app-globals>
 
-    <grapp-core-ajax id="imageRequest" url="{{$.globals.apiURL}}/cipcam_device/{{device.specific_id}}/image"
-        method="GET" handleAs="arraybuffer" on-core-response="{{updateImage}}" token="{{token}}"
-        ></grapp-core-ajax>
+    <grapp-iron-ajax id="imageRequest" base-url="[[apiUrl]]"
+                     path="[[_cipcamImagePath(device.id)]]"
+                     method="GET" handleAs="arraybuffer" on-core-response="_updateImage" token="[[token]]"
+        ></grapp-iron-ajax>
 
     <img id="image" width="320" height="240"/>
 
-    <div id="controls" layout horizontal center-justified>
+    <div id="controls" class="layout horizontal center-justified">
       <div class="btn-group">
-        <button on-tap="{{left}}" class="btn btn-success">Left</button>
-        <button on-tap="{{right}}" class="btn btn-success">Right</button>
-        <button on-tap="{{up}}" class="btn btn-success">Up</button>
-        <button on-tap="{{down}}" class="btn btn-success">Down</button>
+        <button on-tap="_left" class="btn btn-success">Left</button>
+        <button on-tap="_right" class="btn btn-success">Right</button>
+        <button on-tap="_up" class="btn btn-success">Up</button>
+        <button on-tap="_down" class="btn btn-success">Down</button>
       </div>
     </div>
 
   </template>
 
-
   <script src="caretaker-widget-cipcamdevice.js"></script>
 
-</polymer-element>
+</dom-module>

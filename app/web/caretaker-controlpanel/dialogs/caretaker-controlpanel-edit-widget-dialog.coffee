@@ -1,4 +1,16 @@
-Polymer 'caretaker-controlpanel-edit-widget-dialog',
+Polymer
+
+  is: 'caretaker-controlpanel-edit-widget-dialog'
+
+  behaviors: [Grapp.I18NJsBehavior]
+
+  properties:
+    widget: {type: Object}
+    token: {type: String}
+
+  observers: [
+    '_validate(widget.device.id)'
+  ]
 
   start: ->
     @processing = false
@@ -7,8 +19,8 @@ Polymer 'caretaker-controlpanel-edit-widget-dialog',
       title: @widget.title
       width: @widget.width
       height: @widget.height
-    @$.devicesNames.go()
-    @validate()
+    @$.devicesNames.generateRequest()
+    @_validate()
     promise = new Promise ((resolve, reject) ->
       @resolve = resolve
       @reject = reject
@@ -20,19 +32,16 @@ Polymer 'caretaker-controlpanel-edit-widget-dialog',
     @processing = false
     @async -> @$.dialog.close()
 
-  ok: ->
+  _ok: ->
     @processing = true
     @resolve @widget
 
-  cancel: ->
+  _cancel: ->
     @widget.device.id = @initial.deviceId
     @widget.title = @initial.title
     @widget.width = @initial.width
     @widget.height = @initial.height
     @end()
 
-  validate: ->
+  _validate: ->
     @valid = @widget.device.id?
-
-  'widget.device.idChanged': ->
-    @validate()

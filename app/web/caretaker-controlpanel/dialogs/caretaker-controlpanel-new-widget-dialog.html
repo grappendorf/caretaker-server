@@ -1,9 +1,14 @@
-<link rel="import" href="../../../web_lib/grapp-app-globals/grapp-app-globals.html">
-<link rel="import" href="../../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
+<link rel="import" href="../../../web_lib/iron-dropdown/iron-dropdown.html">
+<link rel="import" href="../../../web_lib/paper-button/paper-button.html">
+<link rel="import" href="../../../web_lib/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../../web_lib/paper-input/paper-input.html">
 <link rel="import" href="../../../web_lib/paper-dropdown-menu/paper-dropdown-menu.html">
-<link rel="import" href="../../../web_lib/paper-dropdown/paper-dropdown.html">
+<link rel="import" href="../../../web_lib/paper-menu/paper-menu.html">
+<link rel="import" href="../../../web_lib/grapp-app-globals/grapp-app-globals.html">
+<link rel="import" href="../../../web_lib/grapp-iron-ajax/grapp-iron-ajax.html">
+<link rel="import" href="../../../web_lib/grapp-i18n-js/grapp-i18n-js.html">
 
-<polymer-element name="caretaker-controlpanel-new-widget-dialog" attributes="token">
+<dom-module id="caretaker-controlpanel-new-widget-dialog">
 
   <template>
 
@@ -17,59 +22,62 @@
       }
     </style>
 
-    <grapp-app-globals id="globals"></grapp-app-globals>
+    <grapp-app-globals>
+      <grapp-app-globals-get key="apiUrl" value="{{apiUrl}}"></grapp-app-globals-get>
+    </grapp-app-globals>
 
-    <grapp-core-ajax id="devicesNames"
-                     url="{{$.globals.apiURL}}/devices/names" method="GET" handleAs="json"
-                     response="{{devices}}" token="{{token}}">
-    </grapp-core-ajax>
+    <grapp-iron-ajax id="devicesNames" base-url="[[apiUrl]]"
+                     path="/devices/names" method="GET" handleAs="json"
+                     response="{{devices}}" token="[[token]]">
+    </grapp-iron-ajax>
 
-    <paper-action-dialog id="dialog" backdrop layered="false" heading="{{'action.add_widget' | i18n}}">
+    <paper-dialog id="dialog">
 
-      <div vertical layout>
+      <h2 class="layout horizontal justified">
+        <span>[[i18n('action.add_widget')]]</span>
+        <paper-spinner active$="[[processing]]"></paper-spinner>
+      </h2>
 
-        <paper-dropdown-menu id="device" label="{{'message.select_device_for_widget' | i18n}}" autofocus>
-          <paper-dropdown class="dropdown" transition="">
-            <core-menu class="menu" selected="{{deviceId}}" valueattr="deviceId">
-              <template repeat="{{devices}}">
-                <paper-item deviceId="{{id}}">{{name}}</paper-item>
-              </template>
-            </core-menu>
-          </paper-dropdown>
+      <div class="vertical layout">
+
+        <paper-dropdown-menu id="device" label="[[i18n('message.select_device_for_widget')]]" autofocus>
+          <paper-menu class="dropdown-content" selected="{{deviceId}}" value-attr="data-device-id">
+            <template is="dom-repeat" items="[[devices]]">
+              <paper-item data-device-id$="[[item.id]]">[[item.name]]</paper-item>
+            </template>
+          </paper-menu>
         </paper-dropdown-menu>
 
-        <grapp-paper-input id="title" floatingLabel label="{{'message.choose_optional_widget_title' | i18n}}"
-                           type="text"
-                           autofocus value="{{title}}" on-enter="{{submit}}" on-input="{{validate}}">
-        </grapp-paper-input>
+        <paper-input id="title" label="[[i18n('message.choose_optional_widget_title')]]"
+                     autofocus value="{{title}}" on-enter="_submit" on-input="_validate">
+        </paper-input>
 
-        <label for="width">{{'attributes.widget.width' | i18n}}</label>
-        <paper-slider id="width" pin snaps min="1" max=4" step="1" immediateValue="{{widget.width}}">
+        <label for="width">[[i18n('attributes.widget.width')]]</label>
+        <paper-slider id="width" pin snaps min="1" max="4" step="1" immediate-value="{{widget.width}}">
         </paper-slider>
 
-        <label for="height">{{'attributes.widget.height' | i18n}}</label>
-        <paper-slider id="height" pin snaps min="1" max=4" step="1" immediateValue="{{widget.height}}">
+        <label for="height">[[i18n('attributes.widget.height')]]</label>
+        <paper-slider id="height" pin snaps min="1" max="4" step="1" immediate-value="{{widget.height}}">
         </paper-slider>
 
       </div>
 
-      <grapp-paper-button affirmative raised success disabled?="{{!valid}}"
-                          on-click="{{ok}}" on-enter="{{ok}}">
-        <grapp-fa-icon icon="{{ {check: !processing, spinner: processing} | tokenList}}"
-                       spin="{{processing}}"></grapp-fa-icon>
-        <span>{{'action.save' | i18n}}</span>
-      </grapp-paper-button>
+      <div class="buttons">
+        <paper-button raised success disabled$="[[!valid]]" on-tap="_ok">
+          <iron-icon icon="check"></iron-icon>
+          <span>[[i18n('action.save')]]</span>
+        </paper-button>
 
-      <grapp-paper-button affirmative raised error
-                          on-click="{{cancel}}" on-enter="{{cancel}}">
-        <grapp-fa-icon icon="close"></grapp-fa-icon>
-        <span>{{'action.cancel' | i18n}}</span>
-      </grapp-paper-button>
+        <paper-button raised error on-tap="_cancel">
+          <iron-icon icon="cancel"></iron-icon>
+          <span>[[i18n('action.cancel')]]</span>
+        </paper-button>
+      </div>
 
-    </paper-action-dialog>
+    </paper-dialog>
 
   </template>
 
   <script src="caretaker-controlpanel-new-widget-dialog.js"></script>
 
-</polymer-element>
+</dom-module>

@@ -13,9 +13,6 @@ ENV RAILS_ENV production
 
 ADD . /var/app
 WORKDIR /var/app
-RUN rm -rf db/sqlite/*
-RUN rm -rf tmp/*
-RUN rm -rf log/*
 
 RUN npm install
 RUN ./bin/bower --allow-root install

@@ -1,136 +1,181 @@
-<link rel="import" href="../../web_lib/core-menu/core-menu.html">
-<link rel="import" href="../../web_lib/core-menu/core-submenu.html">
-<link rel="import" href="../../web_lib/core-icons/hardware-icons.html">
+<link rel="import" href="../../web_lib/iron-icons/hardware-icons.html">
+<link rel="import" href="../../web_lib/paper-item/paper-item.html">
+<link rel="import" href="../../web_lib/paper-menu/paper-menu.html">
+<link rel="import" href="../../web_lib/paper-menu/paper-submenu.html">
 
-<polymer-element name="caretaker-app-drawer" attributes="router sessionManager app">
+<dom-module id="caretaker-app-drawer">
+
+  <link rel="import" type="css" href="caretaker-app-drawer.css">
 
   <template>
 
-    <link href="caretaker-app-drawer.css" rel="stylesheet">
+    <grapp-app-globals>
+      <grapp-app-globals-get key="appModule" value="{{appModule}}"></grapp-app-globals-get>
+      <grapp-app-globals-get key="appFunction" value="{{appFunction}}"></grapp-app-globals-get>
+    </grapp-app-globals>
 
-    <grapp-app-globals id="globals"></grapp-app-globals>
+    <paper-menu on-iron-activate="_menuSelected" attr-for-selected="id" selected="{{appModule}}">
 
-    <core-menu on-core-activate="{{menuSelected}}" valueattr="id" selected="{{$.globals.appModule}}">
-
-      <template if="{{sessionManager.token}}">
-        <core-item id="dashboard" go="/controlpanel" label="{{'models.dashboard.one' | i18n}}" icon="dashboard"
-                   category="misc"></core-item>
+      <template is="dom-if" if="[[token]]">
+        <paper-item id="dashboard" go="/controlpanel" icon="dashboard"
+                    class="category-misc">
+          <iron-icon icon="dashboard"></iron-icon>
+          <span>[[i18n('models.dashboard.one')]]</span>
+        </paper-item>
       </template>
 
-      <template if="{{sessionManager.userIsAdmin}}">
+      <template is="dom-if" if="[[user.isAdmin]]">
 
-        <core-submenu id="devices" label="{{'models.device.other' | i18n}}" icon="settings" category="devices"
-                      valueattr="id" selected="{{$.globals.appFunction}}">
+        <paper-submenu id="devices" class="category-devices" attr-for-selected="id"
+                       selected="{{appFunction}}" opened="[[_subMenuActive(appModule, 'devices')]]">
 
-          <core-item id="devices" go="/devices">
-            <grapp-fa-icon icon="gears"></grapp-fa-icon>
-            {{'models.device.other' | i18n}}
-          </core-item>
+          <paper-item class="menu-trigger">
+            <iron-icon icon="settings"></iron-icon>
+            <span>[[i18n('models.device.other')]]</span>
+          </paper-item>
 
-          <core-item id="device_scripts" go="/device_scripts">
-            <grapp-fa-icon icon="code"></grapp-fa-icon>
-            {{'models.device_script.other' | i18n}}
-          </core-item>
+          <paper-menu class="menu-content">
+            <paper-item id="devices" go="/devices">
+              <grapp-fa-icon icon="gears"></grapp-fa-icon>
+              <span>[[i18n('models.device.other')]]</span>
+            </paper-item>
 
-        </core-submenu>
+            <paper-item id="device_scripts" go="/device_scripts">
+              <grapp-fa-icon icon="code"></grapp-fa-icon>
+              <span>[[i18n('models.device_script.other')]]</span>
+            </paper-item>
+          </paper-menu>
 
-      </template>
-
-      <template if="{{sessionManager.userIsAdmin}}">
-
-        <core-submenu id="manage" label="{{'manage' | i18n}}" icon="create" category="manage"
-                      valueattr="id" selected="{{$.globals.appFunction}}">
-
-          <core-item id="buildings" go="/buildings">
-            <grapp-fa-icon icon="building-o"></grapp-fa-icon>
-            {{'models.building.other' | i18n}}
-          </core-item>
-
-          <core-item id="floors" go="/floors">
-            <grapp-fa-icon icon="bars"></grapp-fa-icon>
-            {{'models.floor.other' | i18n}}
-          </core-item>
-
-          <core-item id="rooms" go="/rooms">
-            <grapp-fa-icon icon="columns"></grapp-fa-icon>
-            {{'models.room.other' | i18n}}
-          </core-item>
-
-        </core-submenu>
+        </paper-submenu>
 
       </template>
 
-      <template if="{{sessionManager.userIsAdmin}}">
+      <template is="dom-if" if="[[user.isAdmin]]">
 
-        <core-submenu id="system" label="{{'system' | i18n}}" icon="hardware:computer" category="system"
-                      valueattr="id" selected="{{$.globals.appFunction}}">
+        <paper-submenu id="manage" class="category-manage" attr-for-selected="id"
+                       selected="{{appFunction}}" opened="[[_subMenuActive(appModule, 'manage')]]">
 
-          <core-item id="users" go="/users">
-            <grapp-fa-icon icon="users"></grapp-fa-icon>
-            {{'models.user.other' | i18n}}
-          </core-item>
+          <paper-item class="menu-trigger">
+            <iron-icon icon="create"></iron-icon>
+            <span>[[i18n('manage')]]</span>
+          </paper-item>
 
-          <core-item id="dashboards" go="/dashboards">
-            <grapp-fa-icon icon="th-large"></grapp-fa-icon>
-            {{'models.dashboard.other' | i18n}}
-          </core-item>
+          <paper-menu class="menu-content">
+            <paper-item id="buildings" go="/buildings">
+              <grapp-fa-icon icon="building-o"></grapp-fa-icon>
+              <span>[[i18n('models.building.other')]]</span>
+            </paper-item>
 
-          <core-item id="philipshue" go="/philipshue">
-            <grapp-fa-icon icon="lightbulb-o"></grapp-fa-icon>
-            {{'title.philips_hue' | i18n}}
-          </core-item>
+            <paper-item id="floors" go="/floors">
+              <grapp-fa-icon icon="bars"></grapp-fa-icon>
+              <span>[[i18n('models.floor.other')]]</span>
+            </paper-item>
 
-        </core-submenu>
+            <paper-item id="rooms" go="/rooms">
+              <grapp-fa-icon icon="columns"></grapp-fa-icon>
+              <span>[[i18n('models.room.other')]]</span>
+            </paper-item>
+          </paper-menu>
 
-      </template>
-
-      <core-submenu id="help" label="{{'action.help' | i18n}}" icon="help" category="help"
-                    valueattr="id" selected="{{$.globals.appFunction}}">
-
-        <core-item id="documentation" go="/documentation">
-          <grapp-fa-icon icon="book"></grapp-fa-icon>
-          {{'documentation' | i18n}}
-        </core-item>
-
-        <core-item id="about" go="/about">
-          <grapp-fa-icon icon="info"></grapp-fa-icon>
-          {{'action.help_about' | i18n}}
-        </core-item>
-
-      </core-submenu>
-
-      <template if="{{sessionManager.token}}">
-
-        <core-submenu id="account" label="{{'account' | i18n}}" icon="account-circle"
-                      valueattr="id" selected="{{$.globals.appFunction}}">
-
-          <core-item delegate="app.editProfile">
-            <grapp-fa-icon icon="credit-card"></grapp-fa-icon>
-            {{'profile' | i18n}}
-          </core-item>
-
-          <core-item delegate="app.changePassword">
-            <grapp-fa-icon icon="key"></grapp-fa-icon>
-            {{'action.change_password' | i18n}}
-          </core-item>
-
-          <core-item delegate="app.logout">
-            <grapp-fa-icon icon="sign-out"></grapp-fa-icon>
-            {{'action.sign_out' | i18n}}
-          </core-item>
-
-        </core-submenu>
+        </paper-submenu>
 
       </template>
 
-      <template if="{{! sessionManager.token}}">
-        <core-item delegate="app.login" icon="exit-to-app" label="{{'action.sign_in' | i18n}}"></core-item>
+      <template is="dom-if" if="[[user.isAdmin]]">
+
+        <paper-submenu id="system" class="category-system" attr-for-selected="id"
+                       selected="{{appFunction}}" opened="[[_subMenuActive(appModule, 'system')]]">
+
+          <paper-item class="menu-trigger">
+            <iron-icon icon="hardware:computer"></iron-icon>
+            <span>[[i18n('system')]]</span>
+          </paper-item>
+
+          <paper-menu class="menu-content">
+            <paper-item id="users" go="/users">
+              <grapp-fa-icon icon="users"></grapp-fa-icon>
+              <span>[[i18n('models.user.other')]]</span>
+            </paper-item>
+
+            <paper-item id="dashboards" go="/dashboards">
+              <grapp-fa-icon icon="th-large"></grapp-fa-icon>
+              <span>[[i18n('models.dashboard.other')]]</span>
+            </paper-item>
+
+            <paper-item id="philipshue" go="/philipshue">
+              <grapp-fa-icon icon="lightbulb-o"></grapp-fa-icon>
+              <span>[[i18n('title.philips_hue')]]</span>
+            </paper-item>
+          </paper-menu>
+
+        </paper-submenu>
+
       </template>
 
-    </core-menu>
+      <paper-submenu id="help" class="category-help" attr-for-selected="id"
+                     selected="{{appFunction}}" opened="[[_subMenuActive(appModule, 'help')]]">
+
+        <paper-item class="menu-trigger">
+          <iron-icon icon="help"></iron-icon>
+          <span>[[i18n('action.help')]]</span>
+        </paper-item>
+
+        <paper-menu class="menu-content">
+          <paper-item id="documentation" go="/documentation">
+            <grapp-fa-icon icon="book"></grapp-fa-icon>
+            <span>[[i18n('documentation')]]</span>
+          </paper-item>
+
+          <paper-item id="about" go="/about">
+            <grapp-fa-icon icon="info"></grapp-fa-icon>
+            <span>[[i18n('action.help_about')]]</span>
+          </paper-item>
+        </paper-menu>
+
+      </paper-submenu>
+
+      <template is="dom-if" if="[[token]]">
+
+        <paper-submenu id="account" class="category-account" attr-for-selected="id"
+                       selected="{{appFunction}}" opened="[[_subMenuActive(appModule, 'account')]]">
+
+          <paper-item class="menu-trigger">
+            <iron-icon icon="account-circle"></iron-icon>
+            <span>[[i18n('account')]]</span>
+          </paper-item>
+
+          <paper-menu class="menu-content">
+            <paper-item delegate="app.editProfile">
+              <grapp-fa-icon icon="credit-card"></grapp-fa-icon>
+              <span>[[i18n('profile')]]</span>
+            </paper-item>
+
+            <paper-item delegate="app.changePassword">
+              <grapp-fa-icon icon="key"></grapp-fa-icon>
+              <span>[[i18n('action.change_password')]]</span>
+            </paper-item>
+
+            <paper-item delegate="app.logout">
+              <grapp-fa-icon icon="sign-out"></grapp-fa-icon>
+              <span>[[i18n('action.sign_out')]]</span>
+            </paper-item>
+          </paper-menu>
+
+        </paper-submenu>
+
+      </template>
+
+      <template is="dom-if" if="[[!token]]">
+        <paper-item delegate="app.login">
+          <grapp-fa-icon icon="sign-in"></grapp-fa-icon>
+          <span>[[i18n('action.sign_in')]]</span>
+        </paper-item>
+      </template>
+
+    </paper-menu>
 
   </template>
 
   <script src="caretaker-app-drawer.js"></script>
 
-</polymer-element>
+</dom-module>

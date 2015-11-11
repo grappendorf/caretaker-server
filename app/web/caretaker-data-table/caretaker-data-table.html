@@ -1,22 +1,22 @@
-<link rel="import" href="../../web_lib/grapp-fa-icon/grapp-fa-icon.html">
-<link rel="import" href="../../web_lib/grapp-paper-button/grapp-paper-button.html">
+<link rel="import" href="../../web_lib/paper-button/paper-button.html">
 <link rel="import" href="../../web_lib/grapp-dialogs/grapp-confirmation-dialog.html">
-<link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
+<link rel="import" href="../../web_lib/grapp-fa-icon/grapp-fa-icon.html">
+<link rel="import" href="../../web_lib/grapp-i18n-js/grapp-i18n-js.html">
+<link rel="import" href="../../web_lib/grapp-template-ref/grapp-template-ref.html">
 <link rel="import" href="caretaker-data-column.html">
 <link rel="import" href="caretaker-data-action.html">
 
-<polymer-element name="caretaker-data-table"
-                 attributes="data resource model router searchText realtimeSearch titleAttribute">
+<dom-module id="caretaker-data-table">
+
+  <link rel="import" type="css" href="../../stylesheets/bootstrap.css">
+  <link rel="import" type="css" href="caretaker-data-table.css" >
 
   <template>
 
-    <link href="../../stylesheets/bootstrap.css" rel="stylesheet">
-    <link href="caretaker-data-table.css" rel="stylesheet">
-
-    <div id="toolbar" layout horizontal>
+    <div id="toolbar" class="layout horizontal">
 
       <div class="btn-group">
-        <button class="btn btn-default" type="button" on-tap="{{new}}">
+        <button class="btn btn-default" type="button" on-tap="_new">
           <grapp-fa-icon icon="asterisk"></grapp-fa-icon>
         </button>
       </div>
@@ -25,21 +25,21 @@
 
       <div class="input-group">
 				<span class="input-group-btn">
-					<button class="btn btn-default" type="button" on-tap="{{search}}">
+					<button class="btn btn-default" type="button" on-tap="_search">
             <grapp-fa-icon icon="search"></grapp-fa-icon>
           </button>
 				</span>
         <input name="q" type="search" class="form-control form-search-input"
-               placeholder="{{'placeholder.search' | i18n}}" value="{{searchText}}"
-               on-keypress="{{onSearchKeyPress}}">
+               placeholder="[[i18n('placeholder.search')]]" value="[[searchText]]"
+               on-keypress="_onSearchKeyPress">
 				<span class="input-group-btn">
-					<button class="btn btn-default" type="button" on-tap="{{clearSearch}}">
+					<button class="btn btn-default" type="button" on-tap="_clearSearch">
             <grapp-fa-icon icon="times-circle-o"></grapp-fa-icon>
           </button>
 				</span>
       </div>
 
-      <span flex></span>
+      <span class="flex"></span>
 
     </div>
 
@@ -48,12 +48,12 @@
         <tr>
           <th class="width-0">
           </th>
-          <template repeat="{{column in columns}}">
-            <th class="{{column.thClass}}">
-              <template if="{{column.icon}}">
-                <grapp-fa-icon icon="{{column.icon}}"></grapp-fa-icon>
+          <template is="dom-repeat" items="[[columns]]" as="column">
+            <th class$="[[column.thClass]]">
+              <template if="[[column.icon]]">
+                <grapp-fa-icon icon="[[column.icon]]"></grapp-fa-icon>
               </template>
-              {{column.heading}}
+              <span>[[column.heading]]</span>
             </th>
           </template>
           <th class="width-0">
@@ -61,52 +61,52 @@
         </tr>
       </thead>
       <tbody>
-        <template repeat="{{item in data}}">
-          <tr data-item-id="{{item.id}}">
+        <template is="dom-repeat" items="[[data]]">
+          <tr data-item-id$="[[item.id]]">
             <td>
               <nobr>
-                <grapp-fa-icon icon="edit" on-tap="{{edit}}"></grapp-fa-icon>
-                <template repeat="{{action in actions}}">
-                  <grapp-fa-icon icon="{{action.icon}}" on-tap="{{fireAction}}"
-                                 data-item-id="{{item.id}}"></grapp-fa-icon>
+                <grapp-fa-icon icon="edit" on-tap="_edit"></grapp-fa-icon>
+                <template is="dom-repeat" items="[[actions]]" as="action">
+                  <grapp-fa-icon icon="[[action.icon]]" on-tap="_fireAction"
+                                 data-item-id$="[[item.id]]"></grapp-fa-icon>
                 </template>
               </nobr>
             </td>
-            <template repeat="{{column in columns}}">
-              <td class="{{column.tdClass}}" on-tap="{{cellTapped}}">
-                <template if="{{column.type === 'string'}}">
-                  {{item | attribute(column.name)}}
+            <template is="dom-repeat" items="[[columns]]" as="column">
+              <td class$="[[column.tdClass]]" on-tap="_cellTapped">
+                <template is="dom-if" if="[[_equals(column.type, 'string')]]">
+                  <span>[[_attribute(item, column.name)]]</span>
                 </template>
-                <template if="{{column.type === 'check'}}">
-                  <grapp-fa-icon icon="{{item | attributeCheckIcon(column.name)}}"></grapp-fa-icon>
+                <template is="dom-if" if="[[_equals(column.type, 'check')]]">
+                  <grapp-fa-icon icon="[[_attributeCheckIcon(item, column.name)]]"></grapp-fa-icon>
                 </template>
-                <template if="{{column.type === 'date'}}">
-                  {{item | attribute(column.name) | i18n_time('short')}}
+                <template is="dom-if" if="[[_equals(column.type, 'date')]]">
+                  <span>[[_attributeDate(item, column.name)]]</span>
                 </template>
-                <template if="{{column.type === 'list'}}">
-                  {{item | attributeList(column.name)}}
+                <template is="dom-if" if="[[_equals(column.type, 'list')]]">
+                  <span>[[_attributeList(item, column.name)]]</span>
                 </template>
-                <template if="{{column.type === 'template'}}">
-                  <template bind="{{item}}" ref="column-{{column.name}}"></template>
+                <template is="dom-if" if="[[_equals(column.type, 'template')]]">
+                  <grapp-template-ref ref="[[_templateRefId(column.name)]]" bind="[[item]]" as="item"></grapp-template-ref>
                 </template>
               </td>
             </template>
             <td>
-              <grapp-fa-icon icon="trash-o" on-tap="{{delete}}"></grapp-fa-icon>
+              <grapp-fa-icon icon="trash-o" on-tap="_delete"></grapp-fa-icon>
             </td>
           </tr>
         </template>
       </tbody>
     </table>
 
-    <grapp-confirmation-dialog id="deleteConfirmation" heading="{{'title.delete_confirmation' | i18n}}" htmlMessage
-                               yesLabel="{{'action.ok' | i18n}}" yesIcon="check"
-                               noLabel="{{'action.cancel' | i18n}}" noIcon="close"></grapp-confirmation-dialog>
-
-    <caretaker-i18n id="i18n"></caretaker-i18n>
+    <grapp-confirmation-dialog id="deleteConfirmation"
+                               heading="[[i18n('title.delete_confirmation')]]" html-message
+                               yes-label="[[i18n('action.ok')]]" yes-icon="check"
+                               no-label="[[i18n('action.cancel')]]" no-icon="close"></grapp-confirmation-dialog>
 
   </template>
 
+  <script src="../caretaker-utils/caretaker-utils-behavior.js"></script>
   <script src="caretaker-data-table.js"></script>
 
-</polymer-element>
+</dom-module>

@@ -1,10 +1,19 @@
-Polymer 'caretaker-dashboards-list',
+Polymer
 
-  domReady: ->
-    @$.table.load()
+  is: 'caretaker-dashboards-list'
 
-  edit: (e) ->
+  behaviors: [Grapp.I18NJsBehavior]
+
+  properties:
+    token: {type: String}
+    searchText: {type: String, value: ''}
+
+  attached: ->
+    @async ->
+      @$.table.load()
+
+  _edit: (e) ->
     @router.go "/dashboards/#{e.detail.id}"
 
-  new: ->
+  _new: ->
     @router.go '/dashboards/new'

@@ -1,9 +1,10 @@
 <link rel="import" href="../../../web_lib/paper-slider/paper-slider.html">
 
-<polymer-element name="caretaker-widget-dimmerrgbdevice" attributes="widget websocket">
+<dom-module id="caretaker-widget-dimmerrgbdevice">
+
+  <link rel="import" type="css" href="caretaker-widget-dimmerrgbdevice.css">
 
   <template>
-    <link href="caretaker-widget-dimmerrgbdevice.css" rel="stylesheet">
 
     <table>
       <tr>
@@ -11,20 +12,23 @@
           <div id="dimmerColor"></div>
         </td>
         <td>
-          <paper-slider id="red" min="0" max="255" value="{{red}}" immediateValue="{{immediateRed}}"
-                        touch="pan-x"></paper-slider>
+          <paper-slider id="red" min="0" max="255" value="[[red]]"
+                        touch="pan-x" on-immediate-value-change="_sendRedValue">
+          </paper-slider>
         </td>
       </tr>
       <tr>
         <td>
-          <paper-slider id="green" min="0" max="255" value="{{green}}" immediateValue="{{immediateGreen}}"
-                        touch="pan-x"></paper-slider>
+          <paper-slider id="green" min="0" max="255" value="[[green]]"
+                        touch="pan-x" on-immediate-value-change="_sendGreenValue">
+          </paper-slider>
         </td>
       </tr>
       <tr>
         <td>
-          <paper-slider id="blue" min="0" max="255" value="{{blue}}" immediateValue="{{immediateBlue}}"
-                        touch="pan-x"></paper-slider>
+          <paper-slider id="blue" min="0" max="255" value="[[blue]]"
+                        touch="pan-x" on-immediate-value-change="_sendBlueValue">
+          </paper-slider>
         </td>
       </tr>
     </table>
@@ -34,4 +38,4 @@
 
   <script src="caretaker-widget-dimmerrgbdevice.js"></script>
 
-</polymer-element>
+</dom-module>

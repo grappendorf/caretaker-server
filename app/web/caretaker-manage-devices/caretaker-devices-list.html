@@ -1,36 +1,41 @@
-<link rel="import" href="../../web_lib/core-overlay/core-overlay.html">
 <link rel="import" href="../../web_lib/grapp-app-globals/grapp-app-globals.html">
-<link rel="import" href="../../web_lib/grapp-rest-resource/grapp-rest-resource.html">
 <link rel="import" href="../../web_lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
-<link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
+<link rel="import" href="../../web_lib/grapp-i18n-js/grapp-i18n-js.html">
+<link rel="import" href="../../web_lib/grapp-rest-resource/grapp-rest-resource.html">
 <link rel="import" href="../caretaker-data-table/caretaker-data-table.html">
 <link rel="import" href="caretaker-devices-new-dialog.html">
 
-<polymer-element name="caretaker-devices-list" attributes="token">
+<dom-module id="caretaker-devices-list">
 
   <template>
 
-    <grapp-app-globals id="globals">
-      <grapp-app-global-value name="appTitle" value="models.device.other"></grapp-app-global-value>
-      <grapp-app-global-value name="appModule" value="devices"></grapp-app-global-value>
-      <grapp-app-global-value name="appFunction" value="devices"></grapp-app-global-value>
+    <grapp-app-globals>
+      <grapp-app-globals-get key="apiUrl" value="{{apiUrl}}"></grapp-app-globals-get>
+      <grapp-app-globals-set key="appTitle" value="models.device.other"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appModule" value="devices"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appFunction" value="devices"></grapp-app-globals-set>
     </grapp-app-globals>
 
-    <grapp-rest-resource url="{{$.globals.apiURL}}/devices/:id" resource="{{devices}}" token="{{token}}"></grapp-rest-resource>
+    <grapp-rest-resource base-url="[[apiUrl]]" path="/devices/:id" resource="{{devices}}"
+                         token="[[token]]"></grapp-rest-resource>
 
     <grapp-breadcrumbs>
-      <grapp-breadcrumb>{{'models.device.other'|i18n}}</grapp-breadcrumb>
+      <grapp-breadcrumb label="[[i18n('models.device.other')]]"></grapp-breadcrumb>
     </grapp-breadcrumbs>
 
     <caretaker-devices-new-dialog id="newDeviceDialog"></caretaker-devices-new-dialog>
 
+
     <caretaker-data-table id="table" model="device" resource="{{devices}}"
-                          on-data-table-edit="{{edit}}" on-data-table-new="{{new}}">
+                          on-data-table-edit="_edit" on-data-table-new="_new">
 
       <caretaker-data-column name="name" width="30"></caretaker-data-column>
       <caretaker-data-column name="type" width="10">
-        <template>
-          <nobr><img src="/images/{{small_icon}}"> {{type | to_snake_case | i18n('models._.one')}}</nobr>
+        <template is="dom-template">
+          <nobr>
+            <img src$="[[_imagePath(item.small_icon)]]">&nbsp;
+            <span>[[_typeName(item.type)]]</span>
+          </nobr>
         </template>
       </caretaker-data-column>
       <caretaker-data-column name="address" width="20"></caretaker-data-column>
@@ -42,12 +47,13 @@
 
     <caretaker-websocket>
       <caretaker-websocket-subscribe channel="devices">
-        <caretaker-websocket-bind event="register" on-data="{{loadTable}}"></caretaker-websocket-bind>
+        <caretaker-websocket-bind event="register" on-data="_loadTable"></caretaker-websocket-bind>
       </caretaker-websocket-subscribe>
     </caretaker-websocket>
 
   </template>
 
+  <script src="../caretaker-utils/caretaker-utils-behavior.js"></script>
   <script src="caretaker-devices-list.js"></script>
 
-</polymer-element>
+</dom-module>

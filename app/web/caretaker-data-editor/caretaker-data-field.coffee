@@ -1,8 +1,10 @@
-Polymer 'caretaker-data-field',
+Polymer
 
-  created: ->
-    @name = null
-    @label = null
-    @error = null
-    @model = null
-    @type = 'string'
+  is: 'caretaker-data-field'
+
+  properties:
+    name: {type: String}
+    label: {type: String}
+    type: {type: String, value: 'string'}
+    error: {type: String}
+    model: {type: String}

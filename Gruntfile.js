@@ -10,6 +10,7 @@ module.exports = function(grunt) {
 
     copy: {
       options: {
+        noProcess: ['**/*.gif', '**/*.png'],
         processContent: function(content, srcpath) {
           return grunt.template.process(content);
         }

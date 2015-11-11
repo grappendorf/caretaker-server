@@ -1,8 +1,19 @@
-Polymer 'caretaker-controlpanel-new-widget-dialog',
+Polymer
+
+  is: 'caretaker-controlpanel-new-widget-dialog'
+
+  behaviors: [Grapp.I18NJsBehavior]
+
+  properties:
+    token: {type: String}
+
+  observers: [
+    '_validate(device.id)'
+  ]
 
   start: ->
     @processing = false
-    @$.devicesNames.go()
+    @$.devicesNames.generateRequest()
     @name = ''
     promise = new Promise ((resolve, reject) ->
       @resolve = resolve
@@ -15,15 +26,12 @@ Polymer 'caretaker-controlpanel-new-widget-dialog',
     @processing = false
     @async -> @$.dialog.close()
 
-  ok: ->
+  _ok: ->
     @processing = true
     @resolve {device_id: @deviceId, title: @title}
 
-  cancel: ->
+  _cancel: ->
     @end()
 
-  validate: ->
+  _validate: ->
     @valid = @deviceId?
-
-  deviceIdChanged: ->
-    @validate()

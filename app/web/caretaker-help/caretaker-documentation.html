@@ -1,22 +1,25 @@
 <link rel="import" href="../../web_lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
 
-<polymer-element name="caretaker-documentation" noscript>
+<dom-module id="caretaker-documentation">
 
   <template>
 
     <grapp-app-globals id="globals">
-      <grapp-app-global-value name="appTitle" value="documentation"></grapp-app-global-value>
-      <grapp-app-global-value name="appModule" value="help"></grapp-app-global-value>
-      <grapp-app-global-value name="appFunction" value="documentation"></grapp-app-global-value>
+      <grapp-app-globals-set key="appTitle" value="documentation"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appModule" value="help"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appFunction" value="documentation"></grapp-app-globals-set>
     </grapp-app-globals>
 
     <grapp-breadcrumbs>
-      <grapp-breadcrumb>{{'documentation'|i18n}}</grapp-breadcrumb>
+      <grapp-breadcrumb>[[i18n('documentation')]]</grapp-breadcrumb>
     </grapp-breadcrumbs>
 
     <h1>Documentation</h1>
 
   </template>
 
+  <script>
+    Polymer({is: 'caretaker-documentation', behaviors: [Grapp.I18NJsBehavior]});
+  </script>
 
-</polymer-element>
+</dom-module>

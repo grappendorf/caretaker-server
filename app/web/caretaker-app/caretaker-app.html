@@ -1,62 +1,65 @@
-<link rel="import" href="../../web_lib/core-header-panel/core-header-panel.html">
-<link rel="import" href="../../web_lib/core-drawer-panel/core-drawer-panel.html">
-<link rel="import" href="../../web_lib/grapp-launcher-tile/grapp-launcher-tile.html">
+<link rel="import" href="../../web_lib/paper-drawer-panel/paper-drawer-panel.html">
+<link rel="import" href="../../web_lib/paper-header-panel/paper-header-panel.html">
+<link rel="import" href="../../web_lib/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../../web_lib/grapp-app-globals/grapp-app-globals.html">
-<link rel="import" href="../caretaker-websocket/caretaker-websocket.html">
-<link rel="import" href="../caretaker-session-manager/caretaker-session-manager.html">
+<link rel="import" href="../../web_lib/grapp-i18n-js/grapp-i18n-js.html">
+<link rel="import" href="../../web_lib/grapp-launcher-tile/grapp-launcher-tile.html">
+<link rel="import" href="../../web_lib/grapp-websocket-rails/grapp-websocket-rails.html">
 <link rel="import" href="../caretaker-app-toolbar/caretaker-app-toolbar.html">
 <link rel="import" href="../caretaker-app-drawer/caretaker-app-drawer.html">
+<link rel="import" href="../caretaker-session-manager/caretaker-session-manager.html">
 <link rel="import" href="caretaker-app-router.html">
 
-<polymer-element name="caretaker-app">
+<dom-module id="caretaker-app">
+
+  <link rel="import" type="css" href="caretaker-app.css">
 
   <template>
 
-    <link href="caretaker-app.css" rel="stylesheet" shim-shadowdom>
+    <grapp-app-globals>
+      <grapp-app-globals-get key="apiUrl" value="{{apiUrl}}"></grapp-app-globals-get>
+      <grapp-app-globals-get key="websocketUrl" value="{{websocketUrl}}"></grapp-app-globals-get>
+      <grapp-app-globals-set key="websocket" value="[[websocket]]"></grapp-app-globals-set>
+    </grapp-app-globals>
 
-    <grapp-app-globals id="globals"></grapp-app-globals>
+    <caretaker-session-manager id="sessionManager" api-url="[[apiUrl]]"
+                               user="{{user}}" token="{{token}}"
+                               on-loaded="sessionManagerLoaded"></caretaker-session-manager>
 
-    <caretaker-i18n defaultLocale="{{$.globals.defaultLocale}}" locale="{{$.globals.locale}}"></caretaker-i18n>
+    <grapp-websocket-rails url="[[websocketUrl]]" websocket="{{websocket}}">
+    </grapp-websocket-rails>
 
-    <caretaker-session-manager id="sessionManager" on-loaded="{{sessionManagerLoaded}}"></caretaker-session-manager>
+    <paper-drawer-panel id="drawer">
 
-    <caretaker-websocket url="{{$.globals.websocketURL}}">
-    </caretaker-websocket>
+      <paper-header-panel drawer>
 
-    <core-drawer-panel id="drawer">
-
-      <core-header-panel drawer>
-
-        <core-toolbar class="core-header">
+        <paper-toolbar class="paper-header">
      			<span id="logo">
 	    			<span><grapp-fa-icon icon="home"></grapp-fa-icon>Caretaker</span>
           </span>
-        </core-toolbar>
+        </paper-toolbar>
 
-        <caretaker-app-drawer fit router="{{router}}" sessionManager="{{$.sessionManager}}"
-                              app="{{app}}"></caretaker-app-drawer>
+        <caretaker-app-drawer token="[[token]]" user="[[user]]" router="[[router]]" app="[[app]]"></caretaker-app-drawer>
 
-      </core-header-panel>
+      </paper-header-panel>
 
-      <core-header-panel main id="headerPanel" shadow="false" mode="standard"
-                         on-grapp-authentication-error="{{authenticationError}}">
+      <paper-header-panel main id="headerPanel" shadow="false" mode="standard"
+                          on-grapp-authentication-error="authenticationError">
 
-        <caretaker-app-toolbar class="core-header" app="{{app}}" sessionManager="{{$.sessionManager}}">
-        </caretaker-app-toolbar>
+        <caretaker-app-toolbar class="paper-header" user="[[user]]" token="[[token]]"></caretaker-app-toolbar>
 
         <div id="content">
-          <template if="{{$.sessionManager.token}}">
-            <caretaker-app-router sessionManager="{{$.sessionManager}}" router="{{router}}"></caretaker-app-router>
+          <template is="dom-if" if="[[token]]">
+            <caretaker-app-router user="[[user]]" token="[[token]]" router="{{router}}"></caretaker-app-router>
           </template>
         </div>
 
-      </core-header-panel>
+      </paper-header-panel>
 
-    </core-drawer-panel>
+    </paper-drawer-panel>
 
   </template>
 
-  <script src="polymer-tools.js"></script>
   <script src="caretaker-app.js"></script>
 
-</polymer-element>
+</dom-module>

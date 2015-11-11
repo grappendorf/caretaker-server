@@ -1,50 +1,76 @@
-Polymer 'caretaker-manage-philipshue',
+Polymer
 
-  created: ->
-    @processingRegister = false
-    @processingUnregister = false
-    @processingSynchronize = false
+  is: 'caretaker-manage-philipshue'
 
-  register: ->
+  behaviors: [Grapp.I18NJsBehavior]
+
+  properties:
+    token: {type: String}
+    processingRegister: {type: Boolean, value: false}
+    processingUnregister: {type: Boolean, value: false}
+    processingSynchronize: {type: Boolean, value: false}
+
+  _register: ->
     @processingRegister = true
-    @$.registerRequest.go()
+    @$.registerRequest.generateRequest()
 
-  registered: ->
+  _registered: ->
     @processingRegister = false
     @bridge = null
-    @$.bridgeRequest.go()
+    @$.bridgeRequest.generateRequest()
 
-  error: (e) ->
+  _error: (e) ->
     @processingRegister = false
     @processingUnregister = false
     @processingSynchronize = false
     @$.messageDialog.show I18n.t('message.philips_hue_communication_error',
       error: e.detail.response.exception)
 
-  unregister: ->
+  _unregister: ->
     @$.unregisterConfirmation.ask().then =>
       @processingUnregister = true
-      @$.unregisterRequest.go()
+      @$.unregisterRequest.generateRequest()
     , ->
 
-  unregistered: ->
+  _unregistered: ->
     @processingUnregister = false
     @bridge = null
-    @$.bridgeRequest.go()
+    @$.bridgeRequest.generateRequest()
 
-  synchronize: ->
+  _synchronize: ->
     @processingSynchronize = true
-    @$.synchronizeRequest.go()
+    @$.synchronizeRequest.generateRequest()
 
-  synchronized: ->
+  _synchronized: ->
     @processingSynchronize = false
 
-  editName: (e) ->
+  _editName: (e) ->
     light = e.target.templateInstance.model.light
     @newLightName = light.name
     @$.renameLightDialog.ask().then =>
       @lightId = light.num
-      @$.renameLightRequest.go()
+      @$.renameLightRequest.generateRequest()
 
-  renamed: ->
-    @$.bridgeRequest.go()
+  _renamed: ->
+    @$.bridgeRequest.generateRequest()
+
+  _renameLightPath: (lightId) ->
+    "/philips_hue/lights/#{lightId}"
+
+  _renameLightParams: (name) ->
+    {name: name}
+
+  _isBridgeConnected: (bridge) ->
+    bridge && bridge.connected
+
+  _isBridgeDisconnected: (bridge) ->
+    bridge && ! bridge.connected
+
+  _synchronizeButtonIcon: (processing) ->
+    if processing then "spinner" else "retweet"
+
+  _registerButtonIcon: (processing) ->
+    if processing then "spinner" else "link"
+
+  _unregisterButtonIcon: (processing) ->
+    if processing then "spinner" else "unlink"

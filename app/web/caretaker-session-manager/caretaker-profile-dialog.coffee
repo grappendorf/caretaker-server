@@ -1,11 +1,12 @@
-Polymer 'caretaker-profile-dialog',
+Polymer
 
-  created: ->
-    @email = ''
-    @name = ''
-    @valid = false
-    @processing = false
-    @error = ''
+  is: 'caretaker-profile-dialog'
+
+  behaviors: [Grapp.I18NJsBehavior]
+
+  properties:
+    processing: {type: Boolean, value: false}
+    error: {type: String, value: ''}
 
   show: ->
     @$.dialog.opened = true

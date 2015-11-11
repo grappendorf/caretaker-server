@@ -22,7 +22,13 @@ class SessionsController < Devise::SessionsController
     # to any JS based client.
     token = AuthToken.issue({ user_id: resource.id })
 
-    render json: { user: resource.email, roles: resource.roles.map(&:name), token: token }
+    render json: {
+            user: {
+                id: resource.id,
+                email: resource.email,
+                roles: resource.roles.map(&:name) },
+            token: token
+        }
 
     # The default behavior would have been to simply fire respond_with:
     # respond_with resource, location: after_sign_in_path_for(resource)

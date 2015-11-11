@@ -1,0 +1,5 @@
+db/sqlite
+log/*
+public/web_lib
+node_modules
+tmp

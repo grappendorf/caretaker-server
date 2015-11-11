@@ -1,45 +1,40 @@
-<link rel="import" href="../../web_lib/core-media-query/core-media-query.html">
-<link rel="import" href="../../web_lib/core-menu/core-menu.html">
-<link rel="import" href="../../web_lib/core-signals/core-signals.html">
-<link rel="import" href="../../web_lib/core-toolbar/core-toolbar.html">
-<link rel="import" href="../../web_lib/paper-dropdown/paper-dropdown.html">
-<link rel="import" href="../../web_lib/paper-item/paper-item.html">
-<link rel="import" href="../../web_lib/paper-menu-button/paper-menu-button.html">
-<link rel="import" href="../../web_lib/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../web_lib/iron-media-query/iron-media-query.html">
+<link rel="import" href="../../web_lib/paper-toolbar/paper-toolbar.html">
 <link rel="import" href="../../web_lib/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../../web_lib/grapp-paper-button/grapp-paper-button.html">
-<link rel="import" href="../../web_lib/grapp-fa-icon/grapp-fa-icon.html">
 <link rel="import" href="../../web_lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
+<link rel="import" href="../../web_lib/grapp-i18n-js/grapp-i18n-js.html">
 
-<polymer-element name="caretaker-app-toolbar" attributes="sessionManager app">
+<dom-module id="caretaker-app-toolbar">
+
+  <link rel="import" type="css" href="caretaker-app-toolbar.css">
 
   <template>
 
-    <link href="caretaker-app-toolbar.css" rel="stylesheet">
+    <grapp-app-globals>
+      <grapp-app-globals-get key="appTitle" value="{{appTitle}}"></grapp-app-globals-get>
+      <grapp-app-globals-get key="appModule" value="{{appModule}}"></grapp-app-globals-get>
+    </grapp-app-globals>
 
-    <grapp-app-globals id="globals"></grapp-app-globals>
+    <paper-toolbar id="toolbar" category$="[[appModule]]">
 
-    <core-toolbar id="toolbar" category="{{$.globals.appModule}}">
+      <div id="title" class="flex">[[_toolbarTitle(appModule)]]</div>
 
-      <!--<div id="drawer">-->
-        <!--<paper-icon-button icon="menu"></paper-icon-button>-->
-      <!--</div>-->
-
-      <div id="title" flex>{{$.globals.appTitle | i18n}}</div>
-
-      <div id="breadcrumbs-wrapper" class="bottom" hidden?="{{hideBreadcrumbs}}">
+      <div id="breadcrumbs-wrapper" class="bottom" hidden$="[[hideBreadcrumbs]]">
         <grapp-breadcrumbs id="breadcrumbs" wrap render></grapp-breadcrumbs>
       </div>
 
-      <!--<div id="profile">-->
-      <!--</div>-->
+      <div id="profile">
+        <template is="dom-if" if="[[token]]">
+          <span>[[i18n('message.logged_in_as')]]</span>&nbsp;<i>[[user.email]]</i>
+        </template>
+      </div>
 
-      <core-media-query query="max-width: 800px" queryMatches="{{hideBreadcrumbs}}"></core-media-query>
+      <iron-media-query query="max-width: 800px" queryMatches="[[hideBreadcrumbs]]"></iron-media-query>
 
-    </core-toolbar>
+    </paper-toolbar>
 
   </template>
 
   <script src="caretaker-app-toolbar.js"></script>
 
-</polymer-element>
+</dom-module>

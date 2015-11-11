@@ -1,39 +1,48 @@
-<polymer-element name="caretaker-controlpanel-new-dashboard-dialog">
+<link rel="import" href="../../../web_lib/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../../web_lib/paper-button/paper-button.html">
+<link rel="import" href="../../../web_lib/paper-input/paper-input.html">
+<link rel="import" href="../../../web_lib/grapp-i18n-js/grapp-i18n-js.html">
+<link rel="import" href="../../../web_lib/grapp-fa-icon/grapp-fa-icon.html">
+
+<dom-module id="caretaker-controlpanel-new-dashboard-dialog">
 
   <template>
 
-    <paper-action-dialog id="dialog" backdrop layered="false" heading="{{'title.dashboard_properties' | i18n}}">
+    <paper-dialog id="dialog" backdrop layered="false">
 
-      <div vertical layout>
+      <h2 class="layout horizontal justified">
+        <span>[[i18n('title.dashboard_properties')]]</span>
+        <paper-spinner active$="[[processing]]"></paper-spinner>
+      </h2>
 
-        <grapp-paper-input floatingLabel id="password" label="{{'action.enter_dashboard_name' | i18n}}" type="text"
-                           autofocus
-                           value="{{name}}" on-enter="{{submit}}" on-input="{{validate}}">
-        </grapp-paper-input>
+      <div class="vertical layout">
 
-        <template if="{{message}}">
-          <grapp-paper-button error dismissive raised>{{message | i18n}}</grapp-paper-button>
+        <paper-input floatingLabel id="password" label="[[i18n('action.enter_dashboard_name')]]" type="text"
+                           autofocus value="{{name}}" on-enter="_submit" on-input="_validate">
+        </paper-input>
+
+        <template is="dom-if" if="[[message]]">
+          <grapp-paper-button error dismissive raised>[[i18n(message)]]</grapp-paper-button>
         </template>
 
       </div>
 
-      <grapp-paper-button affirmative raised success disabled?="{{!valid}}"
-                          on-click="{{ok}}" on-enter="{{ok}}">
-        <grapp-fa-icon icon="{{ {check: !processing, spinner: processing} | tokenList}}"
-                       spin="{{processing}}"></grapp-fa-icon>
-        <span>{{'action.create_dashboard' | i18n}}</span>
-      </grapp-paper-button>
+      <div class="buttons">
+        <paper-button raised success disabled$="[[!valid]]" on-tap="_ok">
+          <iron-icon icon="check"></iron-icon>
+          <span>[[i18n('action.create_dashboard')]]</span>
+        </paper-button>
 
-      <grapp-paper-button affirmative raised error
-                          on-click="{{cancel}}" on-enter="{{cancel}}">
-        <grapp-fa-icon icon="close"></grapp-fa-icon>
-        <span>{{'action.cancel' | i18n}}</span>
-      </grapp-paper-button>
+        <paper-button raised error on-tap="_cancel">
+          <iron-icon icon="cancel"></iron-icon>
+          <span>[[i18n('action.cancel')]]</span>
+        </paper-button>
+      </div>
 
-    </paper-action-dialog>
+    </paper-dialog>
 
   </template>
 
   <script src="caretaker-controlpanel-new-dashboard-dialog.js"></script>
 
-</polymer-element>
+</dom-module>

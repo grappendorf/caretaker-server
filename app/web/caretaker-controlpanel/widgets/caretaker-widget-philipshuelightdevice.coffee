@@ -1,50 +1,48 @@
-isManualSliderMove = (sliderKnob) ->
-  sliderKnob.classList.contains('dragging')
+Polymer
 
+  is: 'caretaker-widget-philipshuelightdevice'
 
-Polymer 'caretaker-widget-philipshuelightdevice',
+  behaviors: [Grapp.I18NJsBehavior]
 
-  ready: ->
+  properties:
+    widget: {type: Object}
+    websocket: {type: Object}
+
+  attached: ->
     @device = @widget.device
     @state = @device.state
-    @sliderBrightness = @$.brightness.shadowRoot.querySelector '#sliderKnob'
-    @sliderHue = @$.hue.shadowRoot.querySelector '#sliderKnob'
-    @sliderSaturation = @$.saturation.shadowRoot.querySelector '#sliderKnob'
     @mode = 1
 
   updateState: (e) ->
     return if e.id != @device.id
-    unless isManualSliderMove(@sliderBrightness) || isManualSliderMove(@sliderHue) || isManualSliderMove(@sliderSaturation)
+    unless @$.brightness.pressed || @$.hue.pressed || @$.saturation.pressed
       @state = e.state
 
-  immediateBrightnessChanged: ->
-    if isManualSliderMove(@sliderBrightness)
-      @mode = 1
-      @websocket.trigger 'device.state', {id: @device.id, state: {brightness: @immediateBrightness}}
+  _sendBrightnessValue: ->
+    @mode = 1
+    @websocket.trigger 'device.state', {id: @device.id, state: {brightness: @$.brightness.immediateValue}}
 
-  immediateHueChanged: ->
-    if isManualSliderMove(@sliderHue)
-      @mode = 1
-      @websocket.trigger 'device.state', {
-        id: @device.id,
-        state: {color: {hue: @immediateHue, saturation: @immediateSaturation}}
-      }
+  _sendHueValue: ->
+    @mode = 1
+    @websocket.trigger 'device.state', {
+      id: @device.id,
+      state: {color: {hue: @$.hue.immediateValue, saturation: @$.saturation.immediateValue}}
+    }
 
-  immediateSaturationChanged: ->
-    if isManualSliderMove(@sliderSaturation)
-      @mode = 1
-      @websocket.trigger 'device.state', {
-        id: @device.id,
-        state: {color: {hue: @immediateHue, saturation: @immediateSaturation}}
-      }
+  _sendSaturationValue: ->
+    @mode = 1
+    @websocket.trigger 'device.state', {
+      id: @device.id,
+      state: {color: {hue: @$.hue.immediateValue, saturation: @$.saturation.immediateValue}}
+    }
 
-  sendState: ->
+  _sendState: ->
     @websocket.trigger 'device.state', {
       id: @device.id,
       state: @state
     }
 
-  modeChanged: ->
+  _modeChanged: ->
     switch @mode
       when 0
         @state.brightness = 0

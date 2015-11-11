@@ -10,28 +10,29 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="x-caretaker-websocket" content="<%= Settings.websocket.url %>"/>
 
+  <script src='web_lib/webcomponentsjs/webcomponents-lite.min.js'></script>
   <script src="web_lib/jquery/dist/jquery.min.js"></script>
-  <script src="web_lib/es6-promise-polyfill/promise.js"></script>
-
-  <link rel="stylesheet" href="stylesheets/app.css" shim-shadowdom>
+  <script src="i18n/translations.js"></script>
 
   <link rel="import" href="web_lib/grapp-app-globals/grapp-app-globals.html">
-  <link rel="import" href="web/caretaker-i18n/caretaker-i18n.html">
   <link rel="import" href="web/caretaker-app/caretaker-app.html">
+  <link rel="import" href="stylesheets/polymer-theme.html">
+
+  <script>
+    Grapp.I18NJsBehavior.i18nSetDefaultLocale("<%= I18n.default_locale %>");
+    Grapp.I18NJsBehavior.i18nSetLocale("<%= I18n.locale %>");
+  </script>
 </head>
 
-<body fullbleed unresolved touch-action="auto">
+  <body class="fullbleed unresolved" touch-action="auto">
 
   <grapp-app-globals>
-    <grapp-app-global-value name="defaultLocale" value="<%= I18n.default_locale %>"></grapp-app-global-value>
-    <grapp-app-global-value name="locale" value="<%= I18n.locale %>"></grapp-app-global-value>
-    <grapp-app-global-value name="websocketURL" value="<%= Settings.websocket.url %>"></grapp-app-global-value>
-    <grapp-app-global-value name="apiURL" value="<%= Settings.network.api_url %>">
-    </grapp-app-global-value>
+    <grapp-app-globals-set key="websocketUrl" value="<%= Settings.websocket.url %>"></grapp-app-globals-set>
+    <grapp-app-globals-set key="apiUrl" value="<%= Settings.network.api_url %>">
+    </grapp-app-globals-set>
   </grapp-app-globals>
 
   <caretaker-app></caretaker-app>
 
 </body>
-
 </html>

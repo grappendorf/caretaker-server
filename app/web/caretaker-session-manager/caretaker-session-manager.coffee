@@ -1,10 +1,13 @@
-Polymer 'caretaker-session-manager',
+Polymer
 
-  created: ->
-    @user = ''
-    @roles = []
-    @userIsAdmin = false
-    @token = null
+  is: 'caretaker-session-manager'
+
+  behaviors: [Grapp.I18NJsBehavior]
+
+  properties:
+    apiUrl: {type: String }
+    user: {type: Object, value: {email: '', roles: [], isAdmin: false}, notify: true, observer: '_userChanged'}
+    token: {type: String, value: null, notify: true}
 
   connect: ->
     @$.loginDialog.show()
@@ -13,55 +16,63 @@ Polymer 'caretaker-session-manager',
     @logout()
 
   reconnect: ->
-    @token = null
+    @disconnect()
     @connect()
-
-  hasRole: (role) ->
-    role in @roles
-
-  rolesChanged: ->
-    @userIsAdmin = @hasRole 'admin'
-
-  tokenLoaded: ->
-    @fire 'loaded'
-
-  changePassword: ->
-    @$.passwordDialog.show()
 
   login: ->
     @$.loginDialog.processing = true
-    @$.signInRequest.go()
+    @$.signInRequest.generateRequest()
 
-  loginSucceeded: (e) ->
+  logout: ->
+    @token = null
+    @user.roles = []
+    @user.isAdmin = false
+
+  editProfile: ->
+    @$.profileDialog.show().then =>
+      @$.profileDialog.processing = true
+
+  editPassword: ->
+    @$.passwordDialog.show().then =>
+      @$.passwordDialog.processing = true
+      @$.changePasswordRequest.generateRequest()
+
+  _tokenLoaded: ->
+    @fire 'loaded'
+
+  _signInParams: (email, password) ->
+    {email: email, password: password}
+
+  _userChanged: ->
+    if @user
+      @user.isAdmin = @_userHasRole 'admin'
+      @email = @user.email
+
+  _userHasRole: (role) ->
+    role in @user.roles
+
+  _loginSucceeded: (e) ->
     @$.loginDialog.processing = false
     @$.loginDialog.hide()
     @password = ''
     @user = e.detail.response.user
-    @roles = e.detail.response.roles
     @token = e.detail.response.token
 
-  loginFailed: (e) ->
+  _loginFailed: (e) ->
     @$.loginDialog.processing = false
-#    @$.loginDialog.error = e.detail.response.message
-    @$.loginDialog.error = 'Not authorized'
+    @$.loginDialog.error = @i18n('message.error_wrong_password_or_user_name')
     @password = ''
 
-  logout: ->
-    @token = null
-    @roles = []
-    @userIsAdmin = false
+  _changePasswordPath: (userId) ->
+    "/users/#{userId}"
 
-  processPasswordChange: ->
-    @$.passwordDialog.processing = true
-    @$.changePasswordRequest.go()
+  _changePasswordParams: (userId, password) ->
+    {"id": userId, "user[password]": password, "user[password_confirmation]": password}
 
-  passwordChangeSucceeded: ->
+  _passwordChangeSucceeded: ->
     @$.passwordDialog.processing = false
     @$.passwordDialog.hide()
 
-  passwordChangeFailed: (e) ->
+  _passwordChangeFailed: (e) ->
     @$.passwordDialog.processing = false
     @$.passwordDialog.error = e.detail.response.message
-
-  editProfile: ->
-    @$.profileDialog.show()

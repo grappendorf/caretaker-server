@@ -1,21 +1,22 @@
 id = 1
 
+Polymer
 
-Polymer 'caretaker-data-column',
+  is: 'caretaker-data-column'
 
-  created: ->
-    @name = "#{id++}"
-    @type = 'string'
-    @heading = null
-    @icon = null
-    @width = '0'
-    @align = ''
-    @headerAlign = ''
-    @template = null
+  properties:
+    name: {type: String, value: -> "#{id++}"}
+    heading: {type: String}
+    width: {type: String, value: '0'}
+    type: {type: String, value: 'string'}
+    icon: {type: String}
+    align: {type: String, value: ''}
+    headerAlign: {type: String, value: ''}
+    template: {type: Object}
 
   ready: ->
-    templates = @$.content.getDistributedNodes()
+    templates = Polymer.dom(@$.content).getDistributedNodes()
     if templates.length > 0
       @type = 'template'
       @template = templates[0]
-      @template.id = "column-#{@name}"
+      @template.setAttribute 'id', "column-#{@name}"

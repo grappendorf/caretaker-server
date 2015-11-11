@@ -27,12 +27,20 @@ class PhilipsHueLightDevice < ActiveRecord::Base
   end
 
   def connected?
-    philips_hue.light_reachable? address.to_i
+    begin
+      philips_hue.light_reachable? address.to_i
+    rescue
+      false
+    end
   end
 
   def current_state
-    state = philips_hue.light_state address.to_i
-    { brightness: state['bri'], color: { hue: state['hue'], saturation: state['sat'] } }
+    begin
+      state = philips_hue.light_state address.to_i
+      { brightness: state['bri'], color: { hue: state['hue'], saturation: state['sat'] } }
+    rescue
+      { brightness: 0, color: { hue: 0, saturation: 0 } }
+    end
   end
 
   def put_state params

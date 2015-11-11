@@ -1,1 +1,3 @@
-Polymer 'caretaker-widget-easyvrdevice'
+Polymer
+
+  is: 'caretaker-widget-easyvrdevice'

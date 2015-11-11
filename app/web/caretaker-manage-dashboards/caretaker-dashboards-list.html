@@ -1,27 +1,29 @@
 <link rel="import" href="../../web_lib/grapp-app-globals/grapp-app-globals.html">
-<link rel="import" href="../../web_lib/grapp-rest-resource/grapp-rest-resource.html">
 <link rel="import" href="../../web_lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
-<link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
+<link rel="import" href="../../web_lib/grapp-i18n-js/grapp-i18n-js.html">
+<link rel="import" href="../../web_lib/grapp-rest-resource/grapp-rest-resource.html">
 <link rel="import" href="../caretaker-data-table/caretaker-data-table.html">
 
-<polymer-element name="caretaker-dashboards-list" attributes="token">
+<dom-module id="caretaker-dashboards-list">
 
   <template>
 
-    <grapp-app-globals id="globals">
-      <grapp-app-global-value name="appTitle" value="models.dashboard.other"></grapp-app-global-value>
-      <grapp-app-global-value name="appModule" value="system"></grapp-app-global-value>
-      <grapp-app-global-value name="appFunction" value="dashboards"></grapp-app-global-value>
+    <grapp-app-globals>
+      <grapp-app-globals-get key="apiUrl" value="{{apiUrl}}"></grapp-app-globals-get>
+      <grapp-app-globals-set key="appTitle" value="models.dashboard.other"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appModule" value="system"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appFunction" value="dashboards"></grapp-app-globals-set>
     </grapp-app-globals>
 
-    <grapp-rest-resource url="{{$.globals.apiURL}}/dashboards/:id" resource="{{dashboards}}" token="{{token}}"></grapp-rest-resource>
+    <grapp-rest-resource base-url="[[apiUrl]]" path="/dashboards/:id" resource="{{dashboards}}"
+                         token="[[token]]"></grapp-rest-resource>
 
     <grapp-breadcrumbs>
-      <grapp-breadcrumb>{{'models.dashboard.other'|i18n}}</grapp-breadcrumb>
+      <grapp-breadcrumb>[[i18n('models.dashboard.other')]]</grapp-breadcrumb>
     </grapp-breadcrumbs>
 
     <caretaker-data-table id="table" model="dashboard" resource="{{dashboards}}"
-                          on-data-table-edit="{{edit}}" on-data-table-new="{{new}}">
+                          on-data-table-edit="_edit" on-data-table-new="_new">
 
       <caretaker-data-column name="name" width="70"></caretaker-data-column>
       <caretaker-data-column name="user.name" width="30"></caretaker-data-column>
@@ -33,4 +35,4 @@
 
   <script src="caretaker-dashboards-list.js"></script>
 
-</polymer-element>
+</dom-module>

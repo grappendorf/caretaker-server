@@ -1,15 +1,15 @@
-<polymer-element name="caretaker-widget-remotecontroldevice" attributes="widget websocket">
+<dom-module id="caretaker-widget-remotecontroldevice">
+
+  <link rel="import" type="css" href="caretaker-widget-remotecontroldevice.css">
 
   <template>
 
-    <link href="caretaker-widget-remotecontroldevice.css" rel="stylesheet">
-
     <table>
-      <template repeat="{{row in rows}}">
+      <template is="dom-repeat" items="[[rows]]" as="row">
         <tr>
-          <template repeat="{{num in row}}">
-            <td class="{{classes[num]}}" on-mousedown="{{press}}" on-mouseup="{{release}}">
-              <span>{{num + 1}}</span>
+          <template is="dom-repeat" items="[[row]]" as="num">
+            <td class$="[[_buttonClass(states, num)]]" on-mousedown="_press" on-mouseup="_release">
+              <span>[[_buttonNum(num)]]</span>
             </td>
           </template>
         </tr>
@@ -20,4 +20,4 @@
 
   <script src="caretaker-widget-remotecontroldevice.js"></script>
 
-</polymer-element>
+</dom-module>

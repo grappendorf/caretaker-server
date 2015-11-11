@@ -5,4 +5,4 @@ network:
   api_url: <%= ENV['CARETAKER_API_URL'] %>
 websocket:
   standalone: false
-  url: "ws://<%= ENV['CARETAKER_PUBLIC_IP'] %>:3000/websocket"
+  url: "ws://<%= ENV['CARETAKER_WEBSOCKET_HOST'] %>:<%= ENV['CARETAKER_WEBSOCKET_PORT'] %>/websocket"

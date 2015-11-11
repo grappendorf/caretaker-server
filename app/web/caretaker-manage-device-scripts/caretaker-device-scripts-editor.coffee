@@ -1,7 +1,19 @@
-Polymer 'caretaker-device-scripts-editor',
+Polymer
 
-  idChanged: ->
+  is: 'caretaker-device-scripts-editor'
+
+  behaviors: [Grapp.I18NJsBehavior]
+
+  properties:
+    token: {type: String}
+    id: {type: Number}
+
+  observers: [
+    '_load(id, apiUrl)'
+  ]
+
+  _load: ->
     @$.editor.load @id
 
-  back: ->
+  _back: ->
     @router.go "/device_scripts"

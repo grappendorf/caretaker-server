@@ -1,12 +1,17 @@
-Polymer 'caretaker-controlpanel',
+Polymer
 
-  created: ->
-    @dashboardId = 'default'
-    @state = 'ok'
+  is: 'caretaker-controlpanel'
 
-  domReady: ->
-    @$.dashboardNamesRequest.go()
+  behaviors: [Grapp.I18NJsBehavior, CaretakerUtilsBehavior]
 
+  properties:
+    token: {type: String}
+    id: {type: Number}
+    dashboardId: {type: String, value: 'default', observer: '_dashboardIdChanged'}
+    state: {type: String, value: 'ok'}
+    widgetComponents: {type: Array, value: -> []}
+
+  attached: ->
     @packery = new Packery @$.widgets,
       rowHeight: 220
       columnWidth: 200
@@ -23,7 +28,7 @@ Polymer 'caretaker-controlpanel',
     observer = new MutationObserver (mutations, observer) =>
       @packery.reloadItems()
       for item in @packery.getItemElements()
-        draggability = new Draggabilly item, {handle: ':host /deep/ [icon="square"]'}
+        draggability = new Draggabilly item, {handle: '[icon="square"]'}
         @packery.bindDraggabillyEvents draggability
         widgetObserver = new MutationObserver (widgetMutations, widgetObserver) =>
           if widgetMutations[0].attributeName == 'width' || widgetMutations[0].attributeName == 'height'
@@ -33,88 +38,108 @@ Polymer 'caretaker-controlpanel',
 
     observer.observe @$.widgets, {childList: true, attributes: false}
 
-  defaultDashboardSucceeded: (e) ->
+  _defaultDashboardSucceeded: (e) ->
     @dashboardId = e.detail.response.id
 
-  dashboardSucceeded: (e) ->
+  _dashboardSucceeded: (e) ->
     @state = 'ok'
     @dashboard = e.detail.response
 
-  updateDeviceState: (e) ->
-    widgets = @$.widgets.querySelectorAll "[type=#{e.detail.type}Widget] #content"
+  _dashboardFailed: (e) ->
+
+  _updateDeviceState: (e) ->
+    widgets = @$.widgets.querySelectorAll @_widgetComponentName(e.detail.type)
     for widget in widgets
       widget.updateState e.detail
 
-  dashboardIdChanged: ->
-    @loadDashboard()
+  _dashboardIdChanged: ->
+    @_loadDashboard() unless @dashboardId == 'default'
 
-  loadDashboard: ->
+  _loadDashboard: ->
     @state = 'loading'
-    @$.dashboardRequest.go()
+    @$.dashboardRequest.generateRequest()
 
-  editDashboard: ->
-    self = @
-    @$.editDashboardDialog.start().then (dashboard) ->
-      self.dashboards.update self.dashboardId, dashboard, (response) ->
-        self.$.editDashboardDialog.end()
-        self.$.dashboardNamesRequest.go()
-      , (response) ->
-        self.$.editDashboardDialog.error response.errors
+  _editDashboard: ->
+    @$.editDashboardDialog.start().then (dashboard) =>
+      @dashboards.update(@dashboardId, dashboard).then (success) =>
+        @$.editDashboardDialog.end()
+        @$.dashboardNamesRequest.generateRequest()
+      , (error) =>
+        @$.editDashboardDialog.error error.errors
 
-  reloadDashboard: ->
+  _reloadDashboard: ->
     @dashboard = null
-    @loadDashboard()
+    @_loadDashboard()
 
-  newDashboard: ->
-    self = @
-    @$.newDashboardDialog.start().then (dashboard) ->
-      self.dashboards.create dashboard, (response) ->
-        self.$.newDashboardDialog.end()
-        self.$.dashboardNamesRequest.go()
-        self.dashboardId = response.id
-      , (response) ->
-        self.$.newDashboardDialog.error response.message
+  _newDashboard: ->
+    @$.newDashboardDialog.start().then (dashboard) =>
+      @dashboards.create(dashboard).then (success) =>
+        @$.newDashboardDialog.end()
+        @$.dashboardNamesRequest.generateRequest()
+        @dashboardId = success.id
+      , (error) =>
+        @$.newDashboardDialog.error error.errors
 
-  deleteDashboard: ->
-    self = @
+  _deleteDashboard: ->
     message = I18n.t 'message.confirm_delete',
       model: I18n.t 'models.dashboard.one'
       name: @dashboard.name
-    @$.deleteConfirmDialog.ask(message).then ->
-      self.dashboards.delete self.dashboardId
-      self.$.dashboardNamesRequest.go()
-      self.$.defaultDashboardRequest.go()
+    @$.deleteConfirmDialog.ask(message).then =>
+      @dashboards.delete @dashboardId
+      @$.dashboardNamesRequest.generateRequest()
+      @$.defaultDashboardRequest.generateRequest()
     , ->
 
-  newWidget: ->
-    self = @
-    @$.newWidgetDialog.start().then (widget) ->
-      self.widgets.create widget, (response) ->
-        self.$.newWidgetDialog.end()
-        self.$.dashboardRequest.go()
-      , ->
-        self.$.newWidgetDialog.end()
+  _newWidget: ->
+    @$.newWidgetDialog.start().then (widget) =>
+      @widgets.create widget, (response) =>
+        @$.newWidgetDialog.end()
+        @$.dashboardRequest.generateRequest()
+      , =>
+        @$.newWidgetDialog.end()
 
-  editWidgetProperties: (e) ->
-    self = @
+  _editWidgetProperties: (e) ->
     @$.editWidgetDialog.widget = e.detail
-    @$.editWidgetDialog.start().then (widget) ->
-      self.widgets.update widget.id, widget, ->
-        self.$.editWidgetDialog.end()
-      , ->
-        self.$.editWidgetDialog.end()
+    @$.editWidgetDialog.start().then (widget) =>
+      @widgets.update widget.id, widget, =>
+        @$.editWidgetDialog.end()
+      , =>
+        @$.editWidgetDialog.end()
 
-  deleteWidget: (e) ->
-    self = @
+  _deleteWidget: (e) ->
     message = I18n.t 'message.confirm_delete',
       model: I18n.t 'models.widget.one'
       name: e.detail.title
-    @$.deleteConfirmDialog.ask(message).then ->
-      self.widgets.delete e.detail.id
-      self.reloadDashboard()
+    @$.deleteConfirmDialog.ask(message).then =>
+      @widgets.delete e.detail.id
+      @reloadDashboard()
     , ->
 
-  updateDeviceConnection: (e) ->
+  _updateDeviceConnection: (e) ->
     widgets = @$.widgets.querySelectorAll "caretaker-controlpanel-widget"
     for w in widgets
       w.widget.device.connected = e.detail.connected if w.widget.device.id == e.detail.id
+
+  _isLoadingState: (state) ->
+    state == 'loading'
+
+  _isStateError: (state) ->
+    state == 'error'
+
+  _widgetTemplateBinding: (widget, websocket) ->
+    {widget: widget, websocket: websocket}
+
+  _widgetComponentName: (widgetType) ->
+    "caretaker-widget-#{widgetType.toLowerCase()}"
+
+  _dashboardRequestParams: (dashboardId) ->
+    {id: dashboardId}
+
+  _widgetsResourceParams: (dashboardId) ->
+    {dashboardId: dashboardId, type: 'device_widgets'}
+
+  _isEmptyDashboard: (state, numWidgets) ->
+    state == 'ok' && numWidgets == 0
+
+  _hasDashboards: (numDashboards) ->
+    numDashboards > 0

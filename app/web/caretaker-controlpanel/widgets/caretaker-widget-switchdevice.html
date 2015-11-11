@@ -1,13 +1,16 @@
-<polymer-element name="caretaker-widget-switchdevice" attributes="widget websocket">
+<dom-module id="caretaker-widget-switchdevice">
+
+  <link rel="import" type="css" href="caretaker-widget-switchdevice.css">
 
   <template>
-    <link href="caretaker-widget-switchdevice.css" rel="stylesheet">
 
     <table>
-      <template repeat="{{row in rows}}">
+      <template is="dom-repeat" items="[[rows]]" as="row">
         <tr>
-          <template repeat="{{num in row}}">
-            <td class="{{classes[num]}}" on-tap="{{toggle}}">{{num + 1}}</td>
+          <template is="dom-repeat" items="[[row]]" as="num">
+            <td class$="[[_switchClass(states, num)]]" on-tap="_toggle">
+              <span>[[_switchNum(num)]]</span>
+            </td>
           </template>
         </tr>
       </template>
@@ -18,4 +21,4 @@
 
   <script src="caretaker-widget-switchdevice.js"></script>
 
-</polymer-element>
+</dom-module>

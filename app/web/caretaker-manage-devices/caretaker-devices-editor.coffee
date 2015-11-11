@@ -1,12 +1,34 @@
-Polymer 'caretaker-devices-editor',
+Polymer
 
-  idChanged: ->
+  is: 'caretaker-devices-editor'
+
+  behaviors: [Grapp.I18NJsBehavior, CaretakerUtilsBehavior]
+
+  properties:
+    token: {type: String}
+    id: {type: Number}
+
+  observers: [
+    '_load(apiUrl, id)'
+    '_newDevice(apiUrl, type)'
+    '_updateFields(device.type)'
+  ]
+
+  _load: ->
     @$.editor.load @id
 
-  typeChanged: ->
-    self = @
-    @devices.new (item) ->
-      self.$.editor.show item
+  _newDevice: ->
+    @devices.new().then (success) =>
+      @$.editor.show success.data
 
-  back: ->
+  _back: ->
     @router.go "/devices"
+
+  _devicesParams: (type) ->
+    {type: type}
+
+  _imagePath: (imageName) ->
+    "/images/#{imageName}"
+
+  _updateFields: (deviceType) ->
+    @$.editor.updateFields()

@@ -1,4 +1,8 @@
-Polymer 'caretaker-controlpanel-new-dashboard-dialog',
+Polymer
+
+  is: 'caretaker-controlpanel-new-dashboard-dialog'
+
+  behaviors: [Grapp.I18NJsBehavior]
 
   start: ->
     @processing = false
@@ -14,16 +18,16 @@ Polymer 'caretaker-controlpanel-new-dashboard-dialog',
     @processing = false
     @async -> @$.dialog.close()
 
-  ok: ->
+  _ok: ->
     @processing = true
     @resolve {name: @name}
 
-  cancel: ->
+  _cancel: ->
     @end()
 
-  validate: ->
+  _validate: ->
     @valid = @name.length > 0
 
-  error: (errors) ->
+  _error: (errors) ->
     @processing = false
     @message = 'message.error_in_input_data'

@@ -1,32 +1,33 @@
 <link rel="import" href="../../web_lib/grapp-app-globals/grapp-app-globals.html">
-<link rel="import" href="../../web_lib/grapp-rest-resource/grapp-rest-resource.html">
 <link rel="import" href="../../web_lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
-<link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
+<link rel="import" href="../../web_lib/grapp-i18n-js/grapp-i18n-js.html">
+<link rel="import" href="../../web_lib/grapp-rest-resource/grapp-rest-resource.html">
 <link rel="import" href="../caretaker-data-table/caretaker-data-table.html">
 
-<polymer-element name="caretaker-device-scripts-list" attributes="token">
+<dom-module id="caretaker-device-scripts-list">
 
   <template>
 
-    <grapp-app-globals id="globals">
-      <grapp-app-global-value name="appTitle" value="models.device_script.other"></grapp-app-global-value>
-      <grapp-app-global-value name="appModule" value="devices"></grapp-app-global-value>
-      <grapp-app-global-value name="appFunction" value="device_scripts"></grapp-app-global-value>
+    <grapp-app-globals>
+      <grapp-app-globals-get key="apiUrl" value="{{apiUrl}}"></grapp-app-globals-get>
+      <grapp-app-globals-set key="appTitle" value="models.device_script.other"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appModule" value="devices"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appFunction" value="device_scripts"></grapp-app-globals-set>
     </grapp-app-globals>
 
-    <grapp-rest-resource url="{{$.globals.apiURL}}/device_scripts/:id" resource="{{deviceScripts}}"
-                         token="{{token}}"></grapp-rest-resource>
+    <grapp-rest-resource base-url="[[apiUrl]]" path="/device_scripts/:id" resource="{{deviceScripts}}"
+                         token="[[token]]"></grapp-rest-resource>
 
     <grapp-breadcrumbs path="/device_scripts">
-      <grapp-breadcrumb href="/#/device_scripts">{{'models.device_script.other'|i18n}}</grapp-breadcrumb>
+      <grapp-breadcrumb href="/#/device_scripts">[[i18n('models.device_script.other')]]</grapp-breadcrumb>
     </grapp-breadcrumbs>
 
     <caretaker-data-table id="table" model="device_script" resource="{{deviceScripts}}"
-                          on-data-table-edit="{{edit}}" on-data-table-new="{{new}}">
+                          on-data-table-edit="_edit" on-data-table-new="_new">
 
       <caretaker-data-column name="name" width="20"></caretaker-data-column>
       <caretaker-data-column name="enabled" type="check" width="0" align="center"
-                             on-cell-tapped="{{toggleEnabled}}"></caretaker-data-column>
+                             on-cell-tapped="_toggleEnabled"></caretaker-data-column>
       <caretaker-data-column name="description" width="80"></caretaker-data-column>
 
     </caretaker-data-table>
@@ -35,4 +36,4 @@
 
   <script src="caretaker-device-scripts-list.js"></script>
 
-</polymer-element>
+</dom-module>

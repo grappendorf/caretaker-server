@@ -1,49 +1,44 @@
-<link rel="import" href="../../web_lib/core-localstorage/core-localstorage.html">
-<link rel="import" href="../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
-<link rel="import" href="../../web_lib/grapp-app-globals/grapp-app-globals.html">
+<link rel="import" href="../../web_lib/iron-localstorage/iron-localstorage.html">
+<link rel="import" href="../../web_lib/grapp-iron-ajax/grapp-iron-ajax.html">
 <link rel="import" href="caretaker-login-dialog.html">
 <link rel="import" href="caretaker-password-dialog.html">
 <link rel="import" href="caretaker-profile-dialog.html">
 
-<polymer-element name="caretaker-session-manager" attributes="user roles userIsAdmin token">
+<dom-module id="caretaker-session-manager">
 
   <template>
 
-    <grapp-app-globals id="globals"></grapp-app-globals>
-
-    <caretaker-login-dialog id="loginDialog" email="{{user}}" password="{{password}}"
-                            on-login="{{login}}">
+    <caretaker-login-dialog id="loginDialog" email="{{email}}" password="{{password}}"
+                            on-login="login">
     </caretaker-login-dialog>
 
     <caretaker-password-dialog id="passwordDialog" password="{{newPassword}}"
-                               on-submit="{{processPasswordChange}}">
+                               on-submit="_processPasswordChange">
     </caretaker-password-dialog>
 
-    <caretaker-profile-dialog id="profileDialog" on-submit="{{processProfileUpdate}}">
+    <caretaker-profile-dialog id="profileDialog" on-submit="_processProfileUpdate">
     </caretaker-profile-dialog>
 
-    <core-localstorage name="caretaker-session-manager:user" value="{{user}}"></core-localstorage>
-    <core-localstorage name="caretaker-session-manager:roles" value="{{roles}}"></core-localstorage>
-    <core-localstorage name="caretaker-session-manager:token" value="{{token}}"
-                       on-core-localstorage-load="{{tokenLoaded}}"></core-localstorage>
+    <iron-localstorage name="caretaker-session-manager:user" value="{{user}}"></iron-localstorage>
+    <iron-localstorage name="caretaker-session-manager:token" value="{{token}}"
+                       on-iron-localstorage-load="_tokenLoaded"
+                       on-iron-localstorage-load-empty="_tokenLoaded"></iron-localstorage>
 
-    <grapp-core-ajax id="signInRequest"
-                         url="{{$.globals.apiURL}}/session/sign_in" method="POST" handleAs="json"
-                         params='{"user[email]": "{{user}}", "user[password]": "{{password}}"}'
-                         on-core-response="{{loginSucceeded}}" on-core-error="{{loginFailed}}">
-    </grapp-core-ajax>
+    <grapp-iron-ajax id="signInRequest" base-url="[[apiUrl]]" path="/session/sign_in"
+                     query="user[email]=:email&user[password]=:password"
+                     params="[[_signInParams(email, password)]]"
+                     method="POST" handleAs="json"
+                     on-response="_loginSucceeded" on-error="_loginFailed">
+    </grapp-iron-ajax>
 
-    <grapp-core-ajax id="changePasswordRequest"
-                         url="{{$.globals.apiURL}}/users/{{user.id}}" method="PUT" handleAs="json"
-                         params='{
-												"id": {{user.id}},
-												"user[password]": "{{newPassword}}",
-												"user[password_confirmation]": "{{newPassword}}"}'
-                         on-core-response="{{passwordChangeSucceeded}}" on-core-error="{{passwordChangeFailed}}">
-    </grapp-core-ajax>
+    <grapp-iron-ajax id="changePasswordRequest" base-url="[[apiUrl]]"
+                     path="[[_changePasswordPath(user.id)]]" method="PUT" handleAs="json"
+                     body="[[_changePasswordParams(user.id, newPassword)]]"
+                     on-response="_passwordChangeSucceeded" on-error="_passwordChangeFailed">
+    </grapp-iron-ajax>
 
   </template>
 
   <script src="caretaker-session-manager.js"></script>
 
-</polymer-element>
+</dom-module>

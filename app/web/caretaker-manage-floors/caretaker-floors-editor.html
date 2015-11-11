@@ -1,38 +1,40 @@
 <link rel="import" href="../../web_lib/grapp-app-globals/grapp-app-globals.html">
-<link rel="import" href="../../web_lib/grapp-core-ajax/grapp-core-ajax.html">
-<link rel="import" href="../../web_lib/grapp-rest-resource/grapp-rest-resource.html">
 <link rel="import" href="../../web_lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
-<link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
+<link rel="import" href="../../web_lib/grapp-iron-ajax/grapp-iron-ajax.html">
+<link rel="import" href="../../web_lib/grapp-i18n-js/grapp-i18n-js.html">
+<link rel="import" href="../../web_lib/grapp-rest-resource/grapp-rest-resource.html">
 <link rel="import" href="../caretaker-data-editor/caretaker-data-editor.html">
 
-<polymer-element name="caretaker-floors-editor" attributes="token">
+<dom-module id="caretaker-floors-editor">
 
   <template>
 
-    <grapp-app-globals id="globals">
-      <grapp-app-global-value name="appTitle" value="models.floor.other"></grapp-app-global-value>
-      <grapp-app-global-value name="appModule" value="manage"></grapp-app-global-value>
-      <grapp-app-global-value name="appFunction" value="floors"></grapp-app-global-value>
+    <grapp-app-globals>
+      <grapp-app-globals-get key="apiUrl" value="{{apiUrl}}"></grapp-app-globals-get>
+      <grapp-app-globals-set key="appTitle" value="models.floor.other"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appModule" value="manage"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appFunction" value="floors"></grapp-app-globals-set>
     </grapp-app-globals>
 
-    <grapp-rest-resource url="{{$.globals.apiURL}}/buildings/:buildingId/floors/:id"
-                         params='{{ {"buildingId":buildingId} }}'
-                         resource="{{floors}}" token="{{token}}">
+    <grapp-rest-resource base-url="[[apiUrl]]" path="/buildings/:buildingId/floors/:id"
+                         params="[[_floorsParams(buildingId)]]"
+                         resource="{{floors}}" token="[[token]]">
     </grapp-rest-resource>
 
-    <grapp-core-ajax id="buildingName" url="{{$.globals.apiURL}}/buildings/{{buildingId}}/name" handleAs="json"
-                     response="{{building}}"
-                     token="{{token}}" auto>
-    </grapp-core-ajax>
+    <grapp-iron-ajax id="buildingName" base-url="[[apiUrl]]"
+                     path="[[_buildingNamePath(buildingId)]]" handleAs="json"
+                     last-response="{{building}}" token="[[token]]" auto>
+    </grapp-iron-ajax>
 
     <grapp-breadcrumbs>
-      <grapp-breadcrumb href="/#/buildings">{{'models.building.other'|i18n}}</grapp-breadcrumb>
-      <grapp-breadcrumb href="/#/buildings/{{buildingId}}">{{building.name}}</grapp-breadcrumb>
-      <grapp-breadcrumb href="/#/buildings/{{buildingId}}/floors">{{'models.floor.other'|i18n}}</grapp-breadcrumb>
-      <grapp-breadcrumb>{{$.editor.item.name}}</grapp-breadcrumb>
+      <grapp-breadcrumb href="/#/buildings">[[i18n('models.building.other')]]</grapp-breadcrumb>
+      <grapp-breadcrumb href="/#/buildings/{{buildingId}}">[[building.name]]</grapp-breadcrumb>
+      <grapp-breadcrumb href="/#/buildings/{{buildingId}}/floors">[[i18n('models.floor.other')]]</grapp-breadcrumb>
+      <grapp-breadcrumb>[[floor.name]]</grapp-breadcrumb>
     </grapp-breadcrumbs>
 
-    <caretaker-data-editor id="editor" model="floor" resource="{{floors}}" on-data-editor-back="{{back}}">
+    <caretaker-data-editor id="editor" model="floor" resource="{{floors}}" item="{{floor}}"
+                           on-data-editor-back="_back">
 
       <caretaker-data-field name="name"></caretaker-data-field>
       <caretaker-data-field name="description"></caretaker-data-field>
@@ -43,4 +45,4 @@
 
   <script src="caretaker-floors-editor.js"></script>
 
-</polymer-element>
+</dom-module>

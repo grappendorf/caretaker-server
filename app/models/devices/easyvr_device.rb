@@ -10,6 +10,7 @@
 class EasyvrDevice < ActiveRecord::Base
 
   inherit DeviceBase
+  include WlanDevice
 
   acts_as :device
 

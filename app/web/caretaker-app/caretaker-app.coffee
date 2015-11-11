@@ -1,6 +1,11 @@
-Polymer 'caretaker-app',
+Polymer
 
-  created: ->
+  is: 'caretaker-app'
+
+  properties:
+    app: {type: Object}
+
+  ready: ->
     @app = @
 
   login: ->
@@ -12,7 +17,7 @@ Polymer 'caretaker-app',
     @$.sessionManager.connect()
 
   changePassword: ->
-    @$.sessionManager.changePassword()
+    @$.sessionManager.editPassword()
 
   sessionManagerLoaded: ->
     @login() unless @$.sessionManager.token
@@ -23,11 +28,6 @@ Polymer 'caretaker-app',
   authenticationError: ->
     @unauthenticatedLocation = window.location.hash[1..]
     @$.sessionManager.reconnect()
-
-  '$.sessionManager.tokenChanged': ->
-    if @$.sessionManager.token && @unauthenticatedLocation
-      @$.router.go @unauthenticatedLocation
-      @unauthenticatedLocation = null
 
   bindRouteAttributes: (e) ->
     e.detail.model.sessionManager = @sessionManager

@@ -1,16 +1,26 @@
-Polymer 'caretaker-devices-list',
+Polymer
 
-  domReady: ->
-    @loadTable()
+  is: 'caretaker-devices-list',
 
-  edit: (e) ->
+  behaviors: [Grapp.I18NJsBehavior, CaretakerUtilsBehavior]
+
+  properties:
+    token: {type: String}
+
+  attached: ->
+    @async ->
+      @$.table.load()
+
+  _edit: (e) ->
     @router.go "/devices/#{e.detail.id}"
 
-  new: ->
-    self = @
-    @$.newDeviceDialog.start().then (type) ->
-      self.$.newDeviceDialog.end()
-      self.router.go "/devices/new/#{type}"
+  _new: ->
+    @$.newDeviceDialog.start().then (type) =>
+      @$.newDeviceDialog.end()
+      @router.go "/devices/new/#{type}"
 
-  loadTable: ->
-    @$.table.load()
+  _imagePath: (imageName) ->
+    "/images/#{imageName}"
+
+  _typeName: (type) ->
+    @i18n @_to_snake_case(type), 'models._.one'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150406213447) do
+ActiveRecord::Schema.define(version: 20151023215538) do
 
   create_table "buildings", force: :cascade do |t|
     t.string "name"
@@ -138,6 +138,7 @@ ActiveRecord::Schema.define(version: 20150406213447) do
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
 
   create_table "weather_widgets", force: :cascade do |t|
+    t.string "api_key"
   end
 
   create_table "widgets", force: :cascade do |t|

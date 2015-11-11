@@ -3,91 +3,103 @@ eventToItemId = (e) ->
   rowNode = rowNode.parentNode while rowNode.localName != 'tr'
   rowNode.attributes['data-item-id'].value
 
+Polymer
 
-Polymer 'caretaker-data-table',
+  is: 'caretaker-data-table'
 
-  created: ->
-    @data = []
-    @columns = []
-    @actions = []
-    @selectedId = null
-    @realtimeSearch = false
-    @titleAttribute = 'name'
+  behaviors: [Grapp.I18NJsBehavior, CaretakerUtilsBehavior]
 
-  ready: ->
-    column_nodes = @querySelectorAll('caretaker-data-column')
+  properties:
+    data: {type: Array, value: -> []}
+    resource: {type: Object}
+    model: {type: String}
+    router: {type: Object}
+    searchText: {type: String, value: '', notify: true, observer: '_searchTextChanged'}
+    realtimeSearch: {type: Boolean, value: false}
+    titleAttribute: {type: String, value: 'name'}
+    columns: {type: Array, value: -> []}
+    actions: {type: Array, value: -> []}
+    selectedId: {type: String, value: null}
+
+  attached: ->
+    column_nodes = Polymer.dom(@).querySelectorAll('caretaker-data-column')
     @columns = (@initColumn(column) for column in column_nodes)
-    action_nodes = @querySelectorAll('caretaker-data-action')
+    action_nodes = Polymer.dom(@).querySelectorAll('caretaker-data-action')
     @actions = (action for action in action_nodes)
 
   initColumn: (column) ->
-    column.heading = if column.heading? then column.heading else @$.i18n.t "attributes.#{@model}.#{column.name}"
+    column.heading = if column.heading? then column.heading else @i18n("attributes.#{@model}.#{column.name}")
     column.thClass = ("width-#{width}" for width in column.width.split(' ')).join ' '
     column.thClass += " #{column.headerAlign}" if column.headerAlign
     column.tdClass = column.align
     if column.type == 'template'
-      @shadowRoot.appendChild column.template
+      Polymer.dom(@root).appendChild column.template
     column
 
   load: ->
-    self = @
-    @resource.index (result) ->
-      self.data = result
+    @resource.index().then (result) =>
+      @data = result.data
 
-  attribute: (item, attr) ->
+  _attribute: (item, attr) ->
     ([item].concat(attr.split('.')).reduce (i, p) -> i[p]) || ''
 
-  attributeCheckIcon: (item, attr) ->
-    if @attribute(item, attr) then 'check-square-o' else 'square-o'
+  _attributeCheckIcon: (item, attr) ->
+    if @_attribute(item, attr) then 'check-square-o' else 'square-o'
 
-  attributeList: (item, attr, delimiter = ', ') ->
-    @attribute(item, attr).join delimiter
+  _atttributeDate: (item, attr) ->
+    @i18nDate @_attribute(item, attr), 'short'
 
-  attributeCustom: (item, column) ->
+  _attributeList: (item, attr, delimiter = ', ') ->
+    @_attribute(item, attr).join delimiter
 
-  edit: (e) ->
+  _edit: (e) ->
     @selectedId = eventToItemId(e)
     @fire 'data-table-edit', id: @selectedId
 
-  delete: (e) ->
-    item = e.target.templateInstance.model.item
+  _delete: (e) ->
+    item = e.model.item
     message = I18n.t 'message.confirm_delete',
-      model: I18n.t PolymerExpressions.prototype.to_snake_case "models.#{item.type || @model}.one"
+      model: I18n.t @_to_snake_case "models.#{item.type || @model}.one"
       name: item[@titleAttribute]
-    self = @
     id = eventToItemId(e)
-    @$.deleteConfirmation.ask(message).then ->
-      self.resource.delete id
-      self.load()
+    @$.deleteConfirmation.ask(message).then =>
+      @resource.destroy(id).then =>
+        @load()
+      , ->
     , ->
 
-  new: ->
+  _new: ->
     @fire 'data-table-new'
 
-  fireAction: (e) ->
-    action = e.target.templateInstance.model.action
-    itemId = e.target.getAttribute('data-item-id')
+  _fireAction: (e) ->
+    action = e.model.action
+    itemId = eventToItemId(e)
     if action.routeTo
       route = action.routeTo
       route = route.replace ':id', itemId
     else
       action.fireAction itemId
 
-  onSearchKeyPress: (e) ->
+  _onSearchKeyPress: (e) ->
     if e.keyCode == 13
-      @search()
+      @_search()
 
-  clearSearch: ->
+  _clearSearch: ->
     @searchText = ''
     @search() unless @realtimeSearch
 
-  searchTextChanged: ->
+  _searchTextChanged: ->
     @search() if @realtimeSearch
 
-  search: ->
+  _search: ->
     @fire 'data-table-search'
 
-  cellTapped: (e) ->
-    model = e.target.templateInstance.model
-    if model.column.getAttribute 'on-cell-tapped'
-      model.column.fire 'cell-tapped', {item: model.item, column: model.column}
+  _cellTapped: (e) ->
+    model = e.model
+    model.column.fire 'cell-tapped', {item: model.item, column: model.column}
+
+  _to_snake_case: (s) ->
+    s?.replace(/([a-z])([A-Z])/g, '$1_$2').toLowerCase()
+
+  _templateRefId: (name) ->
+    "column-#{name}"

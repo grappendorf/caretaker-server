@@ -1,18 +1,12 @@
-Polymer 'caretaker-app-toolbar',
+Polymer
 
-  ready: ->
-    @app = document.querySelector('caretaker-app')
+  is: 'caretaker-app-toolbar'
 
-  delegate: (e) ->
-    if e.toElement
-      delegate = e.toElement.getAttribute('delegate-to')
-    else
-      delegate = e.target.getAttribute('delegate-to')
-    match = delegate.match /^(?:(\w+)\.)?(\w+)(?:\(([^,]+)(?:,([^,]+))?\))?$/
-    if match
-      [_, target, method, arg1, arg2] = match
-      target = if target then @[target] else @
-      target[method](eval(arg1), eval(arg2))
+  behaviors: [Grapp.I18NJsBehavior]
 
-  route: (e) ->
-    @app.$.router.go e.target.getAttribute('route-to')
+  properties:
+    user: {type: Object}
+    token: {type: String}
+
+  _toolbarTitle: (appModule) ->
+    if appModule != 'misc' then appModule else ''

@@ -51,6 +51,10 @@ en:
       one: "There is 1 error in your input data"
       other: "There are #{count} errors in your input data"
     error_not_logged_in: "Please log in to continue"
+    error_wrong_password_or_user_name: "Wrong password or user name"
+    error_empty_password: "Please enter a password"
+    error_passwords_dont_match: "The two passwords do not match"
+    error_empty_email: "Please enter an email address"
     successfully_created: "Successfully created %{name}"
     successfully_updated: "Successfully updated %{name}"
     successfully_deleted: "Successfully deleted %{name}"
@@ -74,6 +78,7 @@ en:
       <b>%{error}</b>
     philips_hue_unregister_confirmation: "Do you really want to unregister from the Hue-Bridge?"
     philips_hue_rename_light: "Please enter the new name of the light and click on 'Save'"
+    logged_in_as: "Logged in as:"
 
   title:
     app: "Caretaker"
@@ -226,7 +231,7 @@ en:
         brightness: "Brightness"
         hue: "Hue"
         saturation: "Saturation"
-        mode: "Mode"
+        mode: "Color mode"
 
   activerecord:
     models:

@@ -1,16 +1,23 @@
-Polymer 'caretaker-device-scripts-list',
+Polymer
 
-  domReady: ->
-    @$.table.load()
+  is: 'caretaker-device-scripts-list'
 
-  edit: (e) ->
+  behaviors: [Grapp.I18NJsBehavior]
+
+  properties:
+    token: {type: String}
+
+  attached: ->
+    @async ->
+      @$.table.load()
+
+  _edit: (e) ->
     @router.go "/device_scripts/#{e.detail.id}"
 
-  new: ->
+  _new: ->
     @router.go '/device_scripts/new'
 
-  toggleEnabled: (e) ->
-    self = @
+  _toggleEnabled: (e) ->
     item = e.detail.item
-    @deviceScripts.memberAction item.id, (if item.enabled then 'disable' else 'enable'), ->
-      self.$.table.load()
+    @deviceScripts.memberAction(item.id, (if item.enabled then 'disable' else 'enable')).then =>
+      @$.table.load()

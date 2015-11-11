@@ -1,19 +1,20 @@
-isManualSliderMove = (sliderKnob) ->
-  sliderKnob.classList.contains('dragging')
+Polymer
 
+  is: 'caretaker-widget-dimmerdevice'
 
-Polymer 'caretaker-widget-dimmerdevice',
+  properties:
+    widget: {type: Object}
+    token: {type: String}
 
-  ready: ->
+  attached: ->
     @device = @widget.device
     @value = @device.state
-    @sliderKnob = @$.slider.shadowRoot.querySelector '#sliderKnob'
+    @sliderKnob = @$.slider.querySelector '#sliderKnob'
 
   updateState: (e) ->
     return if e.id != @device.id
-    unless isManualSliderMove @sliderKnob
+    unless @$.slider.pressed
       @value = e.state
 
-  immediateValueChanged: (e) ->
-    if isManualSliderMove @sliderKnob
-      @websocket.trigger 'device.state', id: @device.id, state: {value: @immediateValue}
+  _sendValue: ->
+    @websocket.trigger 'device.state', id: @device.id, state: {value: @$.slider.immediateValue}

@@ -51,6 +51,10 @@ de:
       one: "Es gibt einen Fehler in Ihren Eingabedaten"
       other: "Es gibt #{count} Fehler in Ihren Eingabedaten"
     error_not_logged_in: "Bitte melden Sie sich an um fortzufahren"
+    error_wrong_password_or_user_name: "Falsches Passwort oder falscher Benutzername"
+    error_empty_password: "Bitte geben Sie ein Passwort ein"
+    error_passwords_dont_match: "Die beiden Passwörter stimmen nicht überein"
+    error_empty_email: "Bitte geben Sie eine Email-Adresse ein"
     successfully_created: "%{model} %{name} wurde erfolgreich angelegt"
     successfully_updated: "%{model} %{name} wurde erfolgreich gespeichert"
     successfully_deleted: "%{model} %{name} wurde erfolgreich gelöscht"
@@ -74,6 +78,7 @@ de:
       <b>%{error}</b>
     philips_hue_unregister_confirmation: "Wollen Sie sich wirklich von der Hue-Bridge abmelden?"
     philips_hue_rename_light: "Bitte geben Sie den neuen Namen der Lampe ein und rücken Sie auf 'Speichern'"
+    logged_in_as: "Angemeldet als:"
 
   title:
     app: "Caretaker"
@@ -170,7 +175,7 @@ de:
       last_sign_in_at: "Letzte Anmeldung"
       roles: "Rollen"
     device:
-      guid: "UUID"
+      uuid: "UUID"
       name: "Name"
       type: "Typ"
       address: "Adresse"

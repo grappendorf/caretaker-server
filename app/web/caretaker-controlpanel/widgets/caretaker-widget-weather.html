@@ -1,16 +1,17 @@
 <link rel="import" href="../../../web_lib/current-weather/dist/current-weather.html">
 
-<polymer-element name="caretaker-widget-weather" attributes="widget">
+<dom-module id="caretaker-widget-weather">
 
   <template>
 
     <link href="caretaker-widget-weather.css" rel="stylesheet">
 
-    <current-weather lon="7.45" lat="51.51667"
-                     wind suntimes minmax chump conditiontext></current-weather>
+    <current-weather lon="7.45" lat="51.51" wind suntimes
+                     minmax chump conditiontext
+                     app-id="[[widget.api_key]]"></current-weather>
 
   </template>
 
   <script src="caretaker-widget-weather.js"></script>
 
-</polymer-element>
+</dom-module>

@@ -1,11 +1,14 @@
 id = 1
 
+Polymer
 
-Polymer 'caretaker-data-action',
+  is: 'caretaker-data-action'
 
-  created: ->
-    @icon = 'square'
-    @name = "#{id++}"
+  properties:
+    icon: {type: String, value: 'square'}
+    router: {type: Object}
+    routeTo: {type: String}
+    name: {type: String, value: -> "#{id++}"}
 
   fireAction: (id) ->
     @fire 'fire', id: id

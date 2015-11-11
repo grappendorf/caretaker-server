@@ -2,25 +2,25 @@
 <link rel="import" href="../../web_lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
 <link rel="import" href="../../web_lib/github-ribbon/src/github-ribbon.html">
 <link rel="import" href="../../web_lib/github-readme/github-readme.html">
-<link rel="import" href="../../web_lib/polymer-github-card/dist/polymer-github-card.html">
+<link rel="import" href="../../web_lib/polymer-github-card/github-card.html">
 
-<polymer-element name="caretaker-about" noscript>
+<dom-module name="caretaker-about">
+
+  <link rel="import" type="css" href="caretaker-about.css">
 
   <template>
 
-    <grapp-app-globals id="globals">
-      <grapp-app-global-value name="appTitle" value="action.help_about"></grapp-app-global-value>
-      <grapp-app-global-value name="appModule" value="help"></grapp-app-global-value>
-      <grapp-app-global-value name="appFunction" value="about"></grapp-app-global-value>
+    <grapp-app-globals>
+      <grapp-app-globals-set key="appTitle" value="action.help_about"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appModule" value="help"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appFunction" value="about"></grapp-app-globals-set>
     </grapp-app-globals>
 
     <grapp-breadcrumbs>
-      <grapp-breadcrumb>{{'action.help_about'|i18n}}</grapp-breadcrumb>
+      <grapp-breadcrumb>[[i18n('action.help_about')]]</grapp-breadcrumb>
     </grapp-breadcrumbs>
 
-    <link href="caretaker-about.css" rel="stylesheet">
-
-    <github-ribbon user="grappendorf" repo="caretaker-server" color="orange"></github-ribbon>
+    <github-ribbon owner="grappendorf" repo="caretaker-server" corner="right" color="green"></github-ribbon>
 
     <h1>Caretaker</h1>
 
@@ -55,9 +55,13 @@
     <h2>Github</h2>
 
     <div>
-      <polymer-github-card user="grappendorf"></polymer-github-card>
+      <github-card user="grappendorf"></github-card>
     </div>
 
   </template>
 
-</polymer-element>
+  <script>
+    Polymer({is: 'caretaker-about', behaviors: [Grapp.I18NJsBehavior]});
+  </script>
+
+</dom-module>

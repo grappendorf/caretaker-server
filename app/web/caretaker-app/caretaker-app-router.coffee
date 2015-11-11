@@ -1,9 +1,16 @@
-Polymer 'caretaker-app-router',
+Polymer
+
+  is: 'caretaker-app-router'
+
+  properties:
+    user: {type: Object}
+    token: {type: String}
+    router: {type: Object, notify: true}
 
   ready: ->
     @router = @$.router
 
   bindRouteAttributes: (e) ->
     e.detail.model.router = @$.router
-    e.detail.model.sessionManager = @sessionManager
-    e.detail.model.token = @sessionManager.token
+    e.detail.model.user = @user
+    e.detail.model.token = @token

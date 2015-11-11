@@ -1,15 +1,14 @@
 <link rel="import" href="../../web_lib/polymer/polymer.html">
 
-<polymer-element name="caretaker-codemirror-input" attributes="value mode theme rows">
+<dom-module id="caretaker-codemirror-input">
+
+  <link rel="import" type="css" href="caretaker-codemirror-input.css">
+  <link rel="stylesheet" href="../../web_lib/codemirror/lib/codemirror.css">
+  <link rel="stylesheet" href="../../web_lib/codemirror/theme/base16-dark.css">
 
   <template>
 
-    <link rel="stylesheet" href="../../web_lib/codemirror/lib/codemirror.css">
-    <link rel="stylesheet" href="../../web_lib/codemirror/theme/base16-dark.css">
-    <link href="../../web_lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="caretaker-codemirror-input.css" rel="stylesheet">
-
-    <textarea id="input" rows="{{rows}}"></textarea>
+    <textarea id="input" rows$="[[rows]]"></textarea>
 
   </template>
 
@@ -17,4 +16,4 @@
   <script src="../../web_lib/codemirror/mode/ruby/ruby.js"></script>
   <script src="caretaker-codemirror-input.js"></script>
 
-</polymer-element>
+</dom-module>

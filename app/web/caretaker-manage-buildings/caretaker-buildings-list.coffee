@@ -1,13 +1,25 @@
-Polymer 'caretaker-buildings-list',
+Polymer
 
-  domReady: ->
-    @$.table.load()
+  is: 'caretaker-buildings-list'
 
-  edit: (e) ->
+  behaviors: [Grapp.I18NJsBehavior]
+
+  properties:
+    token: {type: String}
+    searchText: {type: String, value: ''}
+
+  attached: ->
+    @async ->
+      @$.table.load()
+
+  _edit: (e) ->
     @router.go "/buildings/#{e.detail.id}"
 
-  new: ->
+  _new: ->
     @router.go '/buildings/new'
 
-  showFloors: (e) ->
+  _showFloors: (e) ->
     @router.go "/buildings/#{e.detail.id}/floors"
+
+  _buildingsParams: (searchText) ->
+    {q: searchText}

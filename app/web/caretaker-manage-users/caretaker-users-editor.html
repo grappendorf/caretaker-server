@@ -1,27 +1,30 @@
 <link rel="import" href="../../web_lib/grapp-app-globals/grapp-app-globals.html">
-<link rel="import" href="../../web_lib/grapp-rest-resource/grapp-rest-resource.html">
 <link rel="import" href="../../web_lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
-<link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
+<link rel="import" href="../../web_lib/grapp-i18n-js/grapp-i18n-js.html">
+<link rel="import" href="../../web_lib/grapp-rest-resource/grapp-rest-resource.html">
 <link rel="import" href="../caretaker-data-editor/caretaker-data-editor.html">
 
-<polymer-element name="caretaker-users-editor" attributes="token">
+<dom-module id="caretaker-users-editor">
 
   <template>
 
-    <grapp-app-globals id="globals">
-      <grapp-app-global-value name="appTitle" value="models.user.other"></grapp-app-global-value>
-      <grapp-app-global-value name="appModule" value="system"></grapp-app-global-value>
-      <grapp-app-global-value name="appFunction" value="users"></grapp-app-global-value>
+    <grapp-app-globals>
+      <grapp-app-globals-get key="apiUrl" value="{{apiUrl}}"></grapp-app-globals-get>
+      <grapp-app-globals-set key="appTitle" value="models.user.other"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appModule" value="system"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appFunction" value="users"></grapp-app-globals-set>
     </grapp-app-globals>
 
-    <grapp-rest-resource url="{{$.globals.apiURL}}/users/:id" resource="{{users}}" token="{{token}}"></grapp-rest-resource>
+    <grapp-rest-resource base-url="[[apiUrl]]" path="/users/:id" resource="{{users}}"
+                         token="{{token}}"></grapp-rest-resource>
 
     <grapp-breadcrumbs>
-      <grapp-breadcrumb href="/#/users">{{'models.user.other'|i18n}}</grapp-breadcrumb>
-      <grapp-breadcrumb>{{$.editor.item.email}}</grapp-breadcrumb>
+      <grapp-breadcrumb label="[[i18n('models.user.other')"></grapp-breadcrumb>
+      <grapp-breadcrumb>{{user.email}}</grapp-breadcrumb>
     </grapp-breadcrumbs>
 
-    <caretaker-data-editor id="editor" model="user" resource="{{users}}" on-data-editor-back="{{back}}">
+    <caretaker-data-editor id="editor" model="user" resource="{{users}}" item="{{user}}"
+                           on-data-editor-back="_back">
 
       <caretaker-data-field name="email"></caretaker-data-field>
       <caretaker-data-field name="name"></caretaker-data-field>
@@ -32,4 +35,4 @@
 
   <script src="caretaker-users-editor.js"></script>
 
-</polymer-element>
+</dom-module>

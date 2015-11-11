@@ -1,33 +1,34 @@
 <link rel="import" href="../../web_lib/grapp-app-globals/grapp-app-globals.html">
-<link rel="import" href="../../web_lib/grapp-rest-resource/grapp-rest-resource.html">
 <link rel="import" href="../../web_lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
-<link rel="import" href="../caretaker-i18n/caretaker-i18n.html">
+<link rel="import" href="../../web_lib/grapp-i18n-js/grapp-i18n-js.html">
+<link rel="import" href="../../web_lib/grapp-rest-resource/grapp-rest-resource.html">
 <link rel="import" href="../caretaker-data-table/caretaker-data-table.html">
 
-<polymer-element name="caretaker-buildings-list" attributes="token">
+<dom-module id="caretaker-buildings-list">
 
   <template>
 
-    <grapp-app-globals id="globals">
-      <grapp-app-global-value name="appTitle" value="models.building.other"></grapp-app-global-value>
-      <grapp-app-global-value name="appModule" value="manage"></grapp-app-global-value>
-      <grapp-app-global-value name="appFunction" value="buildings"></grapp-app-global-value>
+    <grapp-app-globals>
+      <grapp-app-globals-get key="apiUrl" value="{{apiUrl}}"></grapp-app-globals-get>
+      <grapp-app-globals-set key="appTitle" value="models.building.other"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appModule" value="manage"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appFunction" value="buildings"></grapp-app-globals-set>
     </grapp-app-globals>
 
-    <grapp-rest-resource url="{{$.globals.apiURL}}/buildings/:id?q={{searchText}}"
-                         resource="{{buildings}}" token="{{token}}"></grapp-rest-resource>
+    <grapp-rest-resource base-url="[[apiUrl]]" path="/buildings/:id" params="[[_buildingsParams(searchText)]]"
+                         resource="{{buildings}}" token="[[token]]"></grapp-rest-resource>
 
     <grapp-breadcrumbs>
-      <grapp-breadcrumb>{{'models.building.other'|i18n}}</grapp-breadcrumb>
+      <grapp-breadcrumb>[[i18n('models.building.other')]]</grapp-breadcrumb>
     </grapp-breadcrumbs>
 
-    <caretaker-data-table id="table" model="building" resource="{{buildings}}" searchText="{{searchText}}"
-                          on-data-table-edit="{{edit}}" on-data-table-new="{{new}}">
+    <caretaker-data-table id="table" model="building" resource="{{buildings}}" search-text="{{searchText}}"
+                          on-data-table-edit="_edit" on-data-table-new="_new">
 
       <caretaker-data-column name="name" width="30"></caretaker-data-column>
       <caretaker-data-column name="description" width="70"></caretaker-data-column>
 
-      <caretaker-data-action icon="bars" on-fire="{{showFloors}}"></caretaker-data-action>
+      <caretaker-data-action icon="bars" on-fire="_showFloors"></caretaker-data-action>
 
     </caretaker-data-table>
 
@@ -35,4 +36,4 @@
 
   <script src="caretaker-buildings-list.js"></script>
 
-</polymer-element>
+</dom-module>

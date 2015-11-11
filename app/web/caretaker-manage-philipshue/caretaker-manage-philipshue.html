@@ -1,124 +1,124 @@
 <link rel="import" href="../../web_lib/paper-input/paper-input.html">
 <link rel="import" href="../../web_lib/grapp-app-globals/grapp-app-globals.html">
+<link rel="import" href="../../web_lib/grapp-iron-ajax/grapp-iron-ajax.html">
 <link rel="import" href="../../web_lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
 <link rel="import" href="../../web_lib/grapp-dialogs/grapp-message-dialog.html">
 <link rel="import" href="../../web_lib/grapp-dialogs/grapp-confirmation-dialog.html">
+<link rel="import" href="../../web_lib/grapp-i18n-js/grapp-i18n-js.html">
 
-<polymer-element name="caretaker-manage-philipshue" attributes="token">
+<dom-module id="caretaker-manage-philipshue">
+
+  <link rel="import" type="css" href="../../stylesheets/bootstrap.css">
+  <link rel="import" type="css" href="caretaker-manage-philipshue.css">
 
   <template>
 
-    <link href="../../stylesheets/bootstrap.css" rel="stylesheet">
-    <link href="caretaker-manage-philipshue.css" rel="stylesheet">
-
-    <grapp-app-globals id="globals">
-      <grapp-app-global-value name="appTitle" value="title.philips_hue"></grapp-app-global-value>
-      <grapp-app-global-value name="appModule" value="system"></grapp-app-global-value>
-      <grapp-app-global-value name="appFunction" value="philipshue"></grapp-app-global-value>
+    <grapp-app-globals>
+      <grapp-app-globals-get key="apiUrl" value="{{apiUrl}}"></grapp-app-globals-get>
+      <grapp-app-globals-set key="appTitle" value="title.philips_hue"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appModule" value="system"></grapp-app-globals-set>
+      <grapp-app-globals-set key="appFunction" value="philipshue"></grapp-app-globals-set>
     </grapp-app-globals>
 
     <grapp-breadcrumbs>
-      <grapp-breadcrumb>{{'title.philips_hue'|i18n}}</grapp-breadcrumb>
+      <grapp-breadcrumb label="[[i18n('title.philips_hue')]]"></grapp-breadcrumb>
     </grapp-breadcrumbs>
 
-    <grapp-core-ajax id="bridgeRequest" url="{{$.globals.apiURL}}/philips_hue/bridge" handleAs="json"
-                     response="{{bridge}}" token="{{token}}" auto>
-    </grapp-core-ajax>
+    <grapp-iron-ajax id="bridgeRequest" base-url="[[apiUrl]]" path="/philips_hue/bridge" handleAs="json"
+                     last-response="{{bridge}}" token="[[token]]" auto>
+    </grapp-iron-ajax>
 
-    <grapp-core-ajax id="registerRequest" url="{{$.globals.apiURL}}/philips_hue/register" method="POST" handleAs="json"
-                     on-core-response="{{registered}}" on-core-error="{{error}}" token="{{token}}">
-    </grapp-core-ajax>
+    <grapp-iron-ajax id="registerRequest" base-url="[[apiUrl]]" path="/philips_hue/register" method="POST" handleAs="json"
+                     on-response="_registered" on-error="_error" token="[[token]]">
+    </grapp-iron-ajax>
 
-    <grapp-core-ajax id="unregisterRequest" url="{{$.globals.apiURL}}/philips_hue/unregister" method="POST"
-                     handleAs="json"
-                     on-core-response="{{unregistered}}" on-core-error="{{error}}"
-                     token="{{token}}">
-    </grapp-core-ajax>
+    <grapp-iron-ajax id="unregisterRequest" base-url="[[apiUrl]]" path="/philips_hue/unregister" method="POST"
+                     handleAs="json" token="[[token]]"
+                     on-response="_unregistered" on-error="_error">
+    </grapp-iron-ajax>
 
-    <grapp-core-ajax id="synchronizeRequest" url="{{$.globals.apiURL}}/philips_hue/synchronize" method="POST"
-                     handleAs="json"
-                     on-core-response="{{synchronized}}" on-core-error="{{error}}"
-                     token="{{token}}">
-    </grapp-core-ajax>
+    <grapp-iron-ajax id="synchronizeRequest" base-url="[[apiUrl]]" path="/philips_hue/synchronize" method="POST"
+                     handleAs="json" token="[[token]]"
+                     on-response="_synchronized" on-error="_error">
+    </grapp-iron-ajax>
 
-    <grapp-core-ajax id="renameLightRequest" url="{{$.globals.apiURL}}/philips_hue/lights/{{lightId}}" method="PUT"
-                     handleAs="json"
-                     body='{"name": "{{newLightName}}" }'
-                     on-core-response="{{renamed}}" on-core-error="{{error}}"
-                     token="{{token}}">
-    </grapp-core-ajax>
+    <grapp-iron-ajax id="renameLightRequest" base-url="[[apiUrl]]" url="[[_renameLightPath(lightId)]]" method="PUT"
+                     handleAs="json" body="[[_renameLightParams(newLightName)" token="[[token]]"
+                     on-response="_renamed" on-error="_error">
+    </grapp-iron-ajax>
 
-    <grapp-message-dialog id="messageDialog" heading="{{'title.philips_hue' | i18n}}"
+    <grapp-message-dialog id="messageDialog" heading="[[i18n('title.philips_hue')]]"
                           htmlMessage></grapp-message-dialog>
 
-    <grapp-confirmation-dialog id="unregisterConfirmation" heading="{{'title.delete_confirmation' | i18n}}"
-                               message="{{'message.philips_hue_unregister_confirmation' | i18n}}"
-                               yesLabel="{{'action.ok' | i18n}}" yesIcon="check"
-                               noLabel="{{'action.cancel' | i18n}}" noIcon="close"></grapp-confirmation-dialog>
+    <grapp-confirmation-dialog id="unregisterConfirmation" heading="[[i18n('title.delete_confirmation')]]"
+                               message="[[i18n('message.philips_hue_unregister_confirmation')]]"
+                               yes-label="[[i18n('action.ok')]]" yes-icon="check"
+                               no-label="[[i18n('action.cancel')]]" no-Icon="close">
+    </grapp-confirmation-dialog>
 
-    <grapp-confirmation-dialog id="renameLightDialog" heading="{{'action.rename' | i18n}}"
-                               yesLabel="{{'action.save' | i18n}}" yesIcon="save"
-                               noLabel="{{'action.cancel' | i18n}}" noIcon="close">
-      <div>{{'message.philips_hue_rename_light' | i18n}}</div>
+    <grapp-confirmation-dialog id="renameLightDialog" heading="[[i18n('action.rename')]]"
+                               yes-label="[[i18n('action.save')]]" yes-icon="save"
+                               no-label="[[i18n('action.cancel')]]" no-icon="close">
+      <div>[[i18n('message.philips_hue_rename_light')]]</div>
       <paper-input value="{{newLightName}}" autofocus></paper-input>
     </grapp-confirmation-dialog>
 
-    <template if="{{bridge && bridge.connected}}">
+    <template is="dom-if" if="[[_isBridgeConnected(bridge)]]">
       <table class="table table-bordered table-striped table-hover">
-        <caption>{{'attributes.philips_hue.bridge' | i18n}}</caption>
+        <caption>[[i18n('attributes.philips_hue.bridge')]]</caption>
         <tr>
-          <td>{{'attributes.philips_hue.application_id' | i18n}}</td>
-          <td>{{bridge.application_id}}</td>
+          <td>[[i18n('attributes.philips_hue.application_id')]]</td>
+          <td>[[bridge.application_id]]</td>
         </tr>
         <tr>
-          <td>{{'attributes.philips_hue.bridge_uri' | i18n}}</td>
-          <td>{{bridge.bridge_uri}}</td>
+          <td>[[i18n('attributes.philips_hue.bridge_uri')]]</td>
+          <td>[[bridge.bridge_uri]]</td>
         </tr>
       </table>
-      <div layout horizontal end-justified>
-        <button class="btn btn-danger" on-tap="{{unregister}}">
-          <grapp-fa-icon icon="{{ {unlink: !processing, spinner: processing} | tokenList}}"
-                         spin="{{processing}}"></grapp-fa-icon>
-          <span>{{'action.philips_hue_bridge_unregister' | i18n}}</span>
+      <div class="layout horizontal end-justified">
+        <button class="btn btn-danger" on-tap="_unregister">
+          <grapp-fa-icon icon="[[_unregisterButtonIcon(processingUnregister)]]"
+                         spin="[[processing]]"></grapp-fa-icon>
+          <span>[[i18n('action.philips_hue_bridge_unregister')]]</span>
         </button>
       </div>
       <br>
       <br>
       <table class="table table-bordered table-striped table-hover">
-        <caption>{{'attributes.philips_hue.lights' | i18n}}</caption>
+        <caption>[[i18n('attributes.philips_hue.lights')]]</caption>
         <tr>
-          <th>{{'attributes.philips_hue.light.name' | i18n}}</th>
-          <th>{{'attributes.philips_hue.light.type' | i18n}}</th>
-          <th>{{'attributes.philips_hue.light.reachable' | i18n}}</th>
-          <th>{{'attributes.philips_hue.light.uniqueid' | i18n}}</th>
+          <th>[[i18n('attributes.philips_hue.light.name')]]</th>
+          <th>[[i18n('attributes.philips_hue.light.type')]]</th>
+          <th>[[i18n('attributes.philips_hue.light.reachable')]]</th>
+          <th>[[i18n('attributes.philips_hue.light.uniqueid')]]</th>
         </tr>
-        <tr template repeat="{{light,num in bridge.lights}}">
-          <td class="editable" on-tap="{{editName}}">
-            <span>{{light.name}}</span>
+        <tr is="dom-repeat" items="[[bridge.lights]]" as="light">
+          <td class="editable" on-tap="_editName">
+            <span>[[light.name]]</span>
             <grapp-fa-icon icon="pencil"></grapp-fa-icon>
           </td>
-          <td>{{light.type}}</td>
+          <td>[[light.type]]</td>
           <td>
-            <template if="{{light.state.reachable}}">
+            <template is="dom-if" if="[[light.state.reachable]]">
               <grapp-fa-icon icon="check"></grapp-fa-icon>
             </template>
           </td>
-          <td>{{light.uniqueid}}</td>
+          <td>[[light.uniqueid]]</td>
         </tr>
       </table>
-      <div layout horizontal end-justified>
-        <button class="btn btn-primary" on-tap="{{synchronize}}">
-          <grapp-fa-icon icon="{{ {retweet: !processingSynchronize, spinner: processingSynchronize} | tokenList}}"
-                         spin="{{processingSynchronize}}"></grapp-fa-icon>
-          <span>{{'action.philips_hue_synchronize_lights' | i18n}}</span>
+      <div class="layout horizontal end-justified">
+        <button class="btn btn-primary" on-tap="_synchronize">
+          <grapp-fa-icon icon="[[_synchronizeButtonIcon(processingSynchronize)]]"
+                         spin="[[processingSynchronize]]"></grapp-fa-icon>
+          <span>[[i18n('action.philips_hue_synchronize_lights')]]</span>
         </button>
       </div>
     </template>
-    <template if="{{bridge && ! bridge.connected}}">
-      <button class="btn btn-success" on-tap="{{register}}">
-        <grapp-fa-icon icon="{{ {link: !processing, spinner: processing} | tokenList}}"
-                       spin="{{processing}}"></grapp-fa-icon>
-        <span>{{'action.philips_hue_bridge_register' | i18n}}</span>
+    <template is="dom-if" if="[[_isBridgeDisconnected(bridge)]]">
+      <button class="btn btn-success" on-tap="_register">
+        <grapp-fa-icon icon="[[_registerButtonIcon(processingRegister)]]"
+                       spin="[[processing]]"></grapp-fa-icon>
+        <span>[[i18n('action.philips_hue_bridge_register')]]</span>
       </button>
     </template>
 
@@ -126,4 +126,4 @@
 
   <script src="caretaker-manage-philipshue.js"></script>
 
-</polymer-element>
+</dom-module>

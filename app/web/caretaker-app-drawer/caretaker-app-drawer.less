@@ -1,47 +1,68 @@
-:host {
-  background-color: #2b3131;
-}
+:host > paper-menu {
+  padding-top: 0;
+  padding-bottom: 0;
+  border-bottom: 1px #545f5f solid !important;
 
-core-menu {
-  margin: 0;
-
-  > core-item {
-    padding: 8px;
-    border-bottom: 1px #545f5f solid;
+  paper-item {
+    border-top: 1px #545f5f solid !important;
   }
 }
 
-core-submenu {
-  padding: 8px;
-  border-bottom: 1px #545f5f solid;
-}
+paper-submenu {
+  paper-item.menu-trigger {
+    border-top: 1px #545f5f solid !important;
+  }
+  paper-menu {
+    padding-top: 0;
+    padding-bottom: 0;
 
-core-item grapp-fa-icon {
-  width: 1.5em;
-}
-
-core-menu {
-  > core-submenu, > core-item {
-    border-left: 4px rgba(255, 255, 255, 0.2) solid;
-
-    &[category="devices"] {
-      border-left-color: rgba(147, 81, 166, 0.5);
-    }
-
-    &[category="manage"] {
-      border-left-color: rgba(224, 137, 23, 0.5);
-    }
-
-    &[category="system"] {
-      border-left-color: rgba(249, 68, 70, 0.5);
-    }
-
-    &[category="help"] {
-      border-left-color: rgba(76, 164, 84, 0.5);
-    }
-
-    &[category="misc"] {
-      border-left-color: rgba(68, 114, 185, 0.5);
+    paper-item {
+      padding-left: 3em;
+      border-top: 0 !important;
     }
   }
+}
+
+paper-item {
+  cursor: default;
+  grapp-fa-icon {
+    width: 24px;
+  }
+  iron-icon {
+    margin-right: 8px;
+  }
+}
+
+paper-item {
+  border-left: 4px solid;
+}
+
+paper-item.category-devices,
+/deep/ paper-submenu.category-devices paper-item {
+  border-left-color: rgb(101, 56, 115);
+}
+
+paper-item.category-manage,
+/deep/ paper-submenu.category-manage paper-item {
+  border-left-color: rgb(145, 88, 17);
+}
+
+paper-item.category-system,
+/deep/ paper-submenu.category-system paper-item {
+  border-left-color: rgb(168, 49, 51);
+}
+
+paper-item.category-help,
+/deep/ paper-submenu.category-help paper-item {
+  border-left-color: rgb(53, 112, 58);
+}
+
+paper-item.category-misc,
+/deep/ paper-submenu.category-misc paper-item {
+  border-left-color: rgb(49, 82, 133);
+}
+
+paper-item.category-account,
+/deep/ paper-submenu.category-account paper-item {
+  border-left-color: rgb(96, 96, 102);
 }

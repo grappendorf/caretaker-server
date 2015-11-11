@@ -1,50 +1,47 @@
-<link rel="import" href="../../../web_lib/paper-dropdown/paper-dropdown.html">
 <link rel="import" href="../../../web_lib/paper-dropdown-menu/paper-dropdown-menu.html">
 <link rel="import" href="../../../web_lib/paper-item/paper-item.html">
 <link rel="import" href="../../../web_lib/paper-slider/paper-slider.html">
 
-<polymer-element name="caretaker-widget-philipshuelightdevice" attributes="widget websocket">
+<dom-module id="caretaker-widget-philipshuelightdevice">
 
   <template>
     <link href="caretaker-widget-philipshuelightdevice.css" rel="stylesheet">
 
     <table>
       <tr>
-        <td>{{'attributes.philips_hue.light.brightness' | i18n}}</td>
+        <td>[[i18n('attributes.philips_hue.light.brightness')]]</td>
         <td>
           <paper-slider id="brightness" class="slider" touch="pan-x"
-                        min="0" max="255" value="{{state.brightness}}"
-                        immediateValue="{{immediateBrightness}}"></paper-slider>
+                        min="0" max="255" value="[[state.brightness]]"
+                        on-immediate-value-change="_sendBrightnessValue"></paper-slider>
         </td>
       </tr>
       <tr>
-        <td>{{'attributes.philips_hue.light.hue' | i18n}}</td>
+        <td>[[i18n('attributes.philips_hue.light.hue')]]</td>
         <td>
           <paper-slider id="hue" class="slider" touch="pan-x"
-                        min="0" max="65536" value="{{state.color.hue}}"
-                        immediateValue="{{immediateHue}}"></paper-slider>
+                        min="0" max="65536" value="[[state.color.hue]]"
+                        on-immediate-value-change="_sendHueValue"></paper-slider>
         </td>
       </tr>
       <tr>
-        <td>{{'attributes.philips_hue.light.saturation' | i18n}}</td>
+        <td>[[i18n('attributes.philips_hue.light.saturation')]]</td>
         <td>
           <paper-slider id="saturation" class="slider" touch="pan-x"
-                        min="0" max="255" value="{{state.color.saturation}}"
-                        immediateValue="{{immediateSaturation}}"></paper-slider>
+                        min="0" max="255" value="[[state.color.saturation]]"
+                        on-immediate-value-change="_sendSaturationValue"></paper-slider>
         </td>
       </tr>
       <tr>
-        <td>{{'attributes.philips_hue.light.mode' | i18n}}</td>
+        <td>[[i18n('attributes.philips_hue.light.mode')]]</td>
         <td>
-          <paper-dropdown-menu label="Color mode">
-            <paper-dropdown class="dropdown" transition="">
-              <core-menu class="menu" selected="{{mode}}">
-                <paper-item>{{'action.off' | i18n}}</paper-item>
+          <paper-dropdown-menu label="[[i18n('attributes.philips_hue.light.mode')]]">
+              <paper-menu class="dropdown-content" selected="{{mode}}">
+                <paper-item>[[i18n('action.off')]]</paper-item>
                 <paper-item>Custom</paper-item>
                 <paper-item>Sea</paper-item>
                 <paper-item>Sunset</paper-item>
-              </core-menu>
-            </paper-dropdown>
+              </paper-menu>
           </paper-dropdown-menu>
         </td>
       </tr>
@@ -54,4 +51,4 @@
 
   <script src="caretaker-widget-philipshuelightdevice.js"></script>
 
-</polymer-element>
+</dom-module>

@@ -1,40 +1,40 @@
 <link rel="import" href="../../../web_lib/grapp-fa-icon/grapp-fa-icon.html">
 <link rel="import" href="../../../web_lib/grapp-graph-epoch/grapp-graph-epoch.html">
 
-<polymer-element name="caretaker-widget-reflowovendevice" attributes="widget websocket">
+<dom-module id="caretaker-widget-reflowovendevice">
 
   <template>
     <link href="../../../web_lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="caretaker-widget-reflowovendevice.css" rel="stylesheet">
 
-    <div class="controls" layout horizontal justified>
+    <div class="controls layout horizontal justified">
       <div class="btn-group">
-        <button on-tap="{{start}}" class="btn btn-danger">Start</button>
-        <button on-tap="{{cool}}" class="btn btn-info">Cool</button>
-        <button on-tap="{{off}}" class="btn btn-success">Off</button>
+        <button on-tap="_start" class="btn btn-danger">Start</button>
+        <button on-tap="_cool" class="btn btn-info">Cool</button>
+        <button on-tap="_off" class="btn btn-success">Off</button>
       </div>
 
-      <div id="temperature" class="badge"><strong>{{temperature}} °C</strong></div>
+      <div id="temperature" class="badge"><strong><span>[[temperature]]</span> °C</strong></div>
 
       <div class="pull-right">
-        <span class="badge {{ {'alert-danger': heater} | tokenList }}">
+        <span class="[[_heaterClass(heater)]]">
           <grapp-fa-icon icon="power-off"></grapp-fa-icon>
         </span>
-        <span class="badge {{ {'alert-danger': fan}  | tokenList }}">
+        <span class="[[_fanClass(fan)]]">
           <grapp-fa-icon icon="fire-extinguisher"></grapp-fa-icon>
         </span>
-        <span class="label label-warning">{{mode}}</span>
-        <span class="label label-info">{{state}}</span>
+        <span class="label label-warning">[[mode]]</span>
+        <span class="label label-info">[[state]]</span>
       </div>
     </div>
 
     <div id="graph"></div>
 
-    <!--<grapp-graph-epoch id="graph" type="time.line" axis="left,bottom" width="660" height="240" theme="dark"-->
-                       <!--windowSize="200" ticks="time:40">-->
-      <!--<grapp-graph-epoch-series label="Layer 1" data="{{initialData}}">-->
-      <!--</grapp-graph-epoch-series>-->
-    <!--</grapp-graph-epoch>-->
+    <grapp-graph-epoch id="graph" type="time.line" axis="left,bottom" width="660" height="240" theme="dark"
+                       windowSize="200" ticks="time:40">
+      <grapp-graph-epoch-series label="Layer 1" data="[[initialData]]">
+      </grapp-graph-epoch-series>
+    </grapp-graph-epoch>
 
   </template>
 
@@ -42,4 +42,4 @@
   <script src="../../../web_lib/morrisjs/morris.js"></script>
   <script src="caretaker-widget-reflowovendevice.js"></script>
 
-</polymer-element>
+</dom-module>

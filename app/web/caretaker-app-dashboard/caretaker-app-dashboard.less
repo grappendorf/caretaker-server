@@ -1,40 +1,44 @@
-grapp-launcher-tile {
-  &::shadow #tile {
-    width: 12em;
-    height: 12em;
+/deep/ grapp-launcher-tile {
+
+  #tile {
+    grapp-fa-icon {
+      display: block;
+    }
+    width: 16em !important;
+    height: 16em !important;
   }
 
-  &.devices::shadow #tile {
+  &.devices #tile {
     background-color: rgba(147, 81, 166, 0.7);
-    &[mouseover] {
+    &[mouse-over] {
       background-color: rgba(147, 81, 166, 0.9);
     }
   }
 
-  &.manage::shadow #tile {
+  &.manage #tile {
     background-color: rgba(224, 137, 23, 0.7);
-    &[mouseover] {
+    &[mouse-over] {
       background-color: rgba(224, 137, 23, 0.9);
     }
   }
 
-  &.system::shadow #tile {
+  &.system #tile {
     background-color: rgba(249, 68, 70, 0.7);
-    &[mouseover] {
+    &[mouse-over] {
       background-color: rgba(249, 68, 70, 0.9);
     }
   }
 
-  &.help::shadow #tile {
+  &.help #tile {
     background-color: rgba(76, 164, 84, 0.7);
-    &[mouseover] {
+    &[mouse-over] {
       background-color: rgba(76, 164, 84, 0.9);
     }
   }
 
-  &.misc::shadow #tile {
+  &.misc #tile {
     background-color: rgba(68, 114, 185, 0.7);
-    &[mouseover] {
+    &[mouse-over] {
       background-color: rgba(68, 114, 185, 0.9);
     }
   }
