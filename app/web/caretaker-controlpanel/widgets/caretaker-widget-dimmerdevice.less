@@ -2,19 +2,23 @@
   width: 20em;
 }
 
-#slider::shadow #sliderKnobInner {
-  background-color: #ffac25;
-  width: 24px;
-  height: 24px;
-}
+#slider::shadow {
+  #sliderKnob {
+    width: 38px;
+    height: 38px;
+  }
 
-#slider::shadow #sliderBar::shadow #activeProgress {
-  background-color: #ffac25;
-}
+  #sliderKnobInner {
+    background-color: #ffac25;
+  }
 
-#slider::shadow /deep/ #progressContainer {
-  background-color: #444444;
-  top: -4px;
-  height: 10px;
-  border-radius: 4px;
+  #sliderBar::shadow #primaryProgress {
+    background-color: #ffac25;
+  }
+
+  /deep/ #progressContainer {
+    background-color: #444444;
+    top: -2px;
+    height: 10px;
+  }
 }
