@@ -46,7 +46,7 @@ Polymer
   _attributeCheckIcon: (item, attr) ->
     if @_attribute(item, attr) then 'check-square-o' else 'square-o'
 
-  _atttributeDate: (item, attr) ->
+  _attributeDate: (item, attr) ->
     @i18nDate @_attribute(item, attr), 'short'
 
   _attributeList: (item, attr, delimiter = ', ') ->
