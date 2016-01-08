@@ -1,3 +1,17 @@
+<a name="0.4.0"></a>
+## 0.4.0 (2016-01-08)
+
+
+#### Bug Fixes
+
+* typo ([175f1581](https://github.com/grappendorf/caretaker-server/commit/175f1581ee93293891b42ff2650b2779cdde4f57))
+* typo in date attribute method name ([a634d12a](https://github.com/grappendorf/caretaker-server/commit/a634d12a602491a24306a1aeffd53a360883b47c))
+* the UI isn't updated correctly when the user changes ([d3b5fd2f](https://github.com/grappendorf/caretaker-server/commit/d3b5fd2f1e171b4da858be0adea7cb1e9b8b60b5))
+* **UI:** wrong profile info positioning ([c555063a](https://github.com/grappendorf/caretaker-server/commit/c555063a62a0ad4a93b24ed568a9505c13058089))
+* **demodata:** remove weather widget (doesn't work without API key) ([c2a5aac0](https://github.com/grappendorf/caretaker-server/commit/c2a5aac043f6cfa7a0f4706f5b957d404ede844e))
+* **widgets:** broken CSS of dimmer and dimmer RGB widgets ([50cd299d](https://github.com/grappendorf/caretaker-server/commit/50cd299d99bcac6bda7d69e63a0570791a920dae))
+
+
 <a name="0.3.0"></a>
 ## 0.3.0 (2015-11-11)
 
