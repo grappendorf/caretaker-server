@@ -24,7 +24,7 @@
 
     <grapp-iron-ajax id="devicesNames" base-url="[[apiUrl]]"
                      path="/devices/names" method="GET" handleAs="json"
-                     response="{{devices}}" token="[[token]]">
+                     last-response="{{devices}}" token="[[token]]">
     </grapp-iron-ajax>
 
     <paper-dialog id="dialog">
@@ -39,7 +39,7 @@
         <paper-dropdown-menu id="device" label="device" autofocus>
           <paper-menu class="dropdown-content" selected="{{widget.device.id}}" valueattr="data-device-id">
             <template is="dom-repeat" items="[[devices]]">
-              <paper-item data-device-id="[[id]]">[[name]]</paper-item>
+              <paper-item data-device-id="[[item.id]]">[[item.name]]</paper-item>
             </template>
           </paper-menu>
         </paper-dropdown-menu>
@@ -50,11 +50,11 @@
         </grapp-paper-input>
 
         <label for="width">[[i18n('attributes.widget.width')]]</label>
-        <paper-slider id="width" pin snaps min="1" max="4" step="1" immediateValue="{{widget.width}}">
+        <paper-slider id="width" pin snaps min="1" max="4" step="1" value="{{widget.width}}">
         </paper-slider>
 
         <label for="height">[[i18n('attributes.widget.height')]]</label>
-        <paper-slider id="height" pin snaps min="1" max="4" step="1" immediateValue="{{widget.height}}">
+        <paper-slider id="height" pin snaps min="1" max="4" step="1" value="{{widget.height}}">
         </paper-slider>
 
       </div>

@@ -25,8 +25,10 @@ Polymer
 
   logout: ->
     @token = null
-    @user.roles = []
-    @user.isAdmin = false
+    @user =
+      email: @user.email
+      roles: []
+      isAdmin: false
 
   editProfile: ->
     @$.profileDialog.show().then =>
@@ -45,8 +47,8 @@ Polymer
 
   _userChanged: ->
     if @user
-      @user.isAdmin = @_userHasRole 'admin'
       @email = @user.email
+      @set 'user.isAdmin', @_userHasRole 'admin'
 
   _userHasRole: (role) ->
     role in @user.roles
@@ -55,6 +57,7 @@ Polymer
     @$.loginDialog.processing = false
     @$.loginDialog.hide()
     @password = ''
+    e.detail.response.user.isAdmin = 'admin' in e.detail.response.user.roles
     @user = e.detail.response.user
     @token = e.detail.response.token
 

@@ -85,14 +85,14 @@ Polymer
       model: I18n.t 'models.dashboard.one'
       name: @dashboard.name
     @$.deleteConfirmDialog.ask(message).then =>
-      @dashboards.delete @dashboardId
+      @dashboards.destroy @dashboardId
       @$.dashboardNamesRequest.generateRequest()
       @$.defaultDashboardRequest.generateRequest()
     , ->
 
   _newWidget: ->
     @$.newWidgetDialog.start().then (widget) =>
-      @widgets.create widget, (response) =>
+      @widgets.create(widget).then (response) =>
         @$.newWidgetDialog.end()
         @$.dashboardRequest.generateRequest()
       , =>
@@ -101,8 +101,9 @@ Polymer
   _editWidgetProperties: (e) ->
     @$.editWidgetDialog.widget = e.detail
     @$.editWidgetDialog.start().then (widget) =>
-      @widgets.update widget.id, widget, =>
+      @widgets.update(widget.id, widget).then =>
         @$.editWidgetDialog.end()
+        @_reloadDashboard()
       , =>
         @$.editWidgetDialog.end()
 
@@ -112,7 +113,7 @@ Polymer
       name: e.detail.title
     @$.deleteConfirmDialog.ask(message).then =>
       @widgets.delete e.detail.id
-      @reloadDashboard()
+      @_reloadDashboard()
     , ->
 
   _updateDeviceConnection: (e) ->
