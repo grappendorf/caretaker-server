@@ -1,2 +1,3 @@
 #!/bin/bash
-docker build -t grappendorf/caretaker:0.4.0 .
+VERSION=$(cat lib/version.rb |grep -o -P "(?<=VERSION = ')(.+)(?=')")
+docker build -t grappendorf/caretaker:${VERSION} .
