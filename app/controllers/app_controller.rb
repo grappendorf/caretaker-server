@@ -5,6 +5,11 @@ class AppController < ApplicationController
   def index
   end
 
+  def version
+    require_relative '../../lib/version'
+    render json: { short: VERSION }
+  end
+
   def locale
     render json: { locale: I18n.locale, defaultLocale: I18n.default_locale }
   end

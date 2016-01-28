@@ -1,5 +1,6 @@
 <link rel="import" href="../../web_lib/grapp-app-globals/grapp-app-globals.html">
 <link rel="import" href="../../web_lib/grapp-breadcrumbs/grapp-breadcrumbs.html">
+<link rel="import" href="../../web_lib/grapp-iron-ajax/grapp-iron-ajax.html">
 <link rel="import" href="../../web_lib/github-ribbon/src/github-ribbon.html">
 <link rel="import" href="../../web_lib/github-readme/github-readme.html">
 <link rel="import" href="../../web_lib/polymer-github-card/github-card.html">
@@ -11,6 +12,7 @@
   <template>
 
     <grapp-app-globals>
+      <grapp-app-globals-get key="apiUrl" value="{{apiUrl}}"></grapp-app-globals-get>
       <grapp-app-globals-set key="appTitle" value="action.help_about"></grapp-app-globals-set>
       <grapp-app-globals-set key="appModule" value="help"></grapp-app-globals-set>
       <grapp-app-globals-set key="appFunction" value="about"></grapp-app-globals-set>
@@ -19,6 +21,11 @@
     <grapp-breadcrumbs>
       <grapp-breadcrumb>[[i18n('action.help_about')]]</grapp-breadcrumb>
     </grapp-breadcrumbs>
+
+    <grapp-iron-ajax base-url="[[apiUrl]]"
+                     path="/version" method="GET" handleAs="json"
+                     last-response="{{version}}" auto>
+    </grapp-iron-ajax>
 
     <github-ribbon owner="grappendorf" repo="caretaker-server" corner="right" color="green"></github-ribbon>
 
@@ -31,7 +38,7 @@
     <blockquote>
       <p>
         <small>
-          Version 0.1
+          Version <span>[[version.short]]</span>
         </small>
       </p>
       <p>

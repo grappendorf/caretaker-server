@@ -4,6 +4,7 @@ CaretakerServer::Application.routes.draw do
 
   get '/app' => 'app#index'
   get '/locale' => 'app#locale'
+  get '/version' => 'app#version'
 
   devise_for :users, path: 'session', controllers: { sessions: 'sessions' }
 
