@@ -53,4 +53,5 @@ group :development do
   gem 'pry', '0.10.1'
   gem 'license_finder', '2.0.3'
   gem 'annotate', '2.6.5'
+  gem 'bump', '0.5.3'
 end
