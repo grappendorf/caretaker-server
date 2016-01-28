@@ -69,7 +69,7 @@
     <orderEntry type="library" scope="PROVIDED" name="httparty (v0.13.3, RVM: ruby-2.2.2 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hue-lib (v0.7.2, RVM: ruby-2.2.2 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.7.0, RVM: ruby-2.2.2 [caretaker-server]) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="i18n-js (v2.1.2, RVM: ruby-2.2.2 [caretaker-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="i18n-js (v3.0.0.rc12, RVM: ruby-2.2.2 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="inherit (v0.0.1, RVM: ruby-2.2.2 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.2.11, RVM: ruby-2.2.2 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v1.8.3, RVM: ruby-2.2.2 [caretaker-server]) [gem]" level="application" />
