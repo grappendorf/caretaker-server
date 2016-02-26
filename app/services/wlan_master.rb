@@ -44,11 +44,14 @@ class WlanMaster
         broadcast_socket.do_not_reverse_lookup = true
         broadcast_socket.bind '0.0.0.0', Settings.network.broadcast_port.to_i
         loop do
-          data, addr = broadcast_socket.recvfrom 1024
-          device_address = addr[3]
-          device_name = data[60..91].unpack('Z*')[0]
-          Rails.logger.debug "UDP broadcast from device #{device_name} at #{device_address}"
-          broadcast_socket.send "*SERVER*\n#{Settings.network.device_ip}\n", 0, device_address, 2000
+          begin
+            data, _address = broadcast_socket.recvfrom 1024
+            device_name = data[60..91].unpack('Z*')[0]
+            Rails.logger.debug "UDP broadcast from device #{device_name}"
+            broadcast_socket.send "*SERVER*\n#{Settings.network.device_ip}\n", 0, device_name, 2000
+          rescue => x
+            Rails.logger.error x
+          end
         end
       rescue => x
         Rails.logger.error x
