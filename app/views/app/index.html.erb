@@ -3,36 +3,14 @@
 <html lang="en">
 <head>
   <title>Caretaker</title>
-
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <meta name="x-caretaker-websocket" content="<%= Settings.websocket.url %>"/>
-
-  <script src='web_lib/webcomponentsjs/webcomponents-lite.min.js'></script>
-  <script src="web_lib/jquery/dist/jquery.min.js"></script>
-  <script src="i18n/translations.js"></script>
-
-  <link rel="import" href="web_lib/grapp-app-globals/grapp-app-globals.html">
-  <link rel="import" href="web/caretaker-app/caretaker-app.html">
-  <link rel="import" href="stylesheets/polymer-theme.html">
-
-  <script>
-    Grapp.I18NJsBehavior.i18nSetDefaultLocale("<%= I18n.default_locale %>");
-    Grapp.I18NJsBehavior.i18nSetLocale("<%= I18n.locale %>");
-  </script>
 </head>
 
-  <body class="fullbleed unresolved" touch-action="auto">
-
-  <grapp-app-globals>
-    <grapp-app-globals-set key="websocketUrl" value="<%= Settings.websocket.url %>"></grapp-app-globals-set>
-    <grapp-app-globals-set key="apiUrl" value="<%= Settings.network.api_url %>">
-    </grapp-app-globals-set>
-  </grapp-app-globals>
-
-  <caretaker-app></caretaker-app>
-
+<body class="fullbleed unresolved" touch-action="auto">
+  <h1>Caretaker API</h1>
 </body>
+
 </html>

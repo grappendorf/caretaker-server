@@ -17,7 +17,6 @@ gem 'rolify', '4.0.0'
 gem 'cancan', '1.6.10'
 gem 'inherit', '0.0.1'
 gem 'active_record-acts_as', '1.0.5'
-gem 'i18n-js', '3.0.0.rc12'
 gem 'sqlite3', '1.3.10'
 gem 'kaminari', '0.16.3'
 gem 'jwt', '1.3.0'
@@ -25,9 +24,9 @@ gem 'httparty', '0.13.3'
 gem 'uuid', '2.3.7'
 gem 'hue-lib', '0.7.2'
 gem 'rack-cors', '0.3.1'
+gem 'faker', '1.2.0'
 
 group :test, :development do
-  gem 'faker', '1.2.0'
   gem 'timecop', '0.7.1'
 end
 

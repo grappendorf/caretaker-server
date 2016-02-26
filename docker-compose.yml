@@ -1,9 +1,0 @@
-postgres:
-  image: postgres
-
-caretaker:
-  build: .
-  links:
-    - postgres
-  ports:
-    - 80:80
