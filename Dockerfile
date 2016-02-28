@@ -1,15 +1,16 @@
-FROM grappendorf/ruby:2.2.1
+FROM ruby:2.2.4
 MAINTAINER Dirk Grappendorf "dirk@grappendorf.net"
 
-ENV LAST_APT_GET_UPDATE 20150311
 RUN apt-get update -qqy
-RUN apt-get install -qqy libsqlite3-dev
+RUN apt-get install -qqy build-essential libxml2-dev libxslt-dev libsqlite3-dev
 
 ENV RAILS_ENV production
+ENV NOKOGIRI_USE_SYSTEM_LIBRARIES 1
 
 ADD . /var/app
 WORKDIR /var/app
 
+RUN echo "gem: --no-document" > /root/.gemrc
 RUN bundle install --without=development test demo
 RUN rake db:migrate
 RUN rake db:seed
