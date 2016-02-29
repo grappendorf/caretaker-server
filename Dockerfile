@@ -7,7 +7,7 @@ RUN apt-get install -qqy build-essential libxml2-dev libxslt-dev libsqlite3-dev
 ENV RAILS_ENV production
 ENV NOKOGIRI_USE_SYSTEM_LIBRARIES 1
 
-ADD . /var/app
+COPY . /var/app
 WORKDIR /var/app
 
 RUN echo "gem: --no-document" > /root/.gemrc
@@ -16,7 +16,7 @@ RUN rake db:migrate
 RUN rake db:seed
 RUN ln -s public caretaker
 
-ADD docker/start.sh /bin/
+COPY docker/start.sh /bin/
 
 VOLUME /var/app/db/sqlite
 VOLUME /root/.hue-lib
