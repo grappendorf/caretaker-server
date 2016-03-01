@@ -18,15 +18,18 @@ module WlanConnectionState
         on_entry :device_disconnected
         event :connect, :WAIT_FOR_PING
         event :ping, :CONNECTED
+        event :disconnect, :DISCONNECTED
       end
       state :WAIT_FOR_PING do
         event :ping, :CONNECTED
         event :timeout, :WAIT_FOR_PING
+        event :disconnect, :DISCONNECTED
       end
       state :CONNECTED do
         on_entry :device_connected
         event :ping, :CONNECTED
         event :timeout, :DISCONNECTED
+        event :disconnect, :DISCONNECTED
       end
     end
   end
