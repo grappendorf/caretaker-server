@@ -100,7 +100,7 @@ class DeviceManager
         device.update_attributes uuid: params[0], address: address, name: params[2], description: params[3]
         device.update_attributes_from_registration params[4..-1]
         device.save!
-        add_device device
+        create_device device
         WebsocketRails[:devices].trigger 'register', { id: device.id }
       else
         device = Device.find_by_uuid params[0]
