@@ -19,6 +19,7 @@ module ServiceManager
 
     lookup(:device_manager).start
     lookup(:device_script_manager).start
+    lookup(:device_action_manager).start
     lookup(:philips_hue).start
   end
 
@@ -39,6 +40,7 @@ module ServiceManager
     register(:async) { ThreadStorm.new size: 2 }
     register(:device_manager) { DeviceManager.new }
     register(:device_script_manager) { DeviceScriptManager.new }
+    register(:device_action_manager) { DeviceActionManager.new }
     register(:philips_hue) { PhilipsHueManager.new }
   end
 

@@ -51,6 +51,12 @@ CaretakerServer::Application.routes.draw do
     end
   end
 
+  resources :device_actions, defaults: { format: :json } do
+    member do
+      put :execute
+    end
+  end
+
   resources :buildings, defaults: { format: :json } do
 
     collection do
