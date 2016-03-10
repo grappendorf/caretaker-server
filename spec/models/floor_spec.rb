@@ -11,23 +11,19 @@
 require 'spec_helper'
 
 describe Floor do
-
   subject(:floor) { Fabricate.build :floor }
 
   let(:other_floor) { Fabricate.build :floor }
 
-  it { should respond_to :name }
-  it { should respond_to :description }
-  it { should respond_to :rooms }
-  it { should be_valid }
+  it { is_expected.to respond_to :name }
+  it { is_expected.to respond_to :description }
+  it { is_expected.to respond_to :rooms }
+  it { is_expected.to be_valid }
 
   describe 'is invalid if it' do
-
     it 'has an empty name' do
       floor.name = ''
-      should_not be_valid
+      is_expected.not_to be_valid
     end
-
   end
-
 end

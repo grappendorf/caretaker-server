@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301211110) do
+ActiveRecord::Schema.define(version: 20160309150000) do
 
   create_table "buildings", force: :cascade do |t|
     t.string "name"
@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 20160301211110) do
     t.string "user"
     t.string "password"
     t.string "refresh_interval"
+  end
+
+  create_table "clock_widgets", force: :cascade do |t|
   end
 
   create_table "dashboards", force: :cascade do |t|
@@ -121,17 +124,9 @@ ActiveRecord::Schema.define(version: 20160301211110) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string  "name"
-    t.string  "email",                  default: ""
-    t.string  "encrypted_password",     default: ""
-    t.string  "reset_password_token"
-    t.time    "reset_password_sent_at"
-    t.time    "remember_created_at"
-    t.integer "sign_in_count",          default: 0
-    t.time    "current_sign_in_at"
-    t.time    "last_sign_in_at"
-    t.string  "current_sign_in_ip"
-    t.string  "last_sign_in_ip"
+    t.string "name"
+    t.string "email",              default: ""
+    t.string "encrypted_password", default: ""
   end
 
   add_index "users", ["email"], name: "index_users_on_email"

@@ -1,5 +1,4 @@
 class CreateDevices < ActiveRecord::Migration
-
   def change
     create_table :devices do |t|
       t.actable
@@ -10,5 +9,4 @@ class CreateDevices < ActiveRecord::Migration
 
     add_index :devices, :name, unique: true
   end
-
 end

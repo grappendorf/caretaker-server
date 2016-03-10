@@ -4,34 +4,33 @@ class DeviceActionManager
   end
 
   def start
-    Rails.logger.info 'Device Action Manager starting'
+    Grape::API.logger.info 'Device Action Manager starting'
     DeviceAction.all.each do |action|
       instantiate_action_module action
     end
   end
 
   def stop
-    Rails.logger.info 'Device Action Manager stopping'
-    super
+    Grape::API.logger.info 'Device Action Manager stopping'
   end
 
   def update_action action
     begin
       instantiate_action_module action
     rescue Exception => x
-      Rails.logger.error %Q[#{x.message}\n\t#{x.backtrace.join "\n\t"}]
+      Grape::API.logger.error %Q[#{x.message}\n\t#{x.backtrace.join "\n\t"}]
     end
   end
 
-  def delete_action action
-    @actions_by_id[action.id].delete
+  def remove_action action
+    @actions_by_id.delete action.id
   end
 
-  def executeAction action
+  def execute_action action
     begin
       @actions_by_id[action.id].execute
     rescue Exception => x
-      Rails.logger.error %Q[#{x.message}\n\t#{x.backtrace.join "\n\t"}]
+      Grape::API.logger.error %Q[#{x.message}\n\t#{x.backtrace.join "\n\t"}]
     end
   end
 
@@ -39,7 +38,7 @@ class DeviceActionManager
 
   def instantiate_action_module action
     action_module_name = "DeviceAction_#{action.name.gsub /\W+/, '_'}"
-    Rails.logger.debug "Instantiating action module #{action_module_name}"
+    Grape::API.logger.debug "Instantiating action module #{action_module_name}"
     code = <<-CODE
 			module #{action_module_name}
         def self.execute
@@ -52,7 +51,7 @@ class DeviceActionManager
       action_instance = eval code
       @actions_by_id[action.id] = action_instance
     rescue Exception => x
-      Rails.logger.error %Q[#{x.message}\n\t#{x.backtrace.join "\n\t"}]
+      Grape::API.logger.error %Q[#{x.message}\n\t#{x.backtrace.join "\n\t"}]
     end
   end
 end

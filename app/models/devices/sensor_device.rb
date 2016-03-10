@@ -6,6 +6,9 @@
 #  sensors :text
 #
 
+require 'models/device_base'
+require 'models/wlan_device'
+
 class SensorDevice < ActiveRecord::Base
 
   inherit DeviceBase
@@ -54,5 +57,4 @@ class SensorDevice < ActiveRecord::Base
   def current_state
     states
   end
-
 end

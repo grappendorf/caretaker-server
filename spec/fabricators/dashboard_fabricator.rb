@@ -13,12 +13,3 @@ Fabricator :dashboard do
   user { User.first || Fabricate(:user) }
   default false
 end
-
-Fabricator :widget do
-end
-
-Fabricator :device_widget do
-  position 0
-  width 1
-  height 1
-end

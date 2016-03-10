@@ -2,8 +2,11 @@
 #
 # Table name: rotary_knob_devices
 #
-#  id      :integer          not null, primary key
+#  id :integer          not null, primary key
 #
+
+require 'models/device_base'
+require 'models/wlan_device'
 
 class RotaryKnobDevice < ActiveRecord::Base
 
@@ -47,5 +50,4 @@ class RotaryKnobDevice < ActiveRecord::Base
   def update
     send_message CaretakerMessages::ROTARY_READ
   end
-
 end

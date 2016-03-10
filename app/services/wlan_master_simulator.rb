@@ -1,11 +1,10 @@
 class WlanMasterSimulator
-
   def initialize
     @message_listeners = []
   end
 
   def start
-    Rails.logger.info 'WLAN master simualtor starting'
+    Grape::API.logger.info 'WLAN master simualtor starting'
 
     # noinspection RubyStringKeysInHashInspection
     @devices = {
@@ -66,7 +65,7 @@ class WlanMasterSimulator
   end
 
   def stop
-    Rails.logger.info 'WLAN master simulator stopping'
+    Grape::API.logger.info 'WLAN master simulator stopping'
   end
 
   def send_message address, msg, params = []
@@ -155,7 +154,6 @@ class WlanMasterSimulator
         device[:green] = params[2]
         device[:blue] = params[3]
     end
-    get_rgb address, params
+    get_rgb device, params
   end
-
 end

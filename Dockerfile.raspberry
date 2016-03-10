@@ -4,13 +4,14 @@ MAINTAINER Dirk Grappendorf "dirk@grappendorf.net"
 RUN apt-get update -qqy
 RUN apt-get install -qqy build-essential libsqlite3-dev
 
-ENV RAILS_ENV production
+ENV APP_ENV production
 
 COPY . /var/app
 WORKDIR /var/app
 
 RUN echo "gem: --no-document" > /root/.gemrc
-RUN bundle install --without=development test demo
+RUN bundle install --without=development test
+RUN rake db:drop
 RUN rake db:migrate
 RUN rake db:seed
 RUN ln -s public caretaker

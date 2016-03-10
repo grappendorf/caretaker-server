@@ -1,2 +1,0 @@
-json.num_buttons device.num_buttons
-json.buttons_per_row device.buttons_per_row

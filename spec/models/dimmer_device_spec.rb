@@ -9,9 +9,7 @@ require 'spec_helper'
 require 'models/device_shared_examples'
 
 describe DimmerDevice do
-
   subject(:dimmer_device) { Fabricate :dimmer_device }
 
   it_behaves_like 'a device'
-
 end

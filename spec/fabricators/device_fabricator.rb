@@ -11,9 +11,11 @@
 #  uuid         :string
 #
 
+require 'securerandom'
+
 Fabricator :device do
-  uuid '6ff07437-9ce8-4a53-9add-d700b4b28582'
-  name 'Device'
+  uuid { SecureRandom.uuid }
+  name { sequence(:name) { |n| "Device-#{n}" } }
   address '00:11:22:33:44:55'
   description 'A generic device'
 end
@@ -39,13 +41,11 @@ Fabricator :camera_device do
   refresh_interval 60
 end
 
-Fabricator :ip_camera_device do
+Fabricator :cipcam_device do
   uuid '976e79c8-a722-49c7-b1b1-2c36093f9c03'
   name 'Camera 2'
   address '0000000000000006'
   description '..+++###'
-  host '127.0.0.1'
-  port 80
   user 'user'
   password 'password'
   refresh_interval 60
@@ -81,11 +81,4 @@ Fabricator :remote_control_device do
   description '-~-~-~>>>'
   num_buttons 10
   buttons_per_row 5
-end
-
-Fabricator :robot_device do
-  uuid 'caedc4a8-1788-41cd-86c7-d19517beb078'
-  name 'Robot Device'
-  address '000000000000000A'
-  description 'A robot'
 end

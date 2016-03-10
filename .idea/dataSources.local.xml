@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="Rails caretaker-server: development" uuid="c33b9e50-b934-49d2-9a3f-5cd256a3fff9" />
-    <data-source name="Rails caretaker-server: test" uuid="883b5b98-2a3a-4b81-9e8a-ee80368ab0eb" />
-    <data-source name="Rails caretaker-server: production" uuid="3dc32561-a41f-4fb1-9d44-76490f4fd9e3" />
-    <data-source name="dependencies" uuid="d7519254-abfa-4289-82c3-0dd603d9a147" />
+    <data-source name="Sqlite (Xerial) - development.sqlite3" uuid="7f4b0eb7-1d6b-457e-8fbe-2f50afb67ef6">
+      <secret-storage>master_key</secret-storage>
+      <auth-required>false</auth-required>
+    </data-source>
   </component>
 </project>

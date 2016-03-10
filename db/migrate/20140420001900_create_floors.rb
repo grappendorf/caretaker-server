@@ -1,5 +1,4 @@
 class CreateFloors < ActiveRecord::Migration
-
   def change
     create_table :floors do |t|
       t.string :name
@@ -9,5 +8,4 @@ class CreateFloors < ActiveRecord::Migration
 
     add_index :floors, :name
   end
-
 end

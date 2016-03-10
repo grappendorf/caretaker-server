@@ -5,6 +5,9 @@
 #  id :integer          not null, primary key
 #
 
+require 'models/device_base'
+require 'models/wlan_device'
+
 class DimmerDevice < ActiveRecord::Base
 
   inherit DeviceBase
@@ -55,5 +58,4 @@ class DimmerDevice < ActiveRecord::Base
   def put_state params
     set_value params[:value].to_i
   end
-
 end

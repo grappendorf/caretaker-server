@@ -9,10 +9,9 @@
 #
 
 class Role < ActiveRecord::Base
-
   has_and_belongs_to_many :users
   belongs_to :resource, :polymorphic => true
 
-  scopify
-
+  require "rolify/adapters/#{Rolify.orm}/scopes.rb"
+  extend Rolify::Adapter::Scopes
 end

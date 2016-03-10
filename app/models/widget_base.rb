@@ -13,12 +13,14 @@ module WidgetBase
     end
   end
 
+  module InstanceMethods
+  end
+
   def self.widget_models
     @@widget_models ||= []
   end
 
   def self.inherited subclass
-    widget_models << subclass unless subclass == Widget
+    widget_models << subclass unless subclass.name == 'Widget'
   end
-
 end

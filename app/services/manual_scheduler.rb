@@ -1,9 +1,7 @@
 require 'rufus/scheduler'
 
 class ManualScheduler < Rufus::Scheduler::SchedulerCore
-
   class ManualJobQueue < Rufus::Scheduler::JobQueue
-
     def next_job
       @jobs.first
     end
@@ -11,23 +9,18 @@ class ManualScheduler < Rufus::Scheduler::SchedulerCore
     def each_job
       @jobs.each { |job| yield job }
     end
-
   end
 
   class ManualCronJobQueue < Rufus::Scheduler::CronJobQueue
-
     def trigger_matching_jobs
     end
-
   end
 
   class ManualInJob < Rufus::Scheduler::InJob
-
     def determine_at
       iin = @t.is_a?(Fixnum) || @t.is_a?(Float) ? @t : Rufus.parse_duration_string(@t)
       @at = @scheduler.time_now + iin
     end
-
   end
 
   attr_reader :time_now
@@ -35,11 +28,10 @@ class ManualScheduler < Rufus::Scheduler::SchedulerCore
   def initialize opts = {}
     super
     @time_now = 0
-    #@logger = Logging.logger[ManualScheduler]
-    @logger = Rails.logger
+    @logger = Grape::API.logger
   end
 
-  def get_queue type, opts
+  def get_queue type, _opts
     if type == :cron
       ManualCronJobQueue.new
     else
@@ -52,7 +44,7 @@ class ManualScheduler < Rufus::Scheduler::SchedulerCore
     add_job ManualInJob.new self, t, combine_opts(s, opts), &block
   end
 
-  def trigger_job params, &block
+  def trigger_job _params, &block
     block.call
   end
 
@@ -94,5 +86,4 @@ class ManualScheduler < Rufus::Scheduler::SchedulerCore
     @time_now = 0
     @jobs = ManualJobQueue.new
   end
-
 end

@@ -7,6 +7,9 @@
 #  switches_per_row :integer
 #
 
+require 'models/device_base'
+require 'models/wlan_device'
+
 class SwitchDevice < ActiveRecord::Base
 
   inherit DeviceBase
@@ -90,5 +93,4 @@ class SwitchDevice < ActiveRecord::Base
   def put_state params
     set_state params[:num].to_i, params[:value].to_i
   end
-
 end

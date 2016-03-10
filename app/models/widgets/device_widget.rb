@@ -7,6 +7,8 @@
 #  device_type :string
 #
 
+require 'models/widget_base'
+
 class DeviceWidget < ActiveRecord::Base
 
   inherit WidgetBase
@@ -32,6 +34,7 @@ class DeviceWidget < ActiveRecord::Base
   end
 
   private
+
   def assign_device_if_only_device_id_is_set
     self.device = Device.find(device_id).specific if device_type.nil?
   end

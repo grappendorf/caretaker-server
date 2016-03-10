@@ -2,7 +2,6 @@
 # Use this in your test code instead of the normal random number service.
 
 class DeterministicRandom
-
   def initialize default = 0
     @default = default
     @numbers = []
@@ -23,5 +22,4 @@ class DeterministicRandom
   def rand limit = nil
     @numbers.shift || @default
   end
-
 end

@@ -1,7 +1,6 @@
 require 'renum'
 
 module ConnectionState
-
   # A devices is always in one of the following connection states:
   # - UNKNOWN
   #	We really don't know the current connection state
@@ -20,5 +19,4 @@ module ConnectionState
   def connected?
     state == :CONNECTED
   end
-
 end

@@ -10,29 +10,25 @@
 require 'spec_helper'
 
 describe Building do
-
   subject(:building) { Fabricate.build :building }
 
   let(:other_building) { Fabricate.build :building }
 
-  it { should respond_to :name }
-  it { should respond_to :description }
-  it { should respond_to :floors }
-  it { should be_valid }
+  it { is_expected.to respond_to :name }
+  it { is_expected.to respond_to :description }
+  it { is_expected.to respond_to :floors }
+  it { is_expected.to be_valid }
 
   describe 'is invalid if it' do
-
     it 'has an empty name' do
       building.name = ''
-      should_not be_valid
+      is_expected.not_to be_valid
     end
 
     it 'has the same name as another building' do
       other_building.save
       building.name = other_building.name
-      should_not be_valid
+      is_expected.not_to be_valid
     end
-
   end
-
 end

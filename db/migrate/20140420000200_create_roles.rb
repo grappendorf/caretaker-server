@@ -1,5 +1,4 @@
 class CreateRoles < ActiveRecord::Migration
-
   def change
     create_table :roles do |t|
       t.string :name
@@ -9,5 +8,4 @@ class CreateRoles < ActiveRecord::Migration
     add_index :roles, :name
     add_index :roles, [:name, :resource_type, :resource_id]
   end
-
 end

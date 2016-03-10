@@ -1,17 +1,15 @@
 require 'hue'
 
 class PhilipsHueManager
-
   attr_reader :bridge
 
   def start
-    Rails.logger.info 'Philips Hue Manager starting'
-
+    Grape::API.logger.info 'Philips Hue Manager starting'
     @bridge = Hue.application rescue nil
   end
 
   def stop
-    Rails.logger.info 'Philips Hue Manager stopping'
+    Grape::API.logger.info 'Philips Hue Manager stopping'
   end
 
   def register

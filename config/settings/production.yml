@@ -1,5 +1,0 @@
-network:
-  broadcast_port: 55555
-  device_ip: <%= ENV['CARETAKER_DEVICE_IP'] %>
-websocket:
-  standalone: false

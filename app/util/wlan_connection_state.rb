@@ -1,5 +1,6 @@
-module WlanConnectionState
+require_relative 'connection_state'
 
+module WlanConnectionState
   include ConnectionState
 
   inject :scheduler

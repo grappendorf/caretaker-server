@@ -1,89 +1,74 @@
-# Workaround for pry's "uninitialized constant BSON/ObjectId" error
-BSON=Object
-ObjectId=Object
+require File.expand_path '../environment', __FILE__
+require 'rack/cors'
 
-require File.expand_path('../boot', __FILE__)
+I18n.load_path << 'config/locales/de.yml'
+I18n.load_path << 'config/locales/en.yml'
+I18n.available_locales = %w(en de)
+require 'i18n/backend/fallbacks'
+I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
 
-# Pick the frameworks you want:
-require 'active_model/railtie'
-require 'active_record/railtie'
-require 'action_controller/railtie'
-require 'action_mailer/railtie'
-require 'action_view/railtie'
-require 'sprockets/railtie'
-require_relative '../app/util/dependency_injection'
-require_relative '../app/util/caretaker_messages'
+Grape::API.logger = Logger.new STDOUT
+Grape::API.logger.level = Application.config.log_level || Logger::Severity::INFO
 
-if defined?(Bundler)
-  # If you precompile assets before deploying to production, use this line
-  Bundler.require(*Rails.groups(:assets => %w(development test)))
-  # If you want your assets lazily compiled in production, use this line
-  # Bundler.require(:default, :assets, Rails.env)
+module API
 end
 
-I18n.config.enforce_available_locales = true
+require 'util/dependency_injection'
+require 'util/caretaker_messages'
+require 'models/device_base'
+require 'models/device_base'
+require 'models/device'
+require 'models/widget_base'
+require 'models/widget'
 
-module CaretakerServer
-  class Application < Rails::Application
+%w(models/devices models/widgets models).each do |dir|
+  Dir["#{File.dirname(__FILE__)}/../app/#{dir}/*.rb"].each { |f| require f }
+end
 
-    config.middleware.use ActionDispatch::Flash
+ServiceManager.start
 
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration should go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded.
+require 'api/base'
+%w(api).each do |dir|
+  Dir["#{File.dirname(__FILE__)}/../app/#{dir}/*.rb"].each { |f| require f }
+end
 
-    # Custom directories with classes and modules you want to be autoloadable.
-    # config.autoload_paths += %W(#{config.root}/extras)
-    config.autoload_paths += Dir["#{config.root}/app/models/**"]
+class API::Root < Grape::API
+  mount API::Websocket
+  mount API::Status
+  mount API::Sessions
+  mount API::Users
+  mount API::Buildings
+  mount API::Floors
+  mount API::Rooms
+  mount API::DeviceActions
+  mount API::DeviceScripts
+  mount API::PhilipsHue
+  mount API::Dashboards
+  mount API::Widgets
+  mount API::Devices
+  mount API::CipcamDevices
+end
 
-    # Only load the plugins named here, in the order given (default is alphabetical).
-    # :all can be used as a placeholder for all plugins not explicitly named.
-    # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
-
-    # Activate observers that should always be running.
-    # config.active_record.observers = :cacher, :garbage_collector, :forum_observer
-
-    # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
-    # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
-    # config.time_zone = 'Central Time (US & Canada)'
-
-    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.default_locale = :en
-
-    # Configure the default encoding used in templates for Ruby 1.9.
-    config.encoding = "utf-8"
-
-    # Enable escaping HTML in JSON.
-    config.active_support.escape_html_entities_in_json = true
-
-    # Use SQL instead of Active Record's schema dumper when creating the database.
-    # This is necessary if your schema can't be completely dumped by the schema dumper,
-    # like if you have constraints or database-specific column types
-    # config.active_record.schema_format = :sql
-
-    # Enable the asset pipeline
-    config.assets.enabled = true
-
-    # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.0'
-
-    config.generators do |g|
-      g.test_framework :rspec, :fixture => false
-      g.view_specs false
-      g.helper_specs false
+Application.root = Rack::Builder.new do
+  use HttpAcceptLanguage::Middleware
+  use Rack::Cors do
+    allow do
+      origins '*'
+      resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options]
     end
+  end
 
-    config.session_store = :encryptedsessionstore
+  map '/' do
+    run API::Root
+  end
+end
 
-    config.after_initialize do |app|
-      # Add catchall routes here, so they are placed at the end of the routes table (after all engine routes)
-      app.routes.append { get '*path', to: 'catchall#index' }
+Faye::WebSocket.load_adapter('thin')
 
-      ServiceManager.start
+module Rack
+  class Lint
+    def call(env = nil)
+      @app.call(env)
     end
-
-    config.action_dispatch.default_headers = { 'X-Frame-Options' => '' }
-
   end
 end

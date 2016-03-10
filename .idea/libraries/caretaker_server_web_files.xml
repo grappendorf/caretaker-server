@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="caretaker-server web files" type="javaScript">
-    <CLASSES>
-      <root url="file://$PROJECT_DIR$/public/web" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

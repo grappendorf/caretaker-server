@@ -1,8 +1,8 @@
 require 'socket'
 
 class DeviceManager
-
   inject :wlan_master
+  inject :websockets
 
   def initialize
     @devices_by_address = {}
@@ -11,7 +11,7 @@ class DeviceManager
   end
 
   def start
-    Rails.logger.info 'Device Manager starting'
+    Grape::API.logger.info 'Device Manager starting'
 
     Device.all.each {|device| add_device device.specific}
 
@@ -22,7 +22,7 @@ class DeviceManager
   end
 
   def stop
-    Rails.logger.info 'Device Manager stopping'
+    Grape::API.logger.info 'Device Manager stopping'
     wlan_master.stop
     super
   end
@@ -53,11 +53,12 @@ class DeviceManager
     end
     device.init_connection_state
     device.when_connection_changed do |device|
-      WebsocketRails[:devices].trigger 'connection', { id: device_id, connected: device.connected? }
+      websockets.trigger 'devices.connection',
+        { id: device_id, connected: device.connected? }
     end
     device.when_changed do |device|
-      WebsocketRails[:devices].trigger 'state',
-                                       { type: device.class.name, id: device_id, state: device.current_state }
+      websockets.trigger 'devices.state',
+        { type: device.class.name, id: device_id, state: device.current_state }
     end
   end
 
@@ -101,7 +102,7 @@ class DeviceManager
         device.update_attributes_from_registration params[4..-1]
         device.save!
         create_device device
-        WebsocketRails[:devices].trigger 'register', { id: device.id }
+        websockets.trigger 'devices.register', { id: device.id }
       else
         device = Device.find_by_uuid params[0]
         if device.address != address
@@ -114,5 +115,4 @@ class DeviceManager
       device_by_address(address).try(:message_received, msg, params)
     end
   end
-
 end

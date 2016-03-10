@@ -7,6 +7,9 @@
 #  buttons_per_row :integer
 #
 
+require 'models/device_base'
+require 'models/wlan_device'
+
 class EasyvrDevice < ActiveRecord::Base
 
   inherit DeviceBase
@@ -74,5 +77,4 @@ class EasyvrDevice < ActiveRecord::Base
   def current_state
     states
   end
-
 end

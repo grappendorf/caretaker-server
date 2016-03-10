@@ -1,5 +1,4 @@
 class CreateDeviceScripts < ActiveRecord::Migration
-
   def change
     create_table :device_scripts do |t|
       t.string :name
@@ -8,5 +7,4 @@ class CreateDeviceScripts < ActiveRecord::Migration
       t.boolean :enabled
     end
   end
-
 end

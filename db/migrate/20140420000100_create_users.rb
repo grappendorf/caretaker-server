@@ -1,5 +1,4 @@
 class CreateUsers < ActiveRecord::Migration
-
   def change
     create_table :users do |t|
       t.string :name
@@ -30,8 +29,6 @@ class CreateUsers < ActiveRecord::Migration
       ## Token authenticatable
       # t.string :authentication_token
     end
-
     add_index :users, :email
   end
-
 end

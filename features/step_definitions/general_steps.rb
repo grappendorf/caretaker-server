@@ -1,27 +1,15 @@
-When /^i log in$/ do
-  sign_in_as :user
-end
-
-When(/^i click the link "(.*?)"$/) do |text|
-  click_link text
-end
-
-When(/^i click on the button "(.*?)"$/) do |text|
-  click_button text
-end
-
-Then(/^i see a dialog titled "(.*?)"$/) do |title|
-  page.should have_selector 'div.modal div.modal-header', text: title
-end
-
-When(/^i enter "(.*?)" into "(.*?)"$/) do |value, field|
-  fill_in field, with: value
-end
-
-Then(/^i see "([^"]*)"$/) do |text|
-  page.should have_content text
-end
-
-Then(/^i see a confirmation dialog$/) do
-  page.should have_selector 'div.modal div.modal-header', text: 'confirm'
+Given /I am authenticated as (?:a|an) (user|manager|administrator|admin)/ do |role|
+  @current_user = case role
+                    when 'user'
+                      Fabricate :user
+                    when 'manager'
+                      Fabricate :manager
+                    when 'admin', 'administrator'
+                      Fabricate :admin
+                  end
+  self.instance_variable_set :@CURRENT_USER_ID, @current_user.id
+  JsonSpec.memorize 'CURRENT_USER_ID', @current_user.id
+  self.instance_variable_set :@CURRENT_USER_NAME, @current_user.name
+  JsonSpec.memorize 'CURRENT_USER_NAME', @current_user.name
+  allow_any_instance_of(AuthHelpers).to receive(:current_user).and_return @current_user
 end

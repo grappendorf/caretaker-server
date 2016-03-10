@@ -1,7 +1,13 @@
-#!/usr/bin/env rake
-# Add your own tasks in files placed in lib/tasks ending in .rake,
-# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
-
+require 'yaml'
+require 'logger'
+require 'active_record'
 require File.expand_path('../config/application', __FILE__)
 
-CaretakerServer::Application.load_tasks
+include ActiveRecord::Tasks
+
+task :environment do
+  ActiveRecord::Base.configurations = DatabaseTasks.database_configuration
+  ActiveRecord::Base.establish_connection DatabaseTasks.env.to_sym
+end
+
+Dir["#{File.dirname(__FILE__)}/lib/tasks/*.rake"].each { |f| load f }

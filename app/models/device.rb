@@ -12,17 +12,14 @@
 #
 
 class Device < ActiveRecord::Base
-
-  actable
-
   inherit DeviceBase
+  actable
 
   validates :uuid, presence: true, uniqueness: true
   validates :name, presence: true, uniqueness: true
   validates :address, presence: true
 
   scope :search, -> (q) { where('name like ? or address like ? or description like ?', "%#{q}%", "%#{q}%", "%#{q}%") }
-
   scope :search_names, -> (q) { where('name like ?', "%#{q}%") }
 
   def self.new_from_type type
@@ -32,5 +29,4 @@ class Device < ActiveRecord::Base
     end
     klass.new
   end
-
 end

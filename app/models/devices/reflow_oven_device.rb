@@ -5,6 +5,9 @@
 #  id :integer          not null, primary key
 #
 
+require 'models/device_base'
+require 'models/wlan_device'
+
 class ReflowOvenDevice < ActiveRecord::Base
 
   inherit DeviceBase
@@ -62,5 +65,4 @@ class ReflowOvenDevice < ActiveRecord::Base
         raise InvalidArgumentError
     end
   end
-
 end

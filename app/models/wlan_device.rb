@@ -1,5 +1,6 @@
-module WlanDevice
+require 'util/wlan_connection_state'
 
+module WlanDevice
   include WlanConnectionState
 
   inject :wlan_master
@@ -29,5 +30,4 @@ module WlanDevice
 
   def update_attributes_from_registration params
   end
-
 end

@@ -7,6 +7,9 @@
 #  buttons_per_row :integer
 #
 
+require 'models/device_base'
+require 'models/wlan_device'
+
 class RemoteControlDevice < ActiveRecord::Base
 
   inherit DeviceBase
@@ -78,5 +81,4 @@ class RemoteControlDevice < ActiveRecord::Base
     states[params[:num].to_i] = params[:value].to_i
     notify_change_listeners
   end
-
 end

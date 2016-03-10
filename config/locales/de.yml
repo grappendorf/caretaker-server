@@ -1,240 +1,128 @@
 de:
-
-  manage: "Verwaltung"
-  profile: "Profil"
-  settings: "Einstellungen"
-  system: "System"
-  documentation: "Dokumentation"
-  account: "Account"
-
-  action:
-    back: "Zurück"
-    cancel: "Abbrechen"
-    change_password: "Passwort ändern"
-    dashboards: "Dashboards"
-    delete: "Löschen"
-    edit: "Bearbeiten"
-    help: "Hilfe"
-    home: "Start"
-    new: "Neu"
-    save: "Speichern"
-    rename: "Umbenennen"
-    'on': "Ein"
-    'off': "Aus"
-    sign_in: "Anmelden"
-    sign_out: "Abmelden"
-    delete_dashboard: "Dashboard löschen"
-    new_dashboard: "Neues Dashboard"
-    add_widget: "Widget hinzufügen"
-    edit_widget: "Widget bearbeiten"
-    reload_dashboard: "Aktualisieren"
-    edit_your_profile: "Ändern Sie Ihr Profil"
-    change_your_password: "Ändern Sie Ihr Passwort"
-    save_profile: "Profil speichern"
-    create_widget: "Widget anlegen"
-    enter_dashboard_name: "Dashboard Namen angeben"
-    create_dashboard: "Dashboard anlegen"
-    close: "Schließen"
-    ok: "Ok"
-    'no': "Nein"
-    'yes': "Ja"
-    widget_properties: "Widget Eigenschaften"
-    help_about: "Über"
-    create_dashboard: "Dashboard anlegen"
-    philips_hue_bridge_register: "An der Hue-Bridge registrieren (Hue Knopf drücken!)"
-    philips_hue_bridge_unregister: "Von der Hue-Bridge abmelden"
-    philips_hue_synchronize_lights: "Lampen mit der Datenbank synchronisieren"
-
-  message:
-    error_not_authorized: "Sie sind nicht berechtigt diese Funktion aufzurufen"
-    error_in_input_data:
-      one: "Es gibt einen Fehler in Ihren Eingabedaten"
-      other: "Es gibt #{count} Fehler in Ihren Eingabedaten"
-    error_not_logged_in: "Bitte melden Sie sich an um fortzufahren"
-    error_wrong_password_or_user_name: "Falsches Passwort oder falscher Benutzername"
-    error_empty_password: "Bitte geben Sie ein Passwort ein"
-    error_passwords_dont_match: "Die beiden Passwörter stimmen nicht überein"
-    error_empty_email: "Bitte geben Sie eine Email-Adresse ein"
-    successfully_created: "%{model} %{name} wurde erfolgreich angelegt"
-    successfully_updated: "%{model} %{name} wurde erfolgreich gespeichert"
-    successfully_deleted: "%{model} %{name} wurde erfolgreich gelöscht"
-    confirm_delete: "Soll %{model} <b>'%{name}'</b> wirklich gelöscht werden?"
-    successfully_saved_profile: "Ihr Benutzerprofil wurde erfolgreich gespeichert"
-    successfully_changed_password: "Ihr Passwort wurde erfolgreich geändert"
-    password_remains_unchanged: "Ihr Passwort wurde nicht geändert"
-    select_device_for_widget: "Wählen Sie das Gerät aus, das dargestellt werden soll"
-    error_loading_dashboard: "Beim Laden des Dashboards '{{dashboard.name}}' ist ein Fehler aufgetreten"
-    error_uknown_widget_type: "Unbekannter Widget Typ"
-    choose_optional_widget_title: "Geben Sie einen optionalen Widget-Titel ein"
-    select_a_building: "Bitte wählen Sie ein Gebäude aus"
-    select_a_floor: "Bitte wählen Sie eine Etage aus"
-    delete_dashboard_confirmation: >
-      Soll das Dashboard <strong>{{name}}</strong> wirklich gelöscht werden?<br>
-      Alle Widgets werden ebenfalls gelöscht und können später nicht wieder hergestellt werden!
-    please_log_on: "Bitte melden Sie sich an"
-    philips_hue_communication_error: >
-      Die Kommunikation mit der Hue Bridge war leider nicht erfolgreich.<br><br>
-      Fehlermeldung:<br><br>
-      <b>%{error}</b>
-    philips_hue_unregister_confirmation: "Wollen Sie sich wirklich von der Hue-Bridge abmelden?"
-    philips_hue_rename_light: "Bitte geben Sie den neuen Namen der Lampe ein und rücken Sie auf 'Speichern'"
-    logged_in_as: "Angemeldet als:"
-
-  title:
-    app: "Caretaker"
-    index_model: "%{model}"
-    show_model: "%{model} %{name}"
-    edit_model: "Bearbeitung %{model} %{name}"
-    new_model: "Neuanlage %{model}"
-    settings: "Einstellungen"
-    sign_in: "Anmeldung"
-    create_dashboard: "Neues Dashboard anlegen"
-    dashboard_properties: "Dashboard Eigenschaften"
-    add_widgets_to_your_dashboard: "Fügen Sie Ihrem Dashboard Widgets hinzu!"
-    delete_confirmation: "Bitte bestätigen Sie die Löschung"
-    create_a_dashboard: "Legen Sie ein Dashboard an!"
-    philips_hue: "Philips Hue"
-
-  description:
-    your_dashboard_is_empty: Ihr Dashboard ist momentan leer.
-    add_widgets_to_your_dashboard: Sie können dem Dashboard Widgets hinzufügen, indem Sie auf den Button 'Widget hinzufügen' klicken.
-    you_currently_have_no_dashboard: "Sie haben noch kein Dashboard."
-    create_your_first_dashboard: "Erzeugen Sie Ihr erstes Dashboard, indem Sie auf die Schaltfläche 'Dashboard anlegen' klicken."
-    there_are_no_fields_for_this_fieldset: "Hier müssen keine Angaben gemacht werden."
-
-  placeholder:
-    search: "Suche..."
-
-  models: &models
-    user:
-      one: "Benutzer"
-      other: "Benutzer"
-    device:
-      one: "Gerät"
-      other: "Geräte"
-    cipcam_device:
-      one: "Kamera"
-      other: "Kameras"
-    dimmer_device:
-      one: "Dimmer"
-      other: "Dimmer"
-    dimmer_rgb_device:
-      one: "RGB Dimmer"
-      other: "RGB Dimmer"
-    easyvr_device:
-      one: "EasyVR"
-      other: "EasyVRs"
-    reflow_oven_device:
-      one: "Reflow Oven"
-      other: "Reflow Ovens"
-    remote_control_device:
-      one: "Fernsteuerung"
-      other: "Fernsteuerungen"
-    rotary_knob_device:
-      one: "Drehknopf"
-      other: "Drehknopf"
-    switch_device:
-      one: "Schalter"
-      other: "Schalter"
-    sensor_device:
-      one: "Sensor"
-      other: "Sensoren"
-    philips_hue_light_device:
-      one: "Philips Hue Light"
-      other: "Philips Hue Lights"
-    device_script:
-      one: "Geräte-Skript"
-      other: "Geräte-Skripte"
-    room:
-      one: "Raum"
-      other: "Räume"
-    floor:
-      one: "Etage"
-      other: "Etagen"
-    building:
-      one: "Gebäude"
-      other: "Gebäude"
-    room:
-      one: "Raum"
-      other: "Räume"
-    dashboard:
-      one: "Dashboard"
-      other: "Dashboards"
-    widget:
-      one: "Widget"
-      other: "Widgets"
-
-  attributes: &attributes
-    user:
-      name: "Name"
-      email: "Email"
-      password: "Passwort"
-      password_confirmation: "Passwort bestätigen"
-      new_password: "New Password"
-      remember_me: 'Angemeldet bleiben'
-      last_sign_in_at: "Letzte Anmeldung"
-      roles: "Rollen"
-    device:
-      uuid: "UUID"
-      name: "Name"
-      type: "Typ"
-      address: "Adresse"
-      description: "Beschreibung"
-    cipcam_device:
-      user: "Benutzer"
-      password: "Passwort"
-      refresh_interval: "Aktualisierung"
-    switch_device:
-      num_switches: "Anzahl der Schalter"
-      switches_per_row: "Anzahl Schalter pro Zeile"
-    easyvr_device:
-      num_buttons: "Anzahl der Tasten"
-      buttons_per_row: "Tasten pro Zeile"
-    remote_control_device:
-      num_buttons: "Anzahl der Tasten"
-      buttons_per_row: "Tasten pro Zeile"
-    device_script:
-      name: "Name"
-      name_hint: "Eindeutiger Skript-Name"
-      description: "Beschreibung"
-      enabled: "Aktiv"
-      script: "Skript"
-      script_hint: "Hier können Sie Ihr Geräte-Skript schreiben"
-    building:
-      name: "Name"
-      description: "Beschreibung"
-    floor:
-      name: "Name"
-      description: "Beschreibung"
-    room:
-      number: "Nummer"
-      description: "Beschreibung"
-    dashboard:
-      name: "Name"
-      default: "Standard"
-      user:
-        name: "Benutzer"
-    widget:
-      title: "Title"
-      width: "Breite"
-      height: "Höhe"
-    philips_hue:
-      bridge: "Bridge"
-      application_id: "Applikations ID"
-      bridge_uri: "Bridge URI"
-      lights: "Lampen"
-      light:
-        name: "Name"
-        type: "Typ"
-        uniqueid: "ID"
-        reachable: "Erreichbar"
-        brightness: "Helligkeit"
-        hue: "Farbton"
-        saturation: "Sättigung"
-        mode: "Modus"
-
   activerecord:
     models:
-      <<: *models
+      user:
+        one: "Benutzer"
+        other: "Benutzer"
+      device:
+        one: "Gerät"
+        other: "Geräte"
+      cipcam_device:
+        one: "Kamera"
+        other: "Kameras"
+      dimmer_device:
+        one: "Dimmer"
+        other: "Dimmer"
+      dimmer_rgb_device:
+        one: "RGB Dimmer"
+        other: "RGB Dimmer"
+      easyvr_device:
+        one: "EasyVR"
+        other: "EasyVRs"
+      reflow_oven_device:
+        one: "Reflow Oven"
+        other: "Reflow Ovens"
+      remote_control_device:
+        one: "Fernsteuerung"
+        other: "Fernsteuerungen"
+      rotary_knob_device:
+        one: "Drehknopf"
+        other: "Drehknopf"
+      switch_device:
+        one: "Schalter"
+        other: "Schalter"
+      sensor_device:
+        one: "Sensor"
+        other: "Sensoren"
+      philips_hue_light_device:
+        one: "Philips Hue Light"
+        other: "Philips Hue Lights"
+      device_script:
+        one: "Geräte-Skript"
+        other: "Geräte-Skripte"
+      room:
+        one: "Raum"
+        other: "Räume"
+      floor:
+        one: "Etage"
+        other: "Etagen"
+      building:
+        one: "Gebäude"
+        other: "Gebäude"
+      room:
+        one: "Raum"
+        other: "Räume"
+      dashboard:
+        one: "Dashboard"
+        other: "Dashboards"
+      widget:
+        one: "Widget"
+        other: "Widgets"
     attributes:
-      <<: *attributes
+      user:
+        name: "Name"
+        email: "Email"
+        password: "Passwort"
+        password_confirmation: "Passwort bestätigen"
+        new_password: "New Password"
+        remember_me: 'Angemeldet bleiben'
+        last_sign_in_at: "Letzte Anmeldung"
+        roles: "Rollen"
+      device:
+        uuid: "UUID"
+        name: "Name"
+        type: "Typ"
+        address: "Adresse"
+        description: "Beschreibung"
+      cipcam_device:
+        user: "Benutzer"
+        password: "Passwort"
+        refresh_interval: "Aktualisierung"
+      switch_device:
+        num_switches: "Anzahl der Schalter"
+        switches_per_row: "Anzahl Schalter pro Zeile"
+      easyvr_device:
+        num_buttons: "Anzahl der Tasten"
+        buttons_per_row: "Tasten pro Zeile"
+      remote_control_device:
+        num_buttons: "Anzahl der Tasten"
+        buttons_per_row: "Tasten pro Zeile"
+      device_script:
+        name: "Name"
+        name_hint: "Eindeutiger Skript-Name"
+        description: "Beschreibung"
+        enabled: "Aktiv"
+        script: "Skript"
+        script_hint: "Hier können Sie Ihr Geräte-Skript schreiben"
+      building:
+        name: "Name"
+        description: "Beschreibung"
+      floor:
+        name: "Name"
+        description: "Beschreibung"
+      room:
+        number: "Nummer"
+        description: "Beschreibung"
+      dashboard:
+        name: "Name"
+        default: "Standard"
+        user:
+          name: "Benutzer"
+      widget:
+        title: "Title"
+        width: "Breite"
+        height: "Höhe"
+      philips_hue:
+        bridge: "Bridge"
+        application_id: "Applikations ID"
+        bridge_uri: "Bridge URI"
+        lights: "Lampen"
+        light:
+          name: "Name"
+          type: "Typ"
+          uniqueid: "ID"
+          reachable: "Erreichbar"
+          brightness: "Helligkeit"
+          hue: "Farbton"
+          saturation: "Sättigung"
+          mode: "Modus"

@@ -1,2 +1,0 @@
-json.num_switches device.num_switches
-json.switches_per_row device.switches_per_row

@@ -1,5 +1,4 @@
 class CreateCipcamDevices < ActiveRecord::Migration
-
   def change
     create_table :cipcam_devices do |t|
       t.string :user
@@ -7,5 +6,4 @@ class CreateCipcamDevices < ActiveRecord::Migration
       t.string :refresh_interval
     end
   end
-
 end

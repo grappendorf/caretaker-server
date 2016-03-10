@@ -1,5 +1,4 @@
 class CreateRooms < ActiveRecord::Migration
-
   def change
     create_table :rooms do |t|
       t.string :number
@@ -9,5 +8,4 @@ class CreateRooms < ActiveRecord::Migration
 
     add_index :rooms, :number
   end
-
 end

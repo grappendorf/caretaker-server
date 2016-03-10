@@ -2,8 +2,11 @@
 #
 # Table name: philips_hue_light_devices
 #
-#  id               :integer          not null, primary key
+#  id :integer          not null, primary key
 #
+
+require 'util/dummy_connection_state'
+require 'models/device_base'
 
 class PhilipsHueLightDevice < ActiveRecord::Base
 
@@ -61,5 +64,4 @@ class PhilipsHueLightDevice < ActiveRecord::Base
     philips_hue.light_update_color address.to_i, hue, saturation
     notify_change_listeners
   end
-
 end

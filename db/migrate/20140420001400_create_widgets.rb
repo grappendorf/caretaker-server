@@ -1,5 +1,4 @@
 class CreateWidgets < ActiveRecord::Migration
-
   def change
     create_table :widgets do |t|
       t.actable
@@ -11,5 +10,4 @@ class CreateWidgets < ActiveRecord::Migration
       t.references :dashboard
     end
   end
-
 end

@@ -1,5 +1,4 @@
 class ConvertWidgetXyToLinearPosition < ActiveRecord::Migration
-
   class Widget < ActiveRecord::Base
   end
 

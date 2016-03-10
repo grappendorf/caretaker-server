@@ -1,5 +1,4 @@
 module CaretakerMessages
-
   # General messages
   INVALID             = 0
   REGISTER_REQUEST    = 1
@@ -76,5 +75,4 @@ module CaretakerMessages
   # Button states
   BUTTON_RELEASED = 0
   BUTTON_PRESSED  = 1
-
 end

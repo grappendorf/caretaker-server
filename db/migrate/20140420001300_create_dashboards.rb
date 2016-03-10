@@ -1,5 +1,4 @@
 class CreateDashboards < ActiveRecord::Migration
-
   def change
     create_table :dashboards do |t|
       t.string :name
@@ -7,5 +6,4 @@ class CreateDashboards < ActiveRecord::Migration
       t.references :user
     end
   end
-
 end

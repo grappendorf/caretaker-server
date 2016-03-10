@@ -3,7 +3,12 @@ require 'ostruct'
 module DeviceBase
   module ClassMethods
     def attr_accessible
-      [:uuid, :name, :address, :description]
+      {
+        uuid: {type: String, required: true, desc: 'The unique device identifier'},
+        name: {type: String, required: true, desc: 'The unique device name'},
+        address: {type: String, required: true, desc: 'The device network address'},
+        description: {type: String, desc: 'The device identifier'},
+      }
     end
 
     def small_icon()
@@ -72,7 +77,6 @@ module DeviceBase
   end
 
   def self.inherited subclass
-    device_models << subclass unless subclass == Device
+    device_models << subclass unless subclass.name == 'Device'
   end
-
 end

@@ -8,6 +8,9 @@
 #  refresh_interval :string
 #
 
+require 'util/dummy_connection_state'
+require 'models/device_base'
+
 class CipcamDevice < ActiveRecord::Base
 
   include DummyConnectionState
@@ -85,5 +88,4 @@ class CipcamDevice < ActiveRecord::Base
         raise InvalidArgumentError
     end
   end
-
 end

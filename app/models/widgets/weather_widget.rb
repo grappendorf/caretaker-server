@@ -2,8 +2,11 @@
 #
 # Table name: weather_widgets
 #
-#  id :integer          not null, primary key
+#  id      :integer          not null, primary key
+#  api_key :string
 #
+
+require 'models/widget_base'
 
 class WeatherWidget < ActiveRecord::Base
 
@@ -18,8 +21,8 @@ class WeatherWidget < ActiveRecord::Base
   end
 
   private
+
   def set_default_title
     self.title = 'Weather' unless self.title.present?
   end
-
 end

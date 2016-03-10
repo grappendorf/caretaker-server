@@ -1,5 +1,4 @@
 module DummyConnectionState
-
   include ConnectionState
 
   def init_connection_state
@@ -17,5 +16,4 @@ module DummyConnectionState
 
   def disconnect
   end
-
 end
