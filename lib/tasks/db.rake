@@ -1,4 +1,7 @@
 unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gems:* tasks
+
+  include ActiveRecord::Tasks
+
   class Seeder
     def initialize(seed_file)
       @seed_file = seed_file
@@ -22,8 +25,9 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
   load 'active_record/railties/databases.rake'
 
   namespace :db do
-    desc 'Purge all database data and create! new sample'
-    task :sample => :environment do
+    desc 'Create data for the demo mode'
+    task :demo => :environment do
+
       puts 'Create some users...'
       5.times do |_|
         first_name = Faker::Name.first_name
@@ -59,63 +63,63 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
       puts 'Create some device scripts...'
       DeviceScript.create! name: "Remote Control", description: "Script for Remote Control buttons",
         enabled: true, script: <<-EOS.strip_heredoc
-              def start()
-                device_manager = lookup :device_manager
-                @remote = device_manager.device_by_uuid '00:00:00:00:00:06'
-                @switch8 = device_manager.device_by_uuid '00:00:00:00:00:02'
-                @dimmer = device_manager.device_by_uuid '00:00:00:00:00:03'
+          def start
+            device_manager = lookup :device_manager
+            @remote = device_manager.device_by_uuid '00:00:00:00:00:06'
+            @switch8 = device_manager.device_by_uuid '00:00:00:00:00:02'
+            @dimmer = device_manager.device_by_uuid '00:00:00:00:00:03'
 
-                @lights_on = false
+            @lights_on = false
 
-                @remote_listener = @remote.when_changed do
-                  if @remote.states[0] == 1
-                    if @lights_on
-                      @switch8.set_state 0, 0
-                      @switch8.set_state 1, 0
-                      @dimmer.set_value 0
-                    else
-                      @switch8.set_state 0, 1
-                      @switch8.set_state 1, 1
-                      @dimmer.set_value 255
-                    end
-                    @lights_on = !@lights_on
-                  end
+            @remote_listener = @remote.when_changed do
+              if @remote.states[0] == 1
+                if @lights_on
+                  @switch8.set_state 0, 0
+                  @switch8.set_state 1, 0
+                  @dimmer.set_value 0
+                else
+                  @switch8.set_state 0, 1
+                  @switch8.set_state 1, 1
+                  @dimmer.set_value 255
                 end
+                @lights_on = !@lights_on
               end
+            end
+          end
 
-              def stop
-                @remote.remove_change_listener @remote_listener
-              end
+          def stop
+            @remote.remove_change_listener @remote_listener
+          end
       EOS
 
       DeviceScript.create! name: "Sonsors", description: "Devices controlled by sensors",
         enabled: true, script: <<-EOS.strip_heredoc
-              def start()
-                device_manager = lookup :device_manager
-                @switch1 = device_manager.device_by_uuid '00:00:00:00:00:01'
-                @sensor = device_manager.device_by_uuid '00:00:00:00:00:05'
+          def start
+            device_manager = lookup :device_manager
+            @switch1 = device_manager.device_by_uuid '00:00:00:00:00:01'
+            @sensor = device_manager.device_by_uuid '00:00:00:00:00:05'
 
-                @last_temp = 0.0
+            @last_temp = 0.0
 
-                @sensor_listener = @sensor.when_changed do
-                  if @last_temp > 20.0 && @sensor.states[0] < 20.0
-                    @switch1.set_state 0, 1
-                  elsif @last_temp < 20.0 && @sensor.states[0] > 20.0
-                    @switch1.set_state 0, 0
-                  end
-                  @last_temp = @sensor.states[0]
-                end
-
+            @sensor_listener = @sensor.when_changed do
+              if @last_temp > 20.0 && @sensor.states[0] < 20.0
+                @switch1.set_state 0, 1
+              elsif @last_temp < 20.0 && @sensor.states[0] > 20.0
+                @switch1.set_state 0, 0
               end
+              @last_temp = @sensor.states[0]
+            end
 
-              def stop
-                @sensor.remove_change_listener @sensor_listener
-              end
+          end
+
+          def stop
+            @sensor.remove_change_listener @sensor_listener
+          end
       EOS
 
       DeviceScript.create! name: "Rotary", description: "Rotary Knob => Dimmer",
         enabled: true, script: <<-EOS.strip_heredoc
-              def start()
+              def start
                 device_manager = lookup :device_manager
                 @rotary = device_manager.device_by_uuid '00:00:00:00:00:07'
                 @dimmer = device_manager.device_by_uuid '00:00:00:00:00:03'
@@ -130,8 +134,15 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
               end
       EOS
 
-      puts 'Create some dashboards...'
+      puts 'Create some actions...'
+      DeviceAction.create! name: "Toggler", description: "Toggel a switch",
+        script: <<-EOS.strip_heredoc
+          device_manager = lookup :device_manager
+          @switch8 = device_manager.device_by_uuid '00:00:00:00:00:02'
+          @switch8.toggle 7
+      EOS
 
+      puts 'Create some dashboards...'
       dashboard = Dashboard.create! name: 'Default', default: true, user: User.find_by(email: 'user@example.com')
       dashboard.widgets << DeviceWidget.new(device: switch1_device, position: 0, width: 1, height: 1)
       dashboard.widgets << DeviceWidget.new(device: switch8_device, position: 1, width: 2, height: 1)
@@ -141,20 +152,16 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
       dashboard.widgets << DeviceWidget.new(device: remotecontrol_device, position: 5, width: 2, height: 1)
       dashboard.widgets << DeviceWidget.new(device: rotary_knob_device, position: 6, width: 1, height: 1)
 
+      puts 'Create some buildings, floors, rooms, ...'
       (1..5).each do |i|
         building = Building.create! name: "Building #{i}", description: "This is building #{i}"
         (1..5).each do |j|
           floor = building.floors.create! name: "Floor #{i}.#{j}", description: "This is floor #{j} in building #{i}"
-          (1..50).each do |k|
+          (1..20).each do |k|
             floor.rooms.create! number: "#{i}.#{j}.#{k}", description: "This is room #{k} on floor #{j} in building #{i}"
           end
         end
       end
-    end
-
-    task :private => :environment do
-      private_data = '../caretaker-private/create-db-sample-data.rb'
-      require_relative "../../#{private_data}"
     end
   end
 end

@@ -3,8 +3,6 @@ require 'logger'
 require 'active_record'
 require File.expand_path('../config/application', __FILE__)
 
-include ActiveRecord::Tasks
-
 task :environment do
   ActiveRecord::Base.configurations = DatabaseTasks.database_configuration
   ActiveRecord::Base.establish_connection DatabaseTasks.env.to_sym

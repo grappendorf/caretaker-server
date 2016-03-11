@@ -1,5 +1,4 @@
 module ServiceManager
-
   def self.start
     if ['rake', 'annotate'].include?(File.basename($0))
       return
@@ -7,8 +6,6 @@ module ServiceManager
 
     Grape::API.logger.info 'Service manager starting'
 
-    register_real_services if Application.config.env == :production
-    register_fake_services unless Application.config.env == :production
     register_services
 
     lookup(:device_manager).start
@@ -16,25 +13,6 @@ module ServiceManager
     lookup(:device_action_manager).start
     lookup(:philips_hue).start
     lookup(:websockets).start
-  end
-
-  def self.register_real_services
-    require_relative '../../app/services/wlan_master'
-    register(:random) { Random.new Random.new_seed }
-    register(:scheduler) { Rufus::Scheduler.start_new }
-    register(:wlan_master) { WlanMaster.new }
-  end
-
-  def self.register_fake_services
-    require_relative '../../app/services/wlan_master_simulator'
-    register(:random) { DeterministicRandom.new }
-    register(:wlan_master) { WlanMasterSimulator.new }
-    if Application.config.env == :development
-      register(:scheduler) { Rufus::Scheduler.start_new }
-    elsif Application.config.env == :test
-      require_relative '../../app/services/manual_scheduler'
-      register(:scheduler) { ManualScheduler.new }
-    end
   end
 
   def self.register_services
@@ -49,6 +27,24 @@ module ServiceManager
     register(:device_action_manager) { DeviceActionManager.new }
     register(:philips_hue) { PhilipsHueManager.new }
     register(:websockets) { WebsocketsManager.new }
+
+    if Application.config.env == :test
+      require_relative '../../app/util/deterministic_random'
+      require_relative '../../app/services/manual_scheduler'
+      register(:random) { DeterministicRandom.new }
+      register(:scheduler) { ManualScheduler.new }
+    else
+      register(:random) { Random.new Random.new_seed }
+      register(:scheduler) { Rufus::Scheduler.start_new }
+    end
+
+    if Application.config.env == :test || Application.config.env == :demo
+      require_relative '../../app/services/wlan_master_simulator'
+      register(:wlan_master) { WlanMasterSimulator.new }
+    else
+      require_relative '../../app/services/wlan_master'
+      register(:wlan_master) { WlanMaster.new }
+    end
   end
 
   def self.stop
@@ -64,7 +60,6 @@ module ServiceManager
     lookup(:philips_hue).try :stop rescue nil
     lookup(:websockets).try :stop rescue nil
   end
-
 end
 
 at_exit do
