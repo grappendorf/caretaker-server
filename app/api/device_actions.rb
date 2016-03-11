@@ -40,7 +40,7 @@ class API::DeviceActions < Base
 
     desc 'Execute a device scripts'
     put ':id/execute' do
-      device_action = DeviceScript.find params[:id]
+      device_action = DeviceAction.find params[:id]
       authorize! :execute, device_action
       device_action_manager.execute_action device_action
       body false
