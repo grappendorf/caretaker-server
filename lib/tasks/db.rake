@@ -14,7 +14,7 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
   end
 
   root = File.expand_path '../../..', __FILE__
-  DatabaseTasks.env = ENV['APP_ENV'] || 'development'
+  DatabaseTasks.env = ENV['RACK_ENV'] || 'development'
   DatabaseTasks.database_configuration = YAML.load(File.read(File.join(root, 'config/database.yml')))
   DatabaseTasks.db_dir = File.join root, 'db'
   DatabaseTasks.fixtures_path = File.join root, 'test/fixtures'
@@ -135,7 +135,7 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
       EOS
 
       puts 'Create some actions...'
-      DeviceAction.create! name: "Toggler", description: "Toggel a switch",
+      device_action = DeviceAction.create! name: "Toggler", description: "Toggel a switch",
         script: <<-EOS.strip_heredoc
           device_manager = lookup :device_manager
           @switch8 = device_manager.device_by_uuid '00:00:00:00:00:02'
@@ -151,6 +151,7 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
       dashboard.widgets << DeviceWidget.new(device: sensor_device, position: 4, width: 2, height: 1)
       dashboard.widgets << DeviceWidget.new(device: remotecontrol_device, position: 5, width: 2, height: 1)
       dashboard.widgets << DeviceWidget.new(device: rotary_knob_device, position: 6, width: 1, height: 1)
+      dashboard.widgets << ActionWidget.new(device_action: device_action, position: 7, width: 1, height: 1)
 
       puts 'Create some buildings, floors, rooms, ...'
       (1..5).each do |i|

@@ -10,6 +10,11 @@ class API::Widgets < Base
       optional :position, type: Integer, desc: 'Linear ordering of the widgets'
     end
 
+    params :action_widgets do
+      create = ! declared_param?(:id)
+      optional :device_action_id, presence: create, type: Integer, desc: 'The id of displayed device action'
+    end
+
     params :clock_widgets do
     end
 
@@ -120,6 +125,15 @@ class API::Widgets < Base
         width: widget.width,
         height: widget.height
       }
+    end
+
+    def action_widget_to_json widget
+      {
+        action: {
+          id: widget.device_action.id,
+          name: widget.device_action.name
+        }
+      }.merge(widget_to_json widget)
     end
 
     def clock_widget_to_json widget
