@@ -16,7 +16,6 @@ class API::Widgets < Base
     params :device_widgets do
       create = ! declared_param?(:id)
       optional :device_id, presence: create, type: Integer, desc: 'The id of displayed device'
-      optional :device_type, presence: create, type: String, desc: 'The type of displayed device'
     end
 
     params :weather_widgets do
