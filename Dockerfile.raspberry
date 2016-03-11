@@ -4,7 +4,7 @@ MAINTAINER Dirk Grappendorf "dirk@grappendorf.net"
 RUN apt-get update -qqy
 RUN apt-get install -qqy build-essential libsqlite3-dev
 
-ENV APP_ENV production
+ENV RACK_ENV production
 
 COPY . /var/app
 WORKDIR /var/app

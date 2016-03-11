@@ -4,7 +4,7 @@ MAINTAINER Dirk Grappendorf "dirk@grappendorf.net"
 RUN apt-get update -qqy
 RUN apt-get install -qqy build-essential libxml2-dev libxslt-dev libsqlite3-dev
 
-ENV APP_ENV production
+ENV RACK_ENV production
 ENV NOKOGIRI_USE_SYSTEM_LIBRARIES 1
 
 COPY . /var/app

@@ -1,6 +1,6 @@
 $LOAD_PATH.unshift "#{File.dirname(__FILE__)}/../app"
 
-env = (ENV['APP_ENV'] || 'development')
+env = (ENV['RACK_ENV'] || 'development')
 
 require 'bundler'
 Bundler.require(:default, env.to_sym) if defined?(Bundler)
