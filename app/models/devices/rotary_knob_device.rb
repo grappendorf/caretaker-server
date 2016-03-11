@@ -9,10 +9,8 @@ require 'models/device_base'
 require 'models/wlan_device'
 
 class RotaryKnobDevice < ActiveRecord::Base
-
   inherit DeviceBase
   include WlanDevice
-
   acts_as :device
 
   def self.small_icon()

@@ -9,7 +9,6 @@ require 'models/device_base'
 require 'models/wlan_device'
 
 class ReflowOvenDevice < ActiveRecord::Base
-
   inherit DeviceBase
   include WlanDevice
 

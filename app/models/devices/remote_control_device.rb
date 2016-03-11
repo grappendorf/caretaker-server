@@ -11,10 +11,8 @@ require 'models/device_base'
 require 'models/wlan_device'
 
 class RemoteControlDevice < ActiveRecord::Base
-
   inherit DeviceBase
   include WlanDevice
-
   acts_as :device
 
   validates :num_buttons, presence: true, numericality: { greater_than: 0 }

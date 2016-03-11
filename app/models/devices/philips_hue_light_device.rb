@@ -9,12 +9,9 @@ require 'util/dummy_connection_state'
 require 'models/device_base'
 
 class PhilipsHueLightDevice < ActiveRecord::Base
-
   inherit DeviceBase
   include DummyConnectionState
-
   acts_as :device
-
   inject :philips_hue
 
   def self.attr_accessible

@@ -8,9 +8,7 @@
 require 'models/widget_base'
 
 class ClockWidget < ActiveRecord::Base
-
   inherit WidgetBase
-
   acts_as :widget
 
   before_validation :set_default_title

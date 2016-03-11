@@ -10,14 +10,11 @@
 require 'models/widget_base'
 
 class DeviceWidget < ActiveRecord::Base
-
   inherit WidgetBase
-
   acts_as :widget
+  inject :device_manager
 
   belongs_to :device, polymorphic: true
-
-  inject :device_manager
 
   before_save :assign_device_if_only_device_id_is_set
 

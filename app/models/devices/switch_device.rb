@@ -11,10 +11,8 @@ require 'models/device_base'
 require 'models/wlan_device'
 
 class SwitchDevice < ActiveRecord::Base
-
   inherit DeviceBase
   include WlanDevice
-
   acts_as :device
 
   validates :num_switches, presence: true, numericality: { greater_than: 0 }

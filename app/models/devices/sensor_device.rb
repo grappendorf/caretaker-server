@@ -10,10 +10,8 @@ require 'models/device_base'
 require 'models/wlan_device'
 
 class SensorDevice < ActiveRecord::Base
-
   inherit DeviceBase
   include WlanDevice
-
   acts_as :device
 
   # [{ type: <sensor-type>, min: minimum value, max: maximum value }, ...]

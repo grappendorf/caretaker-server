@@ -12,10 +12,8 @@ require 'util/dummy_connection_state'
 require 'models/device_base'
 
 class CipcamDevice < ActiveRecord::Base
-
-  include DummyConnectionState
   inherit DeviceBase
-
+  include DummyConnectionState
   acts_as :device
 
   validates :refresh_interval, numericality: { greater_than: 0 }
