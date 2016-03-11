@@ -28,9 +28,13 @@ module ServiceManager
   def self.register_fake_services
     require_relative '../../app/services/wlan_master_simulator'
     register(:random) { DeterministicRandom.new }
-    register(:scheduler) { Rufus::Scheduler.start_new } if Application.config.env == :development
-    register(:scheduler) { ManualScheduler.new } if Application.config.env == :test
     register(:wlan_master) { WlanMasterSimulator.new }
+    if Application.config.env == :development
+      register(:scheduler) { Rufus::Scheduler.start_new }
+    elsif Application.config.env == :test
+      require_relative '../../app/services/manual_scheduler'
+      register(:scheduler) { ManualScheduler.new }
+    end
   end
 
   def self.register_services
