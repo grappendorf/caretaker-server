@@ -50,4 +50,5 @@ group :development do
   gem 'annotate', '2.7.0'
   gem 'bump', '0.5.3'
   gem 'rerun', '0.11.0'
+  gem 'racksh', '1.0.0'
 end
