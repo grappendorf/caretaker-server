@@ -4,5 +4,4 @@ Application.configure do |config|
   config.jwt_expiration = 24.hours
   config.network_broadcast_port = 55555
   config.public_ip = ENV['PUBLIC_IP']
-  config.websocket_standalone = false
 end
