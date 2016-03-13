@@ -74,8 +74,10 @@ class API::Dashboards < Base
     end
     post do
       authorize! :create, Dashboard
+      user = User.find_by_id(params[:user_id]) || current_user
       dashboard = Dashboard.create! permitted_params.merge({
-        user: User.find_by_id(params[:user_id]) || current_user
+        user: user,
+        default: user.dashboards.empty?
       })
       {
         id: dashboard.id
