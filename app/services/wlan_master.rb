@@ -14,7 +14,7 @@ class WlanMaster
       begin
         message_reveice_socket = UDPSocket.new
         message_reveice_socket.do_not_reverse_lookup = true
-        message_reveice_socket.bind '0.0.0.0', '2000'
+        message_reveice_socket.bind '0.0.0.0', Application.config.server_port
         loop do
           begin
             data, addr = message_reveice_socket.recvfrom 1024
@@ -41,13 +41,14 @@ class WlanMaster
       begin
         broadcast_socket = UDPSocket.new
         broadcast_socket.do_not_reverse_lookup = true
-        broadcast_socket.bind '0.0.0.0', Application.config.network_broadcast_port
+        broadcast_socket.bind '0.0.0.0', Application.config.broadcast_port
         loop do
           begin
             data, _address = broadcast_socket.recvfrom 1024
             device_name = data[60..91].unpack('Z*')[0]
             Grape::API.logger.debug "UDP broadcast from device #{device_name}"
-            broadcast_socket.send "*SERVER*\n#{Application.config.public_ip}\n", 0, device_name, 2000
+            broadcast_socket.send "*SERVER*\n#{Application.config.public_ip}\n", 0, device_name,
+              Application.config.device_port
           rescue => x
             Grape::API.logger.error x
           end
@@ -66,7 +67,8 @@ class WlanMaster
   end
 
   def send_message address, msg, params = []
-    @message_send_socket.send "#{msg}#{',' unless params.empty?}#{params.join ','};\n", 0, address, 2000
+    @message_send_socket.send "#{msg}#{',' unless params.empty?}#{params.join ','};\n", 0, address,
+      Application.config.device_port
   end
 
   def when_message_received &block
