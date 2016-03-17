@@ -10,12 +10,6 @@ test:
   pool: 5
   timeout: 5000
 
-demo:
-  adapter: sqlite3
-  database: db/sqlite/demo.sqlite3
-  pool: 5
-  timeout: 5000
-
 production:
   adapter: sqlite3
   database: db/sqlite/production.sqlite3

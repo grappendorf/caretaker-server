@@ -25,8 +25,8 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
   load 'active_record/railties/databases.rake'
 
   namespace :db do
-    desc 'Create data for the demo mode'
-    task :demo => :environment do
+    desc 'Create some sample data'
+    task :demo => [:environment, 'db:reset'] do
 
       puts 'Create some users...'
       5.times do |_|
@@ -39,127 +39,89 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
           password: password
       end
 
-      puts 'Create some devices...'
-      switch1_device = SwitchDevice.create! uuid: '00:00:00:00:00:01',
-        name: 'Switch 1-Port', address: '192.168.1.1', description: 'One switch',
-        num_switches: 1, switches_per_row: 1
-      switch8_device = SwitchDevice.create! uuid: '00:00:00:00:00:02',
-        name: 'Switch 8-Port', address: '192.168.1.2', description: 'Lot\'s of switches',
-        num_switches: 8, switches_per_row: 4
-      dimmer_device = DimmerDevice.create! uuid: '00:00:00:00:00:03',
-        name: 'Dimmer', address: '192.168.1.3', description: '0% to 100%'
-      dimmer_rgb_device = DimmerRgbDevice.create! uuid: '00:00:00:00:00:04',
-        name: 'Dimmer RGB', address: '192.168.1.4', description: 'Rainbow colors'
-      sensor_device = SensorDevice.create! uuid: '00:00:00:00:00:05',
-        name: 'Sensor', address: '192.168.1.5', description: 'Senors',
-        sensors: [{ type: CaretakerMessages::SENSOR_TEMPERATURE, min: -30, max: 80 },
-          { type: CaretakerMessages::SENSOR_BRIGHTNESS, min: 0, max: 1000 }]
-      remotecontrol_device = RemoteControlDevice.create! uuid: '00:00:00:00:00:06',
-        name: 'Remote Control', address: '192.168.1.6', description: 'Lot\'s of buttons',
-        num_buttons: 8, buttons_per_row: 4
-      rotary_knob_device = RotaryKnobDevice.create! uuid: '00:00:00:00:00:07',
-        name: 'Rotary Knob', address: '192.168.1.7', description: 'Knob'
-
       puts 'Create some device scripts...'
-      DeviceScript.create! name: "Remote Control", description: "Script for Remote Control buttons",
+      DeviceScript.create! name: 'Remote Control', description: 'Script for Remote Control buttons',
         enabled: true, script: <<-EOS.strip_heredoc
           def start
             device_manager = lookup :device_manager
-            @remote = device_manager.device_by_uuid '00:00:00:00:00:06'
-            @switch8 = device_manager.device_by_uuid '00:00:00:00:00:02'
-            @dimmer = device_manager.device_by_uuid '00:00:00:00:00:03'
+            @remote = device_manager.device_by_uuid 'remote'
+            @switch1 = device_manager.device_by_uuid 'switch1'
+            @switch2 = device_manager.device_by_uuid 'switch2'
+            @switch3 = device_manager.device_by_uuid 'switch3'
+            @switch4 = device_manager.device_by_uuid 'switch4'
 
-            @lights_on = false
-
-            @remote_listener = @remote.when_changed do
-              if @remote.states[0] == 1
-                if @lights_on
-                  @switch8.set_state 0, 0
-                  @switch8.set_state 1, 0
-                  @dimmer.set_value 0
-                else
-                  @switch8.set_state 0, 1
-                  @switch8.set_state 1, 1
-                  @dimmer.set_value 255
+            if @remote
+              @remote_listener = @remote.when_changed do
+                if @remote.states[0] == 1
+                  @switch1.toggle 0
+                elsif @remote.states[0] == 2
+                  @switch1.toggle 0
+                elsif @remote.states[0] == 3
+                  @switch2.toggle 0
+                elsif @remote.states[0] == 4
+                  @switch3.toggle 0
                 end
-                @lights_on = !@lights_on
               end
             end
           end
 
           def stop
-            @remote.remove_change_listener @remote_listener
-          end
-      EOS
-
-      DeviceScript.create! name: "Sonsors", description: "Devices controlled by sensors",
-        enabled: true, script: <<-EOS.strip_heredoc
-          def start
-            device_manager = lookup :device_manager
-            @switch1 = device_manager.device_by_uuid '00:00:00:00:00:01'
-            @sensor = device_manager.device_by_uuid '00:00:00:00:00:05'
-
-            @last_temp = 0.0
-
-            @sensor_listener = @sensor.when_changed do
-              if @last_temp > 20.0 && @sensor.states[0] < 20.0
-                @switch1.set_state 0, 1
-              elsif @last_temp < 20.0 && @sensor.states[0] > 20.0
-                @switch1.set_state 0, 0
-              end
-              @last_temp = @sensor.states[0]
+            if @remote
+              @remote.remove_change_listener @remote_listener
             end
-
-          end
-
-          def stop
-            @sensor.remove_change_listener @sensor_listener
           end
       EOS
 
-      DeviceScript.create! name: "Rotary", description: "Rotary Knob => Dimmer",
+      DeviceScript.create! name: 'Rotary', description: 'Rotary Knob => Dimmer',
         enabled: true, script: <<-EOS.strip_heredoc
               def start
                 device_manager = lookup :device_manager
-                @rotary = device_manager.device_by_uuid '00:00:00:00:00:07'
-                @dimmer = device_manager.device_by_uuid '00:00:00:00:00:03'
+                @rotary = device_manager.device_by_uuid 'rotary'
+                @dimmer = device_manager.device_by_uuid 'dimmer'
 
-                @rotary_listener = @rotary.when_changed do
-                  @dimmer.set_value @rotary.value
+                if @rotary
+                  @rotary_listener = @rotary.when_changed do
+                    @dimmer.set_value @rotary.value
+                  end
                 end
               end
 
               def stop
-                @rotary.remove_change_listener @rotary_listener
+                if @rotary
+                  @rotary.remove_change_listener @rotary_listener
+                end
               end
       EOS
 
       puts 'Create some actions...'
-      device_action = DeviceAction.create! name: "Toggler", description: "Toggel a switch",
-        script: <<-EOS.strip_heredoc
-          device_manager = lookup :device_manager
-          @switch8 = device_manager.device_by_uuid '00:00:00:00:00:02'
-          @switch8.toggle 7
-      EOS
+      1.upto 4 do |n|
+        DeviceAction.create! name: "Toggle #{n}", description: "Toggel switch #{n}",
+          script: <<-EOS.strip_heredoc
+            device_manager = lookup :device_manager
+            @switch = device_manager.device_by_uuid "switch#{n}"
+            @switch.toggle 0
+        EOS
+      end
 
       puts 'Create some dashboards...'
-      dashboard = Dashboard.create! name: 'Default', default: true, user: User.find_by(email: 'user@example.com')
-      dashboard.widgets << DeviceWidget.new(device: switch1_device, position: 0, width: 1, height: 1)
-      dashboard.widgets << DeviceWidget.new(device: switch8_device, position: 1, width: 2, height: 1)
-      dashboard.widgets << DeviceWidget.new(device: dimmer_device, position: 2, width: 2, height: 1)
-      dashboard.widgets << DeviceWidget.new(device: dimmer_rgb_device, position: 3, width: 2, height: 1)
-      dashboard.widgets << DeviceWidget.new(device: sensor_device, position: 4, width: 2, height: 1)
-      dashboard.widgets << DeviceWidget.new(device: remotecontrol_device, position: 5, width: 2, height: 1)
-      dashboard.widgets << DeviceWidget.new(device: rotary_knob_device, position: 6, width: 1, height: 1)
-      dashboard.widgets << ActionWidget.new(device_action: device_action, position: 7, width: 1, height: 1)
+      dashboard = Dashboard.create! name: 'Default', default: true,
+        user: User.find_by(email: 'user@example.com')
+      position = 0
+      DeviceAction.all.each do |action|
+        dashboard.widgets << ActionWidget.new(device_action: action,
+          position: position, width: 1, height: 1)
+      end
 
       puts 'Create some buildings, floors, rooms, ...'
       (1..5).each do |i|
-        building = Building.create! name: "Building #{i}", description: "This is building #{i}"
+        building = Building.create! name: "Building #{i}",
+          description: "This is building #{i}"
         (1..5).each do |j|
-          floor = building.floors.create! name: "Floor #{i}.#{j}", description: "This is floor #{j} in building #{i}"
+          floor = building.floors.create! name: "Floor #{i}.#{j}",
+            description: "This is floor #{j} in building #{i}"
           (1..20).each do |k|
-            floor.rooms.create! number: "#{i}.#{j}.#{k}", description: "This is room #{k} on floor #{j} in building #{i}"
+            floor.rooms.create! number: "#{i}.#{j}.#{k}",
+              description: "This is room #{k} on floor #{j} in building #{i}"
           end
         end
       end

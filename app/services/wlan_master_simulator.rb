@@ -5,67 +5,22 @@ class WlanMasterSimulator
 
   def start
     Grape::API.logger.info 'WLAN master simualtor starting'
-
-    # noinspection RubyStringKeysInHashInspection
-    @devices = {
-        '192.168.1.1' =>
-            {
-                name: 'Switch 1-Port',
-                states: [0]
-            },
-        '192.168.1.2' =>
-            {
-                name: 'Switch 8-Port',
-                states: [1, 0, 1, 1, 1, 0, 1, 1]
-            },
-        '192.168.1.3' =>
-            {
-                name: 'Dimmer',
-                value: 100
-            },
-        '192.168.1.4' =>
-            {
-                name: 'Dimmer RGB',
-                red: 50,
-                green: 100,
-                blue: 200
-            },
-        '192.168.1.7' =>
-            {
-                name: 'Knob',
-                value: 50
-            }
-    }
-    @devices.each{|address,device| device[:address] = address}
-
-    Thread.new do
-      begin
-        delta_rotary = 4
-        loop do
-          5.times do
-            fire_message_received '192.168.1.7', CaretakerMessages::ROTARY_STATE, @devices['192.168.1.7'][:value]
-            @devices['192.168.1.7'][:value] += delta_rotary
-            if @devices['192.168.1.7'][:value] > 255
-              @devices['192.168.1.7'][:value] = 255
-              delta_rotary = -4
-            elsif @devices['192.168.1.7'][:value] < 0
-              @devices['192.168.1.7'][:value] = 0
-              delta_rotary = 4
-            end
-            sleep 1
-          end
-          fire_message_received '192.168.1.5', CaretakerMessages::SENSOR_STATE,
-              0, (rand(11500) - 3000) / 100, 1, rand(100000) / 100
-        end
-      rescue => x
-        puts x
-        puts x.backtrace.join "\n"
-      end
-    end
+    @devices = {}
   end
 
   def stop
     Grape::API.logger.info 'WLAN master simulator stopping'
+  end
+
+  # Examples:
+  #
+  # add_device '192.168.1.1', { name: 'Switch 1-Port', states: [0] }
+  #
+  # add_device '192.168.1.4', { name: 'Dimmer RGB', red: 50, green: 100, blue: 200 }
+  #
+  def add_device address, config
+    @devices[address] = config
+    config[:address] = address
   end
 
   def send_message address, msg, params = []
@@ -99,7 +54,7 @@ class WlanMasterSimulator
 
   def fire_message_received address, msg, *params
     @message_listeners.each do |l|
-      l.call address, msg.to_i, params
+      l.call address, Application.config.device_port, msg.to_i, params
     end
   end
 
