@@ -10,24 +10,21 @@ in an SQLite database inside the server component.
 Deployment
 ----------
 
-### Prerequisites
- 
-* RVM installed for the development user
-* Ruby 2.3.0
-* A _caretaker-server_ gemset (created when you enter the project directory) 
-* Install all the gems with `bundle install --without=development test`
-
 ### Run the server on the development host
 
+* Install RVM for the development user
+* Install Ruby 2.3.0
+* Create a _caretaker-server_ gemset (created when you enter the project directory) 
+* Install all the gems with `bundle install --without=development test`
 * Create the production database with `RACK_ENV=production rake db:reset`
 * Start the server with `rackup -p 3000`
 
 This starts the REST API server on localhost port 3000. The server also listens for UDP packets on 
 port 2000 and 55555 (this can be configured in the file _config/environments/production.rb_`.
 
-## Run the server inside a Docker container
+### Run the server inside a Docker container
 
-* Build the container image with `rake docker:image` (the resulting image is named
+* Build the container image with `./bin/build-server` (the resulting image is named
   _grappendorf/caretaker-server_ and tagged with _latest_ and the current version number 
 * Create a new network with `docker network create caretaker` 
 * Then start the workspace with `bin/start-server`
@@ -38,7 +35,7 @@ development host. Two volumes are created:
 * _/var/app/db/sqlite_ contains the SQLite database
 * _/root/.hue-lib_ contains configuration data of the _hue-lib_ gem. 
 
-## Verify that the server responds to HTTP requests
+### Verify that the server responds to HTTP requests
 
 If you run for example `http localhost:3000` it should return with status 200 and the following
 JSON response: `{ "status": "ok" }`.
@@ -91,7 +88,7 @@ port 2000 and 55555 (this can be configured in the file _config/environments/dev
 Note: This only works if the development user on the host has the same user id (1000) as the
 user in the Docker container.
 
-* Build the container image with `rake docker:workspace` (the resulting image is tagged with
+* Build the container image with `./bin/build-workspace` (the resulting image is tagged with
   _grappendorf/caretaker-server:workspace_)
 * Create a new network with `docker network create caretaker` 
 * Then start the workspace with `bin/start-workspace`

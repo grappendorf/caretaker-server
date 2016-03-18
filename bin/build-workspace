@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+docker build -t grappendorf/caretaker-server:workspace -f docker/Dockerfile.workspace .
