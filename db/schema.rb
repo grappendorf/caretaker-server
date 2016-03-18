@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311141000) do
+ActiveRecord::Schema.define(version: 20160313193800) do
 
   create_table "action_widgets", force: :cascade do |t|
     t.integer "device_action_id"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20160311141000) do
     t.string  "address"
     t.string  "description"
     t.string  "uuid"
+    t.integer "port",         default: 2000
   end
 
   add_index "devices", ["name"], name: "index_devices_on_name", unique: true

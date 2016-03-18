@@ -32,8 +32,8 @@ class DeviceManager
     start
   end
 
-  def device_by_address address
-    @devices_by_address[address]
+  def device_by_address_and_port address, port
+    @devices_by_address[[address, port]]
   end
 
   def device_by_id id
@@ -49,7 +49,7 @@ class DeviceManager
     @devices_by_id[device_id] = device
     @devices_by_uuid[device.uuid] = device
     if device.address
-      @devices_by_address[device.address] = device
+      @devices_by_address[[device.address, device.port]] = device
     end
     device.init_connection_state
     device.when_connection_changed do |device|
@@ -77,7 +77,7 @@ class DeviceManager
   def remove_device device_id
     device = @devices_by_id[device_id]
     device.stop
-    @devices_by_address.delete device.address
+    @devices_by_address.delete [device.address, device.port]
     @devices_by_uuid.delete device.uuid
     @devices_by_id.delete device_id
   end
@@ -94,11 +94,12 @@ class DeviceManager
     @devices_by_id
   end
 
-  def wlan_message_received address, msg, params
+  def wlan_message_received address, port, msg, params
     if msg == CaretakerMessages::REGISTER_REQUEST
       unless Device.exists? uuid: params[0]
         device = Device.new_from_type "#{params[1]}Device"
-        device.update_attributes uuid: params[0], address: address, name: params[2], description: params[3]
+        device.update_attributes uuid: params[0], address: address, port: port,
+          name: params[2], description: params[3]
         device.update_attributes_from_registration params[4..-1]
         device.save!
         create_device device
@@ -107,12 +108,12 @@ class DeviceManager
         device = Device.find_by_uuid params[0]
         if device.address != address
           @devices_by_address.delete device.address
-          @devices_by_address[address] = device
+          @devices_by_address[address, port] = device
         end
       end
-      wlan_master.send_message address, CaretakerMessages::REGISTER_RESPONSE
+      wlan_master.send_message address, port, CaretakerMessages::REGISTER_RESPONSE
     elsif msg > 0
-      device_by_address(address).try(:message_received, msg, params)
+      device_by_address_and_port(address, port).try(:message_received, msg, params)
     end
   end
 end

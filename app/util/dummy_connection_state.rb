@@ -1,3 +1,5 @@
+require 'util/connection_state'
+
 module DummyConnectionState
   include ConnectionState
 

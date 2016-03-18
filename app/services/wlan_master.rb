@@ -19,9 +19,10 @@ class WlanMaster
           begin
             data, addr = message_reveice_socket.recvfrom 1024
             device_address = addr[3].force_encoding('UTF-8')
+            device_port = addr[1]
             msg, *params = data.split(';')[0].split(',').map { |d| d.force_encoding('UTF-8') }
             @message_listeners.each do |l|
-              l.call device_address, msg.to_i, params
+              l.call device_address, device_port, msg.to_i, params
             end
           rescue => x
             Grape::API.logger.error x
@@ -66,9 +67,9 @@ class WlanMaster
     @broadcast_receiver.exit
   end
 
-  def send_message address, msg, params = []
-    @message_send_socket.send "#{msg}#{',' unless params.empty?}#{params.join ','};\n", 0, address,
-      Application.config.device_port
+  def send_message address, port, msg, params = []
+    @message_send_socket.send "#{msg}#{',' unless params.empty?}#{params.join ','};\n", 0,
+      address, port
   end
 
   def when_message_received &block

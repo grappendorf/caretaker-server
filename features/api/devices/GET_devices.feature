@@ -5,19 +5,21 @@ Feature: GET /devices
 
   Scenario: Get a list of all devices
     Given the following switch_device with id "DEVICE_1_ID":
-      | uuid             | 1234        |
-      | address          | abcd        |
-      | name             | Room switch |
-      | description      | Room lights |
-      | num_switches     | 4           |
-      | switches_per_row | 2           |
+      | uuid             | 1234            |
+      | address          | 192.168.100.100 |
+      | port             | 2020            |
+      | name             | Room switch     |
+      | description      | Room lights     |
+      | num_switches     | 4               |
+      | switches_per_row | 2               |
     And the following switch_device with id "DEVICE_2_ID":
-      | uuid             | 5678           |
-      | address          | efgh           |
-      | name             | Kitchen switch |
-      | description      | Oven           |
-      | num_switches     | 2              |
-      | switches_per_row | 1              |
+      | uuid             | 5678            |
+      | address          | 192.168.100.101 |
+      | port             | 2020            |
+      | name             | Kitchen switch  |
+      | description      | Oven            |
+      | num_switches     | 2               |
+      | switches_per_row | 1               |
     And I am authenticated as an administrator
     When I send a GET request to "/devices"
     Then the response status should be "200"
@@ -29,7 +31,8 @@ Feature: GET /devices
           "specific_id": %{DEVICE_1_ID},
           "type": "SwitchDevice",
           "uuid": "1234",
-          "address": "abcd",
+          "address": "192.168.100.100",
+          "port": 2020,
           "name": "Room switch",
           "description": "Room lights",
           "large_icon": "32/lightbulb_on.png",
@@ -41,7 +44,8 @@ Feature: GET /devices
           "specific_id": %{DEVICE_2_ID},
           "type": "SwitchDevice",
           "uuid": "5678",
-          "address": "efgh",
+          "address": "192.168.100.101",
+          "port": 2020,
           "name": "Kitchen switch",
           "description": "Oven",
           "large_icon": "32/lightbulb_on.png",

@@ -6,6 +6,7 @@ class API::Devices < Base
       optional :uuid, presence: create, type: String, desc: 'The unique device identifier'
       optional :name, presence: create, type: String, desc: 'The unique device name'
       optional :address, presence: create, type: String, desc: 'The device network address'
+      optional :port, type: Integer, desc: 'The optional device port'
       optional :description, type: String, desc: 'An optional device description'
     end
 
@@ -111,6 +112,7 @@ class API::Devices < Base
           name: device.name,
           type: device.class.name,
           address: device.address,
+          port: device.port,
           small_icon: device.class.small_icon,
           large_icon: device.class.large_icon,
           description: device.description,
@@ -164,6 +166,7 @@ class API::Devices < Base
         name: device.name,
         type: device.class.name,
         address: device.address,
+        port: device.port,
         small_icon: device.class.small_icon,
         large_icon: device.class.large_icon,
         description: device.description,

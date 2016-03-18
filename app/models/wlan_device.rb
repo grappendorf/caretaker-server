@@ -14,7 +14,7 @@ module WlanDevice
   end
 
   def send_message msg, *params
-    wlan_master.send_message address, msg, params
+    wlan_master.send_message address, port, msg, params
   end
 
   def reset

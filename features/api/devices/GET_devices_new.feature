@@ -15,6 +15,7 @@ Feature: GET /devices/new
         "type": "SwitchDevice",
         "uuid": null,
         "address": null,
+        "port": 2000,
         "name": null,
         "description": null,
         "large_icon": "32/lightbulb_on.png",

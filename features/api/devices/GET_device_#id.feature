@@ -5,12 +5,13 @@ Feature: GET /devices/:id
 
   Scenario: Get an existing device
     Given the following switch_device with id "DEVICE_ID":
-      | uuid             | 1234        |
-      | address          | abcd        |
-      | name             | Room switch |
-      | description      | Room lights |
-      | num_switches     | 4           |
-      | switches_per_row | 2           |
+      | uuid             | 1234            |
+      | address          | 192.168.100.100 |
+      | port             | 2020            |
+      | name             | Room switch     |
+      | description      | Room lights     |
+      | num_switches     | 4               |
+      | switches_per_row | 2               |
     And I am authenticated as an administrator
     When I send a GET request to "/devices/%{DEVICE_ID}"
     Then the response status should be "200"
@@ -21,7 +22,8 @@ Feature: GET /devices/:id
         "specific_id": %{DEVICE_ID},
         "type": "SwitchDevice",
         "uuid": "1234",
-        "address": "abcd",
+        "address": "192.168.100.100",
+        "port": 2020,
         "name": "Room switch",
         "description": "Room lights",
         "large_icon": "32/lightbulb_on.png",

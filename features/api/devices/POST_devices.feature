@@ -10,7 +10,8 @@ Feature: POST /devices
         {
           "name": "Room switch",
           "uuid": "1234",
-          "address": "abcd",
+          "address": "192.168.100.100",
+          "port": "2020",
           "num_switches": 4,
           "switches_per_row": 2
         }
@@ -18,11 +19,12 @@ Feature: POST /devices
     Then the response status should be "201"
     And the JSON response should have "id"
     And I should see the following switch_device in the database:
-      | name             | Room switch |
-      | uuid             | 1234        |
-      | address          | abcd        |
-      | num_switches     | 4           |
-      | switches_per_row | 2           |
+      | name             | Room switch     |
+      | uuid             | 1234            |
+      | address          | 192.168.100.100 |
+      | port             | 2020            |
+      | num_switches     | 4               |
+      | switches_per_row | 2               |
 
   Scenario: Create a new device with invalid properties
     Given I am authenticated as an administrator
@@ -31,7 +33,7 @@ Feature: POST /devices
         {
           "name": "",
           "uuid": "1234",
-          "address": "abcd",
+          "address": "192.168.100.100",
           "num_switches": 4,
           "switches_per_row": 2
         }
