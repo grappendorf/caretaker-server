@@ -29,6 +29,9 @@ port 2000 and 55555 (this can be configured in the file _config/environments/pro
 * Create a new network with `docker network create caretaker` 
 * Then start the workspace with `bin/start-server`
 
+Note: in a real production environment you need to specify your own secret key base string!
+In _bin/start-server_ the same key is used as in the development and test environments.
+
 This script runs a new Docker container with the previously built image and binds port 3000 to the 
 development host. Two volumes are created:
 

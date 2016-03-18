@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
+
+# In a real prodcution environment, you need to generate your own secret key base!
+
 docker run -d --name caretaker-server \
   --net caretaker \
   -p 3000:3000 \
+  -e SECRET_KEY_BASE=c23122b7c7f2ec43ee6a13105fc1ab87ca3e1167863ae5300f12db96067928787a81d583adaa40862182359540a935d84193f62088f29942d62c9479b61b7827 \
   grappendorf/caretaker-server:latest
