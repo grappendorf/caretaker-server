@@ -1,3 +1,4 @@
+ruby '2.3.0'
 source 'http://rubygems.org'
 
 gem 'rake','10.5.0'
@@ -27,6 +28,7 @@ gem 'faker', '1.6.3'
 gem 'faye-websocket', '0.10.3'
 gem 'thin', '1.6.4'
 gem 'wannabe_bool', '0.5.0'
+gem 'bigdecimal', '1.2.7'
 
 group :test do
   gem 'rspec', '3.4.0'
@@ -49,6 +51,7 @@ group :development do
   gem 'license_finder', '2.0.4'
   gem 'annotate', '2.7.0'
   gem 'bump', '0.5.3'
-  gem 'rerun', '0.11.0'
   gem 'racksh', '1.0.0'
+  # Fix Object#timeout deprecation warning in Ruby 2.3
+  gem 'rerun', git: 'git://github.com/alexch/rerun.git', ref: '3e4c486304be406cb86180ef70ec24e9ae055ce4'
 end

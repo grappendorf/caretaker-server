@@ -1,0 +1,36 @@
+FROM debian:8.3
+MAINTAINER Dirk Grappendorf "dirk@grappendorf.net"
+
+# Install build tools
+RUN apt-get update -qq
+RUN apt-get install -qq build-essential curl git sudo libxml2-dev libxslt-dev libsqlite3-dev
+
+# Add a user with uid 100 and gid 1000
+RUN groupadd --gid 1000 user
+RUN useradd --uid 1000 --gid 1000 --create-home user
+RUN echo 'user ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers
+
+# Install rvm and ruby. Create the gemset and install bundler.
+ENV NOKOGIRI_USE_SYSTEM_LIBRARIES 1
+COPY .ruby-version /home/user
+COPY .ruby-gemset /home/user
+RUN echo "gem: --no-rdoc --no-ri" > .gemrc
+RUN chown -R user:user /home/user
+USER user
+WORKDIR /home/user
+RUN curl -sSL https://get.rvm.io | bash
+RUN bash -l -c 'rvm install $(cat .ruby-version)'
+RUN bash -l -c 'rvm use $(cat .ruby-version)@$(cat .ruby-gemset) --create && gem install bundler'
+
+# Project directory will be mounted to /app
+VOLUME /app
+WORKDIR /app
+
+# 3000: API, 2000 UDP messages, 55555 UDP broadcast
+EXPOSE 3000
+EXPOSE 2000/udp
+EXPOSE 55555/udp
+
+# Bundle install and start rerun rackup
+COPY docker/run-workspace.sh /bin/
+ENTRYPOINT ["run-workspace.sh"]

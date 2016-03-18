@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+docker run -d --name caretaker-server \
+  --net caretaker \
+  -p 3000:3000 \
+  grappendorf/caretaker-server:latest

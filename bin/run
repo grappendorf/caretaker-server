@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+CMD=$(printf "%s " $@)
+docker exec -it workspace-caretaker-server bash -l -c "$CMD"

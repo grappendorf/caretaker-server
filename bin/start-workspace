@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+docker run -it --rm --name workspace-caretaker-server \
+  -v $PWD:/app \
+  -v $HOME/.rvm:/rvm:ro \
+  --net caretaker \
+  -p 3000:3000 \
+  grappendorf/caretaker-server:workspace
