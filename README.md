@@ -12,7 +12,7 @@ Deployment
 
 ### Run the server on the development host
 
-* Install RVM for the development user
+* Install RVM for the production user
 * Install Ruby 2.3.0
 * Create a _caretaker-server_ gemset (created when you enter the project directory) 
 * Install all the gems with `bundle install --without=development test`
@@ -25,9 +25,9 @@ port 2000 and 55555 (this can be configured in the file _config/environments/pro
 ### Run the server inside a Docker container
 
 * Build the container image with `./bin/build-server` (the resulting image is named
-  _grappendorf/caretaker-server_ and tagged with _latest_ and the current version number 
+  _grappendorf/caretaker-server_ and tagged with _latest_ and the current version number) 
 * Create a new network with `docker network create caretaker` 
-* Then start the workspace with `bin/start-server`
+* Then start the container with `bin/start-server`
 
 Note: in a real production environment you need to specify your own secret key base string!
 In _bin/start-server_ the same key is used as in the development and test environments.
