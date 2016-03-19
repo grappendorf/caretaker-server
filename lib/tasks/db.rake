@@ -41,7 +41,7 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
 
       puts 'Create some device scripts...'
       DeviceScript.create! name: 'Remote Control', description: 'Script for Remote Control buttons',
-        enabled: true, script: <<-EOS.strip_heredoc
+        enabled: false, script: <<-EOS.strip_heredoc
           def start
             device_manager = lookup :device_manager
             @remote = device_manager.device_by_uuid 'remote'
@@ -73,7 +73,7 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
       EOS
 
       DeviceScript.create! name: 'Rotary', description: 'Rotary Knob => Dimmer',
-        enabled: true, script: <<-EOS.strip_heredoc
+        enabled: false, script: <<-EOS.strip_heredoc
               def start
                 device_manager = lookup :device_manager
                 @rotary = device_manager.device_by_uuid 'rotary'
