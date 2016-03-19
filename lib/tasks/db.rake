@@ -54,12 +54,12 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
               @remote_listener = @remote.when_changed do
                 if @remote.states[0] == 1
                   @switch1.toggle 0
-                elsif @remote.states[0] == 2
-                  @switch1.toggle 0
-                elsif @remote.states[0] == 3
+                elsif @remote.states[1] == 1
                   @switch2.toggle 0
-                elsif @remote.states[0] == 4
+                elsif @remote.states[2] == 1
                   @switch3.toggle 0
+                elsif @remote.states[3] == 1
+                  @switch4.toggle 0
                 end
               end
             end
