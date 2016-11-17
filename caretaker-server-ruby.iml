@@ -3,7 +3,8 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
-      <excludeFolder url="file://$MODULE_DIR$/gems" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/features" isTestSource="true" />
     </content>
     <orderEntry type="jdk" jdkName="RVM: ruby-2.3.1 [caretaker-server] (1)" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
