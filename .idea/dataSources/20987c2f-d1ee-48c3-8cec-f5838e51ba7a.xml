@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="dependencies">
+  <database-model serializer="dbm" rdbms="SQLITE" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <table id="3" parent="2" name="ancestries"/>
+    <table id="4" parent="2" name="bundler_groups"/>
+    <table id="5" parent="2" name="bundler_groups_dependencies"/>
+    <table id="6" parent="2" name="dependencies"/>
+    <table id="7" parent="2" name="license_aliases"/>
+    <table id="8" parent="2" name="schema_migrations"/>
+    <table id="9" parent="2" name="sqlite_sequence"/>
+    <column id="10" parent="3" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="11" parent="3" name="parent_dependency_id">
+      <Position>1</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="12" parent="3" name="child_dependency_id">
+      <Position>2</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <key id="13" parent="3">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="14" parent="4" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="15" parent="4" name="name">
+      <Position>1</Position>
+      <DataType>VARCHAR(255)(0,-1)|12</DataType>
+    </column>
+    <key id="16" parent="4">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="17" parent="5" name="bundler_group_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="18" parent="5" name="dependency_id">
+      <Position>1</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="19" parent="6" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>NULL</DefaultExpression>
+    </column>
+    <column id="20" parent="6" name="name">
+      <Position>1</Position>
+      <DataType>VARCHAR(255)(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;NULL&apos;</DefaultExpression>
+    </column>
+    <column id="21" parent="6" name="version">
+      <Position>2</Position>
+      <DataType>VARCHAR(255)(0,-1)|12</DataType>
+      <DefaultExpression>&apos;NULL&apos;</DefaultExpression>
+    </column>
+    <column id="22" parent="6" name="summary">
+      <Position>3</Position>
+      <DataType>VARCHAR(255)(0,-1)|12</DataType>
+      <DefaultExpression>&apos;NULL&apos;</DefaultExpression>
+    </column>
+    <column id="23" parent="6" name="description">
+      <Position>4</Position>
+      <DataType>VARCHAR(255)(0,-1)|12</DataType>
+      <DefaultExpression>&apos;NULL&apos;</DefaultExpression>
+    </column>
+    <column id="24" parent="6" name="homepage">
+      <Position>5</Position>
+      <DataType>VARCHAR(255)(0,-1)|12</DataType>
+      <DefaultExpression>&apos;NULL&apos;</DefaultExpression>
+    </column>
+    <column id="25" parent="6" name="license_id">
+      <Position>6</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
+    </column>
+    <column id="26" parent="6" name="approval_id">
+      <Position>7</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <DefaultExpression>NULL</DefaultExpression>
+    </column>
+    <column id="27" parent="6" name="manual">
+      <Position>8</Position>
+      <DataType>BOOLEAN(0,-1)|4</DataType>
+    </column>
+    <column id="28" parent="6" name="license_manual">
+      <Position>9</Position>
+      <DataType>BOOLEAN(0,-1)|4</DataType>
+    </column>
+    <column id="29" parent="6" name="manually_approved">
+      <Position>10</Position>
+      <DataType>BOOLEAN(0,-1)|4</DataType>
+    </column>
+    <key id="30" parent="6">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="31" parent="7" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>NULL</DefaultExpression>
+    </column>
+    <column id="32" parent="7" name="name">
+      <Position>1</Position>
+      <DataType>VARCHAR(255)(0,-1)|12</DataType>
+      <DefaultExpression>&apos;NULL&apos;</DefaultExpression>
+    </column>
+    <column id="33" parent="7" name="url">
+      <Position>2</Position>
+      <DataType>VARCHAR(255)(0,-1)|12</DataType>
+      <DefaultExpression>&apos;NULL&apos;</DefaultExpression>
+    </column>
+    <key id="34" parent="7">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="35" parent="8" name="filename">
+      <DataType>VARCHAR(255)(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="36" parent="8">
+      <ColNames>filename</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="37" parent="9" name="name">
+      <DataType>(0,-1)|12</DataType>
+    </column>
+    <column id="38" parent="9" name="seq">
+      <Position>1</Position>
+      <DataType>(0,-1)|12</DataType>
+    </column>
+  </database-model>
+</dataSource>
