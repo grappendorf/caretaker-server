@@ -8,9 +8,18 @@ class API::PhilipsHue < Base
       if bridge
         {
           connected: true,
-          application_id: bridge.application_id,
-          bridge_uri: bridge.bridge_uri,
-          lights: bridge.lights.map { |num, data| data.merge({ num: num.to_i }) }
+          application_id: bridge.id,
+          bridge_uri: bridge.ip,
+          lights: bridge.lights.map do |light| {
+              num: light.id,
+              uniqueid: light.id,
+              name: light.name,
+              type: light.type,
+              state: {
+                reachable: light.reachable?
+              }
+            }
+          end
         }
       else
         {

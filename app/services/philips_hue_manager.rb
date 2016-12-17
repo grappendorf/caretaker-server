@@ -5,7 +5,7 @@ class PhilipsHueManager
 
   def start
     Grape::API.logger.info 'Philips Hue Manager starting'
-    @bridge = Hue.application rescue nil
+    @bridge = hue_client.bridge rescue nil
   end
 
   def stop
@@ -13,22 +13,19 @@ class PhilipsHueManager
   end
 
   def register
-    Hue.register_default
-    @bridge = Hue.application rescue nil
+    @bridge = hue_client.bridge rescue nil
   end
 
   def unregister
-    Hue.remove_default
-    @bridge = nil
   end
 
   def synchronize
-    @bridge.lights.each do |num, light|
+    hue_client.lights.each do |num, light|
       device = Device.find_by_uuid light['uniqueid']
-      uuid = light['uniqueid']
-      name = light['name']
-      address = "#{num}"
-      description = "#{light['manufacturername']} #{light['type']} #{light['modelid']} #{light['swversion']}"
+      uuid = light.id
+      name = light.name
+      address = light.id
+      description = "#{light.type} #{light.model} #{light.software_version}"
       if device
         device.update_attributes! name: name, address: address, description: description
       else
@@ -37,29 +34,38 @@ class PhilipsHueManager
     end
   end
 
-  def light_reachable? num
-    Hue::Bulb.new(@bridge, num).state['reachable']
+  def light_reachable? id
+    light = hue_client.light id
+    light.refresh
+    light.reachable?
   end
 
-  def light_state num
-    Hue::Bulb.new(@bridge, num).state
+  def light_state id
+    light = hue_client.light id
+    light.refresh
+    OpenStruct.new hue: light.hue, saturation: light.saturation, brightness: light.brightness
   end
 
-  def light_update_brightness num, brightness
-    bulb = Hue::Bulb.new @bridge, num
+  def light_update_brightness id, brightness
+    light = hue_client.light id
     if brightness > 0
-      bulb.on
-      bulb.brightness = brightness
+      light.set_state({ 'on' => true, 'brightness' => brightness })
     else
-      bulb.off
+      light.set_state({ 'on' => false })
     end
   end
 
   def light_update_color num, hue, saturation
-    Hue::Bulb.new(@bridge, num).color = Hue::Colors::HueSaturation.new hue, saturation
+    hue_client.light(id).set_state({'hue' => hue, 'saturation' => saturation})
   end
 
   def light_rename num, name
-    Hue::Bulb.new(@bridge, num).name = name
+    hue_client.light(id).name = name
+  end
+
+  private
+
+  def hue_client
+    @hue_client ||= Hue::Client.new
   end
 end

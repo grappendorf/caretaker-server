@@ -37,7 +37,7 @@ class PhilipsHueLightDevice < ActiveRecord::Base
   def current_state
     begin
       state = philips_hue.light_state address.to_i
-      { brightness: state['bri'], color: { hue: state['hue'], saturation: state['sat'] } }
+      { brightness: state.brightness, color: { hue: state.hue, saturation: state.saturation } }
     rescue
       { brightness: 0, color: { hue: 0, saturation: 0 } }
     end
@@ -45,10 +45,10 @@ class PhilipsHueLightDevice < ActiveRecord::Base
 
   def put_state params
     if params.has_key? 'brightness'
-      set_brightness params['brightness']
+      set_brightness params['brightness'].to_i
     end
     if params.has_key? 'color'
-      set_color params['color']['hue'], params['color']['saturation']
+      set_color params['color']['hue'].to_i, params['color']['saturation'].to_i
     end
   end
 
