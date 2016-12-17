@@ -1,4 +1,4 @@
-FROM ruby:2.3.0
+FROM ruby:2.3.2
 MAINTAINER Dirk Grappendorf "dirk@grappendorf.net"
 
 RUN apt-get update -qqy

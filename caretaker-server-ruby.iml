@@ -6,7 +6,7 @@
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/features" isTestSource="true" />
     </content>
-    <orderEntry type="jdk" jdkName="RVM: ruby-2.3.1 [caretaker-server] (1)" jdkType="RUBY_SDK" />
+    <orderEntry type="jdk" jdkName="RVM: ruby-2.3.2 [caretaker-server]" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="active_record-acts_as (v1.0.8, RVM: ruby-2.3.1 [caretaker-server] (1)) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activemodel (v4.2.5.2, RVM: ruby-2.3.1 [caretaker-server] (1)) [gem]" level="application" />
