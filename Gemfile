@@ -29,6 +29,7 @@ gem 'faye-websocket', '0.10.3'
 gem 'thin', '1.6.4'
 gem 'wannabe_bool', '0.5.0'
 gem 'bigdecimal', '1.2.7'
+gem 'mqtt', '0.4.0'
 
 group :test do
   gem 'rspec', '3.4.0'

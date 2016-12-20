@@ -60,6 +60,7 @@
     <orderEntry type="library" scope="PROVIDED" name="micon (v0.1.28, RVM: ruby-2.3.2 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mini_portile2 (v2.0.0, RVM: ruby-2.3.2 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="minitest (v5.10.1, RVM: ruby-2.3.2 [caretaker-server]) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="mqtt (v0.4.0, RVM: ruby-2.3.2 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.12.1, RVM: ruby-2.3.2 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_test (v0.1.2, RVM: ruby-2.3.2 [caretaker-server]) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="multi_xml (v0.6.0, RVM: ruby-2.3.2 [caretaker-server]) [gem]" level="application" />
