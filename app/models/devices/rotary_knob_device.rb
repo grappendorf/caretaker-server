@@ -42,7 +42,7 @@ class RotaryKnobDevice < ActiveRecord::Base
   end
 
   def put_state params
-    set_value params.to_i
+    set_value params[:value].to_i
   end
 
   def update
