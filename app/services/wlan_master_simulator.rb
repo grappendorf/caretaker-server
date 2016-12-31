@@ -6,6 +6,22 @@ class WlanMasterSimulator
   def start
     Grape::API.logger.info 'WLAN master simualtor starting'
     @devices = {}
+    add_device '192.168.1.1', { states: [0] }
+    add_device '192.168.1.2', { states: [0, 0, 0, 0, 0, 0, 0, 0] }
+    add_device '192.168.1.3', { value: 64 }
+    add_device '192.168.1.4', { red: 50, green: 100, blue: 200 }
+    add_device '192.168.1.5', {}
+    add_device '192.168.1.6', { states: [0, 0, 0, 0, 0, 0, 0, 0] }
+    add_device '192.168.1.7', { value: 192 }
+
+    Thread.new do
+      loop do
+        sleep 5
+        fire_message_received '192.168.1.5', CaretakerMessages::SENSOR_STATE,
+          0, (rand(11500) - 3000) / 100,
+          1, rand(100000) / 100
+      end
+    end
   end
 
   def stop
@@ -23,7 +39,7 @@ class WlanMasterSimulator
     config[:address] = address
   end
 
-  def send_message address, msg, params = []
+  def send_message address, port, msg, params = []
     device = @devices[address]
     if device
       # noinspection RubyCaseWithoutElseBlockInspection
@@ -93,7 +109,11 @@ class WlanMasterSimulator
   end
 
   def set_rotary device, params
-    device[:value] = params[0].to_i
+    # noinspection RubyCaseWithoutElseBlockInspection
+    case params[0]
+      when CaretakerMessages::WRITE_ABSOLUTE
+        device[:value] = params[1]
+    end
     get_rotary device, params
   end
 

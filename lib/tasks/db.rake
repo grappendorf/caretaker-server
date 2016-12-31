@@ -39,27 +39,53 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
           password: password
       end
 
+      puts 'Create some devices...'
+      switch1_device = SwitchDevice.create! uuid: 'switch1',
+        name: 'Switch 1-Port', description: 'One switch',
+        address: '192.168.1.1', port: Application.config.device_port,
+        num_switches: 1, switches_per_row: 1
+      switch8_device = SwitchDevice.create! uuid: 'switch8',
+        name: 'Switch 8-Port', description: 'Lot\'s of switches',
+        address: '192.168.1.2', port: Application.config.device_port,
+        num_switches: 8, switches_per_row: 4
+      dimmer_device = DimmerDevice.create! uuid: 'dimmer',
+        name: 'Dimmer', description: '0% to 100%',
+        address: '192.168.1.3', port: Application.config.device_port
+      dimmer_rgb_device = DimmerRgbDevice.create! uuid: 'rgb',
+        name: 'Dimmer RGB', description: 'Rainbow colors',
+        address: '192.168.1.4', port: Application.config.device_port
+      sensor_device = SensorDevice.create! uuid: 'sensor',
+        name: 'Sensor', description: 'Senors',
+        address: '192.168.1.5', port: Application.config.device_port,
+        sensors: [
+          { type: CaretakerMessages::SENSOR_TEMPERATURE, min: -30, max: 80 },
+          { type: CaretakerMessages::SENSOR_BRIGHTNESS, min: 0, max: 1000 }]
+      remotecontrol_device = RemoteControlDevice.create! uuid: 'remote',
+        name: 'Remote Control', description: 'Lot\'s of buttons',
+        address: '192.168.1.6', port: Application.config.device_port,
+        num_buttons: 8, buttons_per_row: 4
+      rotary_knob_device = RotaryKnobDevice.create! uuid: 'rotary',
+        address: '192.168.1.7', port: Application.config.device_port,
+        name: 'Rotary Knob', address: '192.168.1.7', description: 'Knob'
+
       puts 'Create some device scripts...'
       DeviceScript.create! name: 'Remote Control', description: 'Script for Remote Control buttons',
-        enabled: false, script: <<-EOS.strip_heredoc
+        enabled: true, script: <<-EOS.strip_heredoc
           def start
             device_manager = lookup :device_manager
             @remote = device_manager.device_by_uuid 'remote'
-            @switch1 = device_manager.device_by_uuid 'switch1'
-            @switch2 = device_manager.device_by_uuid 'switch2'
-            @switch3 = device_manager.device_by_uuid 'switch3'
-            @switch4 = device_manager.device_by_uuid 'switch4'
+            @switch = device_manager.device_by_uuid 'switch8'
 
             if @remote
               @remote_listener = @remote.when_changed do
                 if @remote.states[0] == 1
-                  @switch1.toggle 0
+                  @switch.toggle 0
                 elsif @remote.states[1] == 1
-                  @switch2.toggle 0
+                  @switch.toggle 1
                 elsif @remote.states[2] == 1
-                  @switch3.toggle 0
+                  @switch.toggle 2
                 elsif @remote.states[3] == 1
-                  @switch4.toggle 0
+                  @switch.toggle 3
                 end
               end
             end
@@ -73,7 +99,7 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
       EOS
 
       DeviceScript.create! name: 'Rotary', description: 'Rotary Knob => Dimmer',
-        enabled: false, script: <<-EOS.strip_heredoc
+        enabled: true, script: <<-EOS.strip_heredoc
               def start
                 device_manager = lookup :device_manager
                 @rotary = device_manager.device_by_uuid 'rotary'
@@ -104,12 +130,17 @@ unless ARGV.any? { |a| a =~ /^gems/ } # Don't load anything when running the gem
       end
 
       puts 'Create some dashboards...'
-      dashboard = Dashboard.create! name: 'Default', default: true,
-        user: User.find_by(email: 'user@example.com')
-      position = 0
-      DeviceAction.all.each do |action|
+      dashboard = Dashboard.create! name: 'Default', default: true, user: User.find_by(email: 'user@example.com')
+      dashboard.widgets << DeviceWidget.new(device: switch1_device, position: 0, width: 1, height: 1)
+      dashboard.widgets << DeviceWidget.new(device: switch8_device, position: 1, width: 2, height: 1)
+      dashboard.widgets << DeviceWidget.new(device: dimmer_device, position: 2, width: 2, height: 1)
+      dashboard.widgets << DeviceWidget.new(device: dimmer_rgb_device, position: 3, width: 2, height: 1)
+      dashboard.widgets << DeviceWidget.new(device: sensor_device, position: 4, width: 2, height: 1)
+      dashboard.widgets << DeviceWidget.new(device: remotecontrol_device, position: 5, width: 2, height: 1)
+      dashboard.widgets << DeviceWidget.new(device: rotary_knob_device, position: 6, width: 1, height: 1)
+      DeviceAction.all.each_with_index do |action, i|
         dashboard.widgets << ActionWidget.new(device_action: action,
-          position: position, width: 1, height: 1)
+          position: 8 + i, width: 1, height: 1)
       end
 
       puts 'Create some buildings, floors, rooms, ...'
