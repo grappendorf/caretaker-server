@@ -38,7 +38,7 @@ module ServiceManager
       register(:scheduler) { Rufus::Scheduler.start_new }
     end
 
-    if Application.config.env == :test
+    if [:test, :development].include? Application.config.env
       require_relative '../../app/services/wlan_master_simulator'
       register(:wlan_master) { WlanMasterSimulator.new }
     else
