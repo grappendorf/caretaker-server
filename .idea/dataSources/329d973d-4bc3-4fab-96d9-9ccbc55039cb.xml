@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="development.sqlite3">
+  <database-model serializer="dbm" rdbms="SQLITE" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <table id="3" parent="2" name="action_widgets"/>
+    <table id="4" parent="2" name="buildings"/>
+    <table id="5" parent="2" name="cipcam_devices"/>
+    <table id="6" parent="2" name="clock_widgets"/>
+    <table id="7" parent="2" name="dashboards"/>
+    <table id="8" parent="2" name="device_actions"/>
+    <table id="9" parent="2" name="device_scripts"/>
+    <table id="10" parent="2" name="device_widgets"/>
+    <table id="11" parent="2" name="devices"/>
+    <table id="12" parent="2" name="dimmer_devices"/>
+    <table id="13" parent="2" name="dimmer_rgb_devices"/>
+    <table id="14" parent="2" name="easyvr_devices"/>
+    <table id="15" parent="2" name="floors"/>
+    <table id="16" parent="2" name="philips_hue_light_devices"/>
+    <table id="17" parent="2" name="reflow_oven_devices"/>
+    <table id="18" parent="2" name="remote_control_devices"/>
+    <table id="19" parent="2" name="roles"/>
+    <table id="20" parent="2" name="rooms"/>
+    <table id="21" parent="2" name="rotary_knob_devices"/>
+    <table id="22" parent="2" name="schema_migrations"/>
+    <table id="23" parent="2" name="sensor_devices"/>
+    <table id="24" parent="2" name="sqlite_sequence"/>
+    <table id="25" parent="2" name="switch_devices"/>
+    <table id="26" parent="2" name="users"/>
+    <table id="27" parent="2" name="users_roles"/>
+    <table id="28" parent="2" name="weather_widgets"/>
+    <table id="29" parent="2" name="widgets"/>
+    <column id="30" parent="3" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="3" name="device_action_id">
+      <Position>1</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <key id="32" parent="3">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="33" parent="4" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="34" parent="4" name="name">
+      <Position>1</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="35" parent="4" name="description">
+      <Position>2</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <index id="36" parent="4" name="index_buildings_on_name">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="37" parent="4">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="38" parent="5" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="39" parent="5" name="user">
+      <Position>1</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="40" parent="5" name="password">
+      <Position>2</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="41" parent="5" name="refresh_interval">
+      <Position>3</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <key id="42" parent="5">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="43" parent="6" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="44" parent="6">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="45" parent="7" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="7" name="name">
+      <Position>1</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="47" parent="7" name="default">
+      <Position>2</Position>
+      <DataType>BOOLEAN(0,-1)|4</DataType>
+    </column>
+    <column id="48" parent="7" name="user_id">
+      <Position>3</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <key id="49" parent="7">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="50" parent="8" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="51" parent="8" name="name">
+      <Position>1</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="52" parent="8" name="description">
+      <Position>2</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="53" parent="8" name="script">
+      <Position>3</Position>
+      <DataType>TEXT(0,-1)|12</DataType>
+    </column>
+    <key id="54" parent="8">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="55" parent="9" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="56" parent="9" name="name">
+      <Position>1</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="57" parent="9" name="description">
+      <Position>2</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="58" parent="9" name="script">
+      <Position>3</Position>
+      <DataType>TEXT(0,-1)|12</DataType>
+    </column>
+    <column id="59" parent="9" name="enabled">
+      <Position>4</Position>
+      <DataType>BOOLEAN(0,-1)|4</DataType>
+    </column>
+    <key id="60" parent="9">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="61" parent="10" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="62" parent="10" name="device_id">
+      <Position>1</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="63" parent="10" name="device_type">
+      <Position>2</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <key id="64" parent="10">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="65" parent="11" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="66" parent="11" name="actable_id">
+      <Position>1</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="67" parent="11" name="actable_type">
+      <Position>2</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="68" parent="11" name="name">
+      <Position>3</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="69" parent="11" name="address">
+      <Position>4</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="70" parent="11" name="description">
+      <Position>5</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="71" parent="11" name="uuid">
+      <Position>6</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="72" parent="11" name="port">
+      <Position>7</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <DefaultExpression>2000</DefaultExpression>
+    </column>
+    <index id="73" parent="11" name="index_devices_on_name">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="74" parent="11">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="75" parent="12" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="76" parent="12">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="77" parent="13" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="78" parent="13">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="79" parent="14" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="80" parent="14" name="num_buttons">
+      <Position>1</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="81" parent="14" name="buttons_per_row">
+      <Position>2</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <key id="82" parent="14">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="83" parent="15" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="84" parent="15" name="name">
+      <Position>1</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="85" parent="15" name="description">
+      <Position>2</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="86" parent="15" name="building_id">
+      <Position>3</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <index id="87" parent="15" name="index_floors_on_name">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="88" parent="15">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="89" parent="16" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="90" parent="16">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="91" parent="17" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="92" parent="17">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="93" parent="18" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="94" parent="18" name="num_buttons">
+      <Position>1</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="95" parent="18" name="buttons_per_row">
+      <Position>2</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <key id="96" parent="18">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="97" parent="19" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="98" parent="19" name="name">
+      <Position>1</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="99" parent="19" name="resource_id">
+      <Position>2</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="100" parent="19" name="resource_type">
+      <Position>3</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <index id="101" parent="19" name="index_roles_on_name_and_resource_type_and_resource_id">
+      <ColNames>name
+resource_type
+resource_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="102" parent="19" name="index_roles_on_name">
+      <ColNames>name</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="103" parent="19">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="104" parent="20" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="105" parent="20" name="number">
+      <Position>1</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="106" parent="20" name="description">
+      <Position>2</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="107" parent="20" name="floor_id">
+      <Position>3</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <index id="108" parent="20" name="index_rooms_on_number">
+      <ColNames>number</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="109" parent="20">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="110" parent="21" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="111" parent="21">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="112" parent="22" name="version">
+      <DataType>VARCHAR(0,-1)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="113" parent="22" name="unique_schema_migrations">
+      <ColNames>version</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <column id="114" parent="23" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="115" parent="23" name="sensors">
+      <Position>1</Position>
+      <DataType>TEXT(0,-1)|12</DataType>
+    </column>
+    <key id="116" parent="23">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="117" parent="24" name="name">
+      <DataType>(0,-1)|12</DataType>
+    </column>
+    <column id="118" parent="24" name="seq">
+      <Position>1</Position>
+      <DataType>(0,-1)|12</DataType>
+    </column>
+    <column id="119" parent="25" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="120" parent="25" name="num_switches">
+      <Position>1</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="121" parent="25" name="switches_per_row">
+      <Position>2</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <key id="122" parent="25">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="123" parent="26" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="124" parent="26" name="name">
+      <Position>1</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="125" parent="26" name="email">
+      <Position>2</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="126" parent="26" name="encrypted_password">
+      <Position>3</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <index id="127" parent="26" name="index_users_on_email">
+      <ColNames>email</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="128" parent="26">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="129" parent="27" name="user_id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="130" parent="27" name="role_id">
+      <Position>1</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <index id="131" parent="27" name="index_users_roles_on_user_id_and_role_id">
+      <ColNames>user_id
+role_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <column id="132" parent="28" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="133" parent="28" name="api_key">
+      <Position>1</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <key id="134" parent="28">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="135" parent="29" name="id">
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="136" parent="29" name="actable_id">
+      <Position>1</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="137" parent="29" name="actable_type">
+      <Position>2</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="138" parent="29" name="width">
+      <Position>3</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <DefaultExpression>1</DefaultExpression>
+    </column>
+    <column id="139" parent="29" name="height">
+      <Position>4</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+      <DefaultExpression>1</DefaultExpression>
+    </column>
+    <column id="140" parent="29" name="title">
+      <Position>5</Position>
+      <DataType>VARCHAR(0,-1)|12</DataType>
+    </column>
+    <column id="141" parent="29" name="dashboard_id">
+      <Position>6</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <column id="142" parent="29" name="position">
+      <Position>7</Position>
+      <DataType>INTEGER(0,-1)|4</DataType>
+    </column>
+    <key id="143" parent="29">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>
