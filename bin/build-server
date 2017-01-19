@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
 
 VERSION=$(cat lib/version.rb | grep -o -P "(?<=VERSION = ')(.+)(?=')")
-docker build -t grappendorf/caretaker-server:latest -f docker/Dockerfile .
-docker tag grappendorf/caretaker-server:latest grappendorf/caretaker-server:$VERSION
+docker build -t dockerrepo.grappendorf.net/production/caretaker-server:$VERSION -f docker/Dockerfile .
